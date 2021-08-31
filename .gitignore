@@ -1,8 +1,13 @@
 .vs
+
+# Prevent Database Information from
+# being posted online
 db_conn.config
 db_conn.config.save
-localphpTest.php
-localdb_conn.config
 .DS_Store
 html/.DS_Store
 .save
+
+# License
+# ---------------
+/site/config/.license
