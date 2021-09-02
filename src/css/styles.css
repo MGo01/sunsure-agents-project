@@ -1,0 +1,112 @@
+body 
+{
+	margin: 0px;
+}
+
+#titleContainer
+{
+	background-image: url("background.jfif");
+	background-size: cover;
+	float: left;
+	height: 100%;
+	width: 40%;
+	font-family: 'Ubuntu', sans-serif;
+	color: #000000;
+}
+
+#title 
+{
+    margin-top: 40%;
+	margin-left: 25%;
+	font-size: 40px;
+}
+
+#subtitle 
+{
+    margin-left: 50%;
+	font-size: 25px;
+}
+
+#loginContainer
+{
+    background-color: #FBFBF8;
+	float: right;
+	height: 100%;
+	width: 60%;
+	font-family: 'Ubuntu', sans-serif;
+	font-size: 30px;
+}
+
+#returningUser
+{
+    display: inline-block;
+	margin-left: 39%;
+	margin-top: 15%;
+	margin-bottom: 5%;
+	color: #000000;
+}
+
+#newUser
+{
+    display: inline-block;
+	margin-left: 43%;
+	margin-top: 8%;
+	margin-bottom: 5%;
+	color: #000000;
+}
+
+#firstName, #lastName, #loginUsername, #loginPassword
+{
+	background-color: transparent;
+	border: transparent;
+	border-bottom: 3px solid #b2b2b2;
+	margin-top: 2%;
+    margin-left: 10%;
+    margin-bottom: 2%;
+    font-family: 'Ubuntu', sans-serif;
+	font-size: 30px;
+	width: 80%;
+}
+
+#registerLink
+{
+	display: inline-block;
+    margin-left: 38%;
+	margin-top: 7%;
+    font-size: 25px;
+	text-underline-offset: 4px;
+    color: #000000;
+}
+
+#signInLink
+{
+	display: inline-block;
+    margin-left: 35%;
+	margin-top: 7%;
+    font-size: 25px;
+	text-underline-offset: 4px;
+    color: #000000;
+}
+
+.buttons
+{
+	background-color: #DBE9F4;
+	border-color: #000000;
+	border-radius: 25px;
+	margin-top: 5%;
+    margin-left: 20%;
+	padding: 1%;
+	width: 60%;
+    font-family: 'Ubuntu', sans-serif;
+	font-size: 30px;
+}
+
+.buttons:hover
+{
+    background-color: #FFCBA4;
+}
+
+:focus
+{
+	outline: none;
+}
