@@ -26,7 +26,7 @@
     else
     {
       //echo "failed to insert records";
-      returnError( $conn->error );
+      returnError($conn->error);
     }
   }
 
@@ -37,36 +37,38 @@
 
   mysqli_close($conn);
     
-  function returnError($error){
-        $retval->msg = $error;
+  function returnError($error)
+  {
+    $retval->msg = $error;
     outputJson($retval);
   }
   
-  function returnInfo($info){
-        $retval->msg = $info;
+  function returnInfo($info)
+  {
+    $retval->msg = $info;
     outputJson($retval);
   }
 
-  function showToken($token){
+  function showToken($token)
+  {
     outputJson($retval);
-}
+  }
   
-  function outputJson ($file){
+  function outputJson($file)
+  {
     header("Content-type:application/json");
     $jsonObj = json_encode($file);
     echo $jsonObj;
   }
 
-  function checkEmailUsed($email, $conn){
+  function checkEmailUsed($email, $conn)
+  {
     $sql = "SELECT * FROM Agents WHERE Email = '$Email'";
     $result = mysqli_query($conn, $sql);
     $rows = mysqli_num_rows($result);
 
     if ($rows > 0)
-    {
       return False;
-    }
-
     else
       return True;
   }
