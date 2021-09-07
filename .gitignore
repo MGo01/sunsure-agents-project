@@ -2,7 +2,6 @@
 
 # Prevent Database Information from
 # being posted online
-db_conn.config
 db_conn.config.save
 .DS_Store
 html/.DS_Store
