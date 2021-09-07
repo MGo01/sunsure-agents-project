@@ -12,7 +12,7 @@ header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');
         if ($conn->connect_error)
         {
             // Invalid credentials in $conn.
-            echo()
+            echo($conf)
             die('Connection to the database failed: ' . $conn->connect_error);
         }
     }
