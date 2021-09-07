@@ -3,7 +3,7 @@ header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');
     // Fetch credentials from file residing on the server.
-    $conf = parse_ini_file('/var/www/db_conn.config');
+    $conf = parse_ini_file('/var/www/API/db_conn.config');
 
     if ($conf)
     {
@@ -12,6 +12,7 @@ header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');
         if ($conn->connect_error)
         {
             // Invalid credentials in $conn.
+            echo()
             die('Connection to the database failed: ' . $conn->connect_error);
         }
     }
