@@ -8,7 +8,7 @@
   $Password = $inputFromJson['Password'];
 
   // Query to DB
-  $sql = "SELECT * FROM Agents WHERE (Email='$Email' AND Password='$Password')"; 
+  $sql = "SELECT * FROM Agents WHERE (Email='$Email' AND Password='$Password')";
   $result = mysqli_query($conn, $sql);
   $numRows = mysqli_num_rows($result);
 
@@ -23,12 +23,12 @@
     $FirstName = $Agent["FirstName"];
     $LastName = $Agent["LastName"];
     $Email = $Agent["Email"];
-    
-    // Returns User information to be stored 
+
+    // Returns User information to be stored
     // on the Front-End (FE).
-    returnUser($ID, $FirstName, $LastName, $RSO, $Email);
+    returnUser($ID, $FirstName, $LastName, $Email);
   }
-  
+
   // User was not found.
   else
   {
@@ -52,7 +52,7 @@
   function returnUser($ID, $FirstName, $LastName, $Email)
   {
     $retval = (object) [
-      'ID' => $ID
+      'ID' => $ID,
       'FirstName' => $FirstName,
       'LastName' => $LastName,
       'Email' => $Email
@@ -68,5 +68,5 @@
 
     $jsonObj = json_encode($file);
     echo $jsonObj;
-  } 
+  }
 ?>
