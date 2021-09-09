@@ -45,7 +45,7 @@ function checkFullName(name)
 function checkPassword(password)
 {
   "use strict";
-
+  
   if (password.length === 0) 
   {
     document.getElementById("upstatus").innerHTML = "Password is required!";
