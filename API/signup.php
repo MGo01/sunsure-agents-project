@@ -12,14 +12,14 @@
 
   if (checkEmailUsed($Email, $conn))
   {
-    $pattern = '@.*';
+    // Create prefix to add uniqueness
+    $offset = 15;
+    $rand_str = md5(time().$Email);
 
-    // Use Regular Expressions to extract all characters in
-    // the Agent email before the '@' character.  
-    pregmatch($pattern, $Email, $match);
-  
+    $pre = substr($rand_str, -$offset);
+
     // Generate a unique ID 
-    $AgentID = uniqid($match, true);
+    $AgentID = uniqid($pre, true);
 
     $sql = "INSERT INTO Agents (Password, Email, FirstName, LastName, AgentID)
     VALUES ('".$Password."','".$Email."','".$FirstName."','".$LastName."', '".$AgentID."')";
