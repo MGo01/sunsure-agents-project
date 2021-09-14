@@ -10,11 +10,17 @@
   $Password =  $inputFromJson['Password'];
   $Email = $inputFromJson['Email'];
 
-  // Generate a random string based on unique Agent email
-  $AgentID = md5(time().$Email);
-
   if (checkEmailUsed($Email, $conn))
   {
+    $pattern = '@.*';
+
+    // Use Regular Expressions to extract all characters in
+    // the Agent email before the '@' character.  
+    pregmatch($pattern, $Email, $match);
+  
+    // Generate a unique ID 
+    $AgentID = uniqid($match, true);
+
     $sql = "INSERT INTO Agents (Password, Email, FirstName, LastName, AgentID)
     VALUES ('".$Password."','".$Email."','".$FirstName."','".$LastName."', '".$AgentID."')";
 
