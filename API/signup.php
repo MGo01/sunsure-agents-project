@@ -19,10 +19,10 @@
     $pre = substr($rand_str, -$offset);
 
     // Generate a unique ID 
-    $AgentID = uniqid($pre, true);
+    $AgentToken = uniqid($pre, true);
 
-    $sql = "INSERT INTO Agents (Password, Email, FirstName, LastName, AgentID)
-    VALUES ('".$Password."','".$Email."','".$FirstName."','".$LastName."', '".$AgentID."')";
+    $sql = "INSERT INTO Agents (Password, Email, FirstName, LastName, AgentToken)
+    VALUES ('".$Password."','".$Email."','".$FirstName."','".$LastName."', '".$AgentToken."')";
 
     if (mysqli_query($conn, $sql))
     {

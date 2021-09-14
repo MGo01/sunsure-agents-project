@@ -5,7 +5,7 @@
   // Receive JSON payload from signup.js file.
   $inputFromJson = json_decode(file_get_contents('php://input'), true);
 
-  $PolicyID = $inputFromJson['PolicyID'];
+  $AgentID = $inputFromJson['AgentID'];
   $FirstName = $inputFromJson['FirstName'];
   $LastName = $inputFromJson['LastName'];
   $DateOfBirth = $inputFromJson['DateOfBirth'];
@@ -28,8 +28,8 @@
 
   if (checkPrimaryPolicy($Email, $conn))
   {
-    $sql = "INSERT INTO Primary_PolicyHolders (PolicyID, FirstName, LastName, DateOfBirth, SSN, Phone, Address, Second_Line_Address, City, ZipCode, State, Email, NumOfLives, NumOfDependents, PolicyInfoID, Source)
-    VALUES ('".$PolicyID."','".$FirstName."','".$LastName."','".$DateOfBirth."', '".$SSN."',
+    $sql = "INSERT INTO Primary_PolicyHolders (AgentID, FirstName, LastName, DateOfBirth, SSN, Phone, Address, Second_Line_Address, City, ZipCode, State, Email, NumOfLives, NumOfDependents, PolicyInfoID, Source)
+    VALUES ('".$AgentID."','".$FirstName."','".$LastName."','".$DateOfBirth."', '".$SSN."',
             '".$Phone."','".$Address."','".$Second_Line_Address."', '".$City."', '".$ZipCode."',
             '".$State."','".$Email."','".$NumOfLives."', '".$NumOfDependents."', '".$PolicyInfoID."', '".$Source."')";
 
