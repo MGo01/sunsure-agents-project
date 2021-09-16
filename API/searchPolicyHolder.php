@@ -29,6 +29,18 @@
     public $NumOfDependents = "";
     public $PolicyInfoID = "";
     public $Source = "";
+    public $Dependents = array();
+  }
+
+   // Create a class capable of holding Dependent
+  // information for search queries.
+  class Dependent 
+  {
+    public $FirstName = "";
+    public $LastName = "";
+    public $DateOfBirth = "";
+    public $SSN = "";
+    public $DependentID = "";
   }
  
   // Create an Array of Policyholders.
@@ -43,11 +55,12 @@
 
     $result = mysqli_query($conn, $sql_check);
 
-    if (mysqli_query($conn, $sql))
+    if (mysqli_query($conn, $sql_check))
     {
       // Retrieve search results via getPolicyHolders() 
       // and store them in "searchResults"
       $searchResults = getPolicyHolders($result);
+
       returnInfo($searchResults);
     }
 
@@ -61,7 +74,7 @@
   else
   {
 
-    $sql = "SELECT * from Primary_PolicyHolders Where (AgentID = $AgentID) AND (FirstName LIKE '%$Input%' OR LastName LIKE '%$Input%' OR              Email LIKE '%$Input%' OR Phone LIKE '%$Input%')";
+    $sql = "SELECT * FROM Primary_PolicyHolders WHERE (AgentID = $AgentID) AND (FirstName LIKE '%$Input%' OR LastName LIKE '%$Input%' OR              Email LIKE '%$Input%' OR Phone LIKE '%$Input%')";
 
     $result = mysqli_query($conn, $sql);
 
@@ -70,6 +83,7 @@
       // Retrieve search results via getPolicyHolders() 
       // and store them in "searchResults"
       $searchResults = getPolicyHolders($result);
+
       returnInfo($searchResults);
     }
 
@@ -100,6 +114,39 @@
     outputJson($retval);
   }
 
+  function getDependents($policyHolder)
+  {
+    // SQL Command to get every singe Dependent from the corresponding PolicyID.
+    $sql_dep = "SELECT * FROM Dependents WHERE (PolicyID = $policyHolder->PolicyID)"
+    $dependent_result = mysqli_query($conn, $sql_dep);
+
+    if (mysqli_query($conn, $sql_dep))
+    {
+      $dependent_array = array();
+
+      while ($dep_row = mysqli_fetch_array($dependent_result))
+      {
+        $newDependent = new Dependent();
+      
+        $newDependent->FirstName = $row['FirstName'];
+        $newDependent->LastName = $row['LastName'];
+        $newDependent->DateOfBirth = $row['DateOfBirth'];
+        $newDependent->SSN = $row['SSN'];
+        $newDependent->DependentID = $row['DependentID'];
+        
+        $dependent_array[] = $newDependent;
+      }
+
+      return $dependent_array;
+    }
+
+    else
+    {
+      // echo "failed to search records";
+      returnError($conn->error);
+    }
+  }
+
   function getPolicyHolders($result)
   {
     while ($row = mysqli_fetch_array($result))
@@ -127,10 +174,10 @@
       $newPolicyHolder->PolicyInfoID = $row['PolicyInfoID'];
       $newPolicyHolder->Source = $row['Source'];
       
+      $newPolicyHolder->{"Dependents[]"} = getDependents($newPolicyHolder);
+
       $primaryPolicyHolders[] = $newPolicyHolder;
     }
-  
-    unset($primaryPolicyHolders[0]);
     
     return $primaryPolicyHolders;
   }
