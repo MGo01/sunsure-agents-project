@@ -60,7 +60,8 @@
 
   else
   {
-    $sql = "SELECT * from Primary_PolicyHolders WHERE (AgentID = $AgentID) AND (FirstName LIKE '%$Input%' OR LastName LIKE '%$Input%' OR Email LIKE '%$Input%' OR Phone LIKE '%$Input%')";
+
+    $sql = "SELECT * from Primary_PolicyHolders Where (AgentID = $AgentID) AND (FirstName LIKE '%$Input%' OR LastName LIKE '%$Input%' OR              Email LIKE '%$Input%' OR Phone LIKE '%$Input%')";
 
     $result = mysqli_query($conn, $sql);
 
