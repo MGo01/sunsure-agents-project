@@ -4,13 +4,13 @@
 
   // Receive JSON payload from search.js file.
   $inputFromJson = json_decode(file_get_contents('php://input'), true);
-	
-	$Input = $inputFromJson["Input"];
-	$AgentID = $inputFromJson["AgentID"];
- 
+
+        $Input = $inputFromJson["Input"];
+        $AgentID = $inputFromJson["AgentID"];
+
   // Create a class capable of holding policy holder
   // information for search queries.
-  class PolicyHolder 
+  class PolicyHolder
   {
     public $AgentID = "";
     public $PolicyID = "";
@@ -34,7 +34,7 @@
 
    // Create a class capable of holding Dependent
   // information for search queries.
-  class Dependent 
+  class Dependent
   {
     public $FirstName = "";
     public $LastName = "";
@@ -42,10 +42,10 @@
     public $SSN = "";
     public $DependentID = "";
   }
- 
+
   // Create an Array of Policyholders.
   $primaryPolicyHolders[] = array();
- 
+
   // Check if the input string has an empty space at the beginning of the array.
   if (strpos($Input, ' ') > 0)
   {
@@ -57,7 +57,7 @@
 
     if (mysqli_query($conn, $sql_check))
     {
-      // Retrieve search results via getPolicyHolders() 
+      // Retrieve search results via getPolicyHolders()
       // and store them in "searchResults"
       $searchResults = getPolicyHolders($result);
 
@@ -80,9 +80,9 @@
 
     if (mysqli_query($conn, $sql))
     {
-      // Retrieve search results via getPolicyHolders() 
+      // Retrieve search results via getPolicyHolders()
       // and store them in "searchResults"
-      $searchResults = getPolicyHolders($result);
+      $searchResults = getPolicyHolders($result, $conn);
 
       returnInfo($searchResults);
     }
@@ -93,15 +93,15 @@
       returnError($conn->error);
     }
   }
-  
+
   mysqli_close($conn);
-	
+
   function returnError($error)
   {
     $retval = (object) [
       'msg' => $error
     ];
-    
+
     outputJson($retval);
   }
 
@@ -114,10 +114,10 @@
     outputJson($retval);
   }
 
-  function getDependents($policyHolder)
+  function getDependents($policyHolder, $conn)
   {
     // SQL Command to get every singe Dependent from the corresponding PolicyID.
-    $sql_dep = "SELECT * FROM Dependents WHERE (PolicyID = $policyHolder->PolicyID)"
+    $sql_dep = "SELECT * FROM Dependents WHERE (DependentID = $policyHolder->PolicyID)";
     $dependent_result = mysqli_query($conn, $sql_dep);
 
     if (mysqli_query($conn, $sql_dep))
@@ -127,13 +127,13 @@
       while ($dep_row = mysqli_fetch_array($dependent_result))
       {
         $newDependent = new Dependent();
-      
-        $newDependent->FirstName = $row['FirstName'];
-        $newDependent->LastName = $row['LastName'];
-        $newDependent->DateOfBirth = $row['DateOfBirth'];
-        $newDependent->SSN = $row['SSN'];
-        $newDependent->DependentID = $row['DependentID'];
-        
+
+        $newDependent->FirstName = $dep_row['FirstName'];
+        $newDependent->LastName = $dep_row['LastName'];
+        $newDependent->DateOfBirth = $dep_row['DateOfBirth'];
+        $newDependent->SSN = $dep_row['SSN'];
+        $newDependent->DependentID = $dep_row['DependentID'];
+
         $dependent_array[] = $newDependent;
       }
 
@@ -147,12 +147,12 @@
     }
   }
 
-  function getPolicyHolders($result)
+  function getPolicyHolders($result, $conn)
   {
     while ($row = mysqli_fetch_array($result))
     {
       $newPolicyHolder = new PolicyHolder();
-      
+
       $newPolicyHolder->AgentID = $row['AgentID'];
       $newPolicyHolder->PolicyID = $row['PolicyID'];
       $newPolicyHolder->FirstName = $row['FirstName'];
@@ -168,17 +168,17 @@
       $newPolicyHolder->ZipCode = $row['ZipCode'];
       $newPolicyHolder->State = $row['State'];
       $newPolicyHolder->Email = $row['Email'];
-      
+
       $newPolicyHolder->NumOfLives = $row['NumOfLives'];
       $newPolicyHolder->NumOfDependents = $row['NumOfDependents'];
       $newPolicyHolder->PolicyInfoID = $row['PolicyInfoID'];
       $newPolicyHolder->Source = $row['Source'];
-      
-      $newPolicyHolder->{"Dependents[]"} = getDependents($newPolicyHolder);
+
+      $newPolicyHolder->Dependents[] = getDependents($newPolicyHolder, $conn);
 
       $primaryPolicyHolders[] = $newPolicyHolder;
     }
-    
+
     return $primaryPolicyHolders;
   }
 
