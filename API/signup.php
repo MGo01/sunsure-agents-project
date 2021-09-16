@@ -26,13 +26,13 @@
 
     if (mysqli_query($conn, $sql))
     {
-      // Successfully inserted Agent into DB.
+      // Successfully inserted Agent into DB message.
       returnInfo("Agent has been inserted successfully!");
     }
 
     else
     {
-      //echo "failed to insert records";
+      // echo "failed to insert records";
       returnError($conn->error);
     }
   }

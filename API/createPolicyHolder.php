@@ -26,7 +26,7 @@
   // and date of birth of policyholder
   $PolicyID = uniqid($lastName . $dob, true);
 
-  if (checkPrimaryPolicy($Email, $conn))
+  if (checkPrimaryPolicy($LastName, $DateOfBirth, $conn))
   {
     $sql = "INSERT INTO Primary_PolicyHolders (AgentID, FirstName, LastName, DateOfBirth, SSN, Phone, Address, Second_Line_Address, City, ZipCode, State, Email, NumOfLives, NumOfDependents, PolicyInfoID, Source)
     VALUES ('".$AgentID."','".$FirstName."','".$LastName."','".$DateOfBirth."', '".$SSN."',
@@ -35,13 +35,13 @@
 
     if (mysqli_query($conn, $sql))
     {
-      // Successfully inserted Agent into DB.
+      // Successfully inserted Primary Policyholder into DB message.
       returnInfo("Primary PolicyHolder has been inserted successfully!");
     }
 
     else
     {
-      //echo "failed to insert records";
+      // echo "failed to insert records";
       returnError($conn->error);
     }
   }
@@ -78,12 +78,13 @@
     echo $jsonObj;
   }
 
-  function checkPrimaryPolicy($policyID, $conn)
+  function checkPrimaryPolicy($lastName, $dob, $conn)
   {
     // Check if there is an agent with the same 
     // Date of Birth and Last Name Within the Primary Policyholders Table.
     $sql_id = "SELECT * FROM Primary_PolicyHolders 
-                WHERE PolicyID = '$policyID'"; 
+                WHERE LastName = '$lastName'
+                AND DateOfBirth = '$dob'"; 
 
     $result = mysqli_query($conn, $sql_id);
     $rows = mysqli_num_rows($result);
