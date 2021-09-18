@@ -221,7 +221,7 @@ function signup()
           var endpointmsg = jsonObject['msg'];
           console.log(endpointmsg);
 
-          if (endpointmsg === "done")
+          if (endpointmsg === "Agent has been inserted successfully!")
           {
             document.getElementById("registerStatus").innerHTML = "Succesfully Signed Up!";
             document.getElementById("registerStatus").style.color = "green";
@@ -234,7 +234,7 @@ function signup()
 
           }
 
-          if (endpointmsg !== "done")
+          if (endpointmsg !== "Agent has been inserted successfully!")
           {
             document.getElementById("registerStatus").innerHTML = "Email already used";
             document.getElementById("registerStatus").style.color = "red"; 
