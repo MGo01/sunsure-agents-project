@@ -2,8 +2,8 @@ function checkConfirmPassword(confirmPassword, password)
 {
   if (confirmPassword !== password)
   {
-    document.getElementById("upstatus").innerHTML = "Passwords entered do not match!";
-    document.getElementById("upstatus").style.color = "red";
+    document.getElementById("registerStatus").innerHTML = "Passwords entered do not match!";
+    document.getElementById("registerStatus").style.color = "red";
     return false;
   }
 
@@ -17,24 +17,24 @@ function checkFullName(name)
     
   if (name.length < 1)
   {
-    document.getElementById("upstatus").innerHTML = "Full name is required!";
-    document.getElementById("upstatus").style.color = "red";
+    document.getElementById("registerStatus").innerHTML = "Full name is required!";
+    document.getElementById("registerStatus").style.color = "red";
     
     return false;
   }
 
   if (!nameREGEX.test(name))
   {
-    document.getElementById("upstatus").innerHTML = "Please enter a valid full name!";
-    document.getElementById("upstatus").style.color = "red";
+    document.getElementById("registerStatus").innerHTML = "Please enter a valid full name!";
+    document.getElementById("registerStatus").style.color = "red";
     
     return false;
   }
 
   if (name.length > 45)
   {
-    document.getElementById("upstatus").innerHTML = "First Name should not exceed 45 characters!";
-    document.getElementById("upstatus").style.color = "red";
+    document.getElementById("registerStatus").innerHTML = "First Name should not exceed 45 characters!";
+    document.getElementById("registerStatus").style.color = "red";
     
     return false;
   }
@@ -48,16 +48,16 @@ function checkPassword(password)
   
   if (password.length === 0) 
   {
-    document.getElementById("upstatus").innerHTML = "Password is required!";
-    document.getElementById("upstatus").style.color = "red";
+    document.getElementById("registerStatus").innerHTML = "Password is required!";
+    document.getElementById("registerStatus").style.color = "red";
 
     return false;
   }
 
   if (password.length < 5)
   {
-    document.getElementById("upstatus").innerHTML = "Your password must be at least 5 characters long, should not exceed 45 characters!";
-    document.getElementById("upstatus").style.color = "red";
+    document.getElementById("registerStatus").innerHTML = "Your password must be at least 5 characters long, should not exceed 45 characters!";
+    document.getElementById("registerStatus").style.color = "red";
 
     return false;
   }
@@ -72,24 +72,24 @@ function checkEmail(email)
 
   if (email.length === 0)
   {
-    document.getElementById("upstatus").innerHTML = "Email is required!";
-    document.getElementById("upstatus").style.color = "red";
+    document.getElementById("registerStatus").innerHTML = "Email is required!";
+    document.getElementById("registerStatus").style.color = "red";
 
     return false;
   }
 
   if (email.length > 45)
   {
-    document.getElementById("upstatus").innerHTML = "Email is too long!<br>Email should not exceed 45 characters!";
-    document.getElementById("upstatus").style.color = "red";
+    document.getElementById("registerStatus").innerHTML = "Email is too long!<br>Email should not exceed 45 characters!";
+    document.getElementById("registerStatus").style.color = "red";
     
     return false;
   }
 
   if (!emailREGEX.test(email))
   {
-    document.getElementById("upstatus").innerHTML = "Please enter your email address in the following format:<br>mail@example.com";
-    document.getElementById("upstatus").style.color = "red";
+    document.getElementById("registerStatus").innerHTML = "Please enter your email address in the following format:<br>mail@example.com";
+    document.getElementById("registerStatus").style.color = "red";
 
     return false;
   }
@@ -109,9 +109,8 @@ function confirmCode()
   var successMessage = "Successfully verified: " + email;
   
   var request = new XMLHttpRequest();
-  // request.open("POST", "http://198.199.77.197/API/signup.php", true);
-  // http://127.0.0.1:5500/html/API/signup.php
-  request.open("POST", "http://198.199.77.197/API/confirmEmail.php", true);
+
+  request.open("POST", "http://sunsure-agent.com/API/confirmEmail.php", true);
 
   request.setRequestHeader("Content-type", "application/json; charset=UTF-8");
   try 
@@ -143,75 +142,116 @@ function confirmCode()
 
   catch(error)
   {
-    document.getElementById("upstatus").innerHTML = error.message;
-    document.getElementById("upstatus").style.color = "red";
+    document.getElementById("registerStatus").innerHTML = error.message;
+    document.getElementById("registerStatus").style.color = "red";
   }
+}
+
+// Nifty function that allows for the 'show password'
+// button to function by changing the document element type.
+function showRegistrationPassword() 
+{
+  var x = document.getElementById("registerPassword");
+  var y = document.getElementById("registerConfirmPassword");
+
+  if (x.type === "password" && y.type === "password")
+  {
+    x.type = "text";
+    y.type = "text";
+  } 
+
+  else 
+  {
+    x.type = "password";
+    y.type = "password";
+  }
+}
+
+function validateInput(fullName, email, password, confirmPassword)
+{
+    "use strict";
+
+    if (!checkFullName(fullName)) 
+      return false;
+    if (!checkEmail(email)) 
+      return false;
+    if (!checkPassword(password)) 
+      return false;
+    if (!checkConfirmPassword(confirmPassword, password)) 
+      return false;
+       
+    return true;
 }
 
 function signup()
 {
-    "use strict";
+  "use strict";
+  
+  var email = document.getElementById("registerEmail").value;
+  var firstName = document.getElementById("firstName").value;
+  var lastName = document.getElementById("lastName").value;
+  var password = document.getElementById("registerPassword").value;
+  var confirmPassword = document.getElementById("registerConfirmPassword").value;
+
+  var fullName = firstName.concat(" ", lastName);
+
+  document.getElementById("firstName").innerHTML = "";
+  document.getElementById("lastName").innerHTML = "";
+  document.getElementById("registerPassword").innerHTML = "";
+  document.getElementById("registerConfirmPassword").innerHTML = "";
+  document.getElementById("registerEmail").innerHTML = "";
+
+  if (validateInput(fullName, email, password, confirmPassword))
+  {
+    var hashedPassword = md5(password);
+    var json = '{"fullName" : "' + fullname + '", "password" : "' + hashedPassword + '", "email" : "' + email + '", "university" : "' + university + '"}';
     
-    var email = document.getElementById("useremail").value;
-    var fullname = document.getElementById("fullname").value;
-    var password = document.getElementById("userpass").value;
-    var confirmPassword = document.getElementById("confirmpass").value;
-    var university = document.getElementById("universities").value;
+    var request = new XMLHttpRequest();
 
-    document.getElementById("fullname").innerHTML = "";
-    document.getElementById("userpass").innerHTML = "";
-    document.getElementById("confirmpass").innerHTML = "";
-    document.getElementById("useremail").innerHTML = "";
-    document.getElementById("upstatus").innerHTML = "";
+    request.open("POST", "http://sunsure-agent.com/API/signup.php", true);
+    request.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
-    if (validateInput(fullname, email, password, confirmPassword))
+    try 
     {
-        var hashedPassword = md5(password);
-        var json = '{"fullName" : "' + fullname + '", "password" : "' + hashedPassword + '", "email" : "' + email + '", "university" : "' + university + '"}';
-       
-        var request = new XMLHttpRequest();
-        // request.open("POST", "http://198.199.77.197/API/signup.php", true);
-        // http://127.0.0.1:5500/html/API/signup.php
-        request.open("POST", "http://198.199.77.197/API/signup.php", true);
+      request.onreadystatechange = function()
+      {
+        if (this.readyState == 4 && this.status == 200)
+        {    
+          var jsonObject = JSON.parse(request.responseText);
+          var endpointmsg = jsonObject['msg'];
+          console.log(endpointmsg);
 
-        request.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-        try {
-            request.onreadystatechange = function()
-        {
-            if (this.readyState == 4 && this.status == 200)
-            {    
-              var jsonObject = JSON.parse(request.responseText);
-              var endpointmsg = jsonObject['msg'];
-              console.log(endpointmsg);
+          if (endpointmsg === "done")
+          {
+            document.getElementById("registerStatus").innerHTML = "Succesfully Signed Up!";
+            document.getElementById("registerStatus").style.color = "green";
 
-              if (endpointmsg === "done")
-              {
-                document.getElementById("upstatus").innerHTML = "Succesfully Signed Up!";
-                document.getElementById("upstatus").style.color = "green";
+            document.getElementById("firstName").value = "";
+            document.getElementById("lastName").innerHTML = "";
+            document.getElementById("registerPassword").innerHTML = "";
+            document.getElementById("registerConfirmPassword").value = "";
+            document.getElementById("registerEmail").value = "";
 
-                document.getElementById("fullname").value = "";
-                document.getElementById("userpass").value = "";
-                document.getElementById("confirmpass").value = "";
-                document.getElementById("useremail").value = "";
+          }
 
-              }
-
-              if (endpointmsg !== "done")
-              {
-                document.getElementById("upstatus").innerHTML = "Email already used";
-                document.getElementById("upstatus").style.color = "red"; 
-              }
-            }
-        };
-            request.responseType="text";
-            console.log(json);
-            request.send(json);
-            //window.location.href = "login.html";
+          if (endpointmsg !== "done")
+          {
+            document.getElementById("registerStatus").innerHTML = "Email already used";
+            document.getElementById("registerStatus").style.color = "red"; 
+          }
         }
-        catch(error)
-        {
-            document.getElementById("upstatus").innerHTML = error.message;
-            document.getElementById("upstatus").style.color = "red";
-        }
+      };
+
+      request.responseType="text";
+      console.log(json);
+      request.send(json);
+      //window.location.href = "login.html";
     }
+
+    catch(error)
+    {
+      document.getElementById("registerStatus").innerHTML = error.message;
+      document.getElementById("registerStatus").style.color = "red";
+    }
+  }
 }
