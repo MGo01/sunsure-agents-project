@@ -14,7 +14,7 @@ function login()
 
 	if (checkEmaillog(loginEmail) && checkPasswordlog(password))
   {
-		loginPassword = md5(password);
+		var loginPassword = md5(password);
 		
 		var jsonPayload = '{"Email" : "' + loginEmail + '", "Password" : "' + loginPassword + '"}';
 
