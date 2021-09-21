@@ -9,11 +9,10 @@ function login()
 
 	var loginEmail = document.getElementById("email").value;
 	var password = document.getElementById("password").value;
-  var loginPassword = md5(password);
 
 	document.getElementById("logstatus").innerHTML = "";
 
-	if (checkEmaillog(loginName) && checkPasswordlog(password))
+	if (checkEmaillog(loginEmail) && checkPasswordlog(password))
   {
 		loginPassword = md5(password);
 		
@@ -167,18 +166,6 @@ function checkPasswordlog(password)
     return true;
   }
 
-  return true;
-}
-
-function checkNewPassword(confirmPassword, password)
-{
-  if (confirmPassword !== password)
-  {
-    document.getElementById("upstatus").innerHTML = "The two passwords are not matched!";
-    document.getElementById("upstatus").style.color = "red";
-    return false;
-  }
-  
   return true;
 }
 
