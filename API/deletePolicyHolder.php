@@ -11,7 +11,7 @@
   $sql_dependents = "DELETE FROM Dependents 
                       WHERE DependentID = '$PolicyID'";
 
-  $sql_policyHolders = "DELETE * FROM Primary_PolicyHolders 
+  $sql_policyHolders = "DELETE FROM Primary_PolicyHolders 
                         WHERE AgentID = '$AgentID'"; 
 
   if (mysqli_query($conn, $sql_dependents) && mysqli_query($conn, $sql_policyHolders))
