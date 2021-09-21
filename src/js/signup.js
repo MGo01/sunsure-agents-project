@@ -14,6 +14,7 @@ function checkFullName(name)
 {
   "use strict";
   let nameREGEX = /([A-Za-z]{2,} )([A-Za-z]{2,} )?([A-Za-z]{2,})/;
+  let maxNameLength = 99;
     
   if (name.length < 1)
   {
@@ -31,7 +32,7 @@ function checkFullName(name)
     return false;
   }
 
-  if (name.length > 45)
+  if (name.length > maxNameLength)
   {
     document.getElementById("registerStatus").innerHTML = "First Name should not exceed 45 characters!";
     document.getElementById("registerStatus").style.color = "red";
@@ -45,6 +46,7 @@ function checkFullName(name)
 function checkPassword(password)
 {
   "use strict";
+  let minPasswordLength = 8;
   
   if (password.length === 0) 
   {
@@ -54,9 +56,9 @@ function checkPassword(password)
     return false;
   }
 
-  if (password.length < 5)
+  if (password.length < minPasswordLength)
   {
-    document.getElementById("registerStatus").innerHTML = "Your password must be at least 5 characters long, should not exceed 45 characters!";
+    document.getElementById("registerStatus").innerHTML = "Your password must be at least 8 characters long, should not exceed 75 characters!";
     document.getElementById("registerStatus").style.color = "red";
 
     return false;
@@ -69,6 +71,7 @@ function checkEmail(email)
 {
   "use strict";
   let emailREGEX = /^[^\s@]+@[^\s@\d]+\.[^\s@\d]+$/;
+  let maxEmailLength= 49;
 
   if (email.length === 0)
   {
@@ -78,9 +81,9 @@ function checkEmail(email)
     return false;
   }
 
-  if (email.length > 45)
+  if (email.length > maxEmailLength)
   {
-    document.getElementById("registerStatus").innerHTML = "Email is too long!<br>Email should not exceed 45 characters!";
+    document.getElementById("registerStatus").innerHTML = "Email is too long!<br>Email should not exceed 49 characters!";
     document.getElementById("registerStatus").style.color = "red";
     
     return false;
@@ -111,8 +114,8 @@ function confirmCode()
   var request = new XMLHttpRequest();
 
   request.open("POST", "http://sunsure-agent.com/API/confirmEmail.php", true);
-
   request.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+  
   try 
   {
     request.onreadystatechange = function()
@@ -201,6 +204,12 @@ function signup()
   document.getElementById("registerConfirmPassword").innerHTML = "";
   document.getElementById("registerEmail").innerHTML = "";
 
+  document.getElementById("firstName").value = "";
+  document.getElementById("lastName").value = "";
+  document.getElementById("registerPassword").value = "";
+  document.getElementById("registerConfirmPassword").value = "";
+  document.getElementById("registerEmail").value = "";
+
   if (validateInput(fullName, email, password, confirmPassword))
   {
     var hashedPassword = md5(password);
@@ -227,8 +236,8 @@ function signup()
             document.getElementById("registerStatus").style.color = "green";
 
             document.getElementById("firstName").value = "";
-            document.getElementById("lastName").innerHTML = "";
-            document.getElementById("registerPassword").innerHTML = "";
+            document.getElementById("lastName").value = "";
+            document.getElementById("registerPassword").value = "";
             document.getElementById("registerConfirmPassword").value = "";
             document.getElementById("registerEmail").value = "";
 

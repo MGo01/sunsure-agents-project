@@ -45,7 +45,7 @@ function login()
             Email = jsonObj.Email;
 
             saveCookie();
-            window.location.href = "index.html";
+            window.location.href = "landing.html";
           }
         }
       };
