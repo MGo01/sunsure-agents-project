@@ -472,3 +472,13 @@ function checkFormNames(firstName, lastName)
 
   return true;
 }
+
+function logout()
+{
+	userID = -1;
+	FirstName = "";
+	LastName = -1;
+	deleteAllCookies();
+	localStorage.clear();
+	window.location.href = "index.html";
+}

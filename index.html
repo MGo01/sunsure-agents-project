@@ -7,11 +7,18 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link href="src/css/styles.css" rel="stylesheet">
+    <link href="src/css/modalStyles.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     <script src="src/js/md5.js"></script>
     <script src="src/js/login.js"></script>
 
@@ -21,6 +28,36 @@
             <div id= "titleContainer" class="col-5 text-center" style="word-wrap:break-word">
                 <h1 id="title">Sunsure Agents</h1>
                 <h2 id="subtitle">Become Greater</h2>
+            </div>
+
+            <div class="modal fade" id="resetCodeModal" tabindex="-1" role="dialog" aria-labelledby="resetCodeModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+            
+                        <!-- Form Title -->
+                        <div class="modal-header" id="popupTitleContainer">
+                          <h5 id = "popupTitle" class="modal-title" id="resetCodeModalLongTitle">Send Reset Code</h5>
+                          <button type="button" id="closePopup" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        
+                        <!-- Form Body -->
+                        <div class="modal-body">
+                          <span id="resetResult"></span>
+                          <label for="codelab">Enter Your Email</label> <br />
+                          <span class="material-icons" style="font-size:36px;">email</span> 
+                          <input type="text" id="resetEmail" placeholder="Email" name='email' /> 
+                          <br />
+                        </div>
+                        
+                        <!-- Form Submit Button -->
+                        <div class="modal-footer">
+                          <button type="button" id="resetPasswordButton" onclick="createContact();">Send Reset Code</button>
+                        </div>
+         
+                    </div>
+                </div>
             </div>
 
             <div id= "loginContainer" class="col text-center my-auto">
@@ -36,6 +73,7 @@
                 <button type="button" class="btn btn-primary btn-block btn-flat" onclick="login()"><span class="material-icons text-center">login</span>    Login</button>
 
                 <a id="homepageLink" class="mx-auto" href="register.html">Create New Account</a>
+                <button class="btn btn-primary btn-block btn-flat" data-toggle="modal" data-target="#resetCodeModal"><span class="material-icons text-center">lock</span>Forgot Password?</button>
             </div>
         </div>
     </div>
