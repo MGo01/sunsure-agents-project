@@ -61,6 +61,9 @@
       // and store them in "searchResults"
       $searchResults = getPolicyHolders($result);
 
+      if (is_null($searchResults))
+        returnInfo("No valid Primary PolicyHolders were found")
+
       returnInfo($searchResults);
     }
 
