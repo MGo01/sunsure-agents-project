@@ -1,0 +1,239 @@
+/* Anna Malaj, Matthew Gomez
+COP 4331, Spring 2021
+1/17/2021 */
+
+body
+{
+    font-family: 'Montserrat', sans-serif;
+}
+
+#popupTitle
+{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 30px;
+  color: white;
+  padding: 2%;
+}
+
+#popupTitleContainer
+{
+    background: #1D2791;
+    padding: 2%;
+}
+
+#closePopup
+{
+    background-color: indigo;
+    border-radius: 15px;
+    color: white;
+    font-size: 30px;
+    border: 2px solid black;
+    -webkit-transition: 0.9%;
+    transition: 0.9%;
+    transition-duration: 0.3s;
+    margin-right: 3%;
+}
+
+#closePopup:hover
+{
+    border: 2px solid plum;
+    background-color: plum;
+    color: white;
+}
+
+#userName
+{
+    display: inline;
+    font-size: 30px;
+    margin-top: 1.5%;
+    position: absolute;
+    right: 20%;
+}
+
+#contactsResult
+{
+    display: block;
+    margin-bottom: 2%;
+    font-size: 15px;
+    color: red;
+}
+
+#logoutButton 
+{
+    border-color: black;
+	  border-radius: 25px;
+    background-color: indigo;
+    transition-duration: 0.3s;
+    font-size: 25px;
+    color: white;
+    padding: 5px;
+    outline: none;
+    position: absolute;
+    right: 40px;
+    margin-top: 1.1%;
+    width: 13.7%;
+}
+  
+#logoutButton:hover 
+{
+    border-color: transparent;
+    background-color: plum;
+    color: white;
+    outline: none;
+}
+
+#resetPasswordButton, #sendResetCodeButton
+{
+    background-color: indigo;
+    border-color: #000000;
+    border-radius: 25px;
+    color: white;
+    font-size: 25px;
+    border: 2px solid black;
+    -webkit-transition: 0.9%;
+    transition: 0.9%;
+    transition-duration: 0.3s;
+    margin-right: 25%;
+    width: 50%;
+    padding: 5px;
+    outline: none;
+}
+
+#resetPasswordButton:hover, #sendResetCodeButton:hover
+{
+    border: 2px solid plum;
+    background-color: plum;
+    color: white;
+    outline: none;
+}
+
+#addContactButton, #searchContactButton
+{
+    background-color: indigo;
+    border-color: #000000;
+    border-radius: 25px;
+    color: white;
+    font-size: 25px;
+    margin-left: 2.7%;
+    border: 2px solid black;
+    -webkit-transition: 0.9%;
+    transition: 0.9%;
+    transition-duration: 0.3s;
+    padding: 5px;
+    outline: none;
+    width: 14%;
+    margin-bottom: 2%;
+    margin-top: 1.3%;
+}
+
+#addContactButton:hover, #searchContactButton:hover
+{
+    border: 2px solid plum;
+    background-color: plum;
+    color: white;
+    outline: none;
+}
+
+#update, #delete
+{
+    background-color: #8312A5;
+    border-color: #000000;
+    border-radius: 25px;
+    color: white;
+    font-size: 25px;
+    border: 2px solid black;
+    -webkit-transition: 0.9%;
+    transition: 0.9%;
+    transition-duration: 0.3s;
+    outline: none;
+    padding: 5px;
+}
+
+#update:hover, #delete:hover
+{
+    border: 2px solid plum;
+    background-color: plum;
+    color: white;
+    outline: none;
+}
+
+#contactFirstName, #contactLastName, #resetEmail, #contactPhone, 
+#updateFirstName, #updateLastName, #updateEmail, #updatePhone, 
+#deleteFirstName, #deleteLastName, #deleteEmail, #deletePhone
+{
+    background-color: transparent;
+    border: transparent;
+    border-bottom: 3px solid #b2b2b2;
+    width: 80%;
+    margin-bottom: 5%;
+    font-size: 30px;
+}
+  
+#contactsInput 
+{
+    padding: 5px;
+    margin-left: 2%;
+    font-size: 25px;
+    border: 1px solid black;
+    width: 63%;
+    background: transparent;
+    margin-top: 2%;
+    border-radius: 25px;
+}
+  
+#contactsTable 
+{
+    width: 100%;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 25px;
+    border: 1px solid black;
+    margin-left: 0.8%;
+}
+
+#tableHeader
+{
+    background-color: indigo;
+    color: white;
+}
+
+.btn-info, .btn-info:active
+{
+  background-color: mediumVioletRed !important;
+  border: 1px solid black !important;
+  color: white !important;
+  border-radius: 15px !important;
+}
+
+.btn-info:hover
+{
+  background-color: navy !important;
+  border: navy !important;
+  color: white !important;
+    -webkit-transition: 0.9% !important;
+  transition: 0.9% !important;
+  transition-duration: 0.3s !important;
+}
+
+.btn-danger
+{
+  background-color: hotPink;
+  border: 1px solid black;
+  color: white;
+  border-radius: 15px;
+  width: 30%;
+}
+
+.btn-danger:hover
+{
+  background-color: navy;
+  border: navy;
+    -webkit-transition: 0.9%;
+  transition: 0.9%;
+  transition-duration: 0.3s;
+}
+
+:focus
+{
+    outline: none !important;
+    box-shadow: none !important;
+}
