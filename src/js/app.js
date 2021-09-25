@@ -215,7 +215,7 @@ function displayClientsTable()
 	// Package a JSON payload to deliver to the DisplayTable Endpoint with
 	// the UserID in order to display their contacts.
   var jsonPayload =
-  	'{"UserID" : "' + userID + '"}';
+  	'{"AgentID" : "' + userID + '"}';
 	var url = urlBase + '/displayClientTables.' + extension;
 	var xhr = new XMLHttpRequest();
 
