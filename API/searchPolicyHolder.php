@@ -5,6 +5,7 @@
   // Receive JSON payload from search.js file.
   $inputFromJson = json_decode(file_get_contents('php://input'), true);
 
+  $Input = $inputFromJson["Input"];
   $AgentID = $inputFromJson["AgentID"];
 
   // Create a class capable of holding policy holder
