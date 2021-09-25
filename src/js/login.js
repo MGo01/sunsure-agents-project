@@ -41,10 +41,10 @@ function login()
 
           else
           {
-            userID = jsonObj.ID;
-            FirstName = jsonObj.FirstName;
-            LastName = jsonObj.LastName;
-            Email = jsonObj.Email;
+            userID = jsonObject.ID;
+            FirstName = jsonObject.FirstName;
+            LastName = jsonObject.LastName;
+            Email = jsonObject.Email;
 
             saveCookie();
             window.location.href = "landing.html";
