@@ -242,7 +242,7 @@ function displayClientsTable()
 
 	// For each contact in the JSON array, the contact's
 	// information will be added to the table.
-	for (var i in contactList)
+	for (var i in clientList)
   {
   	addRow(clientList[i]);
   }
