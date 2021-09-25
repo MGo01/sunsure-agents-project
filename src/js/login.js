@@ -34,7 +34,7 @@ function login()
 
           if (endpointmsg === "Email or password is incorrect")
           {
-            var error = jsonObj.error;
+            var error = endpointmsg;
             document.getElementById("logstatus").innerHTML = error;
           }
 
