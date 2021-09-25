@@ -28,9 +28,11 @@ function login()
       {
         if (this.readyState == 4 && this.status == 200)
         {
-          var jsonObj = JSON.parse(request.responseText);
+          var jsonObject = JSON.parse(request.responseText);
+          var endpointmsg = jsonObject['msg'];
+          console.log(endpointmsg);
 
-          if (jsonObj.Users === 0)
+          if (endpointmsg === "Email or password is incorrect")
           {
             var error = jsonObj.error;
             document.getElementById("logstatus").innerHTML = error;
