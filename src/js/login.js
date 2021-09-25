@@ -36,6 +36,7 @@ function login()
           {
             var error = endpointmsg;
             document.getElementById("logstatus").innerHTML = error;
+            document.getElementById("logstatus").style.color = "red";
           }
 
           else
