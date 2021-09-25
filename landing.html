@@ -1,19 +1,103 @@
 <!-- 
 Anna Malaj, Matthew Gomez
-COP 4331, Spring 2021	
-2/16/2021
+Sunsure Agents
+09/25/2021
 -->
 
 <!doctype html>
 <html lang="en">
 <head>
-    <title>ContactMe</title>
+    <title>Sunsure Agents</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link href="src/css/appstyles.css" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+    <link href="src/css/appModalStyles.css" rel="stylesheet">
+	  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
+
+    <script type='text/javascript'>
+      function addDependentFields()
+      {
+          // Number of inputs to create
+          var number = document.getElementById("clientNumOfDependents").value;
+
+          // Container <div> where dynamic content will be placed
+          var container = document.getElementById("dependentsContainer");
+
+          // Clear previous contents of the container
+          while (container.hasChildNodes()) 
+          {
+            container.removeChild(container.lastChild);
+          }
+
+          for (i = 0; i < number; i++)
+          {
+            // Append a node with a random text
+
+            var depRow = document.createElement("div");
+            depRow.className = "row";
+
+            var depFirstNameCol = document.createElement("div")
+            depFirstNameCol.className = "col";
+
+            var depLastNameCol = document.createElement("div")
+            depLastNameCol.className = "col";
+
+            var depDOBCol = document.createElement("div")
+            depDOBCol.className = "col";
+
+            var depSSNCol = document.createElement("div")
+            depSSNCol.className = "col";
+
+            container.appendChild(document.createTextNode("Dependent " + (i+1)));
+
+            // Append a line break 
+            container.appendChild(document.createElement("br"));
+
+            // Create an <input> element, set its type and name attributes
+            var firstName = document.createElement("input");
+            firstName.type = "text";
+            firstName.name = "Dependent" + i;
+            firstName.id="dependentFirstName";
+            firstName.placeholder="First Name*";
+
+            var lastName = document.createElement("input");
+            lastName.type = "text";
+            lastName.name = "Dependent" + i;
+            lastName.id="dependentLastName";
+            lastName.placeholder="Last Name*";
+
+            var dateOfBirth = document.createElement("input");
+            dateOfBirth.type = "text";
+            dateOfBirth.name = "Dependent" + i;
+            dateOfBirth.id="dependentDOB";
+            dateOfBirth.placeholder="Date of Birth*";
+
+            var ssn = document.createElement("input");
+            ssn.type = "text";
+            ssn.name = "Dependent" + i;
+            ssn.id="dependentSSN";
+            ssn.placeholder="SSN";
+
+
+            // Attach Columns to fields
+            depFirstNameCol.appendChild(firstName);
+            depLastNameCol.appendChild(lastName);
+            depDOBCol.appendChild(dateOfBirth);
+            depSSNCol.appendChild(ssn);
+
+            // Attach Rows to create client form
+            depRow.append(depFirstNameCol, depLastNameCol, depDOBCol, depSSNCol);  
+
+						// Attach the Row to the Dependent Container
+            container.appendChild(depRow);
+
+            // Append a line break 
+            container.appendChild(document.createElement("br"));
+          }
+      }
+    </script>
 </head>
 <body>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -21,18 +105,19 @@ COP 4331, Spring 2021
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-    <script src="js/app.js"></script>
+    <script src="src/js/app.js"></script>
+    <script src="src/js/md5.js"></script>
+    <script src="src/js/login.js"></script>
     <script type="text/javascript">
-		document.addEventListener('DOMContentLoaded', function() 
-		{
-			readCookie();
-		}, false);
+			document.addEventListener('DOMContentLoaded', function() 
+			{
+				readCookie();
+			}, false);
 
-		window.onload = function() 
-		{
-  		displayTable();
-		};
-   
+			window.onload = function() 
+			{
+				displayClientsTable();
+			};
 	</script>
     
 	<!-- Website Container -->
@@ -41,23 +126,23 @@ COP 4331, Spring 2021
   			<div class="col">
   				<!-- Title Bar -->
 				<div id= "titleBar" style="word-wrap:break-word">
-  					<h1 id="title">ContactMe</h1>
+  					<h1 id="title" style="zoom:67%">Sunsure Agents</h1>
   					<h1 id="userName"></h1>
-  					<button id="logoutButton" type="button" onclick="doLogout()"><span class="material-icons text-center">logout</span>  Sign Out</button>
+  					<button id="logoutButton" style="zoom:67%" type="button" onclick="doLogout()"><span class="material-icons text-center">logout</span>  Sign Out</button>
   				</div>        
   			</div>
   		</div>
    
 		<div class="row vh-100 w-100">
 			<div class="col">
-				<!-- Create Contact Form -->
-				<div class="modal fade" id="createContactModal" tabindex="-1" role="dialog" aria-labelledby="createContactModalCenterTitle" aria-hidden="true">
-					<div class="modal-dialog modal-dialog-centered" role="document">
+				<!-- Create Client Form -->
+				<div class="modal fade" id="createClientModal" style="zoom:67%" tabindex="-1" role="dialog" aria-labelledby="createClientModalCenterTitle" aria-hidden="true">
+					<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
 						<div class="modal-content">
                 
 							<!-- Form Title -->
 							<div class="modal-header" id="popupTitleContainer">
-							  <h5 id = "popupTitle" class="modal-title" id="createContactModalLongTitle">Create A New Contact</h5>
+							  <h5 id = "popupTitle" class="modal-title" id="createClientModalLongTitle">Create A New Client</h5>
 							  <button type="button" id="closePopup" class="close" data-dismiss="modal" aria-label="Close">
 							  <span aria-hidden="true">&times;</span>
 							  </button>
@@ -65,39 +150,150 @@ COP 4331, Spring 2021
 							
 							<!-- Form Body -->
 							<div class="modal-body">
-  							<span id="contactsResult"></span>
-							  <span class="material-icons" style="font-size:36px;">
-							  perm_identity
-							  </span>
-							  <input type="text" id="contactFirstName" placeholder="First Name"/><br />
-							  <span class="material-icons" style="font-size:36px;">
-							  perm_identity
-							  </span>
-							  <input type="text" id="contactLastName" placeholder="Last Name"/><br />
-							  <span class="material-icons" style="font-size:36px;">email</span> 
-							  <input type="text" id="contactEmail" placeholder="Email" name='userName' /> 
-							  <br />
-							  <span class="material-icons" style="font-size:36px;">phone</span>
-							  <input type="text" id="contactPhone" placeholder="Phone Number" name='password'/>
+                <span id="clientResult"></span>
+                
+                <!-- First Row -->
+                <div class="row">
+                  <br />
+                  <!-- First Name Column -->
+                  <div class="col">
+                    <span class="material-icons" style="font-size:38px;">perm_identity</span>
+                    <input type="text" id="clientFirstName" placeholder="First Name*"/>
+                  </div>
+
+                  <!-- Last Name Column -->
+                  <div class="col">
+                    <span class="material-icons" style="font-size:38px;">perm_identity</span>
+                    <input type="text" id="clientLastName" placeholder="Last Name*"/>
+                  </div>
+
+                   <!-- Date of Birth Column -->
+                   <div class="col">
+                    <span class="material-icons-outlined">today</span>
+                    <input type="text" id="clientDateOfBirth" placeholder="Date of Birth*"/>
+                  </div>
+
+                  <!-- SSN Column -->
+                  <div class="col">
+                    <span class="material-icons-outlined">tag</span>
+                    <input type="text" id="clientSSN" placeholder="SSN"/>
+                  </div>
+                </div>
+
+                <!-- Second Row -->
+                <div class="row">
+          
+                  <!-- Phone Column -->
+                  <div class="col-4">
+                    <span class="material-icons" style="font-size:38px;">phone</span> 
+							      <input type="text" id="clientPhone" placeholder="Phone" name='phone' />
+                  </div>
+
+                  <!-- Main Address Column -->
+                  <div class="col-8">
+                    <span class="material-icons-outlined">location_city</span>
+							      <input type="text" id="clientAddress" placeholder="Main Address*" name='address'/>
+                  </div>
+                </div>
+
+                <!-- Third Row -->
+                <div class="row">
+
+                  <!-- City Column -->
+                  <div class="col-4">
+                    <span class="material-icons-outlined">apartment</span>
+                    <input type="text" id="clientCity" placeholder="City*" name='city' />
+                  </div>
+  
+                  <!-- Second Line Address -->
+                  <div class="col-8">
+                    <span class="material-icons-outlined">location_city</span>
+                    <input type="text" id="clientAddress" placeholder="Second Line Address" name='secondAddress'/>
+                  </div>
+                </div>
+
+                <!-- Fourth Row -->
+                <div class="row">
+
+                  <!-- ZIP Code Column -->
+                  <div class="col-3">
+                    <span class="material-icons" style="font-size:38px;">tag</span>
+                    <input type="text" id="clientZIP" placeholder="ZIP Code*"/>
+                  </div>
+
+                  <!-- State Column -->
+                  <div class="col-4">
+                    <label for="cars" style="font-size: 25px;">State*: </label>
+                      <select id="statesMenu" name="states">
+                        <option value="Florida">Florida</option>
+                        <option value="Georgia">Georgia</option>
+                        <option value="South Carolina">South Carolina</option>
+                        <option value="Alabama">Alabama</option>
+                      </select>
+                  </div>
+
+                  <!-- Email Column -->
+                  <div class="col">
+                    <span class="material-icons" style="font-size:38px;">email</span> 
+							      <input type="text" id="clientEmail" placeholder="Email" name='userName' />
+                  </div>
+                </div>
+
+                <!-- Fifth Row -->
+                <div class="row">
+                  <!-- Number of Dependents Column -->
+                  <div class="col-3">
+                    <span class="material-icons" style="font-size:38px;">tag</span>
+                    <input type="text" id="clientNumOfDependents" placeholder="Number of Dependents"/>
+                  </div>
+
+                   <!-- Number of Lives Column -->
+                   <div class="col-3">
+                    <span class="material-icons" style="font-size:38px;">tag</span>
+							      <input type="text" id="clientNumOfLives" placeholder="Number of Lives" name='numOfLives'/>
+                  </div>
+
+                  <!-- Source Column -->
+                  <div class="col-6">
+                    <label for="sources" style="font-size: 25px;">Source: </label>
+                      <select id="sourceMenu" name="sources">
+                        <option value="Facebook">Facebook</option>
+                        <option value="TV">TV</option>
+                        <option value="Ads">Ads</option>
+                        <option value="News Article">News Article</option>
+                      </select>
+                  </div>
+                </div>
+
+                <a href="#" id="filldetails" style="font-size: 25px;" onclick="addDependentFields()">Fill Dependent Details</a>
+                <div id="dependentsContainer"/>
+                </div>
+
+                <div>
+                  <b style="font-size: 20px;">
+                    * Required Fields
+                  </b>
+                </div>
+
 							</div>
 							
 							<!-- Form Submit Button -->
 							<div class="modal-footer">
-							  <button type="button" id="createContactButton" onclick="createContact(); window.location.reload()">Create</button>
+							  <button type="button" id="createClientButton" onclick="createContact(); window.location.reload()">Create Client</button>
 							</div>
              
 						</div>
 					</div>
 				</div>
 				
-				<!-- Update Contact Form -->
-				<div class="modal fade" id="updateContactModal" tabindex="-1" role="dialog" aria-labelledby="updateContactModalCenterTitle" aria-hidden="true">
+				<!-- Update Client Form -->
+				<div class="modal fade" id="updateClientModal" tabindex="-1" role="dialog" aria-labelledby="updateClientModalCenterTitle" aria-hidden="true">
 					<div class="modal-dialog modal-dialog-centered" role="document">
 						<div class="modal-content">
 							
 							<!-- Form Title -->
 							<div class="modal-header" id="popupTitleContainer">
-							  <h5 id = "popupTitle" class="modal-title" id="updateContactModalLongTitle">Update Contact</h5>
+							  <h5 id = "popupTitle" class="modal-title" id="updateClientModalLongTitle">Update Client</h5>
 							  <button type="button" id="closePopup" class="close" data-dismiss="modal" aria-label="Close">
 							  <span aria-hidden="true">&times;</span>
 							  </button>
@@ -123,33 +319,52 @@ COP 4331, Spring 2021
 							
 							<!-- Form Submit Button -->
 							<div class="modal-footer">
-							  <button type="button" id="updateContactButton" onclick="saveUpdate(); window.location.reload()">Update</button>
+							  <button type="button" id="updateClientButton" onclick="saveUpdate(); window.location.reload()">Update</button>
 							</div>
 						</div>
 					</div>
 				</div>  
 				
 				<!-- Search Bar -->
-				<input type="text" id="contactsInput" class = "text-center" placeholder="Search for contacts...">
-				<button class="btn btn-sm" id="searchContactButton" onclick="searchContacts();"><span class="material-icons text-center">search</span>  Search</button>
-				<button class="btn btn-sm" id="addContactButton" data-toggle="modal" data-target="#createContactModal"><span class="material-icons text-center">add</span>Add Contact</button>
-				
-				<!-- Contacts Table -->
-				<table id="contactsTable" class="table table-striped text-center">
-					<thead id="tableHeader">
-						<tr>
-							<th class="d-none">ID #</th>
-							<th>First Name</th>
-							<th>Last Name</th>
-							<th>Email</th>
-							<th>Phone</th>
-							<th>Actions</th>																
-						</tr>
-					</thead>
-					<tbody id="tests-table">
+				<input type="text" id="clientsInput" style="zoom:67%" class = "text-center" placeholder="Search for clients...">
+				<button class="btn btn-sm" id="searchClientButton" style="zoom:67%" onclick="searchContacts();"><span class="material-icons text-center">search</span>  Search</button>
 
-					</tbody>
-				</table>
+        <!-- Add Client Button -->
+				<button class="btn btn-sm" id="addClientButton" style="zoom:67%" data-toggle="modal" data-target="#createClientModal"><span class="material-icons text-center">add</span>Add Client</button>
+				
+				<!-- Clients Table -->
+				<div class="table-responsive" style="zoom:67%">
+					<table id="clientsTable" class="table table-striped table-cell table-hover text-center">
+						<thead id="tableHeader">
+							<tr>
+								<th class="d-none">PolicyID</th>
+								<th class="d-none">PolicyInfoID</th>
+								<th>First Name</th>
+								<th>Last Name</th>
+								<th>Date of Birth</th>
+								<th>SSN</th>
+								
+								<th>Phone</th>
+								<th>Address</th>
+								<th>Second Line Address</th>
+
+								<th>City</th>
+								<th>ZIP code</th>
+								<th>State</th>
+								<th>Email</th>
+
+								<th>NumOfLives</th>
+								<th>NumOfDependents</th>
+								<th>Source</th>
+								<th>Actions</th>																
+							</tr>
+						</thead>
+						<tbody id="tests-table">
+							
+      			
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
 	</div>
