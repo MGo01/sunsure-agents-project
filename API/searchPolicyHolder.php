@@ -89,8 +89,8 @@
 
       if (is_null($searchResults))
         returnInfo("No valid Primary PolicyHolders were found");
-
-      returnInfo($searchResults);
+      else
+        returnInfo($searchResults);
     }
 
     else
