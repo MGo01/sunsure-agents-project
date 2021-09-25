@@ -239,6 +239,8 @@ function displayClientsTable()
 	}
 
 	let clientList = JSON.parse(xhr.responseText);
+	console.log(clientList[0]);
+	console.log(clientList);
 
 	// For each contact in the JSON array, the contact's
 	// information will be added to the table.
