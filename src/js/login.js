@@ -38,9 +38,9 @@ function login()
 
           else
           {
-            userID = jsonObj.User_level;
+            userID = jsonObj.ID;
             FirstName = jsonObj.FirstName;
-            FirstName = jsonObj.LastName;
+            LastName = jsonObj.LastName;
             Email = jsonObj.Email;
 
             saveCookie();
@@ -61,7 +61,7 @@ function login()
 	}
 }
 
-function logout()
+function doLogout()
 {
 	userID = -1;
 	FirstName = "";
@@ -77,10 +77,7 @@ function saveCookie()
 	var minutes = 40;
 	var date = new Date();
 	date.setTime(date.getTime()+(minutes*60*1000));
-	document.cookie = "ID=" + userID + ";expires=" + date.toGMTString();
-	document.cookie = "FirstName=" + FirstName + ";expires=" + date.toGMTString();
-	document.cookie = "LastName=" + LastName + ";expires=" + date.toGMTString();
-	document.cookie = "Email=" + Email + ";expires=" + date.toGMTString();
+	document.cookie = "FirstName=" + FirstName + ",LastName=" + LastName + ",userID=" + userID + ",expires=" + date.toGMTString();
 }
 
 function deleteAllCookies() 
@@ -96,25 +93,47 @@ function deleteAllCookies()
 	}
 }
 
+// Provides a means to save data to display
+// the user's first name in the landing page.
 function readCookie()
 {
+	userID = -1;
 	var data = document.cookie;
-	var splits = data.split(";");
-	
-  for(var i = 0; i < splits.length; i++)
+	var splits = data.split(",");
+
+  for (var i = 0; i < splits.length; i++)
 	{
 		var thisOne = splits[i].trim();
-		var tokens = thisOne.split("=");
+    var tokens = thisOne.split("=");
 
-		if (tokens[0] == "customer_id")
+		if (tokens[0] == "FirstName")
 		{
-			customer_id = parseInt( tokens[1].trim() );
+			FirstName = tokens[1];
 		}
+
+    else if (tokens[0] == "LastName")
+		{
+			LastName = tokens[1];
+		}
+
+		else if (tokens[0] == "userID")
+		{
+			userID = parseInt( tokens[1].trim() );
+		}
+
+    else if (tokens[0] == "Email")
+    {
+      Email = tokens[1];
+    }
 	}
 
-	if( customer_id < 0 )
+	if (userID < 0)
 	{
-		window.location.href = "../index.html";
+		window.location.href = "index.html";
+	}
+	else
+	{
+		document.getElementById("userName").innerHTML = FirstName + " " + LastName;
 	}
 }
 
