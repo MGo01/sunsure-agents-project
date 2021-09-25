@@ -50,7 +50,7 @@
   {
     $names = explode(" ", $Input);
 
-    $sql_check = "SELECT * from Primary_PolicyHolders WHERE (AgentID = $AgentID) AND (FirstName LIKE '%$names[0]%' AND LastName LIKE '%$names[1]%')";
+    $sql_check = "SELECT * from Primary_PolicyHolders WHERE (AgentID = $AgentID)";
 
     $result = mysqli_query($conn, $sql_check);
 
@@ -75,8 +75,8 @@
 
   else
   {
-
-    $sql = "SELECT * FROM Primary_PolicyHolders WHERE (AgentID = $AgentID) AND (FirstName LIKE '%$Input%' OR LastName LIKE '%$Input%' OR              Email LIKE '%$Input%' OR Phone LIKE '%$Input%')";
+    // Retrieve ALL policyholders that correspond to the AgentID
+    $sql = "SELECT * FROM Primary_PolicyHolders WHERE (AgentID = $AgentID)";
 
     $result = mysqli_query($conn, $sql);
 
@@ -85,9 +85,6 @@
       // Retrieve search results via getPolicyHolders()
       // and store them in "searchResults"
       $searchResults = getPolicyHolders($result, $conn);
-
-      if (is_null($searchResults))
-        returnInfo("No valid Primary PolicyHolders were found");
 
       returnInfo($searchResults);
     }
