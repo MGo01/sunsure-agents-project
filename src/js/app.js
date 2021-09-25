@@ -9,10 +9,10 @@ var extension = 'php';
 
 // These variables are especially useful in order
 // to perform CRUD operations
-var userId = 0;
-var firstName = "";
-var lastName = "";
-var updateFlag = false;
+// var userId = 0;
+// var firstName = "";
+// var lastName = "";
+// var updateFlag = false;
 
 // JQuery function inspired and modified by https://www.youtube.com/watch?v=DzXmAKdEYIs
 // to allow for easier row insertion into the UI data table.
@@ -20,10 +20,23 @@ function addRow(obj)
 {
 	var row = `<tr scope="row" class="test-row-${obj.PolicyID}">
 								<td id="PolicyID-${obj.PolicyID}" class="d-none" data-testid="${obj.PolicyID}">${obj.PolicyID}</td>
-								<td id="firstName-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.firstName}</td>
-								<td id="lastName-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.lastName}</td>
-								<td id="email-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.email}</td>
-								<td id="phone-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.phone}</td>
+								<td id="firstName-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.FirstName}</td>
+								<td id="lastName-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.LastName}</td>
+								<td id="email-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.DateOfBirth}</td>
+
+								<td id="lastName-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.Phone}</td>
+								<td id="email-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.Address}</td>
+								<td id="phone-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.Second_Line_Address}</td>
+
+								<td id="firstName-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.City}</td>
+								<td id="lastName-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.ZipCode}</td>
+								<td id="email-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.State}</td>
+								<td id="phone-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.Email}</td>
+
+								<td id="firstName-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.NumOfLives}</td>
+								<td id="lastName-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.NumOfDependents}</td>
+								<td id="email-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.Source}</td>
+								
 								<td>
 									<button class="btn btn-sm btn-info" data-testid="${obj.PolicyID}"  id="save-${obj.PolicyID}" data-toggle="modal" data-target="#updateContactModal">Update</button>
 									<button class="btn btn-sm btn-danger" data-testid=${obj.PolicyID} id="delete-${obj.PolicyID}" >Delete</button>
@@ -105,7 +118,7 @@ function createContact()
 	// Package a JSON payload to deliver to the server that contains all
 	// the contact details in order create the contact.
   var jsonPayload =
-  	'{"UserID" : "' + userId + '", "FirstName" : "' + contactFirstName + '", "LastName" : "' + contactLastName + '", "Email" : "' + contactEmail + '", "Phone" : "' + contactPhone + '"}';
+  	'{"UserID" : "' + userID + '", "FirstName" : "' + contactFirstName + '", "LastName" : "' + contactLastName + '", "Email" : "' + contactEmail + '", "Phone" : "' + contactPhone + '"}';
 	var url = urlBase + '/Create.' + extension;
 	var xhr = new XMLHttpRequest();
 
@@ -202,7 +215,7 @@ function displayClientsTable()
 	// Package a JSON payload to deliver to the DisplayTable Endpoint with
 	// the UserID in order to display their contacts.
   var jsonPayload =
-  	'{"UserID" : "' + userId + '"}';
+  	'{"UserID" : "' + userID + '"}';
 	var url = urlBase + '/displayClientTables.' + extension;
 	var xhr = new XMLHttpRequest();
 
@@ -225,13 +238,13 @@ function displayClientsTable()
 		console.log("Failure in displayTable()");
 	}
 
-	var contactList = JSON.parse(xhr.responseText);
+	let clientList = JSON.parse(xhr.responseText);
 
 	// For each contact in the JSON array, the contact's
 	// information will be added to the table.
 	for (var i in contactList)
   {
-  	addRow(contactList[i]);
+  	addRow(clientList[i]);
   }
 }
 
@@ -239,8 +252,8 @@ function displayClientsTable()
 function searchContacts()
 {
 	// Collects data from the search bar in the landing page.
-	var search = document.getElementById("contactsInput").value;
-	var clientsList = "";
+	let search = document.getElementById("contactsInput").value;
+	let clientsList = "";
 
 	// Clears the table to allow for the construction of a new table
 	// based on the search results.
@@ -249,7 +262,7 @@ function searchContacts()
 	// Package a JSON payload to deliver to the Search Endpoint with
 	// the UserID in order to display the contacts based on the search input.
 	var jsonPayload = '{"UserID" : "' + userId + '", "Input" : "' + search + '"}';
-	var url = urlBase + '/Search.' + extension;
+	var url = urlBase + '/searchPolicyHolder.' + extension;
 
 	var xhr = new XMLHttpRequest();
 	xhr.open("POST", url, false);
@@ -309,16 +322,20 @@ function checkFormNames(firstName, lastName)
     return typeof ch === "string" && ch.length === 1 && (ch >= "a" && ch <= "z" || ch >= "A" && ch <= "Z");
   }
 
-  for (var i = 0; i < firstName.length; i++) {
-    if (!isAlpha(firstName[i])) {
+  for (var i = 0; i < firstName.length; i++) 
+	{
+    if (!isAlpha(firstName[i])) 
+		{
       document.getElementById("registerResult").innerHTML = 'First name must have alphabet characters only';
 
       return false;
     }
   }
 
-  for (var j = 0; j < lastName.length; j++) {
-    if (!isAlpha(lastName[j])) {
+  for (var j = 0; j < lastName.length; j++) 
+	{
+    if (!isAlpha(lastName[j])) 
+		{
       document.getElementById("registerResult").innerHTML = 'Last name must have alphabet characters only';
 
       return false;
