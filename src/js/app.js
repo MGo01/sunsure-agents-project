@@ -212,7 +212,7 @@ function deleteClient(clientID)
 	// Package a JSON payload to deliver to the server that contains all
 	// the contact's ID in order delete the contact.
 	var jsonPayload =
-  	'{"AgentID" : "' + userID + '", "PolicyID" : "' + clientID + '"}';
+	'{"PolicyID" : "' + clientID + '"}';
 
 	xhr.open("DELETE", newUrl, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
