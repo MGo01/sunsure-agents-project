@@ -150,7 +150,7 @@ Sunsure Agents
 							
 							<!-- Form Body -->
 							<div class="modal-body">
-                <span id="createClientResult"></span>
+                <span id="clientResult"></span>
                 
                 <!-- First Row -->
                 <div class="row">
@@ -208,7 +208,7 @@ Sunsure Agents
                   <!-- Second Line Address -->
                   <div class="col-8">
                     <span class="material-icons-outlined">location_city</span>
-                    <input type="text" id="clientSecondLineAddress" placeholder="Second Line Address" name='secondAddress'/>
+                    <input type="text" id="clientAddress" placeholder="Second Line Address" name='secondAddress'/>
                   </div>
                 </div>
 
@@ -225,10 +225,10 @@ Sunsure Agents
                   <div class="col-4">
                     <label for="cars" style="font-size: 25px;">State*: </label>
                       <select id="statesMenu" name="states">
-                        <option value="FL">FL</option>
-                        <option value="GA">GA</option>
-                        <option value="SC">SC</option>
-                        <option value="AL">AL</option>
+                        <option value="Florida">Florida</option>
+                        <option value="Georgia">Georgia</option>
+                        <option value="South Carolina">South Carolina</option>
+                        <option value="Alabama">Alabama</option>
                       </select>
                   </div>
 
@@ -257,15 +257,10 @@ Sunsure Agents
                   <div class="col-6">
                     <label for="sources" style="font-size: 25px;">Source: </label>
                       <select id="sourceMenu" name="sources">
-                        <option value="Google">Google</option>
-                        <option value="Facebook/Instagram">Facebook/Instagram</option>
-                        <option value="Online Ads">Online Ads</option>
-                        <option value="Email">Email</option>
-                        <option value="Referral">Referral</option>
-                        <option value="Yard Sign">Yard Sign</option>
-                        <option value="Sunsure Agent">Sunsure Agent</option>
-                        <option value="Florida Blue">Florida Blue</option>
-                        <option value="Other">Other</option>
+                        <option value="Facebook">Facebook</option>
+                        <option value="TV">TV</option>
+                        <option value="Ads">Ads</option>
+                        <option value="News Article">News Article</option>
                       </select>
                   </div>
                 </div>
@@ -284,7 +279,7 @@ Sunsure Agents
 							
 							<!-- Form Submit Button -->
 							<div class="modal-footer">
-							  <button type="button" id="createClientButton" onclick="createClient(); window.location.reload()">Create Client</button>
+							  <button type="button" id="createClientButton" onclick="createContact(); window.location.reload()">Create Client</button>
 							</div>
              
 						</div>
