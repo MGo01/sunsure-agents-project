@@ -148,27 +148,27 @@ function createPolicyHolder()
 	console.log("TESTING!");
 
 	var clientFirstName = document.getElementById("clientFirstName").value;
-	// let clientLastName = document.getElementById("clientLastName").value;
+	var clientLastName = document.getElementById("clientLastName").value;
 
-	// let clientDateOfBirth = document.getElementById("contactEmail").value;
-	// let clientSSN = document.getElementById("clientSSN").value;
+	var clientDateOfBirth = document.getElementById("contactEmail").value;
+	var clientSSN = document.getElementById("clientSSN").value;
 
-	// let clientPhone = document.getElementById("clientPhone").value;
-	// let clientAddress = document.getElementById("clientAddress").value;
+	var clientPhone = document.getElementById("clientPhone").value;
+	var clientAddress = document.getElementById("clientAddress").value;
 
-	// let clientSecondLineAddress = document.getElementById("clientSecondLineAddress").value;
+	var clientSecondLineAddress = document.getElementById("clientSecondLineAddress").value;
 
-	// let clientCity = document.getElementById("clientCity").value;
-	// let clientAddress = document.getElementById("clientAddress").value;
+	var clientCity = document.getElementById("clientCity").value;
+	var clientAddress = document.getElementById("clientAddress").value;
 
-	// let clientZIP = document.getElementById("clientZIP").value;
-	// // let clientState = document.getElementById("statesMenu").value;
+	var clientZIP = document.getElementById("clientZIP").value;
+	// let clientState = document.getElementById("statesMenu").value;
 
-	// let clientEmail = document.getElementById("clientEmail").value;
-	// let clientNumOfDependents = document.getElementById("clientNumOfDependents").value;
+	var clientEmail = document.getElementById("clientEmail").value;
+	var clientNumOfDependents = document.getElementById("clientNumOfDependents").value;
 
-	// let clientNumOfLives = document.getElementById("clientNumOfLives").value;
-	// let clientSource = document.getElementById("sourceMenu").value;
+	var clientNumOfLives = document.getElementById("clientNumOfLives").value;
+	var clientSource = document.getElementById("sourceMenu").value;
 
 	// // Remove any special characters in order to ensure all
 	// // numbers are a 10 digit string.
