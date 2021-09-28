@@ -148,7 +148,7 @@ function createPolicyHolder()
 	var clientFirstName = document.getElementById("clientFirstName").value;
 	var clientLastName = document.getElementById("clientLastName").value;
 
-	var clientDateOfBirth = document.getElementById("clientEmail").value;
+	var clientDateOfBirth = document.getElementById("clientDateOfBirth").value;
 	var clientSSN = document.getElementById("clientSSN").value;
 
 	var clientPhone = document.getElementById("clientPhone").value;
@@ -225,7 +225,7 @@ function createPolicyHolder()
 				if (endpointmsg === "Primary PolicyHolder has been inserted successfully!")
 				{
 					console.log("Client insertion was successful!");
-					// window.location.reload();
+					window.location.reload();
 				}
 
 				else
