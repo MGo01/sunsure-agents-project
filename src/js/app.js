@@ -235,10 +235,8 @@ function createPolicyHolder()
 			}
 		};
 
-		xhr.responseType="text";
 		console.log(jsonString);
 		xhr.send(jsonString);
-		//window.location.href = "login.html";
 	}
 	
 	catch(error)
