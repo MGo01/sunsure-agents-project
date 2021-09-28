@@ -209,7 +209,7 @@ function createPolicyHolder()
 	var url = "http://sunsure-agent.com/API/createPolicyHolder.php";
 	var xhr = new XMLHttpRequest();
 
-	xhr.open("POST", url, true);
+	xhr.open("POST", url, false);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 	debug_count = 0
 
