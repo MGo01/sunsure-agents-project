@@ -18,6 +18,12 @@ var extension = 'php';
 // to allow for easier row insertion into the UI data table.
 function addRow(obj)
 {
+	// Check for any empty fields in the Policyholder
+	// object and replace it with "N/A"
+	for (var key in obj)
+		if (obj[key] === "")
+			obk[key] = "N/A";
+
 	var row = `<tr scope="row" class="test-row-${obj.PolicyID}">
 								<td id="PolicyID-${obj.PolicyID}" class="d-none" data-testid="${obj.PolicyID}">${obj.PolicyID}</td>
 								<td id="firstName-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.FirstName}</td>
