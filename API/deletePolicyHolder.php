@@ -5,14 +5,13 @@
   // Receive JSON payload from signup.js file.
   $inputFromJson = json_decode(file_get_contents('php://input'), true);
 
-  $AgentID = $inputFromJson['AgentID'];
   $PolicyID = $inputFromJson['PolicyID'];
 
   $sql_dependents = "DELETE FROM Dependents 
                       WHERE DependentID = '$PolicyID'";
 
   $sql_policyHolders = "DELETE FROM Primary_PolicyHolders 
-                        WHERE AgentID = '$AgentID'"; 
+                        WHERE PolicyID = '$PolicyID'"; 
 
   if (mysqli_query($conn, $sql_dependents) && mysqli_query($conn, $sql_policyHolders))
   {
