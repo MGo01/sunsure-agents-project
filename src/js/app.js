@@ -162,7 +162,7 @@ function createPolicyHolder()
 	var clientAddress = document.getElementById("clientAddress").value;
 
 	var clientZIP = document.getElementById("clientZIP").value;
-	// let clientState = document.getElementById("statesMenu").value;
+	let clientState = document.getElementById("statesMenu").value;
 
 	var clientEmail = document.getElementById("clientEmail").value;
 	var clientNumOfDependents = document.getElementById("clientNumOfDependents").value;
@@ -170,37 +170,37 @@ function createPolicyHolder()
 	var clientNumOfLives = document.getElementById("clientNumOfLives").value;
 	var clientSource = document.getElementById("sourceMenu").value;
 
-	// // Remove any special characters in order to ensure all
-	// // numbers are a 10 digit string.
-	// clientPhone = clientPhone.replace(/[^\w\s]/gi, '');
+	// Remove any special characters in order to ensure all
+	// numbers are a 10 digit string.
+	clientPhone = clientPhone.replace(/[^\w\s]/gi, '');
 
-	// // This helps to ensure that none of the form
-	// // inputs are left blank and only have alphabetical characters.
-	// if (!checkFormNames(clientFirstName, clientLastName))
-	// 	return;
+	// This helps to ensure that none of the form
+	// inputs are left blank and only have alphabetical characters.
+	if (!checkFormNames(clientFirstName, clientLastName))
+		return;
 
-	// document.getElementById("createClientResult").innerHTML = "";
+	document.getElementById("createClientResult").innerHTML = "";
 
-	// // Package a JSON payload to deliver to the server that contains all
-	// // the contact details in order create the contact.
-  // var jsonPayload =
-  // 	'{"AgentID" : "' + userID + '", "FirstName" : "' + clientFirstName + '", "LastName" : "' + clientLastName + '", "DateOfBirth" : "' + clientDateOfBirth + '", "SSN" : "' + clientSSN + '", "Phone" : "' + clientPhone + '", "Address" : "' + clientAddress + '", "Second_Line_Address" : "' + clientSecondLineAddress + '", "City" : "' + clientCity + '", "ZipCode" : "' + clientZIP + '", "State" : "' + clientState + '", "Email" : "' + clientEmail + '", "NumOfLives" : "' + clientNumOfLives + '", "NumOfDependents" : "' + clientNumOfDependents + '", "PolicyInfoID" : "' + userID + '",  "Source" : "' + clientSource + '"}';
-	// var url = urlBase + '/createPolicyHolder.' + extension;
-	// var xhr = new XMLHttpRequest();
+	// Package a JSON payload to deliver to the server that contains all
+	// the contact details in order create the contact.
+  var jsonPayload =
+  	'{"AgentID" : "' + userID + '", "FirstName" : "' + clientFirstName + '", "LastName" : "' + clientLastName + '", "DateOfBirth" : "' + clientDateOfBirth + '", "SSN" : "' + clientSSN + '", "Phone" : "' + clientPhone + '", "Address" : "' + clientAddress + '", "Second_Line_Address" : "' + clientSecondLineAddress + '", "City" : "' + clientCity + '", "ZipCode" : "' + clientZIP + '", "State" : "' + clientState + '", "Email" : "' + clientEmail + '", "NumOfLives" : "' + clientNumOfLives + '", "NumOfDependents" : "' + clientNumOfDependents + '", "PolicyInfoID" : "' + userID + '",  "Source" : "' + clientSource + '"}';
+	var url = urlBase + '/createPolicyHolder.' + extension;
+	var xhr = new XMLHttpRequest();
 
-	// xhr.open("POST", url, true);
-	// xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
-	// // Basic try and catch to ensure that any server code errors are
-	// // handled properly.
-	// try
-	// {
-	// 	xhr.send(jsonPayload);
-	// }
-	// catch(err)
-	// {
-	// 	document.getElementById("createClientResult").innerHTML = err.message;
-	// }
+	// Basic try and catch to ensure that any server code errors are
+	// handled properly.
+	try
+	{
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		document.getElementById("createClientResult").innerHTML = err.message;
+	}
 }
 
 // Deletes a contact based on their ID.
