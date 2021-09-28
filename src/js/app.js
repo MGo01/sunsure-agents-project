@@ -227,7 +227,7 @@ function createPolicyHolder()
 			}
 		};
 
-		count += 1;
+		debug_count += 1;
 		console.log(count);
 		xhr.send(jsonString);
 	}
