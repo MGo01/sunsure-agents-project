@@ -22,7 +22,7 @@ function addRow(obj)
 	// object and replace it with "N/A"
 	for (var key in obj)
 		if (obj[key] === "")
-			obk[key] = "N/A";
+			obj[key] = "N/A";
 
 	var row = `<tr scope="row" class="test-row-${obj.PolicyID}">
 								<td id="PolicyID-${obj.PolicyID}" class="d-none" data-testid="${obj.PolicyID}">${obj.PolicyID}</td>
