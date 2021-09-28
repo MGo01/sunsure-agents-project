@@ -206,47 +206,34 @@ function createPolicyHolder()
 
 	// '{"AgentID" : ' + userID + ', "FirstName" : "' + clientFirstName + '", "LastName" : "' + clientLastName + '", "DateOfBirth" : "' + clientDateOfBirth + '", "SSN" : "' + clientSSN + '", "Phone" : "' + clientPhone + '", "Address" : "' + clientAddress + '", "Second_Line_Address" : "' + clientSecondLineAddress + '", "City" : "' + clientCity + '", "ZipCode" : "' + clientZIP + '", "State" : "' + clientState + '", "Email" : "' + clientEmail + '", "NumOfLives" : ' + clientNumOfLives + ', "NumOfDependents" : ' + clientNumOfDependents + ', "PolicyInfoID" : "' + userID + '",  "Source" : "' + clientSource + '"}';
 
-	var url = "http://68.183.97.82/API/createPolicyHolder.php";
+	var url = "http://sunsure-agent.com/API/createPolicyHolder.php";
 	var xhr = new XMLHttpRequest();
 
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	debug_count = 0
 
 	// Basic try and catch to ensure that any server code errors are
 	// handled properly.
 
-	try 
+	try
 	{
 		xhr.onreadystatechange = function()
 		{
+			// If successful there is no need to display a change.
 			if (this.readyState == 4 && this.status == 200)
-			{    
-				var jsonObject = JSON.parse(xhr.responseText);
-				var endpointmsg = jsonObject['msg'];
-				console.log(endpointmsg);
-
-				if (endpointmsg === "Primary PolicyHolder has been inserted successfully!")
-				{
-					successMessage = endpointmsg
-					document.getElementById("createClientResult").innerHTML = successMessage; 
-				}
-
-				else
-				{
-					document.getElementById("createClientResult").innerHTML = endpointmsg; 
-				}
+			{
+				console.log("pls work")
 			}
 		};
 
-		xhr.responseType="text";
-		console.log(jsonString);
+		count += 1;
+		console.log(count);
 		xhr.send(jsonString);
 	}
-	
-	catch(error)
+	catch(err)
 	{
-		document.getElementById("createClientResult").innerHTML = error.message;
-		document.getElementById("createClientResult").style.color = "red";
+		document.getElementById("createClientResult").innerHTML = err.message;
 	}
 }
 
