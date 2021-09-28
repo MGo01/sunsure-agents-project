@@ -30,6 +30,7 @@ function addRow(obj)
 								<td id="lastName-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.LastName}</td>
 								<td id="email-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.DateOfBirth}</td>
 
+								<td id="lastName-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.SSN}</td>
 								<td id="lastName-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.Phone}</td>
 								<td id="email-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.Address}</td>
 								<td id="phone-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.Second_Line_Address}</td>
