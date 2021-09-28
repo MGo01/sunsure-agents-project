@@ -136,7 +136,7 @@ function deleteTest()
 	var testid = $(this).data('testid')
 	var row = $(`.test-row-${testid}`)
 
-	deleteContact(testid);
+	deleteClient(testid);
 
 	row.remove()
 }
