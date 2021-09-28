@@ -204,15 +204,15 @@ function createPolicyHolder()
 }
 
 // Deletes a contact based on their ID.
-function deleteContact(contactID)
+function deleteClient(clientID)
 {
 	var xhr = new XMLHttpRequest();
-	var newUrl = 'http://contactmeshop.com/LAMPAPI/DeleteContact.php';
+	var newUrl = 'http://sunsure-agent.com/API/deletePolicyHolder.php';
 
 	// Package a JSON payload to deliver to the server that contains all
 	// the contact's ID in order delete the contact.
 	var jsonPayload =
-  	'{"ID" : "' + contactID + '"}';
+  	'{"AgentID" : "' + userID + '", "PolicyID" : "' + clientID + '"}';
 
 	xhr.open("DELETE", newUrl, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
