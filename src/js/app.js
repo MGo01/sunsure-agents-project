@@ -184,7 +184,7 @@ function createPolicyHolder()
 	// Package a JSON payload to deliver to the server that contains all
 	// the contact details in order create the contact.
   var jsonPayload =
-  	'{"AgentID" : "' + userID + '", "FirstName" : "' + clientFirstName + '", "LastName" : "' + clientLastName + '", "DateOfBirth" : "' + clientDateOfBirth + '", "SSN" : "' + clientSSN + '", "Phone" : "' + clientPhone + '", "Address" : "' + clientAddress + '", "Second_Line_Address" : "' + clientSecondLineAddress + '", "City" : "' + clientCity + '", "ZipCode" : "' + clientZIP + '", "State" : "' + clientState + '", "Email" : "' + clientEmail + '", "NumOfLives" : "' + clientNumOfLives + '", "NumOfDependents" : "' + clientNumOfDependents + '", "PolicyInfoID" : "' + userID + '",  "Source" : "' + clientSource + '"}';
+  	'{"AgentID" : ' + userID + ', "FirstName" : "' + clientFirstName + '", "LastName" : "' + clientLastName + '", "DateOfBirth" : "' + clientDateOfBirth + '", "SSN" : "' + clientSSN + '", "Phone" : "' + clientPhone + '", "Address" : "' + clientAddress + '", "Second_Line_Address" : "' + clientSecondLineAddress + '", "City" : "' + clientCity + '", "ZipCode" : "' + clientZIP + '", "State" : "' + clientState + '", "Email" : "' + clientEmail + '", "NumOfLives" : ' + clientNumOfLives + ', "NumOfDependents" : ' + clientNumOfDependents + ', "PolicyInfoID" : "' + userID + '",  "Source" : "' + clientSource + '"}';
 	var url = urlBase + '/createPolicyHolder.' + extension;
 	var xhr = new XMLHttpRequest();
 
