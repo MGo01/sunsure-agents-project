@@ -30,18 +30,19 @@ function addRow(obj)
 								<td id="lastName-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.LastName}</td>
 								<td id="email-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.DateOfBirth}</td>
 
-								<td id="lastName-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.Phone}</td>
-								<td id="email-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.Address}</td>
-								<td id="phone-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.Second_Line_Address}</td>
+								<td id="SSN-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.SSN}</td>
+								<td id="Phone-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.Phone}</td>
+								<td id="Address-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.Address}</td>
+								<td id="Second_Line_Address-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.Second_Line_Address}</td>
 
-								<td id="firstName-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.City}</td>
-								<td id="lastName-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.ZipCode}</td>
-								<td id="email-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.State}</td>
-								<td id="phone-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.Email}</td>
+								<td id="City-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.City}</td>
+								<td id="ZipCode-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.ZipCode}</td>
+								<td id="State-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.State}</td>
+								<td id="Email-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.Email}</td>
 
-								<td id="firstName-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.NumOfLives}</td>
-								<td id="lastName-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.NumOfDependents}</td>
-								<td id="email-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.Source}</td>
+								<td id="NumOfLives-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.NumOfLives}</td>
+								<td id="NumOfDependents-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.NumOfDependents}</td>
+								<td id="Source-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.Source}</td>
 								
 								<td>
 									<button class="btn btn-sm btn-info" data-testid="${obj.PolicyID}"  id="save-${obj.PolicyID}" data-toggle="modal" data-target="#updateContactModal">Update</button>
