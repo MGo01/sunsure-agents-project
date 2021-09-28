@@ -207,19 +207,34 @@ function createPolicyHolder()
 	// '{"AgentID" : ' + userID + ', "FirstName" : "' + clientFirstName + '", "LastName" : "' + clientLastName + '", "DateOfBirth" : "' + clientDateOfBirth + '", "SSN" : "' + clientSSN + '", "Phone" : "' + clientPhone + '", "Address" : "' + clientAddress + '", "Second_Line_Address" : "' + clientSecondLineAddress + '", "City" : "' + clientCity + '", "ZipCode" : "' + clientZIP + '", "State" : "' + clientState + '", "Email" : "' + clientEmail + '", "NumOfLives" : ' + clientNumOfLives + ', "NumOfDependents" : ' + clientNumOfDependents + ', "PolicyInfoID" : "' + userID + '",  "Source" : "' + clientSource + '"}';
 
 	var url = "http://sunsure-agent.com/API/createPolicyHolder.php";
-	
-	const userAction = async () => {
-		const response = await fetch(url, {
-			method: 'POST',
-			body: jsonString, // string or object
-			headers: {
-				'Content-Type': 'application/json'
+	var xhr = new XMLHttpRequest();
+
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	debug_count = 0
+
+	// Basic try and catch to ensure that any server code errors are
+	// handled properly.
+
+	try
+	{
+		xhr.onreadystatechange = function()
+		{
+			// If successful there is no need to display a change.
+			if (this.readyState == 4 && this.status == 200)
+			{
+				console.log("pls work");
 			}
-		});
-		
-		const myJson = await response.json(); //extract JSON from the http response
-		console.log(myJson);
+		};
+
+		xhr.send(jsonString);
 	}
+	catch(err)
+	{
+		document.getElementById("createClientResult").innerHTML = err.message;
+	}
+
+	window.location.reload()
 }
 
 // Deletes a contact based on their ID.
