@@ -145,8 +145,6 @@ function deleteTest()
 // accordingly in the database.
 function createPolicyHolder()
 {
-	console.log("TESTING!");
-
 	var clientFirstName = document.getElementById("clientFirstName").value;
 	var clientLastName = document.getElementById("clientLastName").value;
 
@@ -204,37 +202,51 @@ function createPolicyHolder()
 
 	jsonString = JSON.stringify(jsonPayload);
 
-	// '{"AgentID" : ' + userID + ', "FirstName" : "' + clientFirstName + '", "LastName" : "' + clientLastName + '", "DateOfBirth" : "' + clientDateOfBirth + '", "SSN" : "' + clientSSN + '", "Phone" : "' + clientPhone + '", "Address" : "' + clientAddress + '", "Second_Line_Address" : "' + clientSecondLineAddress + '", "City" : "' + clientCity + '", "ZipCode" : "' + clientZIP + '", "State" : "' + clientState + '", "Email" : "' + clientEmail + '", "NumOfLives" : ' + clientNumOfLives + ', "NumOfDependents" : ' + clientNumOfDependents + ', "PolicyInfoID" : "' + userID + '",  "Source" : "' + clientSource + '"}';
-
 	var url = "http://sunsure-agent.com/API/createPolicyHolder.php";
 	var xhr = new XMLHttpRequest();
 
 	xhr.open("POST", url, false);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	debug_count = 0
 
 	// Basic try and catch to ensure that any server code errors are
 	// handled properly.
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
-	try
+	try 
 	{
 		xhr.onreadystatechange = function()
 		{
-			// If successful there is no need to display a change.
 			if (this.readyState == 4 && this.status == 200)
-			{
-				console.log("pls work");
+			{    
+				var jsonObject = JSON.parse(xhr.responseText);
+				var endpointmsg = jsonObject['msg'];
+				console.log(endpointmsg);
+
+				if (endpointmsg === "Primary PolicyHolder has been inserted successfully!")
+				{
+					console.log("Client insertion was successful!");
+					// window.location.reload();
+				}
+
+				else
+				{
+					console.log(endpointmsg); 
+				}
 			}
 		};
 
+		xhr.responseType="text";
+		console.log(jsonString);
 		xhr.send(jsonString);
+		//window.location.href = "login.html";
 	}
-	catch(err)
+	
+	catch(error)
 	{
-		document.getElementById("createClientResult").innerHTML = err.message;
+		console.log(error.message);
+		document.getElementById("createClientResult").innerHTML = error.message;
+		document.getElementById("createClientResult").style.color = "red";
 	}
-
-	window.location.reload()
 }
 
 // Deletes a contact based on their ID.
