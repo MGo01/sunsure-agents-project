@@ -150,7 +150,7 @@ function createPolicyHolder()
 	var clientFirstName = document.getElementById("clientFirstName").value;
 	var clientLastName = document.getElementById("clientLastName").value;
 
-	var clientDateOfBirth = document.getElementById("contactEmail").value;
+	var clientDateOfBirth = document.getElementById("clientEmail").value;
 	var clientSSN = document.getElementById("clientSSN").value;
 
 	var clientPhone = document.getElementById("clientPhone").value;
