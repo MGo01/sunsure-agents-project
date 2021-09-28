@@ -273,13 +273,13 @@ function createPolicyHolder()
 	let clientAddress = document.getElementById("clientAddress").value;
 
 	let clientZIP = document.getElementById("clientZIP").value;
-	let clientState = document.getElementById("statesMenu").value;
+	// let clientState = document.getElementById("statesMenu").value;
 
 	let clientEmail = document.getElementById("clientEmail").value;
 	let clientNumOfDependents = document.getElementById("clientNumOfDependents").value;
 
 	let clientNumOfLives = document.getElementById("clientNumOfLives").value;
-	let clientSource = document.getElementById("sourceMenu").value;
+	// let clientSource = document.getElementById("sourceMenu").value;
 
 	// // Remove any special characters in order to ensure all
 	// // numbers are a 10 digit string.
