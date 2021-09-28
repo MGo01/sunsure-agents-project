@@ -30,18 +30,19 @@ function addRow(obj)
 								<td id="lastName-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.LastName}</td>
 								<td id="email-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.DateOfBirth}</td>
 
-								<td id="lastName-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.Phone}</td>
-								<td id="email-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.Address}</td>
-								<td id="phone-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.Second_Line_Address}</td>
+								<td id="SSN-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.SSN}</td>
+								<td id="Phone-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.Phone}</td>
+								<td id="Address-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.Address}</td>
+								<td id="Second_Line_Address-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.Second_Line_Address}</td>
 
-								<td id="firstName-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.City}</td>
-								<td id="lastName-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.ZipCode}</td>
-								<td id="email-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.State}</td>
-								<td id="phone-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.Email}</td>
+								<td id="City-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.City}</td>
+								<td id="ZipCode-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.ZipCode}</td>
+								<td id="State-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.State}</td>
+								<td id="Email-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.Email}</td>
 
-								<td id="firstName-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.NumOfLives}</td>
-								<td id="lastName-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.NumOfDependents}</td>
-								<td id="email-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.Source}</td>
+								<td id="NumOfLives-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.NumOfLives}</td>
+								<td id="NumOfDependents-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.NumOfDependents}</td>
+								<td id="Source-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.Source}</td>
 								
 								<td>
 									<button class="btn btn-sm btn-info" data-testid="${obj.PolicyID}"  id="save-${obj.PolicyID}" data-toggle="modal" data-target="#updateContactModal">Update</button>
@@ -99,47 +100,33 @@ function deleteTest()
 
 // Creates a contact for a specific user and stores it
 // accordingly in the database.
-function createClient()
+function createContact()
 {
-	let clientFirstName = document.getElementById("clientFirstName").value;
-	let clientLastName = document.getElementById("clientLastName").value;
+	firstName = "";
+	lastName = "";
 
-	let clientDateOfBirth = document.getElementById("contactEmail").value;
-	let clientSSN = document.getElementById("clientSSN").value;
+	var contactFirstName = document.getElementById("contactFirstName").value;
+	var contactLastName = document.getElementById("contactLastName").value;
 
-	let clientPhone = document.getElementById("clientPhone").value;
-	let clientAddress = document.getElementById("clientAddress").value;
-
-	let clientSecondLineAddress = document.getElementById("clientSecondLineAddress").value;
-
-	let clientCity = document.getElementById("clientCity").value;
-	let clientAddress = document.getElementById("clientAddress").value;
-
-	let clientZIP = document.getElementById("clientZIP").value;
-	let clientState = document.getElementById("statesMenu").value;
-
-	let clientEmail = document.getElementById("clientEmail").value;
-	let clientNumOfDependents = document.getElementById("clientNumOfDependents").value;
-
-	let clientNumOfLives = document.getElementById("clientNumOfLives").value;
-	let clientSource = document.getElementById("sourceMenu").value;
+	var contactEmail = document.getElementById("contactEmail").value;
+	var contactPhone = document.getElementById("contactPhone").value;
 
 	// Remove any special characters in order to ensure all
 	// numbers are a 10 digit string.
-	clientPhone = clientPhone.replace(/[^\w\s]/gi, '');
+	contactPhone = contactPhone.replace(/[^\w\s]/gi, '');
 
 	// This helps to ensure that none of the form
 	// inputs are left blank and only have alphabetical characters.
-	if (!checkFormNames(clientFirstName, clientLastName))
+	if (!checkFormNames(contactFirstName, contactLastName))
 		return;
 
-	document.getElementById("createClientResult").innerHTML = "";
+	document.getElementById("contactsResult").innerHTML = "";
 
 	// Package a JSON payload to deliver to the server that contains all
 	// the contact details in order create the contact.
   var jsonPayload =
-  	'{"AgentID" : "' + userID + '", "FirstName" : "' + clientFirstName + '", "LastName" : "' + clientLastName + '", "DateOfBirth" : "' + clientDateOfBirth + '", "SSN" : "' + clientSSN + '", "Phone" : "' + clientPhone + '", "Address" : "' + clientAddress + '", "Second_Line_Address" : "' + clientSecondLineAddress + '", "City" : "' + clientCity + '", "ZipCode" : "' + clientZIP + '", "State" : "' + clientState + '", "Email" : "' + clientEmail + '", "NumOfLives" : "' + clientNumOfLives + '", "NumOfDependents" : "' + clientNumOfDependents + '", "PolicyInfoID" : "' + userID + '",  "Source" : "' + clientSource + '"}';
-	var url = urlBase + '/createPolicyHolder.' + extension;
+  	'{"UserID" : "' + userID + '", "FirstName" : "' + contactFirstName + '", "LastName" : "' + contactLastName + '", "Email" : "' + contactEmail + '", "Phone" : "' + contactPhone + '"}';
+	var url = urlBase + '/Create.' + extension;
 	var xhr = new XMLHttpRequest();
 
 	xhr.open("POST", url, true);
@@ -153,7 +140,7 @@ function createClient()
 	}
 	catch(err)
 	{
-		document.getElementById("createClientResult").innerHTML = err.message;
+		document.getElementById("contactsResult").innerHTML = err.message;
 	}
 }
 
@@ -258,8 +245,8 @@ function displayClientsTable()
 		console.log("Failure in displayTable()");
 	}
 
-	let clientList = JSON.parse(xhr.responseText);
-	console.log(clientList[0]);
+	let results = JSON.parse(xhr.responseText);
+	let clientList = results['results'];
 	console.log(clientList);
 
 	// For each contact in the JSON array, the contact's
