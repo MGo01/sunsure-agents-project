@@ -207,21 +207,19 @@ function createPolicyHolder()
 	// '{"AgentID" : ' + userID + ', "FirstName" : "' + clientFirstName + '", "LastName" : "' + clientLastName + '", "DateOfBirth" : "' + clientDateOfBirth + '", "SSN" : "' + clientSSN + '", "Phone" : "' + clientPhone + '", "Address" : "' + clientAddress + '", "Second_Line_Address" : "' + clientSecondLineAddress + '", "City" : "' + clientCity + '", "ZipCode" : "' + clientZIP + '", "State" : "' + clientState + '", "Email" : "' + clientEmail + '", "NumOfLives" : ' + clientNumOfLives + ', "NumOfDependents" : ' + clientNumOfDependents + ', "PolicyInfoID" : "' + userID + '",  "Source" : "' + clientSource + '"}';
 
 	var url = "http://sunsure-agent.com/API/createPolicyHolder.php";
-	var xhr = new XMLHttpRequest();
-
-	xhr.open('POST', url, true);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-
-	xhr.onreadystatechange = function () 
-	{
-		if (xhr.readyState === 4 && xhr.status === 200) 
-		{
-			var res = JSON.parse(xhr.response);
-			console.log(res);
-		}
-	};
-
-	xhr.send(jsonString);
+	
+	const userAction = async () => {
+		const response = await fetch(url, {
+			method: 'POST',
+			body: jsonString, // string or object
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		});
+		
+		const myJson = await response.json(); //extract JSON from the http response
+		console.log(myJson);
+	}
 }
 
 // Deletes a contact based on their ID.
