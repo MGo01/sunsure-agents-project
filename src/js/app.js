@@ -256,7 +256,7 @@ function searchContacts()
 // accordingly in the database.
 function createPolicyHolder()
 {
-	console.log("TESTING!";)
+	console.log("TESTING!");
 
 	// let clientFirstName = document.getElementById("clientFirstName").value;
 	// let clientLastName = document.getElementById("clientLastName").value;
