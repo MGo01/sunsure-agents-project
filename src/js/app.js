@@ -209,32 +209,19 @@ function createPolicyHolder()
 	var url = "http://sunsure-agent.com/API/createPolicyHolder.php";
 	var xhr = new XMLHttpRequest();
 
-	xhr.open("POST", url, true);
+	xhr.open('POST', url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	debug_count = 0
 
-	// Basic try and catch to ensure that any server code errors are
-	// handled properly.
-
-	try
+	xhr.onreadystatechange = function () 
 	{
-		xhr.onreadystatechange = function()
+		if (xhr.readyState === 4 && xhr.status === 200) 
 		{
-			// If successful there is no need to display a change.
-			if (this.readyState == 4 && this.status == 200)
-			{
-				console.log("pls work")
-			}
-		};
+			var res = JSON.parse(xhr.response);
+			console.log(res);
+		}
+	};
 
-		debug_count += 1;
-		console.log(debug_count);
-		xhr.send(jsonString);
-	}
-	catch(err)
-	{
-		document.getElementById("createClientResult").innerHTML = err.message;
-	}
+	xhr.send(jsonString);
 }
 
 // Deletes a contact based on their ID.
