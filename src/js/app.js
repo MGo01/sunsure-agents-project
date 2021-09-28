@@ -216,7 +216,7 @@ function createPolicyHolder()
 	// handled properly.
 	try 
 	{
-		request.onreadystatechange = function()
+		xhr.onreadystatechange = function()
 		{
 			if (this.readyState == 4 && this.status == 200)
 			{    
@@ -237,7 +237,7 @@ function createPolicyHolder()
 			}
 		};
 
-		request.responseType="text";
+		xhr.responseType="text";
 		console.log(jsonString);
 		request.send(jsonString);
 	}
