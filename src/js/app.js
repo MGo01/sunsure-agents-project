@@ -239,7 +239,7 @@ function createPolicyHolder()
 
 		xhr.responseType="text";
 		console.log(jsonString);
-		request.send(jsonString);
+		xhr.send(jsonString);
 	}
 	
 	catch(error)
