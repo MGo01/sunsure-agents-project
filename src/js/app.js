@@ -214,13 +214,38 @@ function createPolicyHolder()
 
 	// Basic try and catch to ensure that any server code errors are
 	// handled properly.
-	try
+	try 
 	{
-		xhr.send(jsonString);
+		request.onreadystatechange = function()
+		{
+			if (this.readyState == 4 && this.status == 200)
+			{    
+				var jsonObject = JSON.parse(request.responseText);
+				var endpointmsg = jsonObject['msg'];
+				console.log(endpointmsg);
+
+				if (endpointmsg === "Primary PolicyHolder has been inserted successfully!")
+				{
+					successMessage = endpointmsg
+					document.getElementById("createClientResult").innerHTML = successMessage; 
+				}
+
+				else
+				{
+					document.getElementById("createClientResult").innerHTML = endpointmsg; 
+				}
+			}
+		};
+
+		request.responseType="text";
+		console.log(jsonString);
+		request.send(jsonString);
 	}
-	catch(err)
+	
+	catch(error)
 	{
-		document.getElementById("createClientResult").innerHTML = err.message;
+		document.getElementById("createClientResult").innerHTML = error.message;
+		document.getElementById("createClientResult").style.color = "red";
 	}
 }
 
