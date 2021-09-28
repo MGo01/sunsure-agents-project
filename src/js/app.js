@@ -214,13 +214,14 @@ function createPolicyHolder()
 
 	// Basic try and catch to ensure that any server code errors are
 	// handled properly.
+
 	try 
 	{
 		xhr.onreadystatechange = function()
 		{
 			if (this.readyState == 4 && this.status == 200)
 			{    
-				var jsonObject = JSON.parse(request.responseText);
+				var jsonObject = JSON.parse(xhr.responseText);
 				var endpointmsg = jsonObject['msg'];
 				console.log(endpointmsg);
 
