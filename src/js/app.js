@@ -258,8 +258,8 @@ function displayClientsTable()
 		console.log("Failure in displayTable()");
 	}
 
-	let results = JSON.parse(xhr.responseText);
-	let clientList = results['results'];
+	let clientList = JSON.parse(xhr.responseText);
+	console.log(clientList[0]);
 	console.log(clientList);
 
 	// For each contact in the JSON array, the contact's
