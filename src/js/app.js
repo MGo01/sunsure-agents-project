@@ -228,7 +228,7 @@ function createPolicyHolder()
 		};
 
 		debug_count += 1;
-		console.log(count);
+		console.log(debug_count);
 		xhr.send(jsonString);
 	}
 	catch(err)
