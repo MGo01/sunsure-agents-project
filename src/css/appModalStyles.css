@@ -174,7 +174,7 @@ body
     outline: none;
 }
 
-#clientFirstName, #clientLastName, #clientEmail, #clientPhone, #clientDateOfBirth, #clientSSN, #clientAddress, #clientCity, #clientZIP, #clientState, #clientNumOfLives, #clientNumOfDependents, #clientNumOfDependents, #clientSecondAddress,
+#clientFirstName, #clientLastName, #clientEmail, #clientPhone, #clientDateOfBirth, #clientSSN, #clientAddress, #clientCity, #clientZIP, #clientState, #clientNumOfLives, #clientNumOfDependents, #clientNumOfDependents, #clientSecondLineAddress,
 #dependentFirstName, #dependentLastName, #dependentDOB, #dependentSSN,
 #updateFirstName, #updateLastName, #updateEmail, #updatePhone, 
 #deleteFirstName, #deleteLastName, #deleteEmail, #deletePhone
