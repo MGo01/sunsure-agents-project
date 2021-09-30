@@ -136,7 +136,7 @@ function readCookie()
 	}
 	else
 	{
-		document.getElementById("userName").innerHTML = FirstName + " " + LastName;
+		document.getElementById("userName").innerHTML = "Welcome " + FirstName + " " + LastName;
 	}
 }
 

@@ -59,25 +59,25 @@ Sunsure Agents
             var firstName = document.createElement("input");
             firstName.type = "text";
             firstName.name = "Dependent" + i;
-            firstName.id="dependentFirstName";
+            firstName.id="dependent-input-FirstName" + i;
             firstName.placeholder="First Name*";
 
             var lastName = document.createElement("input");
             lastName.type = "text";
             lastName.name = "Dependent" + i;
-            lastName.id="dependentLastName";
+            lastName.id="dependent-input-LastName" + i;
             lastName.placeholder="Last Name*";
 
             var dateOfBirth = document.createElement("input");
             dateOfBirth.type = "text";
             dateOfBirth.name = "Dependent" + i;
-            dateOfBirth.id="dependentDOB";
+            dateOfBirth.id="dependent-input-DOB" + i;
             dateOfBirth.placeholder="Date of Birth*";
 
             var ssn = document.createElement("input");
             ssn.type = "text";
             ssn.name = "Dependent" + i;
-            ssn.id="dependentSSN";
+            ssn.id="dependent-input-SSN" + i;
             ssn.placeholder="SSN";
 
 
@@ -108,17 +108,16 @@ Sunsure Agents
   <script src="src/js/md5.js"></script>
   <script src="src/js/login.js"></script>   
   <script src="src/js/app.js"></script>
-  <script src="src/js/agentOps.js"></script>
   <script type="text/javascript">
-    document.addEventListener('DOMContentLoaded', function() 
-    {
-      readCookie();
-    }, false);
+    // document.addEventListener('DOMContentLoaded', function() 
+    // {
+    //   readCookie();
+    // }, false);
 
-    window.onload = function() 
-    {
-      displayClientsTable();
-    };
+    // window.onload = function() 
+    // {
+    //   displayClientsTable();
+    // };
 	</script>
     
 	<!-- Website Container -->
@@ -127,8 +126,8 @@ Sunsure Agents
   			<div class="col">
   				<!-- Title Bar -->
 				<div id= "titleBar" style="word-wrap:break-word">
+            <h1 id="userName"></h1>
   					<h1 id="title" style="zoom:67%">Sunsure Agents</h1>
-  					<h1 id="userName"></h1>
   					<button id="logoutButton" style="zoom:67%" type="button" onclick="doLogout()"><span class="material-icons text-center">logout</span>  Sign Out</button>
   				</div>        
   			</div>
@@ -248,14 +247,8 @@ Sunsure Agents
                     <input type="text" id="clientNumOfDependents" placeholder="Number of Dependents"/>
                   </div>
 
-                   <!-- Number of Lives Column -->
-                   <div class="col-3">
-                    <span class="material-icons" style="font-size:38px;">tag</span>
-							      <input type="text" id="clientNumOfLives" placeholder="Number of Lives" name='numOfLives'/>
-                  </div>
-
                   <!-- Source Column -->
-                  <div class="col-6">
+                  <div class="col">
                     <label for="sources" style="font-size: 25px;">Source: </label>
                       <select id="sourceMenu" name="sources">
                         <option value="Google">Google</option>
@@ -359,7 +352,6 @@ Sunsure Agents
 								<th>State</th>
 								<th>Email</th>
 
-								<th>NumOfLives</th>
 								<th>NumOfDependents</th>
 								<th>Source</th>
 								<th>Actions</th>																
