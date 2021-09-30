@@ -360,8 +360,7 @@ function searchClients()
 					// information will be added to the table.
 					for (var i in clientsList)
 						addRow(clientsList[i]);
-
-					window.location.reload();
+						
 				}
 			}
 		};
