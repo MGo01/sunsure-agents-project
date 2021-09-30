@@ -365,8 +365,8 @@ function searchClients()
 			}
 		};
 
-		console.log(jsonString);
-		xhr.send(jsonString);
+		console.log(jsonPayload);
+		xhr.send(jsonPayload);
 	}
 	
 	catch(error)
