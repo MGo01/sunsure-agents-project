@@ -24,7 +24,6 @@
     public $ZipCode = "";
     public $State =  "";
     public $Email = "";
-    public $NumOfLives = "";
     public $NumOfDependents = "";
     public $PolicyInfoID = "";
     public $Source = "";
@@ -171,7 +170,6 @@
       $newPolicyHolder->State = $row['State'];
       $newPolicyHolder->Email = $row['Email'];
 
-      $newPolicyHolder->NumOfLives = $row['NumOfLives'];
       $newPolicyHolder->NumOfDependents = $row['NumOfDependents'];
       $newPolicyHolder->PolicyInfoID = $row['PolicyInfoID'];
       $newPolicyHolder->Source = $row['Source'];
