@@ -345,10 +345,16 @@ function searchClients()
 			if (this.readyState == 4 && this.status == 200)
 			{    
 				jsonObject = JSON.parse(xhr.responseText);
-				var clientsList = jsonObject['msg'];
-				console.log(endpointmsg);
+				var clientsList = jsonObject['results'];
+				console.log(clientsList);
 
-				if (endpointmsg === "Primary PolicyHolder has been inserted successfully!")
+				if (clientsList === "No valid Primary PolicyHolders were found")
+				{
+					document.getElementById("clientsTable").innerHTML = clientsList;
+					document.getElementById("clientsTable").style.color = "red";
+				}
+
+				else
 				{
 					// For each client in the JSON array, the client's
 					// information will be added to the table.
@@ -356,11 +362,6 @@ function searchClients()
 						addRow(clientsList[i]);
 
 					window.location.reload();
-				}
-
-				else
-				{
-					console.log(endpointmsg); 
 				}
 			}
 		};
