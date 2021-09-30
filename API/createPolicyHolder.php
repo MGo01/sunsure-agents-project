@@ -17,7 +17,6 @@
   $ZipCode = $inputFromJson['ZipCode'];
   $State =  $inputFromJson['State'];
   $Email = $inputFromJson['Email'];
-  $NumOfLives = $inputFromJson['NumOfLives'];
   $NumOfDependents = $inputFromJson['NumOfDependents'];
   $PolicyInfoID = $inputFromJson['PolicyInfoID'];
   $Source = $inputFromJson['Source'];
@@ -28,10 +27,10 @@
 
   if (checkPrimaryPolicy($LastName, $DateOfBirth, $conn))
   {
-    $sql = "INSERT INTO Primary_PolicyHolders (AgentID, FirstName, LastName, DateOfBirth, SSN, Phone, Address, Second_Line_Address, City, ZipCode, State, Email, NumOfLives, NumOfDependents, PolicyInfoID, Source)
+    $sql = "INSERT INTO Primary_PolicyHolders (AgentID, FirstName, LastName, DateOfBirth, SSN, Phone, Address, Second_Line_Address, City, ZipCode, State, Email, NumOfDependents, PolicyInfoID, Source)
     VALUES ('".$AgentID."','".$FirstName."','".$LastName."','".$DateOfBirth."', '".$SSN."',
             '".$Phone."','".$Address."','".$Second_Line_Address."', '".$City."', '".$ZipCode."',
-            '".$State."','".$Email."','".$NumOfLives."', '".$NumOfDependents."', '".$PolicyInfoID."', '".$Source."')";
+            '".$State."','".$Email."', '".$NumOfDependents."', '".$PolicyInfoID."', '".$Source."')";
 
     if (mysqli_query($conn, $sql))
     {
