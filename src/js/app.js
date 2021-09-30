@@ -329,7 +329,7 @@ function searchClients()
 
 	// Package a JSON payload to deliver to the Search Endpoint with
 	// the UserID in order to display the contacts based on the search input.
-	var jsonPayload = '{"AgentID" : "' + userId + '", "Input" : "' + search + '"}';
+	var jsonPayload = '{"AgentID" : "' + userID + '", "Input" : "' + search + '"}';
 	var url = urlBase + '/searchPolicyHolder.' + extension;
 
 	var xhr = new XMLHttpRequest();
