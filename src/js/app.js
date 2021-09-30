@@ -318,11 +318,10 @@ function updateContact(updateFirstName, updateLastName, updateEmail, updatePhone
 }
 
 // Searches for a user's contacts based on the userID.
-function searchContacts()
+function searchClients()
 {
 	// Collects data from the search bar in the landing page.
-	let search = document.getElementById("contactsInput").value;
-	let clientsList = "";
+	let search = document.getElementById("clientsInput").value;
 
 	// Clears the table to allow for the construction of a new table
 	// based on the search results.
@@ -330,7 +329,7 @@ function searchContacts()
 
 	// Package a JSON payload to deliver to the Search Endpoint with
 	// the UserID in order to display the contacts based on the search input.
-	var jsonPayload = '{"UserID" : "' + userId + '", "Input" : "' + search + '"}';
+	var jsonPayload = '{"AgentID" : "' + userId + '", "Input" : "' + search + '"}';
 	var url = urlBase + '/searchPolicyHolder.' + extension;
 
 	var xhr = new XMLHttpRequest();
@@ -339,23 +338,43 @@ function searchContacts()
 
 	// Basic try and catch to ensure that any server code errors are
 	// handled properly.
-	try
+	try 
 	{
-		xhr.send(jsonPayload);
-    clientsList = JSON.parse(xhr.responseText);
-  }
+		xhr.onreadystatechange = function()
+		{
+			if (this.readyState == 4 && this.status == 200)
+			{    
+				jsonObject = JSON.parse(xhr.responseText);
+				var clientsList = jsonObject['msg'];
+				console.log(endpointmsg);
 
-	catch(err)
-	{
-		document.getElementById("contactsTable").innerHTML = err.message;
+				if (endpointmsg === "Primary PolicyHolder has been inserted successfully!")
+				{
+					// For each client in the JSON array, the client's
+					// information will be added to the table.
+					for (var i in clientsList)
+						addRow(clientsList[i]);
+
+					window.location.reload();
+				}
+
+				else
+				{
+					console.log(endpointmsg); 
+				}
+			}
+		};
+
+		console.log(jsonString);
+		xhr.send(jsonString);
 	}
-
-	// For each contact in the JSON array, the contact's
-	// information will be added to the table.
- 	for (var i in clientsList)
-  {
-  	addRow(clientsList[i]);
-  }
+	
+	catch(error)
+	{
+		console.log(error.message);
+		document.getElementById("clientsTable").innerHTML = error.message;
+		document.getElementById("clientsTable").style.color = "red";
+	}
 }
 
 // Nifty function that allows for the 'show password'
