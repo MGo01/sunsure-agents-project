@@ -21,6 +21,17 @@
   $PolicyInfoID = $inputFromJson['PolicyInfoID'];
   $Source = $inputFromJson['Source'];
 
+  // Create a class capable of holding Dependent
+  // information for search queries.
+  class Dependent
+  {
+    public $FirstName = "";
+    public $LastName = "";
+    public $DateOfBirth = "";
+    public $SSN = "";
+    public $DependentID = "";
+  }
+
   // Generate a random string based on last name 
   // and date of birth of policyholder
   $PolicyID = uniqid($lastName . $dob, true);
@@ -34,8 +45,19 @@
 
     if (mysqli_query($conn, $sql))
     {
+
+      // Query to DB to retrieve most recently inserted record's ID
+      $sql = "SELECT SCOPE_IDENTITY()";
+      $result = mysqli_query($conn, $sql);
+
+      // Create Agent object to store agent fields
+      // in new variables below.
+      $PrimaryPolicyHolder = $result->fetch_assoc();
+
+      $ID = $PrimaryPolicyHolder["PolicyID"];
+
       // Successfully inserted Primary Policyholder into DB message.
-      returnInfo("Primary PolicyHolder has been inserted successfully!");
+      returnInfo($ID);
     }
 
     else
