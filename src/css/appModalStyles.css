@@ -61,10 +61,10 @@ body
 #userName
 {
     display: inline;
-    font-size: 30px;
+    font-size: 26px;
     margin-top: 1.5%;
     position: absolute;
-    right: 20%;
+    right: 75%;
 }
 
 #clientsResult
@@ -174,8 +174,7 @@ body
     outline: none;
 }
 
-#clientFirstName, #clientLastName, #clientEmail, #clientPhone, #clientDateOfBirth, #clientSSN, #clientAddress, #clientCity, #clientZIP, #clientState, #clientNumOfLives, #clientNumOfDependents, #clientNumOfDependents, #clientSecondLineAddress,
-#dependentFirstName, #dependentLastName, #dependentDOB, #dependentSSN,
+#clientFirstName, #clientLastName, #clientEmail, #clientPhone, #clientDateOfBirth, #clientSSN, #clientAddress, #clientCity, #clientZIP, #clientState, #clientNumOfDependents, #clientSecondLineAddress,
 #updateFirstName, #updateLastName, #updateEmail, #updatePhone, 
 #deleteFirstName, #deleteLastName, #deleteEmail, #deletePhone
 {
@@ -323,4 +322,14 @@ select:active
   color: var(--accentBg);
   border-color: var(--accentFg);
   background-color: var(--accentFg);
+}
+
+input[id^="dependent-input-"]
+{
+  background-color: transparent;
+  border: transparent;
+  border-bottom: 3px solid #b2b2b2;
+  width: 80%;
+  margin-bottom: 5%;
+  font-size: 30px;
 }
