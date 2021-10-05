@@ -213,6 +213,10 @@ function createPolicyHolder()
 	// numbers are a 10 digit string.
 	clientPhone = clientPhone.replace(/[^\w\s]/gi, '');
 
+	// Retrieve and generate an array based on
+	// the dependents forms
+	let dependentsArray = getDependentsArray(clientNumOfDependents);
+
 	// This helps to ensure that none of the form
 	// inputs are left blank and only have alphabetical characters.
 	if (!checkFormNames(clientFirstName, clientLastName))
@@ -261,7 +265,6 @@ function createPolicyHolder()
 				var jsonObject = JSON.parse(xhr.responseText);
 				var endpointmsg = jsonObject['msg'];
 				console.log(endpointmsg);
-				let dependentsArray = getDependentsArray(clientNumOfDependents);
 
 				if (endpointmsg === "Primary Policy Holder has already been inserted")
 				{
