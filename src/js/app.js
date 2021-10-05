@@ -231,7 +231,7 @@ function createPolicyHolder()
 				{
 					console.log(endpointmsg);
 					globalPolicyID = jsonObject.ID;
-          insertDependents(globalPolicyID);  
+          insertDependents(globalPolicyID, clientNumOfDependents);  
 				}
 			}
 		};
@@ -249,7 +249,7 @@ function createPolicyHolder()
 }
 
 // WORK IN PROGRESS
-function insertDependents(policyID)
+function insertDependents(policyID, clientNumOfDependents)
 {
 	var dependentsArray = [];
 
@@ -288,8 +288,9 @@ function insertDependents(policyID)
 		dependentsArray.push(dependentJSON);
 	}
 
-	async function postData(url = 'http://68.183.97.82/API/createDependent.php', data) 
+	async function postData(data) 
 	{
+		url = 'http://68.183.97.82/API/createDependent.php';
 		// Default options are marked with *
 		const response = await fetch(url, {
 			method: 'POST',
@@ -312,7 +313,7 @@ function insertDependents(policyID)
 	let promiseArray = [];
 
 	for(let i = 0; i < dependentsArray.length; i++)
-		promiseArray.push(postData)
+		promiseArray.push(postData(dependentsArray[i]))
 
 	Promise.all(promiseArray)
 	.then(values => values.map(value => console.log(value.url + " ==> " + value.status)))
