@@ -261,7 +261,7 @@ function createPolicyHolder()
 				var jsonObject = JSON.parse(xhr.responseText);
 				var endpointmsg = jsonObject['msg'];
 				console.log(endpointmsg);
-				let dependentsArray = getDependentsArray(endpointmsg);
+				let dependentsArray = getDependentsArray(clientNumOfDependents);
 
 				if (endpointmsg === "Primary Policy Holder has already been inserted")
 				{
