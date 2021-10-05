@@ -6,6 +6,7 @@
 // across the program.
 var urlBase = 'http://sunsure-agent.com/API';
 var extension = 'php';
+var globalPolicyID = -1;
 
 // These variables are especially useful in order
 // to perform CRUD operations
@@ -40,7 +41,6 @@ function addRow(obj)
 								<td id="State-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.State}</td>
 								<td id="Email-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.Email}</td>
 
-								<td id="NumOfLives-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.NumOfLives}</td>
 								<td id="NumOfDependents-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.NumOfDependents}</td>
 								<td id="Source-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.Source}</td>
 								
@@ -165,7 +165,6 @@ function createPolicyHolder()
 	var clientEmail = document.getElementById("clientEmail").value;
 	var clientNumOfDependents = document.getElementById("clientNumOfDependents").value;
 
-	var clientNumOfLives = document.getElementById("clientNumOfLives").value;
 	var clientSource = document.getElementById("sourceMenu").value;
 
 	// Remove any special characters in order to ensure all
@@ -175,6 +174,10 @@ function createPolicyHolder()
 	// This helps to ensure that none of the form
 	// inputs are left blank and only have alphabetical characters.
 	if (!checkFormNames(clientFirstName, clientLastName))
+		return;
+	
+	if (checkRequiredFields(clientFirstName, clientLastName, clientDateOfBirth,
+													clientAddress, clientCity))
 		return;
 
 	document.getElementById("createClientResult").innerHTML = "";
@@ -194,10 +197,10 @@ function createPolicyHolder()
 		"ZipCode": clientZIP,
 		"State": clientState,
 		"Email": clientEmail,
-		"NumOfLives": clientNumOfLives,
 		"NumOfDependents": clientNumOfDependents,
 		"PolicyInfoID": userID,
-		"Source": clientSource
+		"Source": clientSource,
+		"Dependents": dependentsArray
 	};
 
 	jsonString = JSON.stringify(jsonPayload);
@@ -206,10 +209,6 @@ function createPolicyHolder()
 	var xhr = new XMLHttpRequest();
 
 	xhr.open("POST", url, false);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-
-	// Basic try and catch to ensure that any server code errors are
-	// handled properly.
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
 	try 
@@ -222,15 +221,18 @@ function createPolicyHolder()
 				var endpointmsg = jsonObject['msg'];
 				console.log(endpointmsg);
 
-				if (endpointmsg === "Primary PolicyHolder has been inserted successfully!")
+				if (endpointmsg === "Primary Policy Holder has already been inserted")
 				{
-					console.log("Client insertion was successful!");
-					window.location.reload();
+					console.log("Client insertion was not successful!");
+					document.getElementById("createClientResult").innerHTML = endpointmsg;
+					document.getElementById("createClientResult").style.color = "red";
 				}
 
 				else
 				{
-					console.log(endpointmsg); 
+					console.log(endpointmsg);
+					globalPolicyID = jsonObject.ID;
+          // insertDependents(globalPolicyID);  
 				}
 			}
 		};
@@ -245,6 +247,79 @@ function createPolicyHolder()
 		document.getElementById("createClientResult").innerHTML = error.message;
 		document.getElementById("createClientResult").style.color = "red";
 	}
+}
+
+// WORK IN PROGRESS
+function insertDependents(policyID)
+{
+	var dependentsArray = [];
+
+	for (var i = 0; i < clientNumOfDependents; i++)
+	{
+		// Depending on the number of dependents
+		// these strings will pull the right data accordingly.
+		var FNameString = "dependentFirstName" + i;
+		var LNameString = "dependentLastName" + i;
+		var DOBString = "dependentDOB" + i;
+		var SSNString = "dependentSSN" + i;
+
+		var dependentFirstName = document.getElementById(FNameString).value;
+		var dependentLastName = document.getElementById(LNameString).value;
+		var dependentDOB = document.getElementById(DOBString).value;
+		var dependentSSN = document.getElementById(SSNString).value;
+
+		// This helps to ensure that none of the form
+		// inputs are left blank and only have alphabetical characters.
+		if (!checkFormNames(dependentFirstName, dependentLastName))
+			return;
+
+		// Create JSON for each dependent to later
+		// store in dependentsArray.
+		var dependentObj = 
+		{
+			"FirstName": dependentFirstName,
+			"LastName": dependentLastName,
+			"DateOfBirth": dependentDOB,
+			"SSN": dependentSSN,
+			"DependentID": globalPolicyID
+		};
+
+		dependentJSON = JSON.stringify(dependentObj);
+
+		dependentsArray.push(dependentJSON);
+	}
+
+	async function postData(url = 'http://68.183.97.82/API/createDependent.php', data) 
+	{
+		// Default options are marked with *
+		const response = await fetch(url, {
+			method: 'POST', // *GET, POST, PUT, DELETE, etc.
+			mode: 'cors', // no-cors, *cors, same-origin
+			cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+			credentials: 'same-origin', // include, *same-origin, omit
+			headers: {
+				'Content-Type': 'application/json'
+				// 'Content-Type': 'application/x-www-form-urlencoded',
+			},
+			redirect: 'follow', // manual, *follow, error
+			referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+			body: data // body data type must match "Content-Type" header
+		});
+
+		return response.json(); // parses JSON response into native JavaScript objects
+	}
+	
+
+	let promiseArray = [];
+
+	for(let i = 0; i < dependentsArray.length; i++)
+		promiseArray.push(postData)
+
+	Promise.all(promiseArray)
+	.then(values=>values.map(value=>console.log(value.url+" ==> "+value.status)))
+	.catch(err=>console.log(err))
+
+	console.log(dependentsArray);
 }
 
 // Deletes a contact based on their ID.
@@ -273,6 +348,7 @@ function deleteClient(clientID)
 				;
 			}
 		};
+		
 		xhr.send(jsonPayload);
 	}
 	catch(err)
@@ -360,7 +436,7 @@ function searchClients()
 					// information will be added to the table.
 					for (var i in clientsList)
 						addRow(clientsList[i]);
-						
+
 				}
 			}
 		};
@@ -431,4 +507,13 @@ function checkFormNames(firstName, lastName)
 	}
 
   return true;
+}
+
+// Check fields and sanitize inputs
+// in case of any anomalies.
+function checkRequiredFields(firstName, lastName, dateOfBirth, address, city)
+{
+	fullName = firstName + " " + lastName;
+
+	return true;
 }
