@@ -141,7 +141,7 @@ function deleteTest()
 	row.remove()
 }
 
-function getDependentsArray()
+function getDependentsArray(clientNumOfDependents)
 {
 	var dependentsArray = [];
 
@@ -261,7 +261,7 @@ function createPolicyHolder()
 				var jsonObject = JSON.parse(xhr.responseText);
 				var endpointmsg = jsonObject['msg'];
 				console.log(endpointmsg);
-				let dependentsArray = getDependentsArray();
+				let dependentsArray = getDependentsArray(endpointmsg);
 
 				if (endpointmsg === "Primary Policy Holder has already been inserted")
 				{
