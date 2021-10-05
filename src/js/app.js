@@ -141,6 +141,48 @@ function deleteTest()
 	row.remove()
 }
 
+function getDependentsArray()
+{
+	var dependentsArray = [];
+
+	for (var i = 0; i < clientNumOfDependents; i++)
+	{
+		// Depending on the number of dependents
+		// these strings will pull the right data accordingly.
+		var FNameString = "dependentFirstName" + i;
+		var LNameString = "dependentLastName" + i;
+		var DOBString = "dependentDOB" + i;
+		var SSNString = "dependentSSN" + i;
+
+		var dependentFirstName = document.getElementById(FNameString).value;
+		var dependentLastName = document.getElementById(LNameString).value;
+		var dependentDOB = document.getElementById(DOBString).value;
+		var dependentSSN = document.getElementById(SSNString).value;
+
+		// This helps to ensure that none of the form
+		// inputs are left blank and only have alphabetical characters.
+		if (!checkFormNames(dependentFirstName, dependentLastName))
+			return;
+
+		// Create JSON for each dependent to later
+		// store in dependentsArray.
+		var dependentObj = 
+		{
+			"FirstName": dependentFirstName,
+			"LastName": dependentLastName,
+			"DateOfBirth": dependentDOB,
+			"SSN": dependentSSN,
+			"DependentID": globalPolicyID
+		};
+
+		dependentJSON = JSON.stringify(dependentObj);
+
+		dependentsArray.push(dependentJSON);
+	}
+
+	return dependentsArray;
+}
+
 // Creates a client for a specific user and stores it
 // accordingly in the database.
 function createPolicyHolder()
@@ -219,19 +261,21 @@ function createPolicyHolder()
 				var jsonObject = JSON.parse(xhr.responseText);
 				var endpointmsg = jsonObject['msg'];
 				console.log(endpointmsg);
+				let dependentsArray = getDependentsArray();
 
 				if (endpointmsg === "Primary Policy Holder has already been inserted")
 				{
 					console.log("Client insertion was not successful!");
 					document.getElementById("createClientResult").innerHTML = endpointmsg;
+					
 					document.getElementById("createClientResult").style.color = "red";
 				}
 
 				else
 				{
 					console.log(endpointmsg);
-					globalPolicyID = jsonObject.msg;
-          insertDependents(globalPolicyID, clientNumOfDependents);  
+					globalPolicyID = endpointmsg;
+          insertDependents(globalPolicyID, dependentsArray);  
 				}
 			}
 		};
@@ -249,45 +293,8 @@ function createPolicyHolder()
 }
 
 // WORK IN PROGRESS
-function insertDependents(policyID, clientNumOfDependents)
+function insertDependents(policyID, dependentsArray)
 {
-	var dependentsArray = [];
-
-	for (var i = 0; i < clientNumOfDependents; i++)
-	{
-		// Depending on the number of dependents
-		// these strings will pull the right data accordingly.
-		var FNameString = "dependentFirstName" + i;
-		var LNameString = "dependentLastName" + i;
-		var DOBString = "dependentDOB" + i;
-		var SSNString = "dependentSSN" + i;
-
-		var dependentFirstName = document.getElementById(FNameString).value;
-		var dependentLastName = document.getElementById(LNameString).value;
-		var dependentDOB = document.getElementById(DOBString).value;
-		var dependentSSN = document.getElementById(SSNString).value;
-
-		// This helps to ensure that none of the form
-		// inputs are left blank and only have alphabetical characters.
-		if (!checkFormNames(dependentFirstName, dependentLastName))
-			return;
-
-		// Create JSON for each dependent to later
-		// store in dependentsArray.
-		var dependentObj = 
-		{
-			"FirstName": dependentFirstName,
-			"LastName": dependentLastName,
-			"DateOfBirth": dependentDOB,
-			"SSN": dependentSSN,
-			"DependentID": globalPolicyID
-		};
-
-		dependentJSON = JSON.stringify(dependentObj);
-
-		dependentsArray.push(dependentJSON);
-	}
-
 	async function postData(data) 
 	{
 		url = 'http://68.183.97.82/API/createDependent.php';
@@ -308,7 +315,6 @@ function insertDependents(policyID, clientNumOfDependents)
 
 		return response.json(); // parses JSON response into native JavaScript objects
 	}
-	
 
 	let promiseArray = [];
 
