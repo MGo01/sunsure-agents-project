@@ -233,10 +233,6 @@ function createPolicyHolder()
 	// numbers are a 10 digit string.
 	clientPhone = clientPhone.replace(/[^\w\s]/gi, '');
 
-	// Retrieve and generate an array based on
-	// the dependents forms
-	let dependentsArray = getDependentsArray(clientNumOfDependents);
-
 	// This helps to ensure that none of the form
 	// inputs are left blank and only have alphabetical characters.
 	if (!checkFormNames(clientFirstName, clientLastName))
@@ -298,7 +294,12 @@ function createPolicyHolder()
 				{
 					console.log(endpointmsg);
 					globalPolicyID = endpointmsg;
-          insertDependents(globalPolicyID, dependentsArray);  
+
+					// Retrieve and generate an array based on
+					// the dependents forms
+					let dependentsArray = getDependentsArray(clientNumOfDependents);
+
+          insertDependents(dependentsArray);  
 				}
 			}
 		};
@@ -316,7 +317,7 @@ function createPolicyHolder()
 }
 
 // WORK IN PROGRESS
-function insertDependents(policyID, dependentsArray)
+function insertDependents(dependentsArray)
 {
 	async function postData(data) 
 	{
