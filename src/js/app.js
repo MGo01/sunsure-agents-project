@@ -141,6 +141,25 @@ function deleteTest()
 	row.remove()
 }
 
+function createAClient() 
+{
+	$("#createClientModal").on("submit", function (event) {
+			var formData = $(this).serialize();
+			event.preventDefault();
+			let dependentsArray = getDependentsArray(formData.NumOfDependents);
+
+			$.ajax({
+					url: "http://sunsure-agent.com/API/createPolicyHolder.php",
+					type: "POST",
+					data: formData,
+					async: false,
+					success: function (result) {
+							console.log(result)
+					}
+			});
+	})
+}
+
 function getDependentsArray(clientNumOfDependents)
 {
 	var dependentsArray = [];

@@ -368,23 +368,3 @@ Sunsure Agents
 	</div>
 </body>
 </html>
-
-<script>
-  function createAClient() {
-    $("#createClientModal").on("submit", function (event) {
-        var formData = $(this).serialize();
-        event.preventDefault();
-        let dependentsArray = getDependentsArray(formData.NumOfDependents);
-
-        $.ajax({
-            url: "http://sunsure-agent.com/API/createPolicyHolder.php",
-            type: "POST",
-            data: formData,
-            async: false,
-            success: function (result) {
-                console.log(result)
-            }
-        });
-    })
-}
-</script>
