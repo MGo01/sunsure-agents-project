@@ -230,7 +230,7 @@ function createPolicyHolder()
 				else
 				{
 					console.log(endpointmsg);
-					globalPolicyID = jsonObject.ID;
+					globalPolicyID = jsonObject.msg;
           insertDependents(globalPolicyID, clientNumOfDependents);  
 				}
 			}
