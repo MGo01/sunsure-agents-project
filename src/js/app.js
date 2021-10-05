@@ -45,7 +45,7 @@ function addRow(obj)
 								<td id="Source-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.Source}</td>
 								
 								<td>
-									<button class="btn btn-sm btn-info" data-testid="${obj.PolicyID}"  id="save-${obj.PolicyID}" data-toggle="modal" data-target="#updateContactModal">Update</button>
+									<button class="btn btn-sm btn-info" data-testid="${obj.PolicyID}"  id="save-${obj.PolicyID}" data-toggle="modal" data-target="#updateClientModal">Update</button>
 									<button class="btn btn-sm btn-danger" data-testid=${obj.PolicyID} id="delete-${obj.PolicyID}" >Delete</button>
 								</td>
 							</tr>`
@@ -316,7 +316,8 @@ function createPolicyHolder()
 	}
 }
 
-// WORK IN PROGRESS
+// Receieves dependentsArray as a parameter
+// and inserts all dependents using a Promise call
 function insertDependents(dependentsArray)
 {
 	async function postData(data) 
@@ -337,7 +338,8 @@ function insertDependents(dependentsArray)
 			body: data
 		});
 
-		return response.json(); // parses JSON response into native JavaScript objects
+		// Parses JSON response into native JavaScript objects
+		return response.json();
 	}
 
 	let promiseArray = [];
