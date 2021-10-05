@@ -94,7 +94,7 @@
 
   function getDependents($result, $conn)
   {
-    while ($dep_row = mysqli_fetch_array($dependent_result))
+    while ($dep_row = mysqli_fetch_array($result))
     {
       $newDependent = new Dependent();
 
