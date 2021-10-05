@@ -141,6 +141,7 @@ function deleteTest()
 	row.remove()
 }
 
+// Massive WIP
 function createAClient() 
 {
 	$("#createClientModal").on("submit", function (event) {
