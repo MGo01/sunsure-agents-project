@@ -169,10 +169,10 @@ function getDependentsArray(clientNumOfDependents)
 	{
 		// Depending on the number of dependents
 		// these strings will pull the right data accordingly.
-		var FNameString = "dependentFirstName" + i;
-		var LNameString = "dependentLastName" + i;
-		var DOBString = "dependentDOB" + i;
-		var SSNString = "dependentSSN" + i;
+		var FNameString = "dependent-input-FirstName" + i;
+		var LNameString = "dependent-input-LastName" + i;
+		var DOBString = "dependent-input-DOB" + i;
+		var SSNString = "dependent-input-SSN" + i;
 
 		var dependentFirstName = document.getElementById(FNameString).value;
 		var dependentLastName = document.getElementById(LNameString).value;
