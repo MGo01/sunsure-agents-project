@@ -176,9 +176,9 @@ function createPolicyHolder()
 	if (!checkFormNames(clientFirstName, clientLastName))
 		return;
 	
-	if (checkRequiredFields(clientFirstName, clientLastName, clientDateOfBirth,
-													clientAddress, clientCity))
-		return;
+	// if (checkRequiredFields(clientFirstName, clientLastName, clientDateOfBirth,
+	// 												clientAddress, clientCity))
+	// 	return;
 
 	document.getElementById("createClientResult").innerHTML = "";
 
@@ -199,8 +199,7 @@ function createPolicyHolder()
 		"Email": clientEmail,
 		"NumOfDependents": clientNumOfDependents,
 		"PolicyInfoID": userID,
-		"Source": clientSource,
-		"Dependents": dependentsArray
+		"Source": clientSource
 	};
 
 	jsonString = JSON.stringify(jsonPayload);

@@ -32,7 +32,7 @@
     public $DependentID = "";
   }
 
-  // Generate a random string based on last name 
+  // Generate a random string based on last name
   // and date of birth of policyholder
   $PolicyID = uniqid($lastName . $dob, true);
 
@@ -43,15 +43,13 @@
             '".$Phone."','".$Address."','".$Second_Line_Address."', '".$City."', '".$ZipCode."',
             '".$State."','".$Email."', '".$NumOfDependents."', '".$PolicyInfoID."', '".$Source."')";
 
+    $getPolicysql = "SELECT * FROM Primary_PolicyHolders WHERE (LastName='$LastName' AND DateOfBirth='$DateOfBirth')";
+
     if (mysqli_query($conn, $sql))
     {
-
-      // Query to DB to retrieve most recently inserted record's ID
-      $sql = "SELECT SCOPE_IDENTITY()";
-      $result = mysqli_query($conn, $sql);
-
-      // Create Agent object to store agent fields
+      // Create PrimaryPolicyHolder variable to store agent fields
       // in new variables below.
+      $result = mysqli_query($conn, $getPolicysql);
       $PrimaryPolicyHolder = $result->fetch_assoc();
 
       $ID = $PrimaryPolicyHolder["PolicyID"];
@@ -62,8 +60,7 @@
 
     else
     {
-      // echo "failed to insert records";
-      returnError($conn->error);
+      returnError($conn->$error);
     }
   }
 
@@ -79,7 +76,7 @@
     $retval = (object) [
       'msg' => $error
     ];
-    
+
     outputJson($retval);
   }
 
@@ -101,11 +98,11 @@
 
   function checkPrimaryPolicy($lastName, $dob, $conn)
   {
-    // Check if there is an agent with the same 
+    // Check if there is an agent with the same
     // Date of Birth and Last Name Within the Primary Policyholders Table.
-    $sql_id = "SELECT * FROM Primary_PolicyHolders 
+    $sql_id = "SELECT * FROM Primary_PolicyHolders
                 WHERE LastName = '$lastName'
-                AND DateOfBirth = '$dob'"; 
+                AND DateOfBirth = '$dob'";
 
     $result = mysqli_query($conn, $sql_id);
     $rows = mysqli_num_rows($result);
