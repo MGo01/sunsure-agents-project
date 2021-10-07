@@ -175,6 +175,7 @@ body
 }
 
 #clientFirstName, #clientLastName, #clientEmail, #clientPhone, #clientDateOfBirth, #clientSSN, #clientAddress, #clientCity, #clientZIP, #clientState, #clientNumOfDependents, #clientSecondLineAddress,
+#createPolicyType, #createAncillaryType, #createCarrier, #createEffectiveDate, #createNotes
 #updateFirstName, #updateLastName, #updateEmail, #updatePhone, 
 #deleteFirstName, #deleteLastName, #deleteEmail, #deletePhone
 {
@@ -332,4 +333,10 @@ input[id^="dependent-input-"]
   width: 80%;
   margin-bottom: 5%;
   font-size: 30px;
+}
+
+textarea, #dependent-Title
+{  
+   font-family:"Montserrat", Times, serif;  
+   font-size: 26px;   
 }
