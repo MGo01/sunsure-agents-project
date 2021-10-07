@@ -50,9 +50,29 @@ Sunsure Agents
             var depSSNCol = document.createElement("div")
             depSSNCol.className = "col";
 
-            container.appendChild(document.createTextNode("Dependent " + (i+1)));
+            // Create Dependent Title
 
-            // Append a line break 
+            // HTML Format:
+            // <br>
+
+            // <div>
+            //   <b style="font-size: 30px; font-family:"Montserrat", Times, serif;">
+            //     Dependent Information Form
+            //   </b>
+            // </div>
+
+            // <br>
+            // <br>
+            var titleDiv = document.createElement("div");
+            var boldedText = document.createElement("b");
+
+            boldedText.id = "dependent-Title"
+            boldedText.innerHTML = "Dependent " + (i+1) + " Information Form";
+            titleDiv.append(boldedText);
+
+            container.appendChild(titleDiv);
+
+            // Append two line breaks 
             container.appendChild(document.createElement("br"));
 
             // Create an <input> element, set its type and name attributes
@@ -79,7 +99,6 @@ Sunsure Agents
             ssn.name = "Dependent" + i;
             ssn.id="dependent-input-SSN" + i;
             ssn.placeholder="SSN";
-
 
             // Attach Columns to fields
             depFirstNameCol.appendChild(firstName);
@@ -154,7 +173,18 @@ Sunsure Agents
                 
                 <!-- First Row -->
                 <div class="row">
-                  <br />
+                  <br>
+
+                  <!-- Client Information Title -->
+                  <div>
+                    <b style="font-size: 30px; font-family: 'Montserrat', Times, serif;">
+                      Client Information Form
+                    </b>
+                  </div>
+
+                 <br>
+                 <br>
+
                   <!-- First Name Column -->
                   <div class="col">
                     <span class="material-icons" style="font-size:38px;">perm_identity</span>
@@ -264,6 +294,63 @@ Sunsure Agents
                   </div>
                 </div>
 
+                <br>
+
+                 <!-- Policy Information Title -->
+                 <div>
+                  <b style="font-size: 30px; font-family:'Montserrat', Times, serif;">
+                    Policy Information Form
+                  </b>
+                </div>
+
+                <br>
+
+                <!-- Policy Information, First Row -->
+                <div class="row">
+                  <br />
+                  <!-- Policy Type Column -->
+                  <div class="col">
+                    <span class="material-icons-outlined">info</span>
+                    <input type="text" id="createPolicyType" placeholder="Policy Type*"/>
+                  </div>
+
+                  <!-- Ancillary Type Column -->
+                  <div class="col">
+                    <span class="material-icons-outlined">info</span>
+                    <input type="text" id="createAncillaryType" placeholder="Ancillary Type*"/>
+                  </div>
+
+                  <!-- Effective Date Column -->
+                  <div class="col">
+                    <span class="material-icons-outlined">date_range</span>
+                    <input type="date" id="createEffectiveDate" placeholder="Effective Date"/>
+                  </div>
+                </div>
+
+                <div class="row">  
+                  <!-- Carrier Column -->
+                  <div class="col-6">
+                    <label for="createCarriers" style="font-size: 25px;">Carrier: </label>
+                      <select id="createCarrier" name="sources">
+                        <option value="Google">Google</option>
+                        <option value="Facebook/Instagram">Facebook/Instagram</option>
+                        <option value="Online Ads">Online Ads</option>
+                        <option value="Email">Email</option>
+                        <option value="Referral">Referral</option>
+                      </select>
+                  </div>
+                </div>
+
+                <!-- Policy Information, Second Row -->
+                <div class="row">
+                  
+                  <!-- Notes Column -->
+                  <div class="col">
+                    <textarea id="createNotes" name="createNotes" rows="5" cols="75" style="text-align:left; overflow:auto; border:2px outset #000000;"> Notes...
+                    </textarea>
+                  </div>
+                </div>
+
                 <a href="#" id="filldetails" style="font-size: 25px;" onclick="addDependentFields()">Fill Dependent Details</a>
                 <div id="dependentsContainer"/>
                 </div>
@@ -287,12 +374,12 @@ Sunsure Agents
 				
 				<!-- Update Client Form -->
 				<div class="modal fade" id="updateClientModal" tabindex="-1" role="dialog" aria-labelledby="updateClientModalCenterTitle" aria-hidden="true">
-					<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
 						<div class="modal-content">
-							
+                
 							<!-- Form Title -->
 							<div class="modal-header" id="popupTitleContainer">
-							  <h5 id = "popupTitle" class="modal-title" id="updateClientModalLongTitle">Update Client</h5>
+							  <h5 id = "popupTitle" class="modal-title" id="createClientModalLongTitle">Create A New Client</h5>
 							  <button type="button" id="closePopup" class="close" data-dismiss="modal" aria-label="Close">
 							  <span aria-hidden="true">&times;</span>
 							  </button>
@@ -300,27 +387,181 @@ Sunsure Agents
 							
 							<!-- Form Body -->
 							<div class="modal-body">
-							  <span id="updateResult"></span>
-							  <span class="material-icons" style="font-size:36px;">
-							  perm_identity
-							  </span>
-							  <input type="text" id="updateFirstName" placeholder="First Name"/><br />
-							  <span class="material-icons" style="font-size:36px;">
-							  perm_identity
-							  </span>
-							  <input type="text" id="updateLastName" placeholder="Last Name"/><br />
-							  <span class="material-icons" style="font-size:36px;">email</span> 
-							  <input type="text" id="updateEmail" placeholder="Email" name='userName' /> 
-							  <br />
-							  <span class="material-icons" style="font-size:36px;">phone</span>
-							  <input type="text" id="updatePhone" placeholder="Phone Number" name='password'/>
-							</div>
-							
-							<!-- Form Submit Button -->
-							<div class="modal-footer">
-							  <button type="button" id="updateClientButton" onclick="saveUpdate(); window.location.reload()">Update</button>
-							</div>
+                <span id="updateClientResult"></span>
+                
+                <!-- First Row -->
+                <div class="row">
+                  <br />
+                  <!-- First Name Column -->
+                  <div class="col">
+                    <span class="material-icons" style="font-size:38px;">perm_identity</span>
+                    <input type="text" id="updateClientFirstName" placeholder="First Name*"/>
+                  </div>
+
+                  <!-- Last Name Column -->
+                  <div class="col">
+                    <span class="material-icons" style="font-size:38px;">perm_identity</span>
+                    <input type="text" id="updateClientLastName" placeholder="Last Name*"/>
+                  </div>
+
+                   <!-- Date of Birth Column -->
+                   <div class="col">
+                    <span class="material-icons-outlined">today</span>
+                    <input type="text" id="updateClientDateOfBirth" placeholder="Date of Birth*"/>
+                  </div>
+
+                  <!-- SSN Column -->
+                  <div class="col">
+                    <span class="material-icons-outlined">tag</span>
+                    <input type="text" id="updateClientSSN" placeholder="SSN"/>
+                  </div>
+                </div>
+
+                <!-- Second Row -->
+                <div class="row">
+          
+                  <!-- Phone Column -->
+                  <div class="col-4">
+                    <span class="material-icons" style="font-size:38px;">phone</span> 
+							      <input type="text" id="updateClientPhone" placeholder="Phone" name='phone' />
+                  </div>
+
+                  <!-- Main Address Column -->
+                  <div class="col-8">
+                    <span class="material-icons-outlined">location_city</span>
+							      <input type="text" id="updateClientAddress" placeholder="Main Address*" name='address'/>
+                  </div>
+                </div>
+
+                <!-- Third Row -->
+                <div class="row">
+
+                  <!-- City Column -->
+                  <div class="col-4">
+                    <span class="material-icons-outlined">apartment</span>
+                    <input type="text" id="updateClientCity" placeholder="City*" name='city' />
+                  </div>
+  
+                  <!-- Second Line Address -->
+                  <div class="col-8">
+                    <span class="material-icons-outlined">location_city</span>
+                    <input type="text" id="updateClientSecondLineAddress" placeholder="Second Line Address" name='secondAddress'/>
+                  </div>
+                </div>
+
+                <!-- Fourth Row -->
+                <div class="row">
+
+                  <!-- ZIP Code Column -->
+                  <div class="col-3">
+                    <span class="material-icons" style="font-size:38px;">tag</span>
+                    <input type="text" id="updateClientZIP" placeholder="ZIP Code*"/>
+                  </div>
+
+                  <!-- State Column -->
+                  <div class="col-2">
+                    <label for="cars" style="font-size: 25px;">State*: </label>
+                      <select id="updateStatesMenu" name="states">
+                        <option value="FL">FL</option>
+                        <option value="GA">GA</option>
+                        <option value="SC">SC</option>
+                        <option value="AL">AL</option>
+                      </select>
+                  </div>
+
+                  <!-- Email Column -->
+                  <div class="col">
+                    <span class="material-icons" style="font-size:38px;">email</span> 
+							      <input type="text" id="updateClientEmail" placeholder="Email" name='userName' />
+                  </div>
+                </div>
+
+                <!-- Fifth Row -->
+                <div class="row">
+                  <!-- Number of Dependents Column -->
+                  <div class="col-3">
+                    <span class="material-icons" style="font-size:38px;">tag</span>
+                    <input type="text" id="updateClientNumOfDependents" placeholder="Number of Dependents"/>
+                  </div>
+
+                  <!-- Source Column -->
+                  <div class="col">
+                    <label for="sources" style="font-size: 25px;">Source: </label>
+                      <select id="updateSourceMenu" name="sources">
+                        <option value="Google">Google</option>
+                        <option value="Facebook/Instagram">Facebook/Instagram</option>
+                        <option value="Online Ads">Online Ads</option>
+                        <option value="Email">Email</option>
+                        <option value="Referral">Referral</option>
+                        <option value="Yard Sign">Yard Sign</option>
+                        <option value="Sunsure Agent">Sunsure Agent</option>
+                        <option value="Florida Blue">Florida Blue</option>
+                        <option value="Other">Other</option>
+                      </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Policy Information, First Row -->
+              <div class="row">
+                <br />
+                <!-- Policy Type Column -->
+                <div class="col">
+                  <span class="material-icons" style="font-size:38px;">perm_identity</span>
+                  <input type="text" id="createPolicyType" placeholder="Policy Type*"/>
+                </div>
+
+                <!-- Ancillary Type Column -->
+                <div class="col">
+                  <span class="material-icons" style="font-size:38px;">perm_identity</span>
+                  <input type="text" id="createAncillaryType" placeholder="Ancillary Type*"/>
+                </div>
+
+                <!-- Carrier Column -->
+                <div class="col">
+                  <label for="createCarriers" style="font-size: 25px;">Carrier: </label>
+                    <select id="createCarrier" name="sources">
+                      <option value="Google">Google</option>
+                      <option value="Facebook/Instagram">Facebook/Instagram</option>
+                      <option value="Online Ads">Online Ads</option>
+                      <option value="Email">Email</option>
+                      <option value="Referral">Referral</option>
+                    </select>
+                </div>
+
+                <!-- Effective Date Column -->
+                <div class="col">
+                  <span class="material-icons-outlined">tag</span>
+                  <input type="date" id="createEffectiveDate" placeholder="Effective Date"/>
+                </div>
+              </div>
+
+
+              <!-- Policy Information, Second Row -->
+              <div class="row">
+                
+                <!-- Notes Column -->
+                <div class="col">
+                  <textarea id="createNotes" name="createNotes" rows="5" cols="75" style="align-content:left; overflow:auto; border:2px outset #000000;">
+                    Notes...
+                  </textarea>
+                </div>
+              </div>
+
+              <br>
+
+              <!-- Required Fields Text Box -->
+              <div>
+                <b style="font-size: 20px;">
+                  * Required Fields
+                </b>
+              </div>
 						</div>
+							
+            <!-- Form Submit Button -->
+            <div class="modal-footer">
+              <button type="button" id="createClientButton" onclick="updatePolicyHolder();">Create Client</button>
+            </div>
 					</div>
 				</div>  
 				
@@ -358,7 +599,6 @@ Sunsure Agents
 							</tr>
 						</thead>
 						<tbody id="tests-table">
-							
       			
 						</tbody>
 					</table>
