@@ -143,7 +143,7 @@ body
     margin-top: 1.3%;
 }
 
-#addClientButton:hover, #searchClientButton:hover
+#addClientButton:hover, #searchClientButton:hover, #updateClientButton:hover
 {
     border: 2px solid plum;
     background-color: plum;
@@ -175,9 +175,9 @@ body
 }
 
 #clientFirstName, #clientLastName, #clientEmail, #clientPhone, #clientDateOfBirth, #clientSSN, #clientAddress, #clientCity, #clientZIP, #clientState, #clientNumOfDependents, #clientSecondLineAddress,
-#createPolicyType, #createAncillaryType, #createCarrier, #createEffectiveDate, #createNotes
+#createPolicyType, #createAncillaryType, #createCarrier, #createEffectiveDate, #createNotes,
 #updateClientFirstName, #updateClientLastName, #updateClientDateOfBirth, #updateClientSSN, #updateClientPhone, #updateClientAddress, #updateClientCity, #updateClientSecondLineAddress,
-#updateClientZIP, #updateStatesMenu, #updateClientEmail, #updateClientNumOfDependents, #updateSourceMenu, #updatePolicyType, #updateAncillaryType, #updateCarrier, #updateEffectiveDate, #updateNotes,
+#updateClientZIP, #updateClientEmail, #updateClientNumOfDependents, #updatePolicyType, #updateAncillaryType, #updateCarrier, #updateEffectiveDate, #updateNotes,
 #deleteFirstName, #deleteLastName, #deleteEmail, #deletePhone
 {
     background-color: transparent;
