@@ -372,154 +372,183 @@ Sunsure Agents
 					</div>
 				</div>
 				
-				<!-- Update Client Form -->
-				<div class="modal fade" id="updateClientModal" tabindex="-1" role="dialog" aria-labelledby="updateClientModalCenterTitle" aria-hidden="true">
-					<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-						<div class="modal-content">
-                
-							<!-- Form Title -->
-							<div class="modal-header" id="popupTitleContainer">
-							  <h5 id = "popupTitle" class="modal-title" id="createClientModalLongTitle">Create A New Client</h5>
-							  <button type="button" id="closePopup" class="close" data-dismiss="modal" aria-label="Close">
-							  <span aria-hidden="true">&times;</span>
-							  </button>
-							</div>
-							
-							<!-- Form Body -->
-							<div class="modal-body">
-                <span id="updateClientResult"></span>
-                
-                <!-- First Row -->
-                <div class="row">
-                  <br />
-                  <!-- First Name Column -->
-                  <div class="col">
-                    <span class="material-icons" style="font-size:38px;">perm_identity</span>
-                    <input type="text" id="updateClientFirstName" placeholder="First Name*"/>
-                  </div>
+			<!-- Update Client Form -->
+      <div class="modal fade" id="updateClientModal" style="zoom:67%" tabindex="-1" role="dialog" aria-labelledby="updateClientModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+          <div class="modal-content">
+              
+            <!-- Form Title -->
+            <div class="modal-header" id="popupTitleContainer">
+              <h5 id = "popupTitle" class="modal-title" id="updateClientModalLongTitle">Update Client</h5>
+              <button type="button" id="closePopup" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            
+            <!-- Form Body -->
+            <div class="modal-body">
+              <span id="updateClientResult"></span>
+              
+              <!-- First Row -->
+              <div class="row">
+                <br>
 
-                  <!-- Last Name Column -->
-                  <div class="col">
-                    <span class="material-icons" style="font-size:38px;">perm_identity</span>
-                    <input type="text" id="updateClientLastName" placeholder="Last Name*"/>
-                  </div>
-
-                   <!-- Date of Birth Column -->
-                   <div class="col">
-                    <span class="material-icons-outlined">today</span>
-                    <input type="text" id="updateClientDateOfBirth" placeholder="Date of Birth*"/>
-                  </div>
-
-                  <!-- SSN Column -->
-                  <div class="col">
-                    <span class="material-icons-outlined">tag</span>
-                    <input type="text" id="updateClientSSN" placeholder="SSN"/>
-                  </div>
+                <!-- Client Information Title -->
+                <div>
+                  <b style="font-size: 30px; font-family: 'Montserrat', Times, serif;">
+                    Client Information Form
+                  </b>
                 </div>
 
-                <!-- Second Row -->
-                <div class="row">
-          
-                  <!-- Phone Column -->
-                  <div class="col-4">
-                    <span class="material-icons" style="font-size:38px;">phone</span> 
-							      <input type="text" id="updateClientPhone" placeholder="Phone" name='phone' />
-                  </div>
+               <br>
+               <br>
 
-                  <!-- Main Address Column -->
-                  <div class="col-8">
-                    <span class="material-icons-outlined">location_city</span>
-							      <input type="text" id="updateClientAddress" placeholder="Main Address*" name='address'/>
-                  </div>
+                <!-- First Name Column -->
+                <div class="col">
+                  <span class="material-icons" style="font-size:38px;">perm_identity</span>
+                  <input type="text" id="updateClientFirstName" placeholder="First Name*"/>
                 </div>
 
-                <!-- Third Row -->
-                <div class="row">
-
-                  <!-- City Column -->
-                  <div class="col-4">
-                    <span class="material-icons-outlined">apartment</span>
-                    <input type="text" id="updateClientCity" placeholder="City*" name='city' />
-                  </div>
-  
-                  <!-- Second Line Address -->
-                  <div class="col-8">
-                    <span class="material-icons-outlined">location_city</span>
-                    <input type="text" id="updateClientSecondLineAddress" placeholder="Second Line Address" name='secondAddress'/>
-                  </div>
+                <!-- Last Name Column -->
+                <div class="col">
+                  <span class="material-icons" style="font-size:38px;">perm_identity</span>
+                  <input type="text" id="updateClientLastName" placeholder="Last Name*"/>
                 </div>
 
-                <!-- Fourth Row -->
-                <div class="row">
-
-                  <!-- ZIP Code Column -->
-                  <div class="col-3">
-                    <span class="material-icons" style="font-size:38px;">tag</span>
-                    <input type="text" id="updateClientZIP" placeholder="ZIP Code*"/>
-                  </div>
-
-                  <!-- State Column -->
-                  <div class="col-2">
-                    <label for="cars" style="font-size: 25px;">State*: </label>
-                      <select id="updateStatesMenu" name="states">
-                        <option value="FL">FL</option>
-                        <option value="GA">GA</option>
-                        <option value="SC">SC</option>
-                        <option value="AL">AL</option>
-                      </select>
-                  </div>
-
-                  <!-- Email Column -->
-                  <div class="col">
-                    <span class="material-icons" style="font-size:38px;">email</span> 
-							      <input type="text" id="updateClientEmail" placeholder="Email" name='userName' />
-                  </div>
+                 <!-- Date of Birth Column -->
+                 <div class="col">
+                  <span class="material-icons-outlined">today</span>
+                  <input type="text" id="updateClientDateOfBirth" placeholder="Date of Birth*"/>
                 </div>
 
-                <!-- Fifth Row -->
-                <div class="row">
-                  <!-- Number of Dependents Column -->
-                  <div class="col-3">
-                    <span class="material-icons" style="font-size:38px;">tag</span>
-                    <input type="text" id="updateClientNumOfDependents" placeholder="Number of Dependents"/>
-                  </div>
-
-                  <!-- Source Column -->
-                  <div class="col">
-                    <label for="sources" style="font-size: 25px;">Source: </label>
-                      <select id="updateSourceMenu" name="sources">
-                        <option value="Google">Google</option>
-                        <option value="Facebook/Instagram">Facebook/Instagram</option>
-                        <option value="Online Ads">Online Ads</option>
-                        <option value="Email">Email</option>
-                        <option value="Referral">Referral</option>
-                        <option value="Yard Sign">Yard Sign</option>
-                        <option value="Sunsure Agent">Sunsure Agent</option>
-                        <option value="Florida Blue">Florida Blue</option>
-                        <option value="Other">Other</option>
-                      </select>
-                  </div>
+                <!-- SSN Column -->
+                <div class="col">
+                  <span class="material-icons-outlined">tag</span>
+                  <input type="text" id="updateClientSSN" placeholder="SSN"/>
                 </div>
               </div>
+
+              <!-- Second Row -->
+              <div class="row">
+        
+                <!-- Phone Column -->
+                <div class="col-4">
+                  <span class="material-icons" style="font-size:38px;">phone</span> 
+                  <input type="text" id="updateClientPhone" placeholder="Phone" name='phone' />
+                </div>
+
+                <!-- Main Address Column -->
+                <div class="col-8">
+                  <span class="material-icons-outlined">location_city</span>
+                  <input type="text" id="updateClientAddress" placeholder="Main Address*" name='address'/>
+                </div>
+              </div>
+
+              <!-- Third Row -->
+              <div class="row">
+
+                <!-- City Column -->
+                <div class="col-4">
+                  <span class="material-icons-outlined">apartment</span>
+                  <input type="text" id="updateClientCity" placeholder="City*" name='city' />
+                </div>
+
+                <!-- Second Line Address -->
+                <div class="col-8">
+                  <span class="material-icons-outlined">location_city</span>
+                  <input type="text" id="updateClientSecondLineAddress" placeholder="Second Line Address" name='secondAddress'/>
+                </div>
+              </div>
+
+              <!-- Fourth Row -->
+              <div class="row">
+
+                <!-- ZIP Code Column -->
+                <div class="col-3">
+                  <span class="material-icons" style="font-size:38px;">tag</span>
+                  <input type="text" id="updateClientZIP" placeholder="ZIP Code*"/>
+                </div>
+
+                <!-- State Column -->
+                <div class="col-2">
+                  <label for="cars" style="font-size: 25px;">State*: </label>
+                    <select id="updateStatesMenu" name="states">
+                      <option value="FL">FL</option>
+                      <option value="GA">GA</option>
+                      <option value="SC">SC</option>
+                      <option value="AL">AL</option>
+                    </select>
+                </div>
+
+                <!-- Email Column -->
+                <div class="col">
+                  <span class="material-icons" style="font-size:38px;">email</span> 
+                  <input type="text" id="updateClientEmail" placeholder="Email" name='userName' />
+                </div>
+              </div>
+
+              <!-- Fifth Row -->
+              <div class="row">
+                <!-- Number of Dependents Column -->
+                <div class="col-3">
+                  <span class="material-icons" style="font-size:38px;">tag</span>
+                  <input type="text" id="updateClientNumOfDependents" placeholder="Number of Dependents"/>
+                </div>
+
+                <!-- Source Column -->
+                <div class="col">
+                  <label for="sources" style="font-size: 25px;">Source: </label>
+                    <select id="updateSourceMenu" name="sources">
+                      <option value="Google">Google</option>
+                      <option value="Facebook/Instagram">Facebook/Instagram</option>
+                      <option value="Online Ads">Online Ads</option>
+                      <option value="Email">Email</option>
+                      <option value="Referral">Referral</option>
+                      <option value="Yard Sign">Yard Sign</option>
+                      <option value="Sunsure Agent">Sunsure Agent</option>
+                      <option value="Florida Blue">Florida Blue</option>
+                      <option value="Other">Other</option>
+                    </select>
+                </div>
+              </div>
+
+              <br>
+
+               <!-- Policy Information Title -->
+               <div>
+                <b style="font-size: 30px; font-family:'Montserrat', Times, serif;">
+                  Policy Information Form
+                </b>
+              </div>
+
+              <br>
 
               <!-- Policy Information, First Row -->
               <div class="row">
                 <br />
                 <!-- Policy Type Column -->
                 <div class="col">
-                  <span class="material-icons" style="font-size:38px;">perm_identity</span>
+                  <span class="material-icons-outlined">info</span>
                   <input type="text" id="updatePolicyType" placeholder="Policy Type*"/>
                 </div>
 
                 <!-- Ancillary Type Column -->
                 <div class="col">
-                  <span class="material-icons" style="font-size:38px;">perm_identity</span>
+                  <span class="material-icons-outlined">info</span>
                   <input type="text" id="updateAncillaryType" placeholder="Ancillary Type*"/>
                 </div>
 
-                <!-- Carrier Column -->
+                <!-- Effective Date Column -->
                 <div class="col">
-                  <label for="createCarriers" style="font-size: 25px;">Carrier: </label>
+                  <span class="material-icons-outlined">date_range</span>
+                  <input type="date" id="updateEffectiveDate" placeholder="Effective Date"/>
+                </div>
+              </div>
+
+              <div class="row">  
+                <!-- Carrier Column -->
+                <div class="col-6">
+                  <label for="updateCarriers" style="font-size: 25px;">Carrier: </label>
                     <select id="updateCarrier" name="sources">
                       <option value="Google">Google</option>
                       <option value="Facebook/Instagram">Facebook/Instagram</option>
@@ -528,42 +557,32 @@ Sunsure Agents
                       <option value="Referral">Referral</option>
                     </select>
                 </div>
-
-                <!-- Effective Date Column -->
-                <div class="col">
-                  <span class="material-icons-outlined">tag</span>
-                  <input type="date" id="updateEffectiveDate" placeholder="Effective Date"/>
-                </div>
               </div>
-
 
               <!-- Policy Information, Second Row -->
               <div class="row">
                 
                 <!-- Notes Column -->
                 <div class="col">
-                  <textarea id="updateNotes" name="Notes" rows="5" cols="75" style="align-content:left; overflow:auto; border:2px outset #000000;">
-                    Notes...
+                  <textarea id="updateNotes" name="updateNotes" rows="5" cols="75" style="text-align:left; overflow:auto; border:2px outset #000000;"> Notes...
                   </textarea>
                 </div>
               </div>
-
-              <br>
-
-              <!-- Required Fields Text Box -->
               <div>
                 <b style="font-size: 20px;">
                   * Required Fields
                 </b>
               </div>
-						</div>
-							
+            </div>
+            
             <!-- Form Submit Button -->
             <div class="modal-footer">
-              <button type="button" id="createClientButton" onclick="updatePolicyHolder();">Update Client</button>
+              <button type="button" id="updateClientButton" onclick="updatePolicyHolder();">Update Client</button>
             </div>
-					</div>
-				</div>  
+           
+            </div>
+          </div>
+        </div>
 				
 				<!-- Search Bar -->
 				<input type="text" id="clientsInput" style="zoom:67%" class = "text-center" placeholder="Search for clients...">
@@ -599,7 +618,7 @@ Sunsure Agents
 							</tr>
 						</thead>
 						<tbody id="tests-table">
-      			
+              
 						</tbody>
 					</table>
 				</div>
