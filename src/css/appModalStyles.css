@@ -176,7 +176,8 @@ body
 
 #clientFirstName, #clientLastName, #clientEmail, #clientPhone, #clientDateOfBirth, #clientSSN, #clientAddress, #clientCity, #clientZIP, #clientState, #clientNumOfDependents, #clientSecondLineAddress,
 #createPolicyType, #createAncillaryType, #createCarrier, #createEffectiveDate, #createNotes
-#updateFirstName, #updateLastName, #updateEmail, #updatePhone, 
+#updateClientFirstName, #updateClientLastName, #updateClientDateOfBirth, #updateClientSSN, #updateClientPhone, #updateClientAddress, #updateClientCity, #updateClientSecondLineAddress,
+#updateClientZIP, #updateStatesMenu, #updateClientEmail, #updateClientNumOfDependents, #updateSourceMenu, #updatePolicyType, #updateAncillaryType, #updateCarrier, #updateEffectiveDate, #updateNotes,
 #deleteFirstName, #deleteLastName, #deleteEmail, #deletePhone
 {
     background-color: transparent;

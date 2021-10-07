@@ -508,19 +508,19 @@ Sunsure Agents
                 <!-- Policy Type Column -->
                 <div class="col">
                   <span class="material-icons" style="font-size:38px;">perm_identity</span>
-                  <input type="text" id="createPolicyType" placeholder="Policy Type*"/>
+                  <input type="text" id="updatePolicyType" placeholder="Policy Type*"/>
                 </div>
 
                 <!-- Ancillary Type Column -->
                 <div class="col">
                   <span class="material-icons" style="font-size:38px;">perm_identity</span>
-                  <input type="text" id="createAncillaryType" placeholder="Ancillary Type*"/>
+                  <input type="text" id="updateAncillaryType" placeholder="Ancillary Type*"/>
                 </div>
 
                 <!-- Carrier Column -->
                 <div class="col">
                   <label for="createCarriers" style="font-size: 25px;">Carrier: </label>
-                    <select id="createCarrier" name="sources">
+                    <select id="updateCarrier" name="sources">
                       <option value="Google">Google</option>
                       <option value="Facebook/Instagram">Facebook/Instagram</option>
                       <option value="Online Ads">Online Ads</option>
@@ -532,7 +532,7 @@ Sunsure Agents
                 <!-- Effective Date Column -->
                 <div class="col">
                   <span class="material-icons-outlined">tag</span>
-                  <input type="date" id="createEffectiveDate" placeholder="Effective Date"/>
+                  <input type="date" id="updateEffectiveDate" placeholder="Effective Date"/>
                 </div>
               </div>
 
@@ -542,7 +542,7 @@ Sunsure Agents
                 
                 <!-- Notes Column -->
                 <div class="col">
-                  <textarea id="createNotes" name="createNotes" rows="5" cols="75" style="align-content:left; overflow:auto; border:2px outset #000000;">
+                  <textarea id="updateNotes" name="Notes" rows="5" cols="75" style="align-content:left; overflow:auto; border:2px outset #000000;">
                     Notes...
                   </textarea>
                 </div>
@@ -560,7 +560,7 @@ Sunsure Agents
 							
             <!-- Form Submit Button -->
             <div class="modal-footer">
-              <button type="button" id="createClientButton" onclick="updatePolicyHolder();">Create Client</button>
+              <button type="button" id="createClientButton" onclick="updatePolicyHolder();">Update Client</button>
             </div>
 					</div>
 				</div>  
