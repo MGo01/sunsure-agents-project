@@ -193,9 +193,9 @@ function checkPasswordlog(password)
 
 function sendResetCode()
 {
-  var email = document.getElementById("emailcodeRes").value;
+  var email = document.getElementById("resetEmail").value;
 
-  document.getElementById("emailcodeRes").innerHTML = "";
+  document.getElementById("resetResult").innerHTML = "";
 
   var json = '{"Email" : "' + email + '"}';
   var successMessage = "Successfully sent email: " + email;
@@ -217,12 +217,12 @@ function sendResetCode()
 
         if (endpointmsg === "Email sent")
         {
-          document.getElementById("resCodeStatus").innerHTML = successMessage; 
+          document.getElementById("resetResult").innerHTML = successMessage; 
         }
 
         else if (endpointmsg !== "Email sent")
         {
-          document.getElementById("resCodeStatus").innerHTML = "Email not found"; 
+          document.getElementById("resetResult").innerHTML = "Email not found"; 
         }
       }
   };
@@ -235,8 +235,8 @@ function sendResetCode()
 
   catch(error)
   {
-    document.getElementById("resCodeStatus").innerHTML = error.message;
-    document.getElementById("resCodeStatus").style.color = "red";
+    document.getElementById("resetResult").innerHTML = error.message;
+    document.getElementById("resetResult").style.color = "red";
   }
 }
 
