@@ -41,9 +41,9 @@
     $email->addTo($input_email);
     $email->setFrom($configs['SENDER_EMAIL']);
     $email->setSubject("Sending with SendGrid is Fun");
-    $email->addContent("text/plain", $msg);
+    $email->addContent("text/plain", $standard_msg);
     $email->addContent(
-        "text/html", "<strong>{$msg}</strong>"
+        "text/html", "<strong>{$standard_msg}</strong>"
     );
 
     // $sendgrid = new \SendGrid($api_key);
