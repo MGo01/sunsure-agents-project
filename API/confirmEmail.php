@@ -8,7 +8,7 @@
   $checkToken = $inputFromJson['emailToken'];
 
   // Check if the token references any User in the database.
-  $sql = "UPDATE Agents SET isVerified = '1' WHERE AgentToken = '$checkToken'";
+  $sql = "UPDATE Agents SET isVerified = 'Y' WHERE AgentToken = '$checkToken'";
 
   if (mysqli_query($conn, $sql))
   {
@@ -22,15 +22,22 @@
 
   mysqli_close($conn);
 
+
   function returnError($error)
   {
-    $retval->msg = $error;
+    $retval = (object) [
+      'msg' => $error
+    ];
+    
     outputJson($retval);
   }
 
   function returnInfo($info)
   {
-    $retval->msg = $info;
+    $retval = (object) [
+    'msg' => $info
+    ];
+
     outputJson($retval);
   }
 
