@@ -23,17 +23,17 @@
   $PasswordToken = uniqid($pre, true);
 
   // Check if the token references any User in the database.
-  $sql = "UPDATE Agents SET PasswordToken = '$PasswordToken' WHERE Email = '$input_email'";
+  $sql = "UPDATE Agents SET PasswordToken = '$PasswordToken' WHERE Email = '$input_email'";       
 
-  $standard_msg = "Hi Sunsure Agent User,\n 
-  We have received a request to reset the password for Sunsure Agent account {$input_email}. 
-  You can reset your password by clicking the link below within one hour.\n
+  $standard_msg = "Hi Sunsure Agent User,<br>
+  We have received a request to reset the password for Sunsure Agent account {$input_email}.      
+  You can reset your password by clicking the link below within one hour.<br><br>
 
-  
-  Make sure to copy and paste the following confirmation code into the reset form.\n
-  {$PasswordToken}\n\n
-  
-  If you did not request this, please ignore this email and your password will remain unchanged."
+
+  Make sure to copy and paste the following confirmation code into the reset form.<br>
+  {$PasswordToken}<br><br>
+
+  If you did not request this, please ignore this email and your password will remain unchanged.";
 
   if (mysqli_query($conn, $sql))
   {
