@@ -38,7 +38,7 @@
       We have received a request to verify the following Sunsure Agent account {$Email}
       Please verify your account by clicking the link:<br><br>
 
-      {$verification_link}
+      {$verification_link}<br><br>
 
       Make sure to copy and paste the following confirmation code into the verification form.<br>
       {$AgentToken}<br><br>
