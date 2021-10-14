@@ -32,9 +32,13 @@
 
     if (mysqli_query($conn, $sql))
     {
+      $verification_link = "<a href='http://sunsure-agent.com/verifyEmail.html'>Click To Verify Email</a>";
+
       $standard_msg = "Hi Sunsure Agent User,<br>
       We have received a request to verify the following Sunsure Agent account {$Email}
       Please verify your account by clicking the link:<br><br>
+
+      {$verification_link}
 
       Make sure to copy and paste the following confirmation code into the verification form.<br>
       {$AgentToken}<br><br>
