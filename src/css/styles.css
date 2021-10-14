@@ -73,7 +73,7 @@ body
     margin-top: 2%;
 }
 
-#registerEmail, #email, #password, #firstName, #lastName, #registerUsername, #registerPassword, #registerConfirmPassword
+#registerEmail, #email, #password, #firstName, #lastName, #registerUsername, #registerPassword, #registerConfirmPassword, #confCode
 {
     background-color: transparent;
     border: transparent;

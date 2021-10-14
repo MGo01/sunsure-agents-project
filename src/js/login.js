@@ -306,7 +306,7 @@ function confirmCode()
   document.getElementById("confCode").innerHTML = "";
 
   var json = '{"emailToken" : "' + emailCode + '"}';
-  var successMessage = "Successfully verified: " + email;
+  var successMessage = "Successfully verified User" ;
   
   var request = new XMLHttpRequest();
 
