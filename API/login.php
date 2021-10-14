@@ -23,10 +23,21 @@
     $FirstName = $Agent["FirstName"];
     $LastName = $Agent["LastName"];
     $Email = $Agent["Email"];
+    $isVerified = $Agent['isVerified'];
 
-    // Returns User information to be stored
-    // on the Front-End (FE).
-    returnUser($ID, $FirstName, $LastName, $Email);
+    // Ensure that the user is verified before
+    // logging them in
+    if ($isVerified == 'Y')
+    {
+       // Returns User information to be stored
+      // on the Front-End (FE).
+      returnUser($ID, $FirstName, $LastName, $Email);
+    }
+
+    else
+    {
+      returnError("User is not verified");
+    }
   }
 
   // User was not found.
