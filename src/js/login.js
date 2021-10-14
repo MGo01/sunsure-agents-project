@@ -325,12 +325,12 @@ function confirmCode()
 
           if (endpointmsg === "User has been verified")
           {
-              document.getElementById("confStatus").innerHTML = successMessage; 
+              document.getElementById("verificationStatus").innerHTML = successMessage; 
           }
 
           else if (endpointmsg !== "User has not been verified")
           {
-              document.getElementById("confStatus").innerHTML = "Token may have expired"; 
+              document.getElementById("verificationStatus").innerHTML = "Token may have expired"; 
           }
       }
     };
