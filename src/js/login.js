@@ -300,6 +300,53 @@ function resetPassword()
   }
 }
 
+function confirmCode()
+{
+  var emailCode = document.getElementById("confCode").value;
+  document.getElementById("confCode").innerHTML = "";
+
+  var json = '{"emailToken" : "' + emailCode + '"}';
+  var successMessage = "Successfully verified: " + email;
+  
+  var request = new XMLHttpRequest();
+
+  request.open("POST", "http://sunsure-agent.com/API/confirmEmail.php", true);
+  request.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+  
+  try 
+  {
+    request.onreadystatechange = function()
+    {
+      if (this.readyState == 4 && this.status == 200)
+      {    
+          var jsonObject = JSON.parse(request.responseText);
+          var endpointmsg = jsonObject['msg'];
+          console.log(endpointmsg);
+
+          if (endpointmsg === "User has been verified")
+          {
+              document.getElementById("confStatus").innerHTML = successMessage; 
+          }
+
+          else if (endpointmsg !== "User has not been verified")
+          {
+              document.getElementById("confStatus").innerHTML = "Token may have expired"; 
+          }
+      }
+    };
+      request.responseType="text";
+      console.log(json);
+      request.send(json);
+      //window.location.href = "login.html";
+  }
+
+  catch(error)
+  {
+    document.getElementById("registerStatus").innerHTML = error.message;
+    document.getElementById("registerStatus").style.color = "red";
+  }
+}
+
 // Nifty function that allows for the 'show password'
 // button to function by changing the document element type.
 function showLoginPassword() 
