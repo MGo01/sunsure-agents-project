@@ -39,6 +39,13 @@ function login()
             document.getElementById("logstatus").style.color = "red";
           }
 
+          else if (endpointmsg === 'User is not verified')
+          {
+            var error = endpointmsg;
+            document.getElementById("logstatus").innerHTML = error;
+            document.getElementById("logstatus").style.color = "red";
+          }
+
           else
           {
             userID = jsonObject.ID;
@@ -326,11 +333,13 @@ function confirmCode()
           if (endpointmsg === "User has been verified")
           {
               document.getElementById("verificationStatus").innerHTML = successMessage; 
+              document.getElementById("verificationStatus").style.color = "green";
           }
 
           else if (endpointmsg !== "User has not been verified")
           {
               document.getElementById("verificationStatus").innerHTML = "Token may have expired"; 
+              document.getElementById("verificationStatus").style.color = "red";
           }
       }
     };
