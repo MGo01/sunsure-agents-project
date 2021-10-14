@@ -4,6 +4,10 @@
 # being posted online
 db_conn.config
 db_conn.config.save
+
+# Prevent SendGrid API Key/Email from
+# being posted online
+config.php
 .DS_Store
 html/.DS_Store
 .save
