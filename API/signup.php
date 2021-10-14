@@ -41,36 +41,28 @@
 
       If you did not request this, please ignore this email";
 
-      if (mysqli_query($conn, $sql))
+      $email = new \SendGrid\Mail\Mail();
+      $email->addTo($input_email);
+      $email->setFrom($configs['SENDER_EMAIL']);
+      $email->setSubject("Sending with SendGrid is Fun");
+      $email->addContent("text/plain", $standard_msg);
+      $email->addContent(
+          "text/html", "<strong>{$standard_msg}</strong>"
+      );
+
+      // $sendgrid = new \SendGrid($api_key);
+      $sendgrid = new \SendGrid($configs['SENDGRID_API_KEY']);
+
+      try
       {
-        $email = new \SendGrid\Mail\Mail();
-        $email->addTo($input_email);
-        $email->setFrom($configs['SENDER_EMAIL']);
-        $email->setSubject("Sending with SendGrid is Fun");
-        $email->addContent("text/plain", $standard_msg);
-        $email->addContent(
-            "text/html", "<strong>{$standard_msg}</strong>"
-        );
-
-        // $sendgrid = new \SendGrid($api_key);
-        $sendgrid = new \SendGrid($configs['SENDGRID_API_KEY']);
-
-        try
-        {
-          $sendgrid->send($email);
-          // Successfully inserted Agent into DB message.
-          returnInfo("Agent has been inserted successfully!");
-        }
-
-        catch (Exception $e)
-        {
-          echo 'Caught exception: '. $e->getMessage() ."\n";
-        }
+        $sendgrid->send($email);
+        // Successfully inserted Agent into DB message.
+        returnInfo("Agent has been inserted successfully!");
       }
 
-      else
+      catch (Exception $e)
       {
-        returnError("Email/User was not found.");
+        echo 'Caught exception: '. $e->getMessage() ."\n";
       }
     }
 
