@@ -46,7 +46,7 @@
       If you did not request this, please ignore this email";
 
       $email = new \SendGrid\Mail\Mail();
-      $email->addTo($input_email);
+      $email->addTo($Email);
       $email->setFrom($configs['SENDER_EMAIL']);
       $email->setSubject("Sending with SendGrid is Fun");
       $email->addContent("text/plain", $standard_msg);
