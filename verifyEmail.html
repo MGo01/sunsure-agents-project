@@ -35,9 +35,11 @@
           <span id="verificationStatus"></span>
           <span id="returningUser">Email Verification</span>
           <span class="material-icons" style="font-size:36px;">lock</span>     
-          <input type="text" id="email" placeholder="Enter your verification code here" /><br />
+          <input type="text" id="confCode" placeholder="Enter your verification code here" /><br />
 
-          <button type="button" class="btn btn-primary btn-block btn-flat" onclick="login()"><span class="material-icons text-center">login</span>    Confirm Verification</button>
+          <button type="button" class="btn btn-primary btn-block btn-flat" onclick="confirmCode()"><span class="material-icons text-center">login</span>    Confirm Verification</button>
+
+          <a id="homepageLink" class="mx-auto" href="index.html">Return to Login</a>
       </div>
     </div>
   </div>
