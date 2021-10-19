@@ -205,7 +205,7 @@ function sendResetCode()
   document.getElementById("resetResult").innerHTML = "";
 
   var json = '{"Email" : "' + email + '"}';
-  var successMessage = "Successfully sent email: " + email;
+  var successMessage = "Successfully sent email to: " + email;
   
   var request = new XMLHttpRequest();
   request.open("POST", "http://sunsure-agent.com/API/sendResetMail.php", true);
