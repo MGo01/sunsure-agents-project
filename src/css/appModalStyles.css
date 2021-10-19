@@ -175,11 +175,28 @@ body
 }
 
 #clientFirstName, #clientLastName, #clientEmail, #clientPhone, #clientDateOfBirth, #clientSSN, #clientAddress, #clientCity, #clientZIP, #clientState, #clientNumOfDependents, #clientSecondLineAddress,
-#createPolicyType, #createAncillaryType, #createCarrier, #createEffectiveDate, #createNotes,
+#createPolicyType, #createAncillaryType, #createEffectiveDate, #createNotes,
 #updateClientFirstName, #updateClientLastName, #updateClientDateOfBirth, #updateClientSSN, #updateClientPhone, #updateClientAddress, #updateClientCity, #updateClientSecondLineAddress,
-#updateClientZIP, #updateClientEmail, #updateClientNumOfDependents, #updatePolicyType, #updateAncillaryType, #updateCarrier, #updateEffectiveDate, #updateNotes,
+#updateClientZIP, #updateClientEmail, #updateClientNumOfDependents, #updatePolicyType, #updateAncillaryType, #updateCarrier, #updateEffectiveDate, #updateNotes, #createClientAmbassador, #updateClientAmbassador,
 #deleteFirstName, #deleteLastName, #deleteEmail, #deletePhone
 {
+    background-color: transparent;
+    border: transparent;
+    border-bottom: 3px solid #b2b2b2;
+    width: 80%;
+    margin-bottom: 5%;
+    font-size: 30px;
+}
+
+input[type=checkbox] {
+  transform: scale(2);
+  -ms-transform: scale(2);
+  -webkit-transform: scale(2);
+  padding: 10px;
+  margin-right: 10px;
+}
+
+.checkboxes label {
     background-color: transparent;
     border: transparent;
     border-bottom: 3px solid #b2b2b2;
