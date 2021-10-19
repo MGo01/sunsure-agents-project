@@ -43,7 +43,7 @@
     $email = new \SendGrid\Mail\Mail();
     $email->addTo($input_email);
     $email->setFrom($configs['SENDER_EMAIL']);
-    $email->setSubject("Sending with SendGrid is Fun");
+    $email->setSubject("Sunsure Agent Reset Password");
     $email->addContent("text/plain", $standard_msg);
     $email->addContent(
         "text/html", "<strong>{$standard_msg}</strong>"
