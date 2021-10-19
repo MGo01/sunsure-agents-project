@@ -222,12 +222,12 @@ function sendResetCode()
         var endpointmsg = jsonObject['msg'];
         console.log(endpointmsg);
 
-        if (endpointmsg === "Email sent")
+        if (endpointmsg === "Email sent to " + email)
         {
           document.getElementById("resetResult").innerHTML = successMessage; 
         }
 
-        else if (endpointmsg !== "Email sent")
+        else
         {
           document.getElementById("resetResult").innerHTML = "Email not found"; 
         }
@@ -296,8 +296,8 @@ function resetPassword()
     
     catch(error)
     {
-      document.getElementById("resPassStatus").innerHTML = error.message;
-      document.getElementById("resPassStatus").style.color = "red";
+      document.getElementById("resetPasswordResult").innerHTML = error.message;
+      document.getElementById("resetPasswordResult").style.color = "red";
     }
   }
 
@@ -366,4 +366,35 @@ function showLoginPassword()
     x.type = "text";
   else 
     x.type = "password";
+}
+
+function checkNewPassword(confirmPassword, password)
+{
+  "use strict";
+  let minPasswordLength = 8;
+  
+  if (password.length === 0) 
+  {
+    document.getElementById("resetPasswordResult").innerHTML = "Password is required!";
+    document.getElementById("resetPasswordResult").style.color = "red";
+
+    return false;
+  }
+
+  if (password.length < minPasswordLength)
+  {
+    document.getElementById("resetPasswordResult").innerHTML = "Your password must be at least 8 characters long, should not exceed 75 characters!";
+    document.getElementById("resetPasswordResult").style.color = "red";
+
+    return false;
+  }
+
+  if (confirmPassword !== password)
+  {
+    document.getElementById("resetPasswordResult").innerHTML = "Passwords entered do not match!";
+    document.getElementById("resetPasswordResult").style.color = "red";
+    return false;
+  }
+
+  return true;
 }
