@@ -22,6 +22,8 @@
   // Generate a unique Password Token
   $PasswordToken = uniqid($pre, true);
 
+  $reset_link = "<a href='http://sunsure-agent.com/resetPassword.html'>Click To Reset Password</a>";
+
   // Check if the token references any User in the database.
   $sql = "UPDATE Agents SET PasswordToken = '$PasswordToken' WHERE Email = '$input_email'";       
 
@@ -29,8 +31,9 @@
   We have received a request to reset the password for Sunsure Agent account {$input_email}.      
   You can reset your password by clicking the link below within one hour.<br><br>
 
+  {$reset_link}
 
-  Make sure to copy and paste the following confirmation code into the reset form.<br>
+  Make sure to copy and paste the following reset code into the reset form.<br>
   {$PasswordToken}<br><br>
 
   If you did not request this, please ignore this email and your password will remain unchanged.";
@@ -52,7 +55,7 @@
     try
     {
       $sendgrid->send($email);
-      returnInfo("Email sent to {$input_email}");
+      returnInfo("Password has successfully been reset");
     }
 
     catch (Exception $e)
