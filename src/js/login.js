@@ -278,7 +278,7 @@ function resetPassword()
           var endpointmsg = jsonObject['msg'];
           console.log(endpointmsg);
 
-          if (endpointmsg === "Password has successfully been reset")
+          if (endpointmsg === "Password has successfully been reset.")
           {
             document.getElementById("resetPasswordResult").innerHTML = successMessage; 
             document.getElementById("resetPasswordResult").style.color = "green";
