@@ -368,6 +368,26 @@ function showLoginPassword()
     x.type = "password";
 }
 
+// Nifty function that allows for the 'show password'
+// button to function by changing the document element type.
+function showResetPassword() 
+{
+  var x = document.getElementById("resNewPass");
+  var y = document.getElementById("confirmResNewPass");
+
+  if (x.type === "password" && y.type === "password")
+  {
+    x.type = "text";
+    y.type = "text";
+  } 
+    
+  else
+  {
+    x.type = "password";
+    y.type = "password";
+  } 
+}
+
 function checkNewPassword(confirmPassword, password)
 {
   "use strict";
