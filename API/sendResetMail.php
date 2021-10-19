@@ -55,7 +55,7 @@
     try
     {
       $sendgrid->send($email);
-      returnInfo("Email sent to {$input_email}");
+      returnInfo("Email has been sent");
     }
 
     catch (Exception $e)

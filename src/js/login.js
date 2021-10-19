@@ -222,7 +222,7 @@ function sendResetCode()
         var endpointmsg = jsonObject['msg'];
         console.log(endpointmsg);
 
-        if (endpointmsg === "Email sent to " + email)
+        if (endpointmsg === "Email has been sent")
         {
           document.getElementById("resetResult").innerHTML = successMessage; 
         }
