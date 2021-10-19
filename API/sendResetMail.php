@@ -69,9 +69,12 @@
     returnError("Email/User was not found.");
   }
 
-  function returnError($error)
+  function returnError($info)
   {
-    $retval->msg = $error;
+    $retval = (object) [
+    'results' => $error
+    ];
+
     outputJson($retval);
   }
 

@@ -109,7 +109,7 @@
   function returnInfo($info)
   {
     $retval = (object) [
-    'results' => $info
+      'results' => $info
     ];
 
     outputJson($retval);

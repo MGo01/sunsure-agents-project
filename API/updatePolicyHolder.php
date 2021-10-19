@@ -50,7 +50,7 @@
   function returnInfo($info)
   {
     $retval = (object) [
-    'msg' => $info
+      'msg' => $info
     ];
 
     outputJson($retval);

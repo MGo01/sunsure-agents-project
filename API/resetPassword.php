@@ -25,13 +25,19 @@
 
   function returnError($error)
   {
-    $retval->msg = $error;
+    $retval = (object) [
+      'msg' => $error
+    ];
+    
     outputJson($retval);
   }
-  
+
   function returnInfo($info)
   {
-    $retval->msg = $info;
+    $retval = (object) [
+      'msg' => $info
+    ];
+
     outputJson($retval);
   }
   
