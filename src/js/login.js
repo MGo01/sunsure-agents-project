@@ -281,11 +281,13 @@ function resetPassword()
           if (endpointmsg === "Password has successfully been reset")
           {
             document.getElementById("resetPasswordResult").innerHTML = successMessage; 
+            document.getElementById("resetPasswordResult").style.color = "green";
           }
 
           else
           {
             document.getElementById("resetPasswordResult").innerHTML = "Token may have expired"; 
+            document.getElementById("resetPasswordResult").style.color = "red";
           }
         }
       };
