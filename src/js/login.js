@@ -251,11 +251,11 @@ function resetPassword()
 {
   var resetCode = document.getElementById("resPassCode").value;
   var newPassword = document.getElementById("resNewPass").value;
-  var confirmNewPassword = document.getElementById("ConfirmResNewPass").value;
+  var confirmNewPassword = document.getElementById("confirmResNewPass").value;
   
   if (checkNewPassword(confirmNewPassword, newPassword))
   {
-    document.getElementById("emailcodeRes").innerHTML = "";
+    document.getElementById("resetPasswordResult").innerHTML = "";
 
     var hashedNewPassword = md5(newPassword);
 
@@ -263,7 +263,7 @@ function resetPassword()
     var successMessage = "Successfully reset password";
     
     var request = new XMLHttpRequest();
-    request.open("POST", "http://sunsure-agent.com/API/reset_pass.php", true);
+    request.open("POST", "http://sunsure-agent.com/API/resetPassword.php", true);
 
     request.setRequestHeader("Content-type", "application/json; charset=UTF-8");
     try 
@@ -276,14 +276,14 @@ function resetPassword()
           var endpointmsg = jsonObject['msg'];
           console.log(endpointmsg);
 
-          if (endpointmsg === "Password has been reset")
+          if (endpointmsg === "Password has successfully been reset")
           {
-            document.getElementById("resPassStatus").innerHTML = successMessage; 
+            document.getElementById("resetPasswordResult").innerHTML = successMessage; 
           }
 
-          else if (endpointmsg !== "Password has been reset")
+          else
           {
-            document.getElementById("resPassStatus").innerHTML = "Token may have expired"; 
+            document.getElementById("resetPasswordResult").innerHTML = "Token may have expired"; 
           }
         }
       };
