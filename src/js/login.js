@@ -219,17 +219,19 @@ function sendResetCode()
       if (this.readyState == 4 && this.status == 200)
       {    
         var jsonObject = JSON.parse(request.responseText);
-        var endpointmsg = jsonObject['msg'];
+        var endpointmsg = jsonObject['results'];
         console.log(endpointmsg);
 
         if (endpointmsg === "Email has been sent")
         {
-          document.getElementById("resetResult").innerHTML = successMessage; 
+          document.getElementById("resetResult").innerHTML = successMessage;
+          document.getElementById("resetResult").style.color = "green";  
         }
 
         else
         {
-          document.getElementById("resetResult").innerHTML = "Email not found"; 
+          document.getElementById("resetResult").innerHTML = "Email not found";
+          document.getElementById("resetResult").style.color = "red";  
         }
       }
   };
