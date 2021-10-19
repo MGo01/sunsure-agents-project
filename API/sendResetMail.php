@@ -31,7 +31,7 @@
   We have received a request to reset the password for Sunsure Agent account {$input_email}.      
   You can reset your password by clicking the link below within one hour.<br><br>
 
-  {$reset_link}
+  {$reset_link}<br><br>
 
   Make sure to copy and paste the following reset code into the reset form.<br>
   {$PasswordToken}<br><br>
@@ -55,7 +55,7 @@
     try
     {
       $sendgrid->send($email);
-      returnInfo("Password has successfully been reset");
+      returnInfo("Email sent to {$input_email}");
     }
 
     catch (Exception $e)
