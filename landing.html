@@ -128,15 +128,15 @@ Sunsure Agents
   <script src="src/js/login.js"></script>   
   <script src="src/js/app.js"></script>
   <script type="text/javascript">
-    document.addEventListener('DOMContentLoaded', function() 
-    {
-      readCookie();
-    }, false);
+    // document.addEventListener('DOMContentLoaded', function() 
+    // {
+    //   readCookie();
+    // }, false);
 
-    window.onload = function() 
-    {
-      displayClientsTable();
-    };
+    // window.onload = function() 
+    // {
+    //   displayClientsTable();
+    // };
 	</script>
     
 	<!-- Website Container -->
@@ -278,7 +278,7 @@ Sunsure Agents
                   </div>
 
                   <!-- Source Column -->
-                  <div class="col">
+                  <div class="col-4">
                     <label for="sources" style="font-size: 25px;">Source: </label>
                       <select id="sourceMenu" name="sources">
                         <option value="Google">Google</option>
@@ -291,6 +291,13 @@ Sunsure Agents
                         <option value="Florida Blue">Florida Blue</option>
                         <option value="Other">Other</option>
                       </select>
+                    </div>
+
+                  <!-- Over 65 Column -->
+                  <div class="col">
+                    <div class="checkboxes">
+                      <input type="checkbox" name="isOver65" id="isOver65"><label for "isOver65" class="highlight">  is Over 65?</label>
+                    </div>
                   </div>
                 </div>
 
@@ -329,7 +336,7 @@ Sunsure Agents
 
                 <div class="row">  
                   <!-- Carrier Column -->
-                  <div class="col-6">
+                  <div class="col-md-4">
                     <label for="createCarriers" style="font-size: 25px;">Carrier: </label>
                       <select id="createCarrier" name="sources">
                         <option value="Google">Google</option>
@@ -339,6 +346,13 @@ Sunsure Agents
                         <option value="Referral">Referral</option>
                       </select>
                   </div>
+
+                  <!-- Carrier Column -->
+                  <div class="col">
+                    <span class="material-icons" style="font-size:38px;">perm_identity</span>
+                    <input type="text" id="createClientAmbassador" placeholder="Ambassador"/>
+                  </div>
+
                 </div>
 
                 <!-- Policy Information, Second Row -->
@@ -496,7 +510,7 @@ Sunsure Agents
                 </div>
 
                 <!-- Source Column -->
-                <div class="col">
+                <div class="col-4">
                   <label for="sources" style="font-size: 25px;">Source: </label>
                     <select id="updateSourceMenu" name="sources">
                       <option value="Google">Google</option>
@@ -509,6 +523,13 @@ Sunsure Agents
                       <option value="Florida Blue">Florida Blue</option>
                       <option value="Other">Other</option>
                     </select>
+                </div>
+
+                 <!-- Over 65 Column -->
+                 <div class="col">
+                  <div class="checkboxes">
+                    <input type="checkbox" name="isOver65" id="isOver65"><label for "isOver65" class="highlight">  is Over 65?</label>
+                  </div>
                 </div>
               </div>
 
@@ -547,15 +568,21 @@ Sunsure Agents
 
               <div class="row">  
                 <!-- Carrier Column -->
-                <div class="col-6">
+                <div class="col-md-4">
                   <label for="updateCarriers" style="font-size: 25px;">Carrier: </label>
-                    <select id="updateCarrier" name="sources">
+                    <select id="updateCarriers" name="sources">
                       <option value="Google">Google</option>
                       <option value="Facebook/Instagram">Facebook/Instagram</option>
                       <option value="Online Ads">Online Ads</option>
                       <option value="Email">Email</option>
                       <option value="Referral">Referral</option>
                     </select>
+                </div>
+
+                <!-- Ambassador Column -->
+                <div class="col">
+                  <span class="material-icons" style="font-size:38px;">perm_identity</span>
+                  <input type="text" id="updateClientAmbassador" placeholder="Ambassador"/>
                 </div>
               </div>
 
@@ -618,7 +645,26 @@ Sunsure Agents
 							</tr>
 						</thead>
 						<tbody id="tests-table">
-              
+              <tr>
+                <td>test</td>
+                <td>test</td>
+                <td>test</td>
+                <td>test</td>
+                <td>test</td>
+                <td>test</td>
+                <td>test</td>
+                <td>test</td>
+                <td>test</td>
+                <td>test</td>
+                <td>test</td>
+                <td>test</td>
+                <td>test</td>
+
+                <td>
+									<button class="btn btn-sm btn-info" data-testid="${obj.PolicyID}"  id="save-${obj.PolicyID}" data-toggle="modal" data-target="#updateClientModal">Update</button>
+									<button class="btn btn-sm btn-danger" data-testid=${obj.PolicyID} id="delete-${obj.PolicyID}" >Delete</button>
+								</td>
+              </tr>
 						</tbody>
 					</table>
 				</div>
