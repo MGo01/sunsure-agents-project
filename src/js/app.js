@@ -47,7 +47,7 @@ function addRow(obj)
 								<td>
 									<button class="btn btn-sm btn-info" data-testid="${obj.PolicyID}"  id="save-${obj.PolicyID}" data-toggle="modal" data-target="#updateClientModal">Update</button>
 									<button class="btn btn-sm btn-info" data-testid="${obj.PolicyID}"  id="show-${obj.PolicyID}" data-toggle="modal" data-target="#showDetailsModal">Show Details</button>
-									<button class="btn btn-sm btn-danger" data-testid=${obj.PolicyID} id="delete-${obj.PolicyID}" >Delete</button>
+									<button class="btn btn-sm btn-danger" data-testid=${obj.PolicyID} id="delete-${obj.PolicyID}" >Delete Policy</button>
 								</td>
 							</tr>`
 
@@ -511,6 +511,7 @@ function fillShowDetailsForm()
 	// Load the Policy Information Form
 	document.getElementById("showDetailsPolicyType").innerHTML = "" + policyType;
 	document.getElementById("showDetailsAncillaryType").innerHTML = "" + ancillaryType;
+	document.getElementById("showDetailsDateOfBirth").innerHTML = "" + effectiveDate;
 
 	document.getElementById("showDetailsCarrier").innerHTML = "" + carrier;
 	document.getElementById("showDetailsAmbassador").innerHTML = "" + ambassadorName;
