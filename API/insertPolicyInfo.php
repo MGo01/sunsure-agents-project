@@ -20,15 +20,23 @@
   $policy_sql = "INSERT INTO Policy_Info (ApplicationID, PolicyType, AncillaryType, Carrier, EffectiveDate, AmbassadorName, Notes, PolicyInfoID)
                  VALUES (\"{$ApplicationID}\", \"{$PolicyType}\", \"{$AncillaryType}\", \"{$Carrier}\", \"{$EffectiveDate}\", \"{$AmbassadorName}\", \"{$Notes}\", \"{$PolicyInfoID}\")";
 
-  if (mysqli_query($conn, $policy_sql))
+  if (checkPolicyInfo($PolicyInfoID, $conn))
   {
-    // Successfully inserted Policy Information into DB message.
-    returnInfo("Successfully inserted Policy Information");
+    if (mysqli_query($conn, $policy_sql))
+    {
+      // Successfully inserted Policy Information into DB message.
+      returnInfo("Successfully inserted Policy Information");
+    }
+
+    else
+    {
+      returnError($conn->$error);
+    }
   }
 
   else
   {
-    returnError($conn->$error);
+    returnError("Policy Information has already been inserted.");
   }
 
   mysqli_close($conn);
@@ -56,5 +64,21 @@
     header("Content-type:application/json");
     $jsonObj = json_encode($file);
     echo $jsonObj;
+  }
+  
+  function checkPolicyInfo($PolicyInfoID, $conn)
+  {
+    // Check if there is some policy information with the same
+    // ID within the Policy_Info table.
+    $sql_id = "SELECT * FROM Policy_Info
+                WHERE PolicyInfoID = '$PolicyInfoID'";
+
+    $result = mysqli_query($conn, $sql_id);
+    $rows = mysqli_num_rows($result);
+
+    if ($rows > 0)
+      return False;
+    else
+      return True;
   }
 ?>
