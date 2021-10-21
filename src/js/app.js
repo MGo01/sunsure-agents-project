@@ -46,7 +46,7 @@ function addRow(obj)
 								
 								<td>
 									<button class="btn btn-sm btn-info" data-testid="${obj.PolicyID}"  id="save-${obj.PolicyID}" data-toggle="modal" data-target="#updateClientModal">Update</button>
-									<button class="btn btn-sm btn-info" data-testid="${obj.PolicyID}"  id="save-${obj.PolicyID}" data-toggle="modal" data-target="#showDetailsModal">Show Details</button>
+									<button class="btn btn-sm btn-info" data-testid="${obj.PolicyID}"  id="show-${obj.PolicyID}" data-toggle="modal" data-target="#showDetailsModal">Show Details</button>
 									<button class="btn btn-sm btn-danger" data-testid=${obj.PolicyID} id="delete-${obj.PolicyID}" >Delete</button>
 								</td>
 							</tr>`
@@ -57,6 +57,7 @@ function addRow(obj)
 	// a contact based on the their respective row.
 	$(`#delete-${obj.PolicyID}`).on('click', deleteTest)
 	$(`#save-${obj.PolicyID}`).on('click', saveUpdate)
+	$(`#show-${obj.PolicyID}`).on('click', fillShowDetailsForm(obj.NumOfDependents))
 
 }
 
@@ -221,7 +222,7 @@ function insertPolicyInfo()
 
 	effectiveDate = effectiveDate.replace(/[---]+/gi, '/');
 
-		// Package a JSON payload to deliver to the server that contains all
+	// Package a JSON payload to deliver to the server that contains all
 	// the contact details in order create the contact.
   var jsonPayload = {
 		"ApplicationID": applicationID,
@@ -283,51 +284,17 @@ function insertPolicyInfo()
 // CURRENT WIP
 function fillShowDetailsForm(numOfDependents)
 {
-	// Load the Client Information Form
-	document.getElementById("showDetailsFirstName").innerHTML = "";
-	document.getElementById("showDetailsLastName").innerHTML = "";
-
-	document.getElementById("showDetailsDateOfBirth").innerHTML = "";
-
-	document.getElementById("showDetailsSSN").innerHTML = "";
-	document.getElementById("showDetailsPhone").innerHTML = "";
-
-	document.getElementById("showDetailsAddress").innerHTML = "";
-
-	document.getElementById("showDetailsCity").innerHTML = "";
-	document.getElementById("showDetailsSecondLineAddress").innerHTML = "";
-
-	document.getElementById("showDetailsZIP").innerHTML = "";
-
-	document.getElementById("showDetailsState").innerHTML = "";
-	document.getElementById("showDetailsEmail").innerHTML = "";
-
-	// Load the Policy Information Form
-	document.getElementById("showDetailsNumOfDependents").innerHTML = "";
-	document.getElementById("showDetailsSource").innerHTML = "";
-
-	document.getElementById("showDetailsOver65").innerHTML = "";
-
-	document.getElementById("showDetailsPolicyType").innerHTML = "";
-	document.getElementById("showDetailsAncillaryType").innerHTML = "";
-
-	for (let i = 0; i < numOfDependents; i++)
-	{
-		// Depending on the number of dependents
-		// these strings will pull the right data accordingly.
-		var FNameString = "dependent-input-FirstName" + i;
-		var LNameString = "dependent-input-LastName" + i;
-		var DOBString = "dependent-input-DOB" + i;
-		var SSNString = "dependent-input-SSN" + i;
-
-		document.getElementById(FNameString).innerHTML = "";
-		document.getElementById(LNameString).innerHTML = "";
-		document.getElementById(DOBString).innerHTML = "";
-		document.getElementById(SSNString).innerHTML = "";
-	}
-
-	var url = "http://sunsure-agent.com/API/createPolicyHolder.php";
+	var url = "http://sunsure-agent.com/API/getPolicyInformation.php";
 	var xhr = new XMLHttpRequest();
+
+	var applicationID;
+	var policyType;
+	var ancillaryType;
+	
+	var carrier;
+	var effectiveDate;
+	var ambassadorName; 
+	var notes;
 
 	xhr.open("POST", url, false);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
@@ -342,26 +309,23 @@ function fillShowDetailsForm(numOfDependents)
 				var endpointmsg = jsonObject['msg'];
 				console.log(endpointmsg);
 
-				if (endpointmsg === "Primary Policy Holder has already been inserted")
+				if (endpointmsg === "Policy Information associated with given ID does not exist.")
 				{
-					console.log("Client insertion was not successful!");
-					document.getElementById("createClientResult").innerHTML = endpointmsg;
-					
-					document.getElementById("createClientResult").style.color = "red";
+					console.log("Unable to load policy information");
+					document.getElementById("showDetailsResult").innerHTML = endpointmsg;	
+					document.getElementById("showDetailsResult").style.color = "red";
 				}
 
 				else
 				{
-					console.log(endpointmsg);
-					globalPolicyID = endpointmsg;
-
-					// Retrieve and generate an array based on
-					// the dependents forms
-					let dependentsArray = getDependentsArray(clientNumOfDependents);
-
-					insertPolicyInfo();
-          insertDependents(dependentsArray);
-					clearModalForm();  
+					applicationID = jsonObject.ApplicationID;
+					policyType = jsonObject.PolicyType;
+					ancillaryType = jsonObject.AncillaryType;
+					
+					carrier = jsonObject.Carrier;
+					effectiveDate = jsonObject.EffectiveDate;
+					ambassadorName = jsonObject.AmbassadorName;
+					notes = jsonObject.Notes; 
 				}
 			}
 		};
@@ -376,6 +340,31 @@ function fillShowDetailsForm(numOfDependents)
 		document.getElementById("createClientResult").innerHTML = error.message;
 		document.getElementById("createClientResult").style.color = "red";
 	}
+
+	// Load the Policy Information Form
+	document.getElementById("showDetailsPolicyType").innerHTML = "" + policyType;
+	document.getElementById("showDetailsAncillaryType").innerHTML = "" + ancillaryType;
+
+	document.getElementById("showDetailsCarrier").innerHTML = "" + carrier;
+	document.getElementById("showDetailsAmbassador").innerHTML = "" + ambassadorName;
+	document.getElementById("showDetailsAppID").innerHTML = "" + applicationID;
+	document.getElementById("showDetailsNotes").innerHTML = "" + notes;
+
+	// Load in Dependents Forms
+	// for (let i = 0; i < numOfDependents; i++)
+	// {
+	// 	// Depending on the number of dependents
+	// 	// these strings will pull the right data accordingly.
+	// 	var FNameString = "dependent-input-FirstName" + i;
+	// 	var LNameString = "dependent-input-LastName" + i;
+	// 	var DOBString = "dependent-input-DOB" + i;
+	// 	var SSNString = "dependent-input-SSN" + i;
+
+	// 	document.getElementById(FNameString).innerHTML = "";
+	// 	document.getElementById(LNameString).innerHTML = "";
+	// 	document.getElementById(DOBString).innerHTML = "";
+	// 	document.getElementById(SSNString).innerHTML = "";
+	// }
 }
 
 function clearModalForm(numOfDependents)

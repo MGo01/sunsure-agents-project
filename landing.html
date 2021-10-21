@@ -128,15 +128,15 @@ Sunsure Agents
   <script src="src/js/login.js"></script>   
   <script src="src/js/app.js"></script>
   <script type="text/javascript">
-    document.addEventListener('DOMContentLoaded', function() 
-    {
-      readCookie();
-    }, false);
+    // document.addEventListener('DOMContentLoaded', function() 
+    // {
+    //   readCookie();
+    // }, false);
 
-    window.onload = function() 
-    {
-      displayClientsTable();
-    };
+    // window.onload = function() 
+    // {
+    //   displayClientsTable();
+    // };
 	</script>
     
 	<!-- Website Container -->
@@ -633,124 +633,6 @@ Sunsure Agents
               <!-- Form Body -->
               <div class="modal-body">
                 <span id="showDetailsResult"></span>
-                
-                <!-- First Row -->
-                <div class="row">
-                  <br>
-
-                  <!-- Client Information Title -->
-                  <div>
-                    <b style="font-size: 30px; font-family: 'Montserrat', Times, serif;">
-                      Client Information
-                    </b>
-                  </div>
-
-                  <br>
-                  <br>
-
-                  <!-- First Name Column -->
-                  <div class="col">
-                    <span class="material-icons" style="font-size:38px;">perm_identity</span>
-                    <p type="text" id="showDetailsFirstName">Timothy</p>
-                  </div>
-
-                  <!-- Last Name Column -->
-                  <div class="col">
-                    <span class="material-icons" style="font-size:38px;">perm_identity</span>
-                    <p type="text" id="showDetailsLastName">Howard</p>
-                  </div>
-
-                  <!-- Date of Birth Column -->
-                  <div class="col">
-                    <span class="material-icons-outlined">today</span>
-                    <p type="text" id="showDetailsDateOfBirth">10/05/1977</p>
-                  </div>
-
-                  <!-- SSN Column -->
-                  <div class="col">
-                    <span class="material-icons-outlined">tag</span>
-                    <p type="text" id="showDetailsSSN">123-32-2342</p>
-                  </div>
-                </div>
-
-                <!-- Second Row -->
-                <div class="row">
-          
-                  <!-- Phone Column -->
-                  <div class="col-4">
-                    <span class="material-icons" style="font-size:38px;">phone</span> 
-                    <p type="text" id="showDetailsPhone">407-545-5454</p>
-                  </div>
-
-                  <!-- Main Address Column -->
-                  <div class="col-8">
-                    <span class="material-icons-outlined">location_city</span>
-                    <p type="text" id="showDetailsAddress">1234 Main Miami Lane</p>
-                  </div>
-                </div>
-
-                <!-- Third Row -->
-                <div class="row">
-
-                  <!-- City Column -->
-                  <div class="col-4">
-                    <span class="material-icons-outlined">apartment</span>
-                    <p type="text" id="showDetailsCity">Orlando</p>
-                  </div>
-  
-                  <!-- Second Line Address -->
-                  <div class="col-8">
-                    <span class="material-icons-outlined">location_city</span>
-                    <p type="text" id="showDetailsSecondLineAddress">4321 Main Miami Lane</p>
-                  </div>
-                </div>
-
-                <!-- Fourth Row -->
-                <div class="row">
-
-                  <!-- ZIP Code Column -->
-                  <div class="col-3">
-                    <span class="material-icons" style="font-size:38px;">tag</span>
-                    <p type="text" id="showDetailsZIP">24232</p>
-                  </div>
-
-                  <!-- State Column -->
-                  <div class="col-2">
-                    <span class="material-icons-outlined">map</span>
-                    <p type="text" id="showDetailsState">Florida</p>
-                  </div>
-
-                  <!-- Email Column -->
-                  <div class="col">
-                    <span class="material-icons" style="font-size:38px;">email</span> 
-                    <p type="text" id="showDetailsEmail">timHoward27@gmail.com</p>
-                  </div>
-                </div>
-
-                <!-- Fifth Row -->
-                <div class="row">
-                  <!-- Number of Dependents Column -->
-                  <div class="col-3">
-                    <span class="material-icons" style="font-size:38px;">tag</span>
-                    <p type="text" id="showDetailsNumOfDependents">2</p>
-                  </div>
-
-                  <!-- Source Column -->
-                  <div class="col-4">
-                    <span class="material-icons-outlined">analytics</span>
-                    <p type="text" id="showDetailsSource">Google</p>
-                  </div>
-
-                  <!-- Over 65 Column -->
-                  <div class="col">
-                    <div class="checkboxes">
-                      <span class="material-icons-outlined">help_outline</span>
-                      <p type="text" name="isOver65" id="showDetailsOver65">True</p>
-                    </div>
-                  </div>
-                </div>
-
-                <br>
 
                 <!-- Policy Information Title -->
                 <div>
@@ -850,7 +732,29 @@ Sunsure Agents
 							</tr>
 						</thead>
 						<tbody id="tests-table">
+              <tr>
+                <td>test</td>
+                <td>test</td>
+                <td>test</td>
+                <td>test</td>
 
+                <td>test</td>
+                <td>test</td>
+                <td>test</td>
+                <td>test</td>
+
+                <td>test</td>
+                <td>test</td>
+                <td>test</td>
+                <td>test</td>
+                <td>test</td>
+
+                <td>
+									<button class="btn btn-sm btn-info" data-testid="${obj.PolicyID}"  id="save-${obj.PolicyID}" data-toggle="modal" data-target="#updateClientModal">Update</button>
+									<button class="btn btn-sm btn-info" data-testid="${obj.PolicyID}"  id="save-${obj.PolicyID}" data-toggle="modal" data-target="#showDetailsModal">Show Details</button>
+									<button class="btn btn-sm btn-danger" data-testid=${obj.PolicyID} id="delete-${obj.PolicyID}" >Delete</button>
+								</td>
+              </tr>
 						</tbody>
 					</table>
 				</div>
