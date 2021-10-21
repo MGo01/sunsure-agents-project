@@ -179,6 +179,9 @@ function getDependentsArray(clientNumOfDependents)
 		var dependentDOB = document.getElementById(DOBString).value;
 		var dependentSSN = document.getElementById(SSNString).value;
 
+		// Remove any dashes and replace them with a forward slash.
+		dependentDOB = dependentDOB.replace(/[---]+/gi, '/');
+
 		// This helps to ensure that none of the form
 		// inputs are left blank and only have alphabetical characters.
 		if (!checkFormNames(dependentFirstName, dependentLastName))
@@ -352,7 +355,7 @@ function createPolicyHolder()
 	// numbers are a 10 digit string.
 	clientPhone = clientPhone.replace(/[^\w\s]/gi, '');
 
-	// Remove any dashes and replace them with and forward slash.
+	// Remove any dashes and replace them with a forward slash.
 	clientDateOfBirth = clientDateOfBirth.replace(/[---]+/gi, '/');
 
 	// This helps to ensure that none of the form
