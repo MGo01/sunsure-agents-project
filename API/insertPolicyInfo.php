@@ -18,8 +18,7 @@
   $PolicyInfoID = $inputFromJson['PolicyInfoID'];
 
   $policy_sql = "INSERT INTO Policy_Info (ApplicationID, PolicyType, AncillaryType, Carrier, EffectiveDate, AmbassadorName, Notes, PolicyInfoID)
-  VALUES ('".$ApplicationID."','".$PolicyType."','".$AncillaryType."','".$Carrier."', '".$EffectiveDate."',
-          '".$AmbassadorName."','".$Notes."','".$PolicyInfoID."')";
+                 VALUES (\"{$ApplicationID}\", \"{$PolicyType}\", \"{$AncillaryType}\", \"{$Carrier}\", \"{$EffectiveDate}\", \"{$AmbassadorName}\", \"{$Notes}\", \"{$PolicyInfoID}\")";
 
   if (mysqli_query($conn, $policy_sql))
   {
@@ -46,7 +45,7 @@
   function returnInfo($info)
   {
     $retval = (object) [
-    'msg' => $info
+      'msg' => $info
     ];
 
     outputJson($retval);
