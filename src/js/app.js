@@ -46,6 +46,7 @@ function addRow(obj)
 								
 								<td>
 									<button class="btn btn-sm btn-info" data-testid="${obj.PolicyID}"  id="save-${obj.PolicyID}" data-toggle="modal" data-target="#updateClientModal">Update</button>
+									<button class="btn btn-sm btn-info" data-testid="${obj.PolicyID}"  id="save-${obj.PolicyID}" data-toggle="modal" data-target="#showDetailsModal">Show Details</button>
 									<button class="btn btn-sm btn-danger" data-testid=${obj.PolicyID} id="delete-${obj.PolicyID}" >Delete</button>
 								</td>
 							</tr>`
@@ -263,6 +264,104 @@ function insertPolicyInfo()
 					console.log(endpointmsg);
 					document.getElementById("createClientResult").innerHTML = endpointmsg;
 					document.getElementById("createClientResult").style.color = "red";
+				}
+			}
+		};
+
+		console.log(jsonString);
+		xhr.send(jsonString);
+	}
+	
+	catch(error)
+	{
+		console.log(error.message);
+		document.getElementById("createClientResult").innerHTML = error.message;
+		document.getElementById("createClientResult").style.color = "red";
+	}
+}
+
+// CURRENT WIP
+function fillShowDetailsForm(numOfDependents)
+{
+	// Load the Client Information Form
+	document.getElementById("showDetailsFirstName").innerHTML = "";
+	document.getElementById("showDetailsLastName").innerHTML = "";
+
+	document.getElementById("showDetailsDateOfBirth").innerHTML = "";
+
+	document.getElementById("showDetailsSSN").innerHTML = "";
+	document.getElementById("showDetailsPhone").innerHTML = "";
+
+	document.getElementById("showDetailsAddress").innerHTML = "";
+
+	document.getElementById("showDetailsCity").innerHTML = "";
+	document.getElementById("showDetailsSecondLineAddress").innerHTML = "";
+
+	document.getElementById("showDetailsZIP").innerHTML = "";
+
+	document.getElementById("showDetailsState").innerHTML = "";
+	document.getElementById("showDetailsEmail").innerHTML = "";
+
+	// Load the Policy Information Form
+	document.getElementById("showDetailsNumOfDependents").innerHTML = "";
+	document.getElementById("showDetailsSource").innerHTML = "";
+
+	document.getElementById("showDetailsOver65").innerHTML = "";
+
+	document.getElementById("showDetailsPolicyType").innerHTML = "";
+	document.getElementById("showDetailsAncillaryType").innerHTML = "";
+
+	for (let i = 0; i < numOfDependents; i++)
+	{
+		// Depending on the number of dependents
+		// these strings will pull the right data accordingly.
+		var FNameString = "dependent-input-FirstName" + i;
+		var LNameString = "dependent-input-LastName" + i;
+		var DOBString = "dependent-input-DOB" + i;
+		var SSNString = "dependent-input-SSN" + i;
+
+		document.getElementById(FNameString).innerHTML = "";
+		document.getElementById(LNameString).innerHTML = "";
+		document.getElementById(DOBString).innerHTML = "";
+		document.getElementById(SSNString).innerHTML = "";
+	}
+
+	var url = "http://sunsure-agent.com/API/createPolicyHolder.php";
+	var xhr = new XMLHttpRequest();
+
+	xhr.open("POST", url, false);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+	try 
+	{
+		xhr.onreadystatechange = function()
+		{
+			if (this.readyState == 4 && this.status == 200)
+			{    
+				var jsonObject = JSON.parse(xhr.responseText);
+				var endpointmsg = jsonObject['msg'];
+				console.log(endpointmsg);
+
+				if (endpointmsg === "Primary Policy Holder has already been inserted")
+				{
+					console.log("Client insertion was not successful!");
+					document.getElementById("createClientResult").innerHTML = endpointmsg;
+					
+					document.getElementById("createClientResult").style.color = "red";
+				}
+
+				else
+				{
+					console.log(endpointmsg);
+					globalPolicyID = endpointmsg;
+
+					// Retrieve and generate an array based on
+					// the dependents forms
+					let dependentsArray = getDependentsArray(clientNumOfDependents);
+
+					insertPolicyInfo();
+          insertDependents(dependentsArray);
+					clearModalForm();  
 				}
 			}
 		};
