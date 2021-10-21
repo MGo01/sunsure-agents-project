@@ -616,6 +616,205 @@ Sunsure Agents
             </div>
           </div>
         </div>
+
+        <!-- Show Details Form -->
+        <div class="modal fade" id="showDetailsModal" style="zoom:67%" tabindex="-1" role="dialog" aria-labelledby="showDetailsModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                
+              <!-- Form Title -->
+              <div class="modal-header" id="popupTitleContainer">
+                <h5 id = "popupTitle" class="modal-title" id="showDetailsModalLongTitle">Client Details</h5>
+                <button type="button" id="closePopup" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              
+              <!-- Form Body -->
+              <div class="modal-body">
+                <span id="showDetailsResult"></span>
+                
+                <!-- First Row -->
+                <div class="row">
+                  <br>
+
+                  <!-- Client Information Title -->
+                  <div>
+                    <b style="font-size: 30px; font-family: 'Montserrat', Times, serif;">
+                      Client Information
+                    </b>
+                  </div>
+
+                  <br>
+                  <br>
+
+                  <!-- First Name Column -->
+                  <div class="col">
+                    <span class="material-icons" style="font-size:38px;">perm_identity</span>
+                    <p type="text" id="showDetailsFirstName">Timothy</p>
+                  </div>
+
+                  <!-- Last Name Column -->
+                  <div class="col">
+                    <span class="material-icons" style="font-size:38px;">perm_identity</span>
+                    <p type="text" id="showDetailsLastName">Howard</p>
+                  </div>
+
+                  <!-- Date of Birth Column -->
+                  <div class="col">
+                    <span class="material-icons-outlined">today</span>
+                    <p type="text" id="showDetailsDateOfBirth">10/05/1977</p>
+                  </div>
+
+                  <!-- SSN Column -->
+                  <div class="col">
+                    <span class="material-icons-outlined">tag</span>
+                    <p type="text" id="showDetailsSSN">123-32-2342</p>
+                  </div>
+                </div>
+
+                <!-- Second Row -->
+                <div class="row">
+          
+                  <!-- Phone Column -->
+                  <div class="col-4">
+                    <span class="material-icons" style="font-size:38px;">phone</span> 
+                    <p type="text" id="showDetailsPhone">407-545-5454</p>
+                  </div>
+
+                  <!-- Main Address Column -->
+                  <div class="col-8">
+                    <span class="material-icons-outlined">location_city</span>
+                    <p type="text" id="showDetailsAddress">1234 Main Miami Lane</p>
+                  </div>
+                </div>
+
+                <!-- Third Row -->
+                <div class="row">
+
+                  <!-- City Column -->
+                  <div class="col-4">
+                    <span class="material-icons-outlined">apartment</span>
+                    <p type="text" id="showDetailsCity">Orlando</p>
+                  </div>
+  
+                  <!-- Second Line Address -->
+                  <div class="col-8">
+                    <span class="material-icons-outlined">location_city</span>
+                    <p type="text" id="showDetailsSecondLineAddress">4321 Main Miami Lane</p>
+                  </div>
+                </div>
+
+                <!-- Fourth Row -->
+                <div class="row">
+
+                  <!-- ZIP Code Column -->
+                  <div class="col-3">
+                    <span class="material-icons" style="font-size:38px;">tag</span>
+                    <p type="text" id="showDetailsZIP">24232</p>
+                  </div>
+
+                  <!-- State Column -->
+                  <div class="col-2">
+                    <span class="material-icons-outlined">map</span>
+                    <p type="text" id="showDetailsState">Florida</p>
+                  </div>
+
+                  <!-- Email Column -->
+                  <div class="col">
+                    <span class="material-icons" style="font-size:38px;">email</span> 
+                    <p type="text" id="showDetailsEmail">timHoward27@gmail.com</p>
+                  </div>
+                </div>
+
+                <!-- Fifth Row -->
+                <div class="row">
+                  <!-- Number of Dependents Column -->
+                  <div class="col-3">
+                    <span class="material-icons" style="font-size:38px;">tag</span>
+                    <p type="text" id="showDetailsNumOfDependents">2</p>
+                  </div>
+
+                  <!-- Source Column -->
+                  <div class="col-4">
+                    <span class="material-icons-outlined">analytics</span>
+                    <p type="text" id="showDetailsSource">Google</p>
+                  </div>
+
+                  <!-- Over 65 Column -->
+                  <div class="col">
+                    <div class="checkboxes">
+                      <span class="material-icons-outlined">help_outline</span>
+                      <p type="text" name="isOver65" id="showDetailsOver65">True</p>
+                    </div>
+                  </div>
+                </div>
+
+                <br>
+
+                <!-- Policy Information Title -->
+                <div>
+                  <b style="font-size: 30px; font-family:'Montserrat', Times, serif;">
+                    Policy Information
+                  </b>
+                </div>
+
+                <br>
+
+                <!-- Policy Information, First Row -->
+                <div class="row">
+                  <br />
+                  <!-- Policy Type Column -->
+                  <div class="col">
+                    <span class="material-icons-outlined">info</span>
+                    <p type="text" id="showDetailsPolicyType">Some Policy Type</p>
+                  </div>
+
+                  <!-- Ancillary Type Column -->
+                  <div class="col">
+                    <span class="material-icons-outlined">info</span>
+                    <p type="text" id="showDetailsAncillaryType">Some Ancillary Plan</p>
+                  </div>
+
+                  <!-- Effective Date Column -->
+                  <div class="col">
+                    <span class="material-icons-outlined">date_range</span>
+                    <p type="text" id="showDetailsEffectiveDate">10/20/2021</p>
+                  </div>
+                </div>
+
+                <div class="row">  
+                  <!-- Carrier Column -->
+                  <div class="col-md-4">
+                    <span class="material-icons-outlined">info</span>
+                    <p type="text" id="showDetailsCarrier">Some Given Carrier</p>
+                  </div>
+
+                  <!-- Ambassador Column -->
+                  <div class="col">
+                    <span class="material-icons" style="font-size:38px;">perm_identity</span>
+                    <p type="text" id="showDetailsAmbassador">Jon Snow</p>
+                  </div>
+
+                    <!-- Application ID Column -->
+                    <div class="col">
+                    <span class="material-icons-outlined">info</span>
+                    <p type="text" id="showDetailsAppID">536443</p>
+                  </div>
+                </div>
+
+                <!-- Policy Information, Second Row -->
+                <div class="row">
+                  
+                  <!-- Notes Column -->
+                  <div class="col">
+                    <p type="text" id="showDetailsNotes">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reiciendis expedita temporibus perferendis exercitationem dignissimos eius nulla assumenda quod quam officiis eaque, perspiciatis libero eum? Rem praesentium accusantium aliquam optio ab!</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 				
 				<!-- Search Bar -->
 				<input type="text" id="clientsInput" style="zoom:67%" class = "text-center" placeholder="Search for clients...">
@@ -651,7 +850,7 @@ Sunsure Agents
 							</tr>
 						</thead>
 						<tbody id="tests-table">
-             
+
 						</tbody>
 					</table>
 				</div>

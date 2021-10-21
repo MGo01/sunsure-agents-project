@@ -188,6 +188,18 @@ body
     font-size: 30px;
 }
 
+#showDetailsFirstName, #showDetailsLastName, #showDetailsDateOfBirth, #showDetailsSSN, #showDetailsPhone, #showDetailsAddress, #showDetailsCity,
+#showDetailsSecondLineAddress, #showDetailsZIP, #showDetailsState, #showDetailsEmail, #showDetailsNumOfDependents, #showDetailsSource, #showDetailsOver65, #showDetailsPolicyType, #showDetailsAncillaryType, #showDetailsEffectiveDate, #showDetailsCarrier, #showDetailsAmbassador, #showDetailsAppID, #showDetailsNotes
+{
+    background-color: transparent;
+    border: transparent;
+    border-bottom: 3px solid #b2b2b2;
+    width: 80%;
+    margin-bottom: 5%;
+    font-size: 30px;
+    display: inline-block;
+}
+
 input[type=checkbox] {
   transform: scale(2);
   -ms-transform: scale(2);
