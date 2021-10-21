@@ -511,7 +511,7 @@ function fillShowDetailsForm()
 	// Load the Policy Information Form
 	document.getElementById("showDetailsPolicyType").innerHTML = "" + policyType;
 	document.getElementById("showDetailsAncillaryType").innerHTML = "" + ancillaryType;
-	document.getElementById("showDetailsDateOfBirth").innerHTML = "" + effectiveDate;
+	document.getElementById("showDetailsEffectiveDate").innerHTML = "" + effectiveDate;
 
 	document.getElementById("showDetailsCarrier").innerHTML = "" + carrier;
 	document.getElementById("showDetailsAmbassador").innerHTML = "" + ambassadorName;
