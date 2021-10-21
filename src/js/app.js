@@ -13,7 +13,7 @@ var globalPolicyID = -1;
 // var userId = 0;
 // var firstName = "";
 // var lastName = "";
-// var updateFlag = false;
+var updateFlag = false;
 
 // JQuery function inspired and modified by https://www.youtube.com/watch?v=DzXmAKdEYIs
 // to allow for easier row insertion into the UI data table.
@@ -57,7 +57,7 @@ function addRow(obj)
 	// a contact based on the their respective row.
 	$(`#delete-${obj.PolicyID}`).on('click', deleteTest)
 	$(`#save-${obj.PolicyID}`).on('click', saveUpdate)
-	$(`#show-${obj.PolicyID}`).on('click', fillShowDetailsForm(obj.NumOfDependents))
+	$(`#show-${obj.PolicyID}`).on('click', fillShowDetailsForm)
 
 }
 
@@ -282,8 +282,11 @@ function insertPolicyInfo()
 }
 
 // CURRENT WIP
-function fillShowDetailsForm(numOfDependents)
+function fillShowDetailsForm()
 {
+	var policyID = $(this).data('testid');
+	var numOfDependents = $(this).NumOfDependents;
+
 	var url = "http://sunsure-agent.com/API/getPolicyInformation.php";
 	var xhr = new XMLHttpRequest();
 
@@ -295,6 +298,14 @@ function fillShowDetailsForm(numOfDependents)
 	var effectiveDate;
 	var ambassadorName; 
 	var notes;
+
+		// Package a JSON payload to deliver to the server that contains all
+	// the contact details in order create the contact.
+  var jsonPayload = {
+		"PolicyInfoID": policyID
+	};
+
+	jsonString = JSON.stringify(jsonPayload);
 
 	xhr.open("POST", url, false);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
