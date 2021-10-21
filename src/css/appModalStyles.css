@@ -365,7 +365,7 @@ input[id^="dependent-input-"]
   font-size: 30px;
 }
 
-input[id^="details-dependent-"]
+p[id^="details-dependent-"]
 {
   background-color: transparent;
   border: transparent;
