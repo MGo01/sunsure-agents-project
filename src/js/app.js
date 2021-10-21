@@ -203,6 +203,79 @@ function getDependentsArray(clientNumOfDependents)
 	return dependentsArray;
 }
 
+function insertPolicyInfo()
+{
+	var policyType = document.getElementById("createPolicyType").value;
+	var ancillaryType = document.getElementById("createAncillaryType").value;
+
+	var effectiveDate = document.getElementById("createEffectiveDate").value;
+	var carrier = document.getElementById("createCarrier").value;
+	var notes = document.getElementById("createNotes").value;
+
+	var ambassador = document.getElementById("createClientAmbassador").value;
+	var applicationID = document.getElementById("createAppID").value;
+
+	effectiveDate = convertDate(effectiveDate);
+
+		// Package a JSON payload to deliver to the server that contains all
+	// the contact details in order create the contact.
+  var jsonPayload = {
+		"ApplicationID": applicationID,
+		"PolicyType": policyType,
+		"AncillaryType" : ancillaryType,
+		"Carrier": carrier,
+		"EffectiveDate": effectiveDate,
+		"AmbassadorName": ambassador,
+		"Notes": notes,
+		"PolicyInfoID": globalPolicyID,
+	};
+
+	jsonString = JSON.stringify(jsonPayload);
+
+	var url = "http://sunsure-agent.com/API/insertPolicyInfo.php";
+	var xhr = new XMLHttpRequest();
+
+	xhr.open("POST", url, false);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+	try 
+	{
+		xhr.onreadystatechange = function()
+		{
+			if (this.readyState == 4 && this.status == 200)
+			{    
+				var jsonObject = JSON.parse(xhr.responseText);
+				var endpointmsg = jsonObject['msg'];
+				console.log(endpointmsg);
+
+				if (endpointmsg === "Successfully inserted Policy Information")
+				{
+					console.log(endpointmsg);
+					document.getElementById("createClientResult").innerHTML = endpointmsg;
+					document.getElementById("createClientResult").style.color = "green";
+				}
+
+				else if (endpointmsg === "Policy Information has already been inserted.")
+				{
+					console.log(endpointmsg);
+					document.getElementById("createClientResult").innerHTML = endpointmsg;
+					document.getElementById("createClientResult").style.color = "red";
+				}
+			}
+		};
+
+		console.log(jsonString);
+		xhr.send(jsonString);
+	}
+	
+	catch(error)
+	{
+		console.log(error.message);
+		document.getElementById("createClientResult").innerHTML = error.message;
+		document.getElementById("createClientResult").style.color = "red";
+	}
+}
+
 // Creates a client for a specific user and stores it
 // accordingly in the database.
 function createPolicyHolder()
@@ -299,6 +372,7 @@ function createPolicyHolder()
 					// the dependents forms
 					let dependentsArray = getDependentsArray(clientNumOfDependents);
 
+					insertPolicyInfo();
           insertDependents(dependentsArray);  
 				}
 			}
