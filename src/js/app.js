@@ -215,7 +215,7 @@ function insertPolicyInfo()
 	var ambassador = document.getElementById("createClientAmbassador").value;
 	var applicationID = document.getElementById("createAppID").value;
 
-	effectiveDate = convertDate(effectiveDate);
+	effectiveDate = effectiveDate.replace(/[---]+/gi, '/')
 
 		// Package a JSON payload to deliver to the server that contains all
 	// the contact details in order create the contact.
