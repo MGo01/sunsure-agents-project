@@ -365,6 +365,16 @@ input[id^="dependent-input-"]
   font-size: 30px;
 }
 
+input[id^="details-dependent-"]
+{
+  background-color: transparent;
+  border: transparent;
+  border-bottom: 3px solid #b2b2b2;
+  width: 80%;
+  margin-bottom: 5%;
+  font-size: 30px;
+}
+
 textarea, #dependent-Title
 {  
    font-family:"Montserrat", Times, serif;  

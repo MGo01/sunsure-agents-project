@@ -208,6 +208,105 @@ function getDependentsArray(clientNumOfDependents)
 	return dependentsArray;
 }
 
+function fillInDependentForm(depArray)
+{
+	// Number of inputs to create
+	var number = depArray.length;
+
+	// Container <div> where dynamic content will be placed
+	var container = document.getElementById("detailsDependentsContainer");
+
+	// Clear previous contents of the container
+	while (container.hasChildNodes()) 
+	{
+		container.removeChild(container.lastChild);
+	}
+
+	for (i = 0; i < number; i++)
+	{
+		// Append a node with a random text
+		var depRow = document.createElement("div");
+		depRow.className = "row";
+
+		var depFirstNameCol = document.createElement("div")
+		depFirstNameCol.className = "col";
+
+		var depLastNameCol = document.createElement("div")
+		depLastNameCol.className = "col";
+
+		var depDOBCol = document.createElement("div")
+		depDOBCol.className = "col";
+
+		var depSSNCol = document.createElement("div")
+		depSSNCol.className = "col";
+
+		// Create Dependent Title
+
+		// HTML Format:
+		// <br>
+
+		// <div>
+		//   <b style="font-size: 30px; font-family:"Montserrat", Times, serif;">
+		//     Dependent Information Form
+		//   </b>
+		// </div>
+
+		// <br>
+		// <br>
+		var titleDiv = document.createElement("div");
+		var boldedText = document.createElement("b");
+
+		boldedText.id = "dependent-Title"
+		boldedText.innerHTML = "Dependent " + (i+1) + " Information";
+		titleDiv.append(boldedText);
+
+		container.appendChild(titleDiv);
+
+		// Append two line breaks 
+		container.appendChild(document.createElement("br"));
+
+		// Create an <input> element, set its type and name attributes
+		var firstName = document.createElement("p");
+		firstName.type = "text";
+		firstName.name = "Dependent" + i;
+		firstName.id="details-dependent-FirstName" + i;
+		firstName.innerHTML = "" + depArray[i].FirstName;
+
+		var lastName = document.createElement("p");
+		lastName.type = "text";
+		lastName.name = "Dependent" + i;
+		lastName.id="details-dependent-LastName" + i;
+		lastName.innerHTML = "" + depArray[i].LastName;
+
+		var dateOfBirth = document.createElement("p");
+		dateOfBirth.type = "date";
+		dateOfBirth.name = "Dependent" + i;
+		dateOfBirth.id="details-dependent-DOB" + i;
+		dateOfBirth.innerHTML = "" + depArray[i].DateOfBirth;
+
+		var ssn = document.createElement("p");
+		ssn.type = "text";
+		ssn.name = "Dependent" + i;
+		ssn.id="details-dependent-SSN" + i;
+		ssn.innerHTML = "" + depArray[i].SSN;
+
+		// Attach Columns to fields
+		depFirstNameCol.appendChild(firstName);
+		depLastNameCol.appendChild(lastName);
+		depDOBCol.appendChild(dateOfBirth);
+		depSSNCol.appendChild(ssn);
+
+		// Attach Rows to create client form
+		depRow.append(depFirstNameCol, depLastNameCol, depDOBCol, depSSNCol);  
+
+		// Attach the Row to the Dependent Container
+		container.appendChild(depRow);
+
+		// Append a line break 
+		container.appendChild(document.createElement("br"));
+	}
+}
+
 function insertPolicyInfo()
 {
 	var policyType = document.getElementById("createPolicyType").value;
@@ -281,11 +380,65 @@ function insertPolicyInfo()
 	}
 }
 
+function loadDependents(policyID)
+{
+	var url = "http://sunsure-agent.com/API/getDependents.php";
+	var xhr = new XMLHttpRequest();
+
+	// Package a JSON payload to deliver to the server that contains all
+	// the contact details in order create the contact.
+  var jsonPayload = {
+		"DependentID": policyID
+	};
+
+	jsonString = JSON.stringify(jsonPayload);
+
+	xhr.open("POST", url, false);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+	try 
+	{
+		xhr.onreadystatechange = function()
+		{
+			if (this.readyState == 4 && this.status == 200)
+			{    
+				var jsonObject = JSON.parse(xhr.responseText);
+				var depArray = endpointmsg = jsonObject['results'];
+				console.log(depArray);
+
+				if (endpointmsg === "No valid Dependents were found")
+				{
+					console.log("Unable to load dependents information");
+					document.getElementById("showDetailsResult").innerHTML = endpointmsg;	
+					document.getElementById("showDetailsResult").style.color = "red";
+				}
+
+				else
+				{
+					console.log("Successfully loaded dependent information");
+					document.getElementById("showDetailsResult").innerHTML = "";	
+
+					fillInDependentForm(depArray)
+				}
+			}
+		};
+
+		console.log(jsonString);
+		xhr.send(jsonString);
+	}
+	
+	catch(error)
+	{
+		console.log(error.message);
+		document.getElementById("showDetailsResult").innerHTML = error.message;
+		document.getElementById("showDetailsResult").style.color = "red";
+	}
+}
+
 // CURRENT WIP
 function fillShowDetailsForm()
 {
 	var policyID = $(this).data('testid');
-	var numOfDependents = $(this).NumOfDependents;
 
 	var url = "http://sunsure-agent.com/API/getPolicyInformation.php";
 	var xhr = new XMLHttpRequest();
@@ -299,7 +452,7 @@ function fillShowDetailsForm()
 	var ambassadorName; 
 	var notes;
 
-		// Package a JSON payload to deliver to the server that contains all
+	// Package a JSON payload to deliver to the server that contains all
 	// the contact details in order create the contact.
   var jsonPayload = {
 		"PolicyInfoID": policyID
@@ -329,6 +482,9 @@ function fillShowDetailsForm()
 
 				else
 				{
+					console.log("Successfully loaded policy information");
+					document.getElementById("showDetailsResult").innerHTML = "";	
+
 					applicationID = jsonObject.ApplicationID;
 					policyType = jsonObject.PolicyType;
 					ancillaryType = jsonObject.AncillaryType;
@@ -348,8 +504,8 @@ function fillShowDetailsForm()
 	catch(error)
 	{
 		console.log(error.message);
-		document.getElementById("createClientResult").innerHTML = error.message;
-		document.getElementById("createClientResult").style.color = "red";
+		document.getElementById("showDetailsResult").innerHTML = error.message;
+		document.getElementById("showDetailsResult").style.color = "red";
 	}
 
 	// Load the Policy Information Form
@@ -361,21 +517,7 @@ function fillShowDetailsForm()
 	document.getElementById("showDetailsAppID").innerHTML = "" + applicationID;
 	document.getElementById("showDetailsNotes").innerHTML = "" + notes;
 
-	// Load in Dependents Forms
-	// for (let i = 0; i < numOfDependents; i++)
-	// {
-	// 	// Depending on the number of dependents
-	// 	// these strings will pull the right data accordingly.
-	// 	var FNameString = "dependent-input-FirstName" + i;
-	// 	var LNameString = "dependent-input-LastName" + i;
-	// 	var DOBString = "dependent-input-DOB" + i;
-	// 	var SSNString = "dependent-input-SSN" + i;
-
-	// 	document.getElementById(FNameString).innerHTML = "";
-	// 	document.getElementById(LNameString).innerHTML = "";
-	// 	document.getElementById(DOBString).innerHTML = "";
-	// 	document.getElementById(SSNString).innerHTML = "";
-	// }
+	loadDependents(policyID);
 }
 
 function clearModalForm(numOfDependents)
