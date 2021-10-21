@@ -179,6 +179,9 @@ function getDependentsArray(clientNumOfDependents)
 		var dependentDOB = document.getElementById(DOBString).value;
 		var dependentSSN = document.getElementById(SSNString).value;
 
+		// Remove any dashes and replace them with a forward slash.
+		dependentDOB = dependentDOB.replace(/[---]+/gi, '/');
+
 		// This helps to ensure that none of the form
 		// inputs are left blank and only have alphabetical characters.
 		if (!checkFormNames(dependentFirstName, dependentLastName))
@@ -215,7 +218,7 @@ function insertPolicyInfo()
 	var ambassador = document.getElementById("createClientAmbassador").value;
 	var applicationID = document.getElementById("createAppID").value;
 
-	effectiveDate = effectiveDate.replace(/[---]+/gi, '/')
+	effectiveDate = effectiveDate.replace(/[---]+/gi, '/');
 
 		// Package a JSON payload to deliver to the server that contains all
 	// the contact details in order create the contact.
@@ -276,6 +279,52 @@ function insertPolicyInfo()
 	}
 }
 
+function clearModalForm(numOfDependents)
+{
+	// Clear the Client Information Form
+	document.getElementById("clientFirstName").innerHTML = "";
+	document.getElementById("clientLastName").innerHTML = "";
+
+	document.getElementById("clientSSN").innerHTML = "";
+
+	document.getElementById("clientPhone").innerHTML = "";
+	document.getElementById("clientAddress").innerHTML = "";
+
+	document.getElementById("clientSecondLineAddress").innerHTML = "";
+
+	document.getElementById("clientCity").innerHTML = "";
+	document.getElementById("clientAddress").innerHTML = "";
+
+	document.getElementById("clientZIP").innerHTML = "";
+
+	document.getElementById("clientEmail").innerHTML = "";
+	document.getElementById("clientNumOfDependents").innerHTML = "";
+
+	// Clear the Policy Information Form
+	document.getElementById("createPolicyType").innerHTML = "";
+	document.getElementById("createAncillaryType").innerHTML = "";
+
+	document.getElementById("createNotes").innerHTML = "";
+
+	document.getElementById("createClientAmbassador").innerHTML = "";
+	document.getElementById("createAppID").innerHTML = "";
+
+	for (let i = 0; i < numOfDependents; i++)
+	{
+		// Depending on the number of dependents
+		// these strings will pull the right data accordingly.
+		var FNameString = "dependent-input-FirstName" + i;
+		var LNameString = "dependent-input-LastName" + i;
+		var DOBString = "dependent-input-DOB" + i;
+		var SSNString = "dependent-input-SSN" + i;
+
+		document.getElementById(FNameString).innerHTML = "";
+		document.getElementById(LNameString).innerHTML = "";
+		document.getElementById(DOBString).innerHTML = "";
+		document.getElementById(SSNString).innerHTML = "";
+	}
+}
+
 // Creates a client for a specific user and stores it
 // accordingly in the database.
 function createPolicyHolder()
@@ -305,6 +354,9 @@ function createPolicyHolder()
 	// Remove any special characters in order to ensure all
 	// numbers are a 10 digit string.
 	clientPhone = clientPhone.replace(/[^\w\s]/gi, '');
+
+	// Remove any dashes and replace them with a forward slash.
+	clientDateOfBirth = clientDateOfBirth.replace(/[---]+/gi, '/');
 
 	// This helps to ensure that none of the form
 	// inputs are left blank and only have alphabetical characters.
@@ -373,7 +425,8 @@ function createPolicyHolder()
 					let dependentsArray = getDependentsArray(clientNumOfDependents);
 
 					insertPolicyInfo();
-          insertDependents(dependentsArray);  
+          insertDependents(dependentsArray);
+					clearModalForm();  
 				}
 			}
 		};
