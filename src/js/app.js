@@ -109,9 +109,13 @@ function displayClientsTable()
 function saveUpdate()
 {
 	var testid = $(this).data('testid');
-	var tr = $(this).parents("tr");
-  var id = tr.find('testid').text();
-	console.log(id);
+	// Finds the closest row <tr> 
+	// Gets a descendent with class="nr"
+	// Retrieves the text within <td>
+	var $item = $(this).closest("tr")   
+                       .find(".nr")     
+                       .text();  
+	console.log($item);
 	var saveBtn = $(`#save-${testid}`);
 	var row = $(`.test-row-${testid}`);
 
