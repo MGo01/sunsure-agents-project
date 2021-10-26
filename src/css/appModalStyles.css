@@ -175,9 +175,9 @@ body
 }
 
 #clientFirstName, #clientLastName, #clientEmail, #clientPhone, #clientDateOfBirth, #clientSSN, #clientAddress, #clientCity, #clientZIP, #clientState, #clientNumOfDependents, #clientSecondLineAddress,
-#createPolicyType, #createAncillaryType, #createEffectiveDate, #createNotes,
+#createPolicyType, #createAncillaryType, #createEffectiveDate, #createNotes, #createAppID,
 #updateClientFirstName, #updateClientLastName, #updateClientDateOfBirth, #updateClientSSN, #updateClientPhone, #updateClientAddress, #updateClientCity, #updateClientSecondLineAddress,
-#updateClientZIP, #updateClientEmail, #updateClientNumOfDependents, #updatePolicyType, #updateAncillaryType, #updateCarrier, #updateEffectiveDate, #updateNotes, #createClientAmbassador, #updateClientAmbassador, #createAppID,
+#updateClientZIP, #updateClientEmail, #updateClientNumOfDependents, #updatePolicyType, #updateAncillaryType, #updateCarrier, #updateEffectiveDate, #updateNotes, #createClientAmbassador, #updateClientAmbassador, #updateDetailsAppID,
 #deleteFirstName, #deleteLastName, #deleteEmail, #deletePhone
 {
     background-color: transparent;
