@@ -19,10 +19,9 @@
   $State =  $inputFromJson['State'];
   $Email = $inputFromJson['Email'];
   $NumOfDependents = $inputFromJson['NumOfDependents'];
-  $PolicyInfoID = $inputFromJson['PolicyInfoID'];
   $Source = $inputFromJson['Source'];
 
-  $sql = "UPDATE Primary_PolicyHolders SET FirstName = '" . $FirstName . "', LastName = '" . $LastName . "', DateOfBirth = '" . $DateOfBirth . "', SSN = '" . $SSN . "', Phone = '" . $Phone . "', Address = '" . $Address . "', Second_Line_Address = '" . $Second_Line_Address . "', City = '" . $City . "', ZipCode = '" . $ZipCode . "', State = '" . $State . "', Email = '" . $Email . "', NumOfDependents = '" . $NumOfDependents . "', PolicyInfoID = '" . $PolicyInfoID . "', Source = '" . $Source . "' WHERE AgentID = '" . $AgentID . "' AND PolicyID = '" . $PolicyID . "'";
+  $sql = "UPDATE Primary_PolicyHolders SET FirstName = '" . $FirstName . "', LastName = '" . $LastName . "', DateOfBirth = '" . $DateOfBirth . "', SSN = '" . $SSN . "', Phone = '" . $Phone . "', Address = '" . $Address . "', Second_Line_Address = '" . $Second_Line_Address . "', City = '" . $City . "', ZipCode = '" . $ZipCode . "', State = '" . $State . "', Email = '" . $Email . "', NumOfDependents = '" . $NumOfDependents . "', Source = '" . $Source . "' WHERE AgentID = '" . $AgentID . "' AND PolicyID = '" . $PolicyID . "'";
 
   if (mysqli_query($conn, $sql))
   {

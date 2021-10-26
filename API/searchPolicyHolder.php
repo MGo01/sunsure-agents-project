@@ -26,7 +26,6 @@
     public $State =  "";
     public $Email = "";
     public $NumOfDependents = "";
-    public $PolicyInfoID = "";
     public $Source = "";
     public $Dependents = array();
   }
@@ -175,7 +174,6 @@
       $newPolicyHolder->Email = $row['Email'];
 
       $newPolicyHolder->NumOfDependents = $row['NumOfDependents'];
-      $newPolicyHolder->PolicyInfoID = $row['PolicyInfoID'];
       $newPolicyHolder->Source = $row['Source'];
 
       $newPolicyHolder->Dependents[] = getDependents($newPolicyHolder, $conn);

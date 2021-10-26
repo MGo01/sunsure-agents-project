@@ -119,13 +119,8 @@ function saveUpdate()
 	// the modal has been displayed.
 	if (updateFlag)
 	{
-		var updateFirstName = document.getElementById("updateFirstName").value;
-		var updateLastName = document.getElementById("updateLastName").value;
-		var updateEmail = document.getElementById("updateEmail").value;
-		var updatePhone = document.getElementById("updatePhone").value;
-
 		updateFlag = false;
-		updateContact(updateFirstName, updateLastName, updateEmail, updatePhone, testID);
+		updateContact(testID);
 	}
 
 	updateFlag = true;
@@ -323,7 +318,8 @@ function insertPolicyInfo()
 
 	// Package a JSON payload to deliver to the server that contains all
 	// the contact details in order create the contact.
-  var jsonPayload = {
+  var jsonPayload = 
+	{
 		"ApplicationID": applicationID,
 		"PolicyType": policyType,
 		"AncillaryType" : ancillaryType,
@@ -387,7 +383,8 @@ function loadDependents(policyID)
 
 	// Package a JSON payload to deliver to the server that contains all
 	// the contact details in order create the contact.
-  var jsonPayload = {
+  var jsonPayload = 
+	{
 		"DependentID": policyID
 	};
 
@@ -454,7 +451,8 @@ function fillShowDetailsForm()
 
 	// Package a JSON payload to deliver to the server that contains all
 	// the contact details in order create the contact.
-  var jsonPayload = {
+  var jsonPayload = 
+	{
 		"PolicyInfoID": policyID
 	};
 
@@ -583,7 +581,6 @@ function createPolicyHolder()
 	var clientSecondLineAddress = document.getElementById("clientSecondLineAddress").value;
 
 	var clientCity = document.getElementById("clientCity").value;
-	var clientAddress = document.getElementById("clientAddress").value;
 
 	var clientZIP = document.getElementById("clientZIP").value;
 	let clientState = document.getElementById("statesMenu").value;
@@ -613,7 +610,8 @@ function createPolicyHolder()
 
 	// Package a JSON payload to deliver to the server that contains all
 	// the contact details in order create the contact.
-  var jsonPayload = {
+  var jsonPayload = 
+	{
 		"AgentID": userID,
 		"FirstName": clientFirstName,
 		"LastName" : clientLastName,
@@ -627,7 +625,6 @@ function createPolicyHolder()
 		"State": clientState,
 		"Email": clientEmail,
 		"NumOfDependents": clientNumOfDependents,
-		"PolicyInfoID": userID,
 		"Source": clientSource
 	};
 
@@ -774,38 +771,113 @@ function deleteClient(clientID)
 }
 
 // Updates a Contact's information based on their ID.
-function updateContact(updateFirstName, updateLastName, updateEmail, updatePhone, testid)
+function updateContact(policyID)
 {
+	var updatedClientFirstName = document.getElementById("updateClientFirstName").value;
+	var updatedClientLastName = document.getElementById("updateClientLastName").value;
+
+	var updatedClientDateOfBirth = document.getElementById("updateClientDateOfBirth").value;
+	var updatedClientSSN = document.getElementById("updateClientSSN").value;
+
+	var updatedClientPhone = document.getElementById("updateClientPhone").value;
+	var updatedClientAddress = document.getElementById("updateClientAddress").value;
+
+	var updatedClientSecondLineAddress = document.getElementById("updateClientSecondLineAddress").value;
+
+	var updatedClientCity = document.getElementById("updateClientCity").value;
+
+	var updatedClientZIP = document.getElementById("updateClientZIP").value;
+	let updatedClientState = document.getElementById("updateStatesMenu").value;
+
+	var updatedClientEmail = document.getElementById("updateClientEmail").value;
+	var updatedClientNumOfDependents = document.getElementById("updateClientNumOfDependents").value;
+
+	var updatedClientSource = document.getElementById("updateSourceMenu").value;
+
+	var updatedIsOver65 = document.getElementById("updateIsOver65").value;
+
+	console.log(updatedIsOver65);
+
+	// Remove any special characters in order to ensure all
+	// numbers are a 10 digit string.
+	updatedClientPhone = updatedClientPhone.replace(/[^\w\s]/gi, '');
+
+	// Remove any dashes and replace them with a forward slash.
+	updatedClientDateOfBirth = updatedClientDateOfBirth.replace(/[---]+/gi, '/');
+
 	// This helps to ensure that none of the form
-	// inputs are left blank.
-	if (!checkFormNames(updateFirstName, updateLastName))
+	// inputs are left blank and only have alphabetical characters.
+	if (!checkFormNames(updatedClientFirstName, updatedClientLastName))
 		return;
 
- 	// Remove any special characters in order to ensure all
-	// numbers are a 10 digit string.
-	updatePhone = updatePhone.replace(/[^\w\s]/gi, '');
-
-	document.getElementById("updateResult").innerHTML = "";
+	document.getElementById("updateClientResult").innerHTML = "";
 
 	// Package a JSON payload to deliver to the server that contains all
-	// the contact information in order update the contact.
-  var jsonPayload =
-  	'{"ID" : "' + testid + '", "UserID" : "' + userId + '", "FirstName" : "' + updateFirstName + '", "LastName" : "' + updateLastName + '", "Email" : "' + updateEmail + '", "Phone" : "' + updatePhone + '"}';
-	var url = urlBase + '/Update.' + extension;
+	// the contact details in order create the contact.
+  var jsonPayload = 
+	{
+		"AgentID": userID,
+		"PolicyID": policyID,
+		"FirstName": updatedClientFirstName,
+		"LastName" : updatedClientLastName,
+		"DateOfBirth": updatedClientDateOfBirth,
+		"SSN": updatedClientSSN,
+		"Phone": updatedClientPhone,
+		"Address": updatedClientAddress,
+		"Second_Line_Address": updatedClientSecondLineAddress,
+		"City": updatedClientCity,
+		"ZipCode": updatedClientZIP,
+		"State": updatedClientState,
+		"Email": updatedClientEmail,
+		"NumOfDependents": updatedClientNumOfDependents,
+		"Source": updatedClientSource
+	};
+
+	jsonString = JSON.stringify(jsonPayload);
+
+	var url = urlBase + '/updatePolicyHolder.' + extension;
 	var xhr = new XMLHttpRequest();
 
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
-	// Basic try and catch to ensure that any server code errors are
+// Basic try and catch to ensure that any server code errors are
 	// handled properly.
-	try
+	try 
 	{
+		xhr.onreadystatechange = function()
+		{
+			if (this.readyState == 4 && this.status == 200)
+			{    
+				jsonObject = JSON.parse(xhr.responseText);
+				var endpointmsg = jsonObject['msg'];
+				console.log(clientsList);
+
+				if (endpointmsg === "Primary PolicyHolder has been updated successfully!")
+				{
+					console.log(endpointmsg);
+					document.getElementById("updateClientResult").innerHTML = endpointmsg;
+					document.getElementById("updateClientResult").style.color = "green";
+				}
+
+				else
+				{
+					console.log(endpointmsg);
+					document.getElementById("updateClientResult").innerHTML = endpointmsg;
+					document.getElementById("updateClientResult").style.color = "red";
+				}
+			}
+		};
+
+		console.log(jsonPayload);
 		xhr.send(jsonPayload);
 	}
-	catch(err)
+	
+	catch(error)
 	{
-		document.getElementById("updateResult").innerHTML = err.message;
+		console.log(error.message);
+		document.getElementById("updateClientResult").innerHTML = error.message;
+		document.getElementById("updateClientResult").style.color = "red";
 	}
 }
 
@@ -813,7 +885,7 @@ function updateContact(updateFirstName, updateLastName, updateEmail, updatePhone
 function searchClients()
 {
 	// Collects data from the search bar in the landing page.
-	let search = document.getElementById("clientsInput").value;
+	let searchQuery = document.getElementById("clientsInput").value;
 
 	// Clears the table to allow for the construction of a new table
 	// based on the search results.
@@ -821,7 +893,7 @@ function searchClients()
 
 	// Package a JSON payload to deliver to the Search Endpoint with
 	// the UserID in order to display the contacts based on the search input.
-	var jsonPayload = '{"AgentID" : "' + userID + '", "Input" : "' + search + '"}';
+	var jsonPayload = '{"AgentID" : "' + userID + '", "Input" : "' + searchQuery + '"}';
 	var url = urlBase + '/searchPolicyHolder.' + extension;
 
 	var xhr = new XMLHttpRequest();
