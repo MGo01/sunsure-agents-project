@@ -19,200 +19,200 @@ Sunsure Agents
     <script type='text/javascript'>
       function addDependentFields()
       {
-          // Number of inputs to create
-          var number = document.getElementById("clientNumOfDependents").value;
+        // Number of inputs to create
+        var number = document.getElementById("clientNumOfDependents").value;
 
-          // Container <div> where dynamic content will be placed
-          var container = document.getElementById("dependentsContainer");
+        // Container <div> where dynamic content will be placed
+        var container = document.getElementById("dependentsContainer");
 
-          // Clear previous contents of the container
-          while (container.hasChildNodes()) 
-          {
-            container.removeChild(container.lastChild);
-          }
+        // Clear previous contents of the container
+        while (container.hasChildNodes()) 
+        {
+          container.removeChild(container.lastChild);
+        }
 
-          for (i = 0; i < number; i++)
-          {
-            // Append a node with a random text
+        for (i = 0; i < number; i++)
+        {
+          // Append a node with a random text
 
-            var depRow = document.createElement("div");
-            depRow.className = "row";
+          var depRow = document.createElement("div");
+          depRow.className = "row";
 
-            var depFirstNameCol = document.createElement("div")
-            depFirstNameCol.className = "col";
+          var depFirstNameCol = document.createElement("div")
+          depFirstNameCol.className = "col";
 
-            var depLastNameCol = document.createElement("div")
-            depLastNameCol.className = "col";
+          var depLastNameCol = document.createElement("div")
+          depLastNameCol.className = "col";
 
-            var depDOBCol = document.createElement("div")
-            depDOBCol.className = "col";
+          var depDOBCol = document.createElement("div")
+          depDOBCol.className = "col";
 
-            var depSSNCol = document.createElement("div")
-            depSSNCol.className = "col";
+          var depSSNCol = document.createElement("div")
+          depSSNCol.className = "col";
 
-            // Create Dependent Title
+          // Create Dependent Title
 
-            // HTML Format:
-            // <br>
+          // HTML Format:
+          // <br>
 
-            // <div>
-            //   <b style="font-size: 30px; font-family:"Montserrat", Times, serif;">
-            //     Dependent Information Form
-            //   </b>
-            // </div>
+          // <div>
+          //   <b style="font-size: 30px; font-family:"Montserrat", Times, serif;">
+          //     Dependent Information Form
+          //   </b>
+          // </div>
 
-            // <br>
-            // <br>
-            var titleDiv = document.createElement("div");
-            var boldedText = document.createElement("b");
+          // <br>
+          // <br>
+          var titleDiv = document.createElement("div");
+          var boldedText = document.createElement("b");
 
-            boldedText.id = "dependent-Title"
-            boldedText.innerHTML = "Dependent " + (i+1) + " Information Form";
-            titleDiv.append(boldedText);
+          boldedText.id = "dependent-Title"
+          boldedText.innerHTML = "Dependent " + (i+1) + " Information Form";
+          titleDiv.append(boldedText);
 
-            container.appendChild(titleDiv);
+          container.appendChild(titleDiv);
 
-            // Append two line breaks 
-            container.appendChild(document.createElement("br"));
+          // Append two line breaks 
+          container.appendChild(document.createElement("br"));
 
-            // Create an <input> element, set its type and name attributes
-            var firstName = document.createElement("input");
-            firstName.type = "text";
-            firstName.name = "Dependent" + i;
-            firstName.id="dependent-input-FirstName" + i;
-            firstName.placeholder="First Name*";
+          // Create an <input> element, set its type and name attributes
+          var firstName = document.createElement("input");
+          firstName.type = "text";
+          firstName.name = "Dependent" + i;
+          firstName.id="dependent-input-FirstName" + i;
+          firstName.placeholder="First Name*";
 
-            var lastName = document.createElement("input");
-            lastName.type = "text";
-            lastName.name = "Dependent" + i;
-            lastName.id="dependent-input-LastName" + i;
-            lastName.placeholder="Last Name*";
+          var lastName = document.createElement("input");
+          lastName.type = "text";
+          lastName.name = "Dependent" + i;
+          lastName.id="dependent-input-LastName" + i;
+          lastName.placeholder="Last Name*";
 
-            var dateOfBirth = document.createElement("input");
-            dateOfBirth.type = "date";
-            dateOfBirth.name = "Dependent" + i;
-            dateOfBirth.id="dependent-input-DOB" + i;
-            dateOfBirth.placeholder="Date of Birth*";
+          var dateOfBirth = document.createElement("input");
+          dateOfBirth.type = "date";
+          dateOfBirth.name = "Dependent" + i;
+          dateOfBirth.id="dependent-input-DOB" + i;
+          dateOfBirth.placeholder="Date of Birth*";
 
-            var ssn = document.createElement("input");
-            ssn.type = "text";
-            ssn.name = "Dependent" + i;
-            ssn.id="dependent-input-SSN" + i;
-            ssn.placeholder="SSN";
+          var ssn = document.createElement("input");
+          ssn.type = "text";
+          ssn.name = "Dependent" + i;
+          ssn.id="dependent-input-SSN" + i;
+          ssn.placeholder="SSN";
 
-            // Attach Columns to fields
-            depFirstNameCol.appendChild(firstName);
-            depLastNameCol.appendChild(lastName);
-            depDOBCol.appendChild(dateOfBirth);
-            depSSNCol.appendChild(ssn);
+          // Attach Columns to fields
+          depFirstNameCol.appendChild(firstName);
+          depLastNameCol.appendChild(lastName);
+          depDOBCol.appendChild(dateOfBirth);
+          depSSNCol.appendChild(ssn);
 
-            // Attach Rows to create client form
-            depRow.append(depFirstNameCol, depLastNameCol, depDOBCol, depSSNCol);  
+          // Attach Rows to create client form
+          depRow.append(depFirstNameCol, depLastNameCol, depDOBCol, depSSNCol);  
 
-						// Attach the Row to the Dependent Container
-            container.appendChild(depRow);
+          // Attach the Row to the Dependent Container
+          container.appendChild(depRow);
 
-            // Append a line break 
-            container.appendChild(document.createElement("br"));
-          }
+          // Append a line break 
+          container.appendChild(document.createElement("br"));
+        }
       }
 
       function addUpdateDependentFields()
       {
-          // Number of inputs to create
-          var number = document.getElementById("updateClientNumOfDependents").value;
+        // Number of inputs to create
+        var number = document.getElementById("updateClientNumOfDependents").value;
 
-          // Container <div> where dynamic content will be placed
-          var container = document.getElementById("updateDependentsContainer");
+        // Container <div> where dynamic content will be placed
+        var container = document.getElementById("updateDependentsContainer");
 
-          // Clear previous contents of the container
-          while (container.hasChildNodes()) 
-          {
-            container.removeChild(container.lastChild);
-          }
+        // Clear previous contents of the container
+        while (container.hasChildNodes()) 
+        {
+          container.removeChild(container.lastChild);
+        }
 
-          for (i = 0; i < number; i++)
-          {
-            var depRow = document.createElement("div");
-            depRow.className = "row";
+        for (i = 0; i < number; i++)
+        {
+          var depRow = document.createElement("div");
+          depRow.className = "row";
 
-            var depFirstNameCol = document.createElement("div")
-            depFirstNameCol.className = "col";
+          var depFirstNameCol = document.createElement("div")
+          depFirstNameCol.className = "col";
 
-            var depLastNameCol = document.createElement("div")
-            depLastNameCol.className = "col";
+          var depLastNameCol = document.createElement("div")
+          depLastNameCol.className = "col";
 
-            var depDOBCol = document.createElement("div")
-            depDOBCol.className = "col";
+          var depDOBCol = document.createElement("div")
+          depDOBCol.className = "col";
 
-            var depSSNCol = document.createElement("div")
-            depSSNCol.className = "col";
+          var depSSNCol = document.createElement("div")
+          depSSNCol.className = "col";
 
-            // Create Dependent Title
+          // Create Dependent Title
 
-            // HTML Format:
-            // <br>
+          // HTML Format:
+          // <br>
 
-            // <div>
-            //   <b style="font-size: 30px; font-family:"Montserrat", Times, serif;">
-            //     Dependent Information Form
-            //   </b>
-            // </div>
+          // <div>
+          //   <b style="font-size: 30px; font-family:"Montserrat", Times, serif;">
+          //     Dependent Information Form
+          //   </b>
+          // </div>
 
-            // <br>
-            // <br>
-            var titleDiv = document.createElement("div");
-            var boldedText = document.createElement("b");
+          // <br>
+          // <br>
+          var titleDiv = document.createElement("div");
+          var boldedText = document.createElement("b");
 
-            boldedText.id = "dependent-Title"
-            boldedText.innerHTML = "Dependent " + (i+1) + " Information Form";
-            titleDiv.append(boldedText);
+          boldedText.id = "dependent-Title"
+          boldedText.innerHTML = "Dependent " + (i+1) + " Information Form";
+          titleDiv.append(boldedText);
 
-            container.appendChild(titleDiv);
+          container.appendChild(titleDiv);
 
-            // Append two line breaks 
-            container.appendChild(document.createElement("br"));
+          // Append two line breaks 
+          container.appendChild(document.createElement("br"));
 
-            // Create an <input> element, set its type and name attributes
-            var firstName = document.createElement("input");
-            firstName.type = "text";
-            firstName.name = "Dependent" + i;
-            firstName.id="update-dependent-input-FirstName" + i;
-            firstName.placeholder="First Name*";
+          // Create an <input> element, set its type and name attributes
+          var firstName = document.createElement("input");
+          firstName.type = "text";
+          firstName.name = "Dependent" + i;
+          firstName.id="update-dependent-input-FirstName" + i;
+          firstName.placeholder="First Name*";
 
-            var lastName = document.createElement("input");
-            lastName.type = "text";
-            lastName.name = "Dependent" + i;
-            lastName.id="update-dependent-input-LastName" + i;
-            lastName.placeholder="Last Name*";
+          var lastName = document.createElement("input");
+          lastName.type = "text";
+          lastName.name = "Dependent" + i;
+          lastName.id="update-dependent-input-LastName" + i;
+          lastName.placeholder="Last Name*";
 
-            var dateOfBirth = document.createElement("input");
-            dateOfBirth.type = "date";
-            dateOfBirth.name = "Dependent" + i;
-            dateOfBirth.id="update-dependent-input-DOB" + i;
-            dateOfBirth.placeholder="Date of Birth*";
+          var dateOfBirth = document.createElement("input");
+          dateOfBirth.type = "date";
+          dateOfBirth.name = "Dependent" + i;
+          dateOfBirth.id="update-dependent-input-DOB" + i;
+          dateOfBirth.placeholder="Date of Birth*";
 
-            var ssn = document.createElement("input");
-            ssn.type = "text";
-            ssn.name = "Dependent" + i;
-            ssn.id="update-dependent-input-SSN" + i;
-            ssn.placeholder="SSN";
+          var ssn = document.createElement("input");
+          ssn.type = "text";
+          ssn.name = "Dependent" + i;
+          ssn.id="update-dependent-input-SSN" + i;
+          ssn.placeholder="SSN";
 
-            // Attach Columns to fields
-            depFirstNameCol.appendChild(firstName);
-            depLastNameCol.appendChild(lastName);
-            depDOBCol.appendChild(dateOfBirth);
-            depSSNCol.appendChild(ssn);
+          // Attach Columns to fields
+          depFirstNameCol.appendChild(firstName);
+          depLastNameCol.appendChild(lastName);
+          depDOBCol.appendChild(dateOfBirth);
+          depSSNCol.appendChild(ssn);
 
-            // Attach Rows to create client form
-            depRow.append(depFirstNameCol, depLastNameCol, depDOBCol, depSSNCol);  
+          // Attach Rows to create client form
+          depRow.append(depFirstNameCol, depLastNameCol, depDOBCol, depSSNCol);  
 
-						// Attach the Row to the Dependent Container
-            container.appendChild(depRow);
+          // Attach the Row to the Dependent Container
+          container.appendChild(depRow);
 
-            // Append a line break 
-            container.appendChild(document.createElement("br"));
-          }
+          // Append a line break 
+          container.appendChild(document.createElement("br"));
+        }
       }
     </script>
 </head>
@@ -226,15 +226,15 @@ Sunsure Agents
   <script src="src/js/login.js"></script>   
   <script src="src/js/app.js"></script>
   <script type="text/javascript">
-    document.addEventListener('DOMContentLoaded', function() 
-    {
-      readCookie();
-    }, false);
+    // document.addEventListener('DOMContentLoaded', function() 
+    // {
+    //   readCookie();
+    // }, false);
 
-    window.onload = function() 
-    {
-      displayClientsTable();
-    };
+    // window.onload = function() 
+    // {
+    //   displayClientsTable();
+    // };
 	</script>
     
 	<!-- Website Container -->
@@ -245,6 +245,7 @@ Sunsure Agents
 				<div id= "titleBar" style="word-wrap:break-word">
             <h1 id="userName"></h1>
   					<h1 id="title" style="zoom:67%">Sunsure Agents</h1>
+            <!-- Sign Out Button -->
   					<button id="logoutButton" style="zoom:67%" type="button" onclick="doLogout()"><span class="material-icons text-center">logout</span>  Sign Out</button>
   				</div>        
   			</div>
@@ -818,6 +819,9 @@ Sunsure Agents
 				<input type="text" id="clientsInput" style="zoom:67%" class = "text-center" placeholder="Search for clients...">
 				<button class="btn btn-sm" id="searchClientButton" style="zoom:67%" onclick="searchClients();"><span class="material-icons text-center">search</span>  Search</button>
 
+        <!-- Refresh Table Button -->
+        <button class="btn btn-sm" id="refreshTableButton" style="zoom:67%" onClick="window.location.reload();"><span class="material-icons-outlined">refresh</span>  Refresh Table</button>
+
         <!-- Add Client Button -->
 				<button class="btn btn-sm" id="addClientButton" style="zoom:67%" data-toggle="modal" data-target="#createClientModal"><span class="material-icons text-center">add</span>Add Client</button>
 				
@@ -844,7 +848,8 @@ Sunsure Agents
 
 								<th>NumOfDependents</th>
 								<th>Source</th>
-								<th>Actions</th>																
+								<th>Actions</th>
+            
 							</tr>
 						</thead>
 						<tbody id="tests-table">
