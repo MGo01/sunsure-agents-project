@@ -1019,7 +1019,7 @@ function updatePolicyInfo()
 			if (this.readyState == 4 && this.status == 200)
 			{    
 				jsonObject = JSON.parse(xhr.responseText);
-				var endpointmsg = jsonObject['results'];
+				var endpointmsg = jsonObject['msg'];
 				console.log(endpointmsg);
 
 				if (endpointmsg === "Policy Information has been updated successfully!")
