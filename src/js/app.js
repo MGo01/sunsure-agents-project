@@ -49,7 +49,6 @@ function addRow(obj)
 								<td>
 									<button class="btn btn-sm btn-info" data-testid="${obj.PolicyID}"  id="save-${obj.PolicyID}" data-toggle="modal" data-target="#updateClientModal">Update</button>
 									<button class="btn btn-sm btn-info" data-testid="${obj.PolicyID}"  id="show-${obj.PolicyID}" data-toggle="modal" data-target="#showDetailsModal">Show Details</button>
-									<button class="btn btn-sm btn-danger" data-testid=${obj.PolicyID} id="delete-${obj.PolicyID}" >Delete Policy</button>
 								</td>
 							</tr>`
 
@@ -57,7 +56,7 @@ function addRow(obj)
 
 	// Creates buttons for deleting and updating
 	// a contact based on the their respective row.
-	$(`#delete-${obj.PolicyID}`).on('click', deleteTest)
+	// $(`#delete-${obj.PolicyID}`).on('click', deleteTest)
 	$(`#save-${obj.PolicyID}`).on('click', saveUpdate)
 	$(`#show-${obj.PolicyID}`).on('click', fillShowDetailsForm)
 
