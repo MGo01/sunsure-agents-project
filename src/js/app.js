@@ -901,8 +901,8 @@ function updateClient(policyID, clientFName, clientLName)
 			}
 		};
 
-		console.log(jsonPayload);
-		xhr.send(jsonPayload);
+		console.log(jsonString);
+		xhr.send(jsonString);
 	}
 	
 	catch(error)
