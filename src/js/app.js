@@ -889,6 +889,7 @@ function updateClient(policyID, clientFName, clientLName)
 					console.log(endpointmsg);
 					document.getElementById("updateClientResult").innerHTML = endpointmsg;
 					document.getElementById("updateClientResult").style.color = "green";
+					updatePolicyInfo();
 				}
 
 				else
@@ -962,6 +963,81 @@ function searchClients()
 
 		console.log(jsonPayload);
 		xhr.send(jsonPayload);
+	}
+	
+	catch(error)
+	{
+		console.log(error.message);
+		document.getElementById("clientsTable").innerHTML = error.message;
+		document.getElementById("clientsTable").style.color = "red";
+	}
+}
+
+function updatePolicyInfo()
+{
+	// Load in Updated Policy Information
+	var updatedPolicyType = document.getElementById("updatePolicyType").value;
+	var updatedAncillaryType = document.getElementById("updateAncillaryType").value;
+
+	var updatedEffectiveDate = document.getElementById("updateEffectiveDate").value;
+	var updatedCarrier = document.getElementById("updateCarriers").value;
+	var updatedNotes = document.getElementById("updateNotes").value;
+
+	var updatedAmbassador = document.getElementById("updateClientAmbassador").value;
+	var updatedApplicationID = document.getElementById("updateDetailsAppID").value;
+
+	updatedEffectiveDate = effectiveDate.replace(/[---]+/gi, '/');
+
+		// Package a JSON payload to deliver to the server that contains all
+	// the contact details in order create the contact.
+  var jsonPayload = 
+	{
+		"ApplicationID": updatedApplicationID,
+		"PolicyType": updatedPolicyType,
+		"AncillaryType": updatedAncillaryType,
+		"Carrier" : updatedCarrier,
+		"EffectiveDate": updatedEffectiveDate,
+		"AmbassadorName": updatedAmbassador,
+		"Notes": updatedNotes,
+		"PolicyInfoID": updatedClientAddress
+	};
+
+	jsonString = JSON.stringify(jsonPayload);
+
+	var url = urlBase + '/updatePolicyInfo.' + extension;
+
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST", url, false);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+	// Basic try and catch to ensure that any server code errors are
+	// handled properly.
+	try 
+	{
+		xhr.onreadystatechange = function()
+		{
+			if (this.readyState == 4 && this.status == 200)
+			{    
+				jsonObject = JSON.parse(xhr.responseText);
+				var endpointmsg = jsonObject['results'];
+				console.log(endpointmsg);
+
+				if (endpointmsg === "Policy Information has been updated successfully!")
+				{
+					document.getElementById("updateClientResult").innerHTML = endpointmsg;
+					document.getElementById("updateClientResult").style.color = "green";
+				}
+
+				else
+				{
+					document.getElementById("updateClientResult").innerHTML = endpointmsg;
+					document.getElementById("updateClientResult").style.color = "red";
+				}
+			}
+		};
+
+		console.log(jsonString);
+		xhr.send(jsonString);
 	}
 	
 	catch(error)
