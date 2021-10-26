@@ -7,13 +7,16 @@
 
   $PolicyID = $inputFromJson['PolicyID'];
 
+  $sql_policyInfo = "DELETE FROM Policy_Info 
+                      WHERE PolicyInfoID = '$PolicyID'";
+
   $sql_dependents = "DELETE FROM Dependents 
                       WHERE DependentID = '$PolicyID'";
 
   $sql_policyHolders = "DELETE FROM Primary_PolicyHolders 
                         WHERE PolicyID = '$PolicyID'"; 
 
-  if (mysqli_query($conn, $sql_dependents) && mysqli_query($conn, $sql_policyHolders))
+  if (mysqli_query($conn, $sql_policyInfo) && mysqli_query($conn, $sql_dependents) && mysqli_query($conn, $sql_policyHolders))
   {
     // Successfully inserted Agent into DB message.
     returnInfo("Primary PolicyHolder has been deleted successfully!");
