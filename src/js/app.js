@@ -122,8 +122,8 @@ function saveUpdate()
 		console.log($(this).text());        // Prints out the text within the <td>
 	});
 
-	var saveBtn = $(`#save-${testid}`);
-	var row = $(`.test-row-${testid}`);
+	var saveBtn = $(`#save-${globalUpdateID}`);
+	var row = $(`.test-row-${globalUpdateID}`);
 
 	// Load in old row information into Update Modal Form
 	document.getElementById("updateClientFirstName").placeholder = oldRowInfo[1];
