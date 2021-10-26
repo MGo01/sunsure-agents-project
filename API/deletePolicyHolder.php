@@ -16,6 +16,8 @@
   $sql_policyHolders = "DELETE FROM Primary_PolicyHolders 
                         WHERE PolicyID = '$PolicyID'"; 
 
+  // SQL Commands must be executed in THIS ORDER otherwise, foreign key constraints errors
+  // will be thrown. 
   if (mysqli_query($conn, $sql_policyInfo) && mysqli_query($conn, $sql_dependents) && mysqli_query($conn, $sql_policyHolders))
   {
     // Successfully inserted Agent into DB message.
