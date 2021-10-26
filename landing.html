@@ -116,6 +116,104 @@ Sunsure Agents
             container.appendChild(document.createElement("br"));
           }
       }
+
+      function addUpdateDependentFields()
+      {
+          // Number of inputs to create
+          var number = document.getElementById("updateClientNumOfDependents").value;
+
+          // Container <div> where dynamic content will be placed
+          var container = document.getElementById("updateDependentsContainer");
+
+          // Clear previous contents of the container
+          while (container.hasChildNodes()) 
+          {
+            container.removeChild(container.lastChild);
+          }
+
+          for (i = 0; i < number; i++)
+          {
+            var depRow = document.createElement("div");
+            depRow.className = "row";
+
+            var depFirstNameCol = document.createElement("div")
+            depFirstNameCol.className = "col";
+
+            var depLastNameCol = document.createElement("div")
+            depLastNameCol.className = "col";
+
+            var depDOBCol = document.createElement("div")
+            depDOBCol.className = "col";
+
+            var depSSNCol = document.createElement("div")
+            depSSNCol.className = "col";
+
+            // Create Dependent Title
+
+            // HTML Format:
+            // <br>
+
+            // <div>
+            //   <b style="font-size: 30px; font-family:"Montserrat", Times, serif;">
+            //     Dependent Information Form
+            //   </b>
+            // </div>
+
+            // <br>
+            // <br>
+            var titleDiv = document.createElement("div");
+            var boldedText = document.createElement("b");
+
+            boldedText.id = "dependent-Title"
+            boldedText.innerHTML = "Dependent " + (i+1) + " Information Form";
+            titleDiv.append(boldedText);
+
+            container.appendChild(titleDiv);
+
+            // Append two line breaks 
+            container.appendChild(document.createElement("br"));
+
+            // Create an <input> element, set its type and name attributes
+            var firstName = document.createElement("input");
+            firstName.type = "text";
+            firstName.name = "Dependent" + i;
+            firstName.id="update-dependent-input-FirstName" + i;
+            firstName.placeholder="First Name*";
+
+            var lastName = document.createElement("input");
+            lastName.type = "text";
+            lastName.name = "Dependent" + i;
+            lastName.id="update-dependent-input-LastName" + i;
+            lastName.placeholder="Last Name*";
+
+            var dateOfBirth = document.createElement("input");
+            dateOfBirth.type = "date";
+            dateOfBirth.name = "Dependent" + i;
+            dateOfBirth.id="update-dependent-input-DOB" + i;
+            dateOfBirth.placeholder="Date of Birth*";
+
+            var ssn = document.createElement("input");
+            ssn.type = "text";
+            ssn.name = "Dependent" + i;
+            ssn.id="update-dependent-input-SSN" + i;
+            ssn.placeholder="SSN";
+
+            // Attach Columns to fields
+            depFirstNameCol.appendChild(firstName);
+            depLastNameCol.appendChild(lastName);
+            depDOBCol.appendChild(dateOfBirth);
+            depSSNCol.appendChild(ssn);
+
+            // Attach Rows to create client form
+            depRow.append(depFirstNameCol, depLastNameCol, depDOBCol, depSSNCol);  
+
+						// Attach the Row to the Dependent Container
+            container.appendChild(depRow);
+
+            // Append a line break 
+            container.appendChild(document.createElement("br"));
+          }
+      }
     </script>
 </head>
 <body>
@@ -128,15 +226,15 @@ Sunsure Agents
   <script src="src/js/login.js"></script>   
   <script src="src/js/app.js"></script>
   <script type="text/javascript">
-    document.addEventListener('DOMContentLoaded', function() 
-    {
-      readCookie();
-    }, false);
+    // document.addEventListener('DOMContentLoaded', function() 
+    // {
+    //   readCookie();
+    // }, false);
 
-    window.onload = function() 
-    {
-      displayClientsTable();
-    };
+    // window.onload = function() 
+    // {
+    //   displayClientsTable();
+    // };
 	</script>
     
 	<!-- Website Container -->
@@ -371,6 +469,7 @@ Sunsure Agents
                   </div>
                 </div>
 
+                <!-- Add Dependents Container -->
                 <a href="#" id="filldetails" style="font-size: 25px;" onclick="addDependentFields()">Fill Dependent Details</a>
                 <div id="dependentsContainer"/>
                 </div>
@@ -534,7 +633,7 @@ Sunsure Agents
                  <!-- Over 65 Column -->
                  <div class="col">
                   <div class="checkboxes">
-                    <input type="checkbox" name="isOver65" id="isOver65"><label for "isOver65" class="highlight">  is Over 65?</label>
+                    <input type="checkbox" name="isOver65" id="updateIsOver65"><label for "isOver65" class="highlight">  is Over 65?</label>
                   </div>
                 </div>
               </div>
@@ -590,9 +689,15 @@ Sunsure Agents
                   <span class="material-icons" style="font-size:38px;">perm_identity</span>
                   <input type="text" id="updateClientAmbassador" placeholder="Ambassador"/>
                 </div>
+
+                 <!-- Application ID Column -->
+                 <div class="col">
+                  <span class="material-icons-outlined">info</span>
+                  <p type="text" id="showDetailsAppID">536443</p>
+                </div>
               </div>
 
-              <!-- Policy Information, Second Row -->
+              <!-- Policy Information, Third Row -->
               <div class="row">
                 
                 <!-- Notes Column -->
@@ -601,6 +706,11 @@ Sunsure Agents
                   </textarea>
                 </div>
               </div>
+
+              <a href="#" id="filldetails" style="font-size: 25px;" onclick="addUpdateDependentFields()">Fill Dependent Details</a>
+              <div id="updateDependentsContainer"/>
+              </div>
+
               <div>
                 <b style="font-size: 20px;">
                   * Required Fields
@@ -665,6 +775,7 @@ Sunsure Agents
                   </div>
                 </div>
 
+                <!-- Policy Information, Second Row -->
                 <div class="row">  
                   <!-- Carrier Column -->
                   <div class="col-md-4">
@@ -678,14 +789,14 @@ Sunsure Agents
                     <p type="text" id="showDetailsAmbassador">Jon Snow</p>
                   </div>
 
-                    <!-- Application ID Column -->
-                    <div class="col">
+                  <!-- Application ID Column -->
+                  <div class="col">
                     <span class="material-icons-outlined">info</span>
                     <p type="text" id="showDetailsAppID">536443</p>
                   </div>
                 </div>
 
-                <!-- Policy Information, Second Row -->
+                <!-- Policy Information, Third Row -->
                 <div class="row">
                   
                   <!-- Notes Column -->
@@ -694,6 +805,7 @@ Sunsure Agents
                   </div>
                 </div>
 
+                <!-- Dependents Information Forms -->
                 <div id="detailsDependentsContainer"/>
                 </div>
 
