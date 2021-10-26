@@ -17,7 +17,7 @@
 
   $PolicyInfoID = $inputFromJson['PolicyInfoID'];
 
-  $sql = "UPDATE Policy_Info SET ApplicationID = '" . $ApplicationID . "', PolicyType = '" . $PolicyType . "', AncillaryType = '" . $AncillaryType . "', Carrier = '" . $Carrier . "', EffectiveDate = '" . $EffectiveDate . "', AmbassadorName = '" . $AmbassadorName . "', Notes = '" . $Notes . "' WHERE PolicyInfoID = '" . $PolicyInfoID . "'";
+  $sql = "UPDATE Policy_Info SET ApplicationID = \"{$ApplicationID}\", PolicyType = \"{$PolicyType}\", AncillaryType = \"{$AncillaryType}\", Carrier = \"{$Carrier}\", EffectiveDate = \"{$EffectiveDate}\", AmbassadorName = \"{$AmbassadorName}\", Notes = \"{$Notes}\" WHERE PolicyInfoID = '{$PolicyInfoID}'";
 
   if (mysqli_query($conn, $sql))
   {
