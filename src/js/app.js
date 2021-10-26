@@ -746,7 +746,22 @@ function deleteClient(clientID)
 			// If successful there is no need to display a change.
 			if (this.readyState == 4 && this.status == 200)
 			{
-				;
+				var jsonObject = JSON.parse(xhr.responseText);
+				var endpointmsg = jsonObject['msg'];
+
+				if (endpointmsg === "Primary PolicyHolder has been deleted successfully!")
+				{
+					console.log(endpointmsg);
+					// document.getElementById("createClientResult").innerHTML = endpointmsg;
+					// document.getElementById("createClientResult").style.color = "green";
+				}
+
+				else
+				{
+					console.log(endpointmsg);
+					// document.getElementById("createClientResult").innerHTML = endpointmsg;
+					// document.getElementById("createClientResult").style.color = "red";
+				}
 			}
 		};
 		
