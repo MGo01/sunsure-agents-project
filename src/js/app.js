@@ -156,7 +156,7 @@ function saveUpdate()
 	
 		// document.getElementById("updateIsOver65").value;
 
-		updateClient(testID);
+		updateClient(testID, oldRowInfo[1], oldRowInfo[2]);
 	}
 
 	updateFlag = true;
@@ -807,7 +807,7 @@ function deleteClient(clientID)
 }
 
 // Updates a Contact's information based on their ID.
-function updateClient(policyID)
+function updateClient(policyID, clientFName, clientLName)
 {
 	var updatedClientFirstName = document.getElementById("updateClientFirstName").value;
 	var updatedClientLastName = document.getElementById("updateClientLastName").value;
@@ -846,7 +846,7 @@ function updateClient(policyID)
 	if (!checkFormNames(updatedClientFirstName, updatedClientLastName))
 		return;
 
-	document.getElementById("updateClientResult").innerHTML = "Updating";
+	document.getElementById("updateClientResult").innerHTML = "Updating " + clientFName + " " + clientLName;
 	document.getElementById("updateClientResult").style.color = "green";
 
 	// Package a JSON payload to deliver to the server that contains all
