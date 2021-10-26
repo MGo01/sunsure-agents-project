@@ -109,6 +109,9 @@ function displayClientsTable()
 function saveUpdate()
 {
 	var testid = $(this).data('testid');
+	var tr = $(this).parents("tr");
+  var id = tr.find('.id').text();
+	console.log(id);
 	var saveBtn = $(`#save-${testid}`);
 	var row = $(`.test-row-${testid}`);
 
@@ -810,7 +813,8 @@ function updateClient(policyID)
 	if (!checkFormNames(updatedClientFirstName, updatedClientLastName))
 		return;
 
-	document.getElementById("updateClientResult").innerHTML = "";
+	document.getElementById("updateClientResult").innerHTML = "Updating";
+	document.getElementById("updateClientResult").style.color = "green";
 
 	// Package a JSON payload to deliver to the server that contains all
 	// the contact details in order create the contact.
