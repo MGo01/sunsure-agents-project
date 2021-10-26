@@ -889,7 +889,7 @@ function updateClient(policyID, clientFName, clientLName)
 					console.log(endpointmsg);
 					document.getElementById("updateClientResult").innerHTML = endpointmsg;
 					document.getElementById("updateClientResult").style.color = "green";
-					updatePolicyInfo();
+					updatePolicyInfo(policyID);
 				}
 
 				else
@@ -973,7 +973,7 @@ function searchClients()
 	}
 }
 
-function updatePolicyInfo()
+function updatePolicyInfo(policyID)
 {
 	// Load in Updated Policy Information
 	var updatedPolicyType = document.getElementById("updatePolicyType").value;
@@ -999,7 +999,7 @@ function updatePolicyInfo()
 		"EffectiveDate": updatedEffectiveDate,
 		"AmbassadorName": updatedAmbassador,
 		"Notes": updatedNotes,
-		"PolicyInfoID": updatedClientAddress
+		"PolicyInfoID": policyID
 	};
 
 	jsonString = JSON.stringify(jsonPayload);
