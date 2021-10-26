@@ -986,7 +986,7 @@ function updatePolicyInfo()
 	var updatedAmbassador = document.getElementById("updateClientAmbassador").value;
 	var updatedApplicationID = document.getElementById("updateDetailsAppID").value;
 
-	updatedEffectiveDate = effectiveDate.replace(/[---]+/gi, '/');
+	updatedEffectiveDate = updatedEffectiveDate.replace(/[---]+/gi, '/');
 
 		// Package a JSON payload to deliver to the server that contains all
 	// the contact details in order create the contact.
@@ -1019,12 +1019,12 @@ function updatePolicyInfo()
 			if (this.readyState == 4 && this.status == 200)
 			{    
 				jsonObject = JSON.parse(xhr.responseText);
-				var endpointmsg = jsonObject['results'];
+				var endpointmsg = jsonObject['msg'];
 				console.log(endpointmsg);
 
 				if (endpointmsg === "Policy Information has been updated successfully!")
 				{
-					document.getElementById("updateClientResult").innerHTML = endpointmsg;
+					document.getElementById("updateClientResult").innerHTML = "Primary Policyholder has been fully updated!";
 					document.getElementById("updateClientResult").style.color = "green";
 				}
 
