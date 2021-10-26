@@ -120,7 +120,7 @@ function saveUpdate()
 	if (updateFlag)
 	{
 		updateFlag = false;
-		updateContact(testID);
+		updateClient(testID);
 	}
 
 	updateFlag = true;
@@ -771,7 +771,7 @@ function deleteClient(clientID)
 }
 
 // Updates a Contact's information based on their ID.
-function updateContact(policyID)
+function updateClient(policyID)
 {
 	var updatedClientFirstName = document.getElementById("updateClientFirstName").value;
 	var updatedClientLastName = document.getElementById("updateClientLastName").value;
