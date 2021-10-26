@@ -13,7 +13,9 @@ var globalPolicyID = -1;
 // var userId = 0;
 // var firstName = "";
 // var lastName = "";
-var updateFlag = false;
+var globalUpdateID = -1;
+var globalUpdateFName = "";
+var globalUpdateLName = "";
 
 // JQuery function inspired and modified by https://www.youtube.com/watch?v=DzXmAKdEYIs
 // to allow for easier row insertion into the UI data table.
@@ -108,7 +110,7 @@ function displayClientsTable()
 // that links the update button in each row to the Update endpoint.
 function saveUpdate()
 {
-	var testid = $(this).data('testid');
+	globalUpdateID = $(this).data('testid');
 
 	var $row = $(this).closest("tr"),       // Finds the closest row <tr>
 			$tds = $row.find("td");             // Finds all children <td> elements
@@ -123,43 +125,36 @@ function saveUpdate()
 	var saveBtn = $(`#save-${testid}`);
 	var row = $(`.test-row-${testid}`);
 
-	if (updateFlag == false)
-		testID = testid;
+	// Load in old row information into Update Modal Form
+	document.getElementById("updateClientFirstName").placeholder = oldRowInfo[1];
+	document.getElementById("updateClientLastName").placeholder = oldRowInfo[2] ;
 
-	// We only want to update and send JSON to the Update Endpoint once
-	// the modal has been displayed.
-	if (updateFlag)
-	{
-		updateFlag = false;
+	document.getElementById("updateClientDateOfBirth").placeholder = oldRowInfo[3];
+	document.getElementById("updateClientSSN").placeholder = oldRowInfo[4];
 
-		// Load in old row information into Update Modal Form
-		document.getElementById("updateClientFirstName").ariaPlaceholder = oldRowInfo[1];
-		document.getElementById("updateClientLastName").ariaPlaceholder = oldRowInfo[2] ;
-	
-		document.getElementById("updateClientDateOfBirth").ariaPlaceholder = oldRowInfo[3];
-		document.getElementById("updateClientSSN").ariaPlaceholder = oldRowInfo[4];
-	
-		document.getElementById("updateClientPhone").ariaPlaceholder = oldRowInfo[5];
-		document.getElementById("updateClientAddress").ariaPlaceholder = oldRowInfo[6];
-	
-		document.getElementById("updateClientSecondLineAddress").ariaPlaceholder = oldRowInfo[7];
-	
-		document.getElementById("updateClientCity").ariaPlaceholder = oldRowInfo[8];
-	
-		document.getElementById("updateClientZIP").ariaPlaceholder = oldRowInfo[9];
-		document.getElementById("updateStatesMenu").ariaPlaceholder = oldRowInfo[10];
-	
-		document.getElementById("updateClientEmail").ariaPlaceholder = oldRowInfo[11];
-		document.getElementById("updateClientNumOfDependents").ariaPlaceholder = oldRowInfo[12];
-	
-		document.getElementById("updateSourceMenu").ariaPlaceholder = oldRowInfo[13];
-	
-		// document.getElementById("updateIsOver65").value;
+	document.getElementById("updateClientPhone").placeholder = oldRowInfo[5];
+	document.getElementById("updateClientAddress").placeholder = oldRowInfo[6];
 
-		updateClient(testID, oldRowInfo[1], oldRowInfo[2]);
-	}
+	document.getElementById("updateClientSecondLineAddress").placeholder = oldRowInfo[7];
 
-	updateFlag = true;
+	document.getElementById("updateClientCity").placeholder = oldRowInfo[8];
+
+	document.getElementById("updateClientZIP").placeholder = oldRowInfo[9];
+	document.getElementById("updateStatesMenu").placeholder = oldRowInfo[10];
+
+	document.getElementById("updateClientEmail").placeholder = oldRowInfo[11];
+	document.getElementById("updateClientNumOfDependents").placeholder = oldRowInfo[12];
+
+	// Clear and store the oldRowInfo Array
+	globalUpdateFName = oldRowInfo[1];
+	globalUpdateLName = oldRowInfo[2];
+
+	oldRowInfo.length = 0;
+}
+
+function updateClientWrap()
+{
+	updateClient(globalUpdateID, globalUpdateFName, globalUpdateLName);
 }
 
 // JQuery function inspired and modified by https://www.youtube.com/watch?v=DzXmAKdEYIs
@@ -875,10 +870,10 @@ function updateClient(policyID, clientFName, clientLName)
 	var url = urlBase + '/updatePolicyHolder.' + extension;
 	var xhr = new XMLHttpRequest();
 
-	xhr.open("POST", url, true);
+	xhr.open("POST", url, false);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
-// Basic try and catch to ensure that any server code errors are
+	// Basic try and catch to ensure that any server code errors are
 	// handled properly.
 	try 
 	{
@@ -888,7 +883,7 @@ function updateClient(policyID, clientFName, clientLName)
 			{    
 				jsonObject = JSON.parse(xhr.responseText);
 				var endpointmsg = jsonObject['msg'];
-				console.log(clientsList);
+				console.log(endpointmsg);
 
 				if (endpointmsg === "Primary PolicyHolder has been updated successfully!")
 				{
@@ -1006,6 +1001,9 @@ function showRegistrationPassword()
 // that only alphabetical characters are allowed to be inserted into the database.
 function checkFormNames(firstName, lastName)
 {
+	if (firstName === "" || lastName === "")
+		return false;
+
   var isAlpha = function(ch)
   {
     return typeof ch === "string" && ch.length === 1 && (ch >= "a" && ch <= "z" || ch >= "A" && ch <= "Z");
