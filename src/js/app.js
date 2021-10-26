@@ -110,7 +110,7 @@ function saveUpdate()
 {
 	var testid = $(this).data('testid');
 	var tr = $(this).parents("tr");
-  var id = tr.find('.id').text();
+  var id = tr.find('testid').text();
 	console.log(id);
 	var saveBtn = $(`#save-${testid}`);
 	var row = $(`.test-row-${testid}`);
