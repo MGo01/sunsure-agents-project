@@ -109,13 +109,17 @@ function displayClientsTable()
 function saveUpdate()
 {
 	var testid = $(this).data('testid');
-	// Finds the closest row <tr> 
-	// Gets a descendent with class="nr"
-	// Retrieves the text within <td>
-	var $item = $(this).closest("tr")   
-                       .find(".nr")     
-                       .text();  
-	console.log($item);
+
+	var $row = $(this).closest("tr"),       // Finds the closest row <tr>
+			$tds = $row.find("td");             // Finds all children <td> elements
+
+	oldRowInfo = [];
+
+	$.each($tds, function() {               // Visits every single <td> element
+		oldRowInfo.push($(this).text());
+		console.log($(this).text());        // Prints out the text within the <td>
+	});
+
 	var saveBtn = $(`#save-${testid}`);
 	var row = $(`.test-row-${testid}`);
 
@@ -127,6 +131,31 @@ function saveUpdate()
 	if (updateFlag)
 	{
 		updateFlag = false;
+
+		// Load in old row information into Update Modal Form
+		document.getElementById("updateClientFirstName").ariaPlaceholder = oldRowInfo[1];
+		document.getElementById("updateClientLastName").ariaPlaceholder = oldRowInfo[2] ;
+	
+		document.getElementById("updateClientDateOfBirth").ariaPlaceholder = oldRowInfo[3];
+		document.getElementById("updateClientSSN").ariaPlaceholder = oldRowInfo[4];
+	
+		document.getElementById("updateClientPhone").ariaPlaceholder = oldRowInfo[5];
+		document.getElementById("updateClientAddress").ariaPlaceholder = oldRowInfo[6];
+	
+		document.getElementById("updateClientSecondLineAddress").ariaPlaceholder = oldRowInfo[7];
+	
+		document.getElementById("updateClientCity").ariaPlaceholder = oldRowInfo[8];
+	
+		document.getElementById("updateClientZIP").ariaPlaceholder = oldRowInfo[9];
+		document.getElementById("updateStatesMenu").ariaPlaceholder = oldRowInfo[10];
+	
+		document.getElementById("updateClientEmail").ariaPlaceholder = oldRowInfo[11];
+		document.getElementById("updateClientNumOfDependents").ariaPlaceholder = oldRowInfo[12];
+	
+		document.getElementById("updateSourceMenu").ariaPlaceholder = oldRowInfo[13];
+	
+		// document.getElementById("updateIsOver65").value;
+
 		updateClient(testID);
 	}
 
