@@ -881,7 +881,7 @@ function updateClient(policyID, clientFName, clientLName)
 	// inputs are left blank and only have alphabetical characters.
 	try 
 	{
-		checkFormNames(updatedClientFirstName, updatedClientLastName))
+		checkFormNames(updatedClientFirstName, updatedClientLastName);
 	}
 
 	catch (error)
