@@ -62,6 +62,9 @@
       // and store them in "searchResults"
       $searchResults = getDependents($result, $conn);
 
+      if (is_null($searchResults))
+        returnError("No valid Dependents were found");
+
       returnInfo($searchResults);
     }
 
@@ -77,7 +80,7 @@
   function returnError($error)
   {
     $retval = (object) [
-      'msg' => $error
+      'results' => $error
     ];
 
     outputJson($retval);
