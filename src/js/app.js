@@ -1275,6 +1275,7 @@ function updateClient(policyID, clientFName, clientLName)
 					
 					else
 					{
+						updatePolicyInfo(policyID);
 						clearUpdatedModalForm();
 					}
 				}
