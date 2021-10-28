@@ -970,7 +970,7 @@ function clearDependents(dependentID)
 	}	
 }
 
-function insertUpdatedDependents()
+function insertUpdatedDependents(dependentsArray)
 {
 	async function postData(data) 
 	{
