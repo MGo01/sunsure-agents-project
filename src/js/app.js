@@ -879,8 +879,15 @@ function updateClient(policyID, clientFName, clientLName)
 
 	// This helps to ensure that none of the form
 	// inputs are left blank and only have alphabetical characters.
-	if (!checkFormNames(updatedClientFirstName, updatedClientLastName))
-		return;
+	try 
+	{
+		checkFormNames(updatedClientFirstName, updatedClientLastName))
+	}
+
+	catch (error)
+	{
+		console.log(error);
+	}
 
 	document.getElementById("updateClientResult").innerHTML = "Updating " + clientFName + " " + clientLName;
 	document.getElementById("updateClientResult").style.color = "green";
@@ -1171,9 +1178,9 @@ function checkRequiredFields(clientObj, spanName)
 		{
 			document.getElementById(spanName).innerHTML = "Data Field Missing: " + key + " cannot be empty.";
 			document.getElementById(spanName).style.color = "red";
-			return false;
+			throw new Error("Data Field Missing");
 		}
 	}
 
-	return true;
+	return;
 }
