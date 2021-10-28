@@ -623,6 +623,55 @@ function clearModalForm(numOfDependents)
 	}
 }
 
+function clearUpdatedModalForm()
+{
+		// Clear the Client Information Form
+		document.getElementById("updateClientFirstName").innerHTML = "";
+		document.getElementById("updateClientLastName").innerHTML = "";
+	
+		document.getElementById("updateClientSSN").innerHTML = "";
+		document.getElementById("updateClientPhone").innerHTML = "";
+	
+		document.getElementById("updateClientAddress").innerHTML = "";
+	
+		document.getElementById("updateClientSecondLineAddress").innerHTML = "";
+		document.getElementById("updateClientCity").innerHTML = "";
+	
+		document.getElementById("updateClientZIP").innerHTML = "";
+	
+		document.getElementById("updateClientEmail").innerHTML = "";
+
+		document.getElementById("updateClientNumOfDependents").innerHTML = "";
+	
+		// Clear the Policy Information Form
+		document.getElementById("updatePolicyType").innerHTML = "";
+	
+		document.getElementById("updateAncillaryType").innerHTML = "";
+	
+		document.getElementById("updateEffectiveDate").innerHTML = "";
+		document.getElementById("updateCarriers").innerHTML = "";
+
+		document.getElementById("updateNotes").innerHTML = "";
+		document.getElementById("updateClientAmbassador").innerHTML = "";
+	
+		document.getElementById("updateDetailsAppID").innerHTML = "";
+	
+		for (let i = 0; i < numOfDependents; i++)
+		{
+			// Depending on the number of dependents
+			// these strings will pull the right data accordingly.
+			var FNameString = "update-dependent-input-FirstName" + i;
+			var LNameString = "update-dependent-input-LastName" + i;
+			var DOBString = "update-dependent-input-DOB" + i;
+			var SSNString = "update-dependent-input-SSN" + i;
+	
+			document.getElementById(FNameString).innerHTML = "";
+			document.getElementById(LNameString).innerHTML = "";
+			document.getElementById(DOBString).innerHTML = "";
+			document.getElementById(SSNString).innerHTML = "";
+		}
+}
+
 // Creates a client for a specific user and stores it
 // accordingly in the database.
 function createPolicyHolder()
@@ -657,6 +706,13 @@ function createPolicyHolder()
 		isOver65 = 'Y';
 	else
 		isOver65 = 'N';
+
+	if (clientNumOfDependents <= 0)
+	{
+		document.getElementById("createClientResult").innerHTML = "Data Value Error: Negative values are not allowed";
+		document.getElementById("createClientResult").style.color = "red";
+		return;
+	}
 
 	// Remove any special characters in order to ensure all
 	// numbers are a 10 digit string.
@@ -742,7 +798,6 @@ function createPolicyHolder()
 					console.log("Client insertion was not successful!");
 					document.getElementById("createClientResult").innerHTML = endpointmsg;
 					document.getElementById("createClientResult").style.color = "red";
-					return;
 				}
 
 				else
@@ -870,6 +925,211 @@ function deleteClient(clientID)
 	}
 }
 
+function clearDependents(dependentID)
+{
+	var xhr = new XMLHttpRequest();
+	var newUrl = 'http://sunsure-agent.com/API/clearDependents.php';
+
+	// Package a JSON payload to deliver to the server that contains all
+	// the contact's ID in order delete the contact.
+	var jsonPayload =
+	'{"DependentID" : "' + dependentID + '"}';
+
+	xhr.open("DELETE", newUrl, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+	// Basic try and catch to ensure that any server code errors are
+	// handled properly.
+	try
+	{
+		xhr.onreadystatechange = function()
+		{
+			// If successful there is no need to display a change.
+			if (this.readyState == 4 && this.status == 200)
+			{
+				var jsonObject = JSON.parse(xhr.responseText);
+				var endpointmsg = jsonObject['msg'];
+
+				if (endpointmsg === "Dependents have been cleared")
+				{
+					console.log(endpointmsg);
+				}
+
+				else
+				{
+					console.log(endpointmsg);
+				}
+			}
+		};
+		
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		document.getElementById("updateClientResult").innerHTML = err.message;
+	}	
+}
+
+function insertUpdatedDependents()
+{
+	async function postData(data) 
+	{
+		url = 'http://68.183.97.82/API/createDependent.php';
+		// Default options are marked with *
+		const response = await fetch(url, {
+			method: 'POST',
+			mode: 'cors', 
+			cache: 'no-cache', 
+			credentials: 'same-origin', 
+			headers: {
+				'Content-Type': 'application/json'
+				
+			},
+			redirect: 'follow', 
+			referrerPolicy: 'no-referrer', 
+			body: data
+		});
+
+		// Parses JSON response into native JavaScript objects
+		return response.json();
+	}
+
+	let promiseArray = [];
+
+	for (let i = 0; i < dependentsArray.length; i++)
+		promiseArray.push(postData(dependentsArray[i]))
+
+	Promise.all(promiseArray)
+	.then(values => values.map(value => console.log(value.url + " ==> " + value.status)))
+	.catch(err=>console.log(err))
+
+	console.log(dependentsArray);
+}
+
+function updatePolicyInfo(policyID)
+{
+	// Load in Updated Policy Information
+	var updatedPolicyType = document.getElementById("updatePolicyType").value;
+	var updatedAncillaryType = document.getElementById("updateAncillaryType").value;
+
+	var updatedEffectiveDate = document.getElementById("updateEffectiveDate").value;
+	var updatedCarrier = document.getElementById("updateCarriers").value;
+	var updatedNotes = document.getElementById("updateNotes").value;
+
+	var updatedAmbassador = document.getElementById("updateClientAmbassador").value;
+	var updatedApplicationID = document.getElementById("updateDetailsAppID").value;
+
+	updatedEffectiveDate = updatedEffectiveDate.replace(/[---]+/gi, '/');
+
+		// Package a JSON payload to deliver to the server that contains all
+	// the contact details in order create the contact.
+  var jsonPayload = 
+	{
+		"ApplicationID": updatedApplicationID,
+		"PolicyType": updatedPolicyType,
+		"AncillaryType": updatedAncillaryType,
+		"Carrier" : updatedCarrier,
+		"EffectiveDate": updatedEffectiveDate,
+		"AmbassadorName": updatedAmbassador,
+		"Notes": updatedNotes,
+		"PolicyInfoID": policyID
+	};
+
+	jsonString = JSON.stringify(jsonPayload);
+
+	var url = urlBase + '/updatePolicyInfo.' + extension;
+
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST", url, false);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+	// Basic try and catch to ensure that any server code errors are
+	// handled properly.
+	try 
+	{
+		xhr.onreadystatechange = function()
+		{
+			if (this.readyState == 4 && this.status == 200)
+			{    
+				jsonObject = JSON.parse(xhr.responseText);
+				var endpointmsg = jsonObject['msg'];
+				console.log(endpointmsg);
+
+				if (endpointmsg === "Policy Information has been updated successfully!")
+				{
+					document.getElementById("updateClientResult").innerHTML = "Primary Policyholder has been fully updated!";
+					document.getElementById("updateClientResult").style.color = "green";
+				}
+
+				else
+				{
+					document.getElementById("updateClientResult").innerHTML = endpointmsg;
+					document.getElementById("updateClientResult").style.color = "red";
+				}
+			}
+		};
+
+		console.log(jsonString);
+		xhr.send(jsonString);
+	}
+	
+	catch(error)
+	{
+		console.log(error.message);
+		document.getElementById("updateClientResult").innerHTML = error.message;
+		document.getElementById("updateClientResult").style.color = "red";
+	}
+}
+
+function getUpdatedDependentsArray(numOfDependents)
+{
+	var dependentsArray = [];
+	var spanName = "updateClientResult";
+
+	for (let i = 0; i < numOfDependents; i++)
+	{
+		// Depending on the number of dependents
+		// these strings will pull the right data accordingly.
+		var FNameString = "update-dependent-input-FirstName" + i;
+		var LNameString = "update-dependent-input-LastName" + i;
+		var DOBString = "update-dependent-input-DOB" + i;
+		var SSNString = "update-dependent-input-SSN" + i;
+
+		var dependentFirstName = document.getElementById(FNameString).value;
+		var dependentLastName = document.getElementById(LNameString).value;
+		var dependentDOB = document.getElementById(DOBString).value;
+		var dependentSSN = document.getElementById(SSNString).value;
+
+		// Remove any dashes and replace them with a forward slash.
+		dependentDOB = dependentDOB.replace(/[---]+/gi, '/');
+
+		// This helps to ensure that none of the form
+		// inputs are left blank and only have alphabetical characters.
+		if (!checkFormNames(dependentFirstName, dependentLastName, spanName))
+		{
+			dependentsArray.length = 0;
+			return;
+		}
+
+		// Create JSON for each dependent to later
+		// store in dependentsArray.
+		var dependentObj = 
+		{
+			"FirstName": dependentFirstName,
+			"LastName": dependentLastName,
+			"DateOfBirth": dependentDOB,
+			"SSN": dependentSSN,
+			"DependentID": globalPolicyID
+		};
+
+		dependentJSON = JSON.stringify(dependentObj);
+
+		dependentsArray.push(dependentJSON);
+	}
+
+	return dependentsArray;
+}
+
 // Updates a Contact's information based on their ID.
 function updateClient(policyID, clientFName, clientLName)
 {
@@ -894,9 +1154,26 @@ function updateClient(policyID, clientFName, clientLName)
 
 	var updatedClientSource = document.getElementById("updateSourceMenu").value;
 
-	var updatedIsOver65 = document.getElementById("updateIsOver65").value;
+	var updatedIsOver65 = document.getElementById("updateIsOver65").checked;
 
-	console.log(updatedIsOver65);
+	var spanName = "updateClientResult";
+
+	if (updatedIsOver65)
+		updatedIsOver65 = 'Y';
+	else
+		updatedIsOver65 = 'N';
+
+	if (updatedClientNumOfDependents <= 0)
+	{
+		document.getElementById("createClientResult").innerHTML = "Data Value Error: Negative values are not allowed";
+		document.getElementById("createClientResult").style.color = "red";
+		return;
+	}
+
+	// This helps to ensure that none of the form
+	// inputs are left blank and only have alphabetical characters.
+	if (!checkFormNames(updatedClientFirstName, updatedClientLastName, spanName))
+		return;
 
 	// Remove any special characters in order to ensure all
 	// numbers are a 10 digit string.
@@ -905,16 +1182,31 @@ function updateClient(policyID, clientFName, clientLName)
 	// Remove any dashes and replace them with a forward slash.
 	updatedClientDateOfBirth = updatedClientDateOfBirth.replace(/[---]+/gi, '/');
 
+	// Package JSON that contains all required
+	// client fields
+  var requiredObj = 
+	{
+		"FirstName": updatedClientFirstName,
+		"LastName" : updatedClientLastName,
+		"DateOfBirth": updatedClientDateOfBirth,
+		"Address": updatedClientAddress,
+		"City": updatedClientCity,
+		"ZipCode": updatedClientZIP,
+		"State": updatedClientState,
+		"Source": updatedClientSource
+	};
+
 	// This helps to ensure that none of the form
 	// inputs are left blank and only have alphabetical characters.
 	try 
 	{
-		checkFormNames(updatedClientFirstName, updatedClientLastName);
+		checkRequiredFields(requiredObj, spanName);
 	}
 
 	catch (error)
 	{
 		console.log(error);
+		return;
 	}
 
 	document.getElementById("updateClientResult").innerHTML = "Updating " + clientFName + " " + clientLName;
@@ -966,7 +1258,25 @@ function updateClient(policyID, clientFName, clientLName)
 					console.log(endpointmsg);
 					document.getElementById("updateClientResult").innerHTML = endpointmsg;
 					document.getElementById("updateClientResult").style.color = "green";
-					updatePolicyInfo(policyID);
+
+					// If we want to update the dependents information
+					// then we need to ensure that a value is inserted
+					if (updatedClientNumOfDependents >= 1)
+					{
+						// Retrieve and generate an array based on
+						// the updated dependents forms
+						clearDependents(policyID);
+						let dependentsArray = getUpdatedDependentsArray(updatedClientNumOfDependents);
+
+						updatePolicyInfo(policyID);
+						insertUpdatedDependents(dependentsArray);
+						clearUpdatedModalForm();
+					}
+					
+					else
+					{
+						clearUpdatedModalForm();
+					}
 				}
 
 				else
@@ -974,7 +1284,6 @@ function updateClient(policyID, clientFName, clientLName)
 					console.log(endpointmsg);
 					document.getElementById("updateClientResult").innerHTML = endpointmsg;
 					document.getElementById("updateClientResult").style.color = "red";
-					return;
 				}
 			}
 		};
@@ -1054,81 +1363,6 @@ function searchClients()
 		console.log(error.message);
 		document.getElementById("searchResults").innerHTML = error.message;
 		document.getElementById("searchResults").style.color = "red";
-	}
-}
-
-function updatePolicyInfo(policyID)
-{
-	// Load in Updated Policy Information
-	var updatedPolicyType = document.getElementById("updatePolicyType").value;
-	var updatedAncillaryType = document.getElementById("updateAncillaryType").value;
-
-	var updatedEffectiveDate = document.getElementById("updateEffectiveDate").value;
-	var updatedCarrier = document.getElementById("updateCarriers").value;
-	var updatedNotes = document.getElementById("updateNotes").value;
-
-	var updatedAmbassador = document.getElementById("updateClientAmbassador").value;
-	var updatedApplicationID = document.getElementById("updateDetailsAppID").value;
-
-	updatedEffectiveDate = updatedEffectiveDate.replace(/[---]+/gi, '/');
-
-		// Package a JSON payload to deliver to the server that contains all
-	// the contact details in order create the contact.
-  var jsonPayload = 
-	{
-		"ApplicationID": updatedApplicationID,
-		"PolicyType": updatedPolicyType,
-		"AncillaryType": updatedAncillaryType,
-		"Carrier" : updatedCarrier,
-		"EffectiveDate": updatedEffectiveDate,
-		"AmbassadorName": updatedAmbassador,
-		"Notes": updatedNotes,
-		"PolicyInfoID": policyID
-	};
-
-	jsonString = JSON.stringify(jsonPayload);
-
-	var url = urlBase + '/updatePolicyInfo.' + extension;
-
-	var xhr = new XMLHttpRequest();
-	xhr.open("POST", url, false);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-
-	// Basic try and catch to ensure that any server code errors are
-	// handled properly.
-	try 
-	{
-		xhr.onreadystatechange = function()
-		{
-			if (this.readyState == 4 && this.status == 200)
-			{    
-				jsonObject = JSON.parse(xhr.responseText);
-				var endpointmsg = jsonObject['msg'];
-				console.log(endpointmsg);
-
-				if (endpointmsg === "Policy Information has been updated successfully!")
-				{
-					document.getElementById("updateClientResult").innerHTML = "Primary Policyholder has been fully updated!";
-					document.getElementById("updateClientResult").style.color = "green";
-				}
-
-				else
-				{
-					document.getElementById("updateClientResult").innerHTML = endpointmsg;
-					document.getElementById("updateClientResult").style.color = "red";
-				}
-			}
-		};
-
-		console.log(jsonString);
-		xhr.send(jsonString);
-	}
-	
-	catch(error)
-	{
-		console.log(error.message);
-		document.getElementById("updateClientResult").innerHTML = error.message;
-		document.getElementById("updateClientResult").style.color = "red";
 	}
 }
 
