@@ -639,7 +639,7 @@ function createPolicyHolder()
 	var clientSource = document.getElementById("sourceMenu").value;
 	var isOver65 = document.getElementById("isOver65").checked;
 
-	var spanName = createClientResult;
+	var spanName = "createClientResult";
 
 	// Change boolean to single character
 	// for DB entry.
