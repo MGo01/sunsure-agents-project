@@ -171,6 +171,7 @@ function deleteTest()
 function getDependentsArray(clientNumOfDependents)
 {
 	var dependentsArray = [];
+	var spanName = "createClientResult";
 
 	for (let i = 0; i < clientNumOfDependents; i++)
 	{
@@ -191,8 +192,11 @@ function getDependentsArray(clientNumOfDependents)
 
 		// This helps to ensure that none of the form
 		// inputs are left blank and only have alphabetical characters.
-		if (!checkFormNames(dependentFirstName, dependentLastName))
+		if (!checkFormNames(dependentFirstName, dependentLastName, spanName))
+		{
+			dependentsArray.length = 0;
 			return;
+		}
 
 		// Create JSON for each dependent to later
 		// store in dependentsArray.
@@ -229,6 +233,9 @@ function fillInDependentForm(depArray)
 
 	for (let i = 0; i < number; i++)
 	{
+		if (depArray[i] === "")
+			depArray[i] = "N/A";
+
 		// Append a node with a random text
 		var depRow = document.createElement("div");
 		depRow.className = "row";
@@ -650,7 +657,7 @@ function createPolicyHolder()
 
 	// This helps to ensure that none of the form
 	// inputs are left blank and only have alphabetical characters.
-	if (!checkFormNames(clientFirstName, clientLastName))
+	if (!checkFormNames(clientFirstName, clientLastName, spanName))
 		return;
 
 	document.getElementById("createClientResult").innerHTML = "";
@@ -1115,10 +1122,14 @@ function showRegistrationPassword()
 
 // Checks the first and last name of a given user input to ensure
 // that only alphabetical characters are allowed to be inserted into the database.
-function checkFormNames(firstName, lastName)
+function checkFormNames(firstName, lastName, spanName)
 {
 	if (firstName === "" || lastName === "")
+	{
+		document.getElementById(spanName).innerHTML = "Either First Name or Last Name field is empty.";
+		document.getElementById(spanName).style.color = "red";
 		return false;
+	}
 
   var isAlpha = function(ch)
   {
@@ -1129,7 +1140,8 @@ function checkFormNames(firstName, lastName)
 	{
     if (!isAlpha(firstName[i])) 
 		{
-      document.getElementById("registerResult").innerHTML = 'First name must have alphabet characters only';
+			document.getElementById(spanName).innerHTML = "First name must have alphabet characters only";
+			document.getElementById(spanName).style.color = "red";
 
       return false;
     }
@@ -1139,7 +1151,8 @@ function checkFormNames(firstName, lastName)
 	{
     if (!isAlpha(lastName[j])) 
 		{
-      document.getElementById("registerResult").innerHTML = 'Last name must have alphabet characters only';
+			document.getElementById(spanName).innerHTML = "Last name must have alphabet characters only";
+			document.getElementById(spanName).style.color = "red";
 
       return false;
     }
