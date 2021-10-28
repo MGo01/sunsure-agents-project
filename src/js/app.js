@@ -439,6 +439,15 @@ function loadDependents(policyID)
 					console.log("Unable to load dependents information");
 					document.getElementById("showDetailsResult").innerHTML = endpointmsg;	
 					document.getElementById("showDetailsResult").style.color = "red";
+
+					// Container <div> where dynamic content will be placed
+					let container = document.getElementById("detailsDependentsContainer");
+
+					// Clear previous contents of the container
+					while (container.hasChildNodes())
+					{
+						container.removeChild(container.lastChild);
+					}		
 				}
 
 				else
@@ -446,24 +455,7 @@ function loadDependents(policyID)
 					console.log("Successfully loaded dependent information");
 					document.getElementById("showDetailsResult").innerHTML = "";	
 
-					// Make sure that we aren't attempting to access
-					// an empty or null array.
-					if (!Array.isArray(depArray) || !depArray.length)
-					{
-						// Container <div> where dynamic content will be placed
-						var container = document.getElementById("detailsDependentsContainer");
-
-						// Clear previous contents of the container
-						while (container.hasChildNodes())
-						{
-							container.removeChild(container.lastChild);
-						}		
-					}
-
-					else
-					{
-						fillInDependentForm(depArray)
-					}
+					fillInDependentForm(depArray)
 				}
 			}
 		};
@@ -524,7 +516,6 @@ function fillShowDetailsForm()
 					console.log("Unable to load policy information");
 					document.getElementById("showDetailsResult").innerHTML = endpointmsg;	
 					document.getElementById("showDetailsResult").style.color = "red";
-					return;
 				}
 
 				else
@@ -546,6 +537,17 @@ function fillShowDetailsForm()
 					effectiveDate = jsonObject.EffectiveDate;
 					ambassadorName = jsonObject.AmbassadorName;
 					notes = jsonObject.Notes; 
+
+					// Load the Policy Information Form
+					document.getElementById("showDetailsPolicyType").innerHTML = "" + policyType;
+					document.getElementById("showDetailsAncillaryType").innerHTML = "" + ancillaryType;
+					document.getElementById("showDetailsEffectiveDate").innerHTML = "" + effectiveDate;
+
+					document.getElementById("showDetailsCarrier").innerHTML = "" + carrier;
+					document.getElementById("showDetailsAmbassador").innerHTML = "" + ambassadorName;
+					document.getElementById("showDetailsAppID").innerHTML = "" + applicationID;
+					document.getElementById("showDetailsNotes").innerHTML = "" + notes;
+
 				}
 			}
 		};
@@ -561,16 +563,8 @@ function fillShowDetailsForm()
 		document.getElementById("showDetailsResult").style.color = "red";
 	}
 
-	// Load the Policy Information Form
-	document.getElementById("showDetailsPolicyType").innerHTML = "" + policyType;
-	document.getElementById("showDetailsAncillaryType").innerHTML = "" + ancillaryType;
-	document.getElementById("showDetailsEffectiveDate").innerHTML = "" + effectiveDate;
-
-	document.getElementById("showDetailsCarrier").innerHTML = "" + carrier;
-	document.getElementById("showDetailsAmbassador").innerHTML = "" + ambassadorName;
-	document.getElementById("showDetailsAppID").innerHTML = "" + applicationID;
-	document.getElementById("showDetailsNotes").innerHTML = "" + notes;
-
+	// Check if Any Dependent Data was inserted
+	// Without Policy Info being inserted.
 	loadDependents(policyID);
 }
 
