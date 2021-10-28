@@ -934,7 +934,7 @@ function clearDependents(dependentID)
 	var jsonPayload =
 	'{"DependentID" : "' + dependentID + '"}';
 
-	xhr.open("DELETE", newUrl, true);
+	xhr.open("DELETE", newUrl, false);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
 	// Basic try and catch to ensure that any server code errors are
@@ -1265,10 +1265,10 @@ function updateClient(policyID, clientFName, clientLName)
 						// Retrieve and generate an array based on
 						// the updated dependents forms
 						clearDependents(policyID);
-						let dependentsArray = getUpdatedDependentsArray(updatedClientNumOfDependents);
+						let dependentsArray = getUpdatedDependentsArray(updatedClientNumOfDependents, policyID);
 
 						updatePolicyInfo(policyID);
-						insertUpdatedDependents(dependentsArray, policyID);
+						insertUpdatedDependents(dependentsArray);
 						clearUpdatedModalForm(updatedClientNumOfDependents);
 					}
 					
