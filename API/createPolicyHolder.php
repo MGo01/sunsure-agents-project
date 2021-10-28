@@ -37,7 +37,7 @@
 
   if (checkPrimaryPolicy($LastName, $DateOfBirth, $conn))
   {
-    $sql = "INSERT INTO Primary_PolicyHolders (AgentID, FirstName, LastName, DateOfBirth, SSN, Phone, Address, Second_Line_Address, City, ZipCode, State, Email, NumOfDependents, PolicyInfoID, Source)
+    $sql = "INSERT INTO Primary_PolicyHolders (AgentID, FirstName, LastName, DateOfBirth, SSN, Phone, Address, Second_Line_Address, City, ZipCode, State, Email, NumOfDependents, Source)
     VALUES ('".$AgentID."','".$FirstName."','".$LastName."','".$DateOfBirth."', '".$SSN."',
             '".$Phone."','".$Address."','".$Second_Line_Address."', '".$City."', '".$ZipCode."',
             '".$State."','".$Email."', '".$NumOfDependents."', '".$Source."')";

@@ -750,13 +750,21 @@ function createPolicyHolder()
 					console.log(endpointmsg);
 					globalPolicyID = endpointmsg;
 
-					// Retrieve and generate an array based on
-					// the dependents forms
-					let dependentsArray = getDependentsArray(clientNumOfDependents);
+					if (clientNumOfDependents >= 1)
+					{
+						// Retrieve and generate an array based on
+						// the dependents forms
+						let dependentsArray = getDependentsArray(clientNumOfDependents);
 
-					insertPolicyInfo();
-          insertDependents(dependentsArray);
-					clearModalForm();  
+						insertPolicyInfo();
+						insertDependents(dependentsArray);
+						clearModalForm();
+					}
+					
+					else
+					{
+						clearModalForm();
+					}
 				}
 			}
 		};
