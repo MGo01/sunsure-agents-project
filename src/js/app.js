@@ -1169,7 +1169,7 @@ function checkRequiredFields(clientObj, spanName)
 	{
 		if (clientObj[key] === "")
 		{
-			document.getElementById(spanName).innerHTML = "Error: " + key + "cannot be empty.";
+			document.getElementById(spanName).innerHTML = "Data Field Missing: " + key + " cannot be empty.";
 			document.getElementById(spanName).style.color = "red";
 			return false;
 		}
