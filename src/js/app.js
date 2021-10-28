@@ -531,6 +531,12 @@ function fillShowDetailsForm()
 					console.log("Successfully loaded policy information");
 					document.getElementById("showDetailsResult").innerHTML = "";	
 
+					for (let i in jsonObject)
+					{
+						if (jsonObject[i] === "")
+							jsonObject[i] = "N/A";
+					}
+
 					applicationID = jsonObject.ApplicationID;
 					policyType = jsonObject.PolicyType;
 					ancillaryType = jsonObject.AncillaryType;
