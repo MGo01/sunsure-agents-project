@@ -75,6 +75,22 @@ body
     color: red;
 }
 
+#clientTableResults 
+{
+    text-align: center;
+}
+
+.inner 
+{
+    display: inline-block;
+    position: relative;
+}
+
+.overflow 
+{
+    float: right;
+}
+
 #logoutButton 
 {
     border-color: black;
