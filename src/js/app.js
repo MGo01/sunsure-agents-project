@@ -686,6 +686,7 @@ function createPolicyHolder()
 	catch (error)
 	{
 		console.log(error);
+		return;
 	}
 
 	// Package a JSON payload to deliver to the server that contains all
