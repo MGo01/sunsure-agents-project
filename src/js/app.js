@@ -676,9 +676,17 @@ function createPolicyHolder()
 		"Source": clientSource
 	};
 
-	// Ensure that no required field is empty.
-	if (checkRequiredFields(requiredObj, spanName))
-		return;
+	// This helps to ensure that none of the form
+	// inputs are left blank and only have alphabetical characters.
+	try 
+	{
+		checkRequiredFields(requiredObj, spanName);
+	}
+
+	catch (error)
+	{
+		console.log(error);
+	}
 
 	// Package a JSON payload to deliver to the server that contains all
 	// the contact details in order create the contact.
