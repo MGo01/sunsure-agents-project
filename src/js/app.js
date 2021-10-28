@@ -445,7 +445,24 @@ function loadDependents(policyID)
 					console.log("Successfully loaded dependent information");
 					document.getElementById("showDetailsResult").innerHTML = "";	
 
-					fillInDependentForm(depArray)
+					// Make sure that we aren't attempting to access
+					// an empty or null array.
+					if (!Array.isArray(array) || !array.length)
+					{
+						// Container <div> where dynamic content will be placed
+						var container = document.getElementById("detailsDependentsContainer");
+
+						// Clear previous contents of the container
+						while (container.hasChildNodes())
+						{
+							container.removeChild(container.lastChild);
+						}		
+					}
+
+					else
+					{
+						fillInDependentForm(depArray)
+					}
 				}
 			}
 		};
@@ -462,7 +479,7 @@ function loadDependents(policyID)
 	}
 }
 
-// CURRENT WIP
+// Currently working for now...
 function fillShowDetailsForm()
 {
 	var policyID = $(this).data('testid');
