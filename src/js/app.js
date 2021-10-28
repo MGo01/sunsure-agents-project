@@ -23,7 +23,7 @@ function addRow(obj)
 {
 	// Check for any empty fields in the Policyholder
 	// object and replace it with "N/A"
-	for (var key in obj)
+	for (let key in obj)
 		if (obj[key] === "")
 			obj[key] = "N/A";
 
@@ -99,7 +99,7 @@ function displayClientsTable()
 
 	// For each contact in the JSON array, the contact's
 	// information will be added to the table.
-	for (var i in clientList)
+	for (let i in clientList)
   {
   	addRow(clientList[i]);
   }
@@ -168,31 +168,11 @@ function deleteTest()
 	row.remove()
 }
 
-// Massive WIP
-function createAClient() 
-{
-	$("#createClientModal").on("submit", function (event) {
-			var formData = $(this).serialize();
-			event.preventDefault();
-			let dependentsArray = getDependentsArray(formData.NumOfDependents);
-
-			$.ajax({
-					url: "http://sunsure-agent.com/API/createPolicyHolder.php",
-					type: "POST",
-					data: formData,
-					async: false,
-					success: function (result) {
-							console.log(result)
-					}
-			});
-	})
-}
-
 function getDependentsArray(clientNumOfDependents)
 {
 	var dependentsArray = [];
 
-	for (var i = 0; i < clientNumOfDependents; i++)
+	for (let i = 0; i < clientNumOfDependents; i++)
 	{
 		// Depending on the number of dependents
 		// these strings will pull the right data accordingly.
@@ -247,7 +227,7 @@ function fillInDependentForm(depArray)
 		container.removeChild(container.lastChild);
 	}
 
-	for (i = 0; i < number; i++)
+	for (let i = 0; i < number; i++)
 	{
 		// Append a node with a random text
 		var depRow = document.createElement("div");
@@ -344,6 +324,8 @@ function insertPolicyInfo()
 	var ambassador = document.getElementById("createClientAmbassador").value;
 	var applicationID = document.getElementById("createAppID").value;
 
+	spanName = "createClientResult";
+
 	effectiveDate = effectiveDate.replace(/[---]+/gi, '/');
 
 	// Package a JSON payload to deliver to the server that contains all
@@ -359,6 +341,18 @@ function insertPolicyInfo()
 		"Notes": notes,
 		"PolicyInfoID": globalPolicyID,
 	};
+
+	// Package JSON that contains all required
+	// policy information fields.
+  var requiredObj = 
+	{
+		"PolicyType": policyType,
+		"AncillaryType" : ancillaryType,
+	};
+
+	// Ensure that no required field is empty.
+	if (checkRequiredFields(requiredObj, spanName))
+		return;
 
 	jsonString = JSON.stringify(jsonPayload);
 
@@ -636,6 +630,16 @@ function createPolicyHolder()
 	var clientNumOfDependents = document.getElementById("clientNumOfDependents").value;
 
 	var clientSource = document.getElementById("sourceMenu").value;
+	var isOver65 = document.getElementById("isOver65").checked;
+
+	var spanName = createClientResult;
+
+	// Change boolean to single character
+	// for DB entry.
+	if (isOver65)
+		isOver65 = 'Y';
+	else
+		isOver65 = 'N';
 
 	// Remove any special characters in order to ensure all
 	// numbers are a 10 digit string.
@@ -648,12 +652,26 @@ function createPolicyHolder()
 	// inputs are left blank and only have alphabetical characters.
 	if (!checkFormNames(clientFirstName, clientLastName))
 		return;
-	
-	// if (checkRequiredFields(clientFirstName, clientLastName, clientDateOfBirth,
-	// 												clientAddress, clientCity))
-	// 	return;
 
 	document.getElementById("createClientResult").innerHTML = "";
+
+	// Package JSON that contains all required
+	// client fields
+  var requiredObj = 
+	{
+		"FirstName": clientFirstName,
+		"LastName" : clientLastName,
+		"DateOfBirth": clientDateOfBirth,
+		"Address": clientAddress,
+		"City": clientCity,
+		"ZipCode": clientZIP,
+		"State": clientState,
+		"Source": clientSource
+	};
+
+	// Ensure that no required field is empty.
+	if (checkRequiredFields(requiredObj, spanName))
+		return;
 
 	// Package a JSON payload to deliver to the server that contains all
 	// the contact details in order create the contact.
@@ -757,7 +775,7 @@ function insertDependents(dependentsArray)
 
 	let promiseArray = [];
 
-	for(let i = 0; i < dependentsArray.length; i++)
+	for (let i = 0; i < dependentsArray.length; i++)
 		promiseArray.push(postData(dependentsArray[i]))
 
 	Promise.all(promiseArray)
@@ -972,12 +990,12 @@ function searchClients()
 					// Update Status for Clients Table to show 
 					// how many results the search query returned
 					numOfResults = clientsList.length;
-					document.getElementById("searchResults").innerHTML = "Search returned " + numOfResults + " results";
+					document.getElementById("searchResults").innerHTML = "Search returned " + numOfResults + " result(s)";
 					document.getElementById("searchResults").style.color = "green";
 
 					// For each client in the JSON array, the client's
 					// information will be added to the table.
-					for (var i in clientsList)
+					for (let i in clientsList)
 						addRow(clientsList[i]);
 
 				}
@@ -1107,7 +1125,7 @@ function checkFormNames(firstName, lastName)
     return typeof ch === "string" && ch.length === 1 && (ch >= "a" && ch <= "z" || ch >= "A" && ch <= "Z");
   }
 
-  for (var i = 0; i < firstName.length; i++) 
+  for (let i = 0; i < firstName.length; i++) 
 	{
     if (!isAlpha(firstName[i])) 
 		{
@@ -1117,7 +1135,7 @@ function checkFormNames(firstName, lastName)
     }
   }
 
-  for (var j = 0; j < lastName.length; j++) 
+  for (let j = 0; j < lastName.length; j++) 
 	{
     if (!isAlpha(lastName[j])) 
 		{
@@ -1132,9 +1150,17 @@ function checkFormNames(firstName, lastName)
 
 // Check fields and sanitize inputs
 // in case of any anomalies.
-function checkRequiredFields(firstName, lastName, dateOfBirth, address, city)
+function checkRequiredFields(clientObj, spanName)
 {
-	fullName = firstName + " " + lastName;
+	for (let key in clientObj)
+	{
+		if (clientObj[key] === "")
+		{
+			document.getElementById(spanName).innerHTML = "Error: " + key + "cannot be empty.";
+			document.getElementById(spanName).style.color = "red";
+			return false;
+		}
+	}
 
 	return true;
 }
