@@ -84,6 +84,7 @@ body
 {
     display: inline-block;
     position: relative;
+    font-size: 26px;
 }
 
 .overflow 

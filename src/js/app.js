@@ -447,7 +447,7 @@ function loadDependents(policyID)
 
 					// Make sure that we aren't attempting to access
 					// an empty or null array.
-					if (!Array.isArray(array) || !array.length)
+					if (!Array.isArray(depArray) || !depArray.length)
 					{
 						// Container <div> where dynamic content will be placed
 						var container = document.getElementById("detailsDependentsContainer");
