@@ -437,8 +437,8 @@ function loadDependents(policyID)
 				if (endpointmsg === "No valid Dependents were found")
 				{
 					console.log("Unable to load dependents information");
-					document.getElementById("showDetailsResult").innerHTML = endpointmsg;	
-					document.getElementById("showDetailsResult").style.color = "red";
+					document.getElementById("showDetailsDependentResult").innerHTML = endpointmsg;	
+					document.getElementById("showDetailsDependentResult").style.color = "red";
 
 					// Container <div> where dynamic content will be placed
 					let container = document.getElementById("detailsDependentsContainer");
@@ -453,7 +453,7 @@ function loadDependents(policyID)
 				else
 				{
 					console.log("Successfully loaded dependent information");
-					document.getElementById("showDetailsResult").innerHTML = "";	
+					document.getElementById("showDetailsDependentResult").innerHTML = "";	
 
 					fillInDependentForm(depArray)
 				}
@@ -467,8 +467,8 @@ function loadDependents(policyID)
 	catch(error)
 	{
 		console.log(error.message);
-		document.getElementById("showDetailsResult").innerHTML = error.message;
-		document.getElementById("showDetailsResult").style.color = "red";
+		document.getElementById("showDetailsDependentResult").innerHTML = error.message;
+		document.getElementById("showDetailsDependentResult").style.color = "red";
 	}
 }
 
@@ -514,14 +514,24 @@ function fillShowDetailsForm()
 				if (endpointmsg === "Policy Information associated with given ID does not exist.")
 				{
 					console.log("Unable to load policy information");
-					document.getElementById("showDetailsResult").innerHTML = endpointmsg;	
-					document.getElementById("showDetailsResult").style.color = "red";
+					document.getElementById("showDetailsPolicyResult").innerHTML = endpointmsg;	
+					document.getElementById("showDetailsPolicyResult").style.color = "red";
+
+					// Load the Policy Information Form
+					document.getElementById("showDetailsPolicyType").innerHTML = "N/A";
+					document.getElementById("showDetailsAncillaryType").innerHTML = "N/A";
+					document.getElementById("showDetailsEffectiveDate").innerHTML = "N/A";
+
+					document.getElementById("showDetailsCarrier").innerHTML = "N/A";
+					document.getElementById("showDetailsAmbassador").innerHTML = "N/A";
+					document.getElementById("showDetailsAppID").innerHTML = "N/A";
+					document.getElementById("showDetailsNotes").innerHTML = "N/A";
 				}
 
 				else
 				{
 					console.log("Successfully loaded policy information");
-					document.getElementById("showDetailsResult").innerHTML = "";	
+					document.getElementById("showDetailsPolicyResult").innerHTML = "";	
 
 					for (let i in jsonObject)
 					{
@@ -547,7 +557,6 @@ function fillShowDetailsForm()
 					document.getElementById("showDetailsAmbassador").innerHTML = "" + ambassadorName;
 					document.getElementById("showDetailsAppID").innerHTML = "" + applicationID;
 					document.getElementById("showDetailsNotes").innerHTML = "" + notes;
-
 				}
 			}
 		};
@@ -559,8 +568,8 @@ function fillShowDetailsForm()
 	catch(error)
 	{
 		console.log(error.message);
-		document.getElementById("showDetailsResult").innerHTML = error.message;
-		document.getElementById("showDetailsResult").style.color = "red";
+		document.getElementById("showDetailsPolicyResult").innerHTML = error.message;
+		document.getElementById("showDetailsPolicyResult").style.color = "red";
 	}
 
 	// Check if Any Dependent Data was inserted

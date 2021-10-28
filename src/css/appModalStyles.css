@@ -75,7 +75,8 @@ body
     color: red;
 }
 
-#createClientResult, #updateClientResult
+#createClientResult, #updateClientResult, #showDetailsDependentResult, 
+#showDetailsPolicyResult
 {
     font-size: 26px;
 }
