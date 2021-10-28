@@ -649,7 +649,6 @@ function clearUpdatedModalForm(numOfDependents)
 		document.getElementById("updateAncillaryType").innerHTML = "";
 	
 		document.getElementById("updateEffectiveDate").innerHTML = "";
-		document.getElementById("updateCarriers").innerHTML = "";
 
 		document.getElementById("updateNotes").innerHTML = "";
 		document.getElementById("updateClientAmbassador").innerHTML = "";
@@ -1081,7 +1080,7 @@ function updatePolicyInfo(policyID)
 	}
 }
 
-function getUpdatedDependentsArray(numOfDependents)
+function getUpdatedDependentsArray(numOfDependents, dependentID)
 {
 	var dependentsArray = [];
 	var spanName = "updateClientResult";
@@ -1119,7 +1118,7 @@ function getUpdatedDependentsArray(numOfDependents)
 			"LastName": dependentLastName,
 			"DateOfBirth": dependentDOB,
 			"SSN": dependentSSN,
-			"DependentID": globalPolicyID
+			"DependentID": dependentID
 		};
 
 		dependentJSON = JSON.stringify(dependentObj);
@@ -1269,8 +1268,8 @@ function updateClient(policyID, clientFName, clientLName)
 						let dependentsArray = getUpdatedDependentsArray(updatedClientNumOfDependents);
 
 						updatePolicyInfo(policyID);
-						insertUpdatedDependents(dependentsArray);
-						clearUpdatedModalForm();
+						insertUpdatedDependents(dependentsArray, policyID);
+						clearUpdatedModalForm(updatedClientNumOfDependents);
 					}
 					
 					else
