@@ -623,7 +623,7 @@ function clearModalForm(numOfDependents)
 	}
 }
 
-function clearUpdatedModalForm()
+function clearUpdatedModalForm(numOfDependents)
 {
 		// Clear the Client Information Form
 		document.getElementById("updateClientFirstName").innerHTML = "";
@@ -1276,7 +1276,7 @@ function updateClient(policyID, clientFName, clientLName)
 					else
 					{
 						updatePolicyInfo(policyID);
-						clearUpdatedModalForm();
+						clearUpdatedModalForm(updatedClientNumOfDependents);
 					}
 				}
 
