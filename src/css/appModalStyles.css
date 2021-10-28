@@ -67,7 +67,7 @@ body
     right: 75%;
 }
 
-#clientsResult
+#clientsResult, #createClientResult, #updateClientResult
 {
     display: block;
     margin-bottom: 2%;
