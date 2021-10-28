@@ -38,8 +38,8 @@
 
       if (is_null($searchResults))
         returnInfo("No valid Dependents were found");
-
-      returnInfo($searchResults);
+      else
+        returnInfo($searchResults);
     }
 
     else
