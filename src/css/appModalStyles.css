@@ -67,12 +67,17 @@ body
     right: 75%;
 }
 
-#clientsResult, #createClientResult, #updateClientResult
+#clientsResult
 {
     display: block;
     margin-bottom: 2%;
     font-size: 15px;
     color: red;
+}
+
+#createClientResult, #updateClientResult
+{
+    font-size: 26px;
 }
 
 #clientTableResults 
