@@ -963,12 +963,18 @@ function searchClients()
 
 				if (clientsList === "No valid Primary PolicyHolders were found")
 				{
-					document.getElementById("clientsTable").innerHTML = clientsList;
-					document.getElementById("clientsTable").style.color = "red";
+					document.getElementById("searchResults").innerHTML = clientsList;
+					document.getElementById("searchResults").style.color = "red";
 				}
 
 				else
 				{
+					// Update Status for Clients Table to show 
+					// how many results the search query returned
+					numOfResults = clientsList.length;
+					document.getElementById("searchResults").innerHTML = "Search returned " + numOfResults + " results";
+					document.getElementById("searchResults").style.color = "green";
+
 					// For each client in the JSON array, the client's
 					// information will be added to the table.
 					for (var i in clientsList)
@@ -985,8 +991,8 @@ function searchClients()
 	catch(error)
 	{
 		console.log(error.message);
-		document.getElementById("clientsTable").innerHTML = error.message;
-		document.getElementById("clientsTable").style.color = "red";
+		document.getElementById("searchResults").innerHTML = error.message;
+		document.getElementById("searchResults").style.color = "red";
 	}
 }
 
@@ -1060,8 +1066,8 @@ function updatePolicyInfo(policyID)
 	catch(error)
 	{
 		console.log(error.message);
-		document.getElementById("clientsTable").innerHTML = error.message;
-		document.getElementById("clientsTable").style.color = "red";
+		document.getElementById("updateClientResult").innerHTML = error.message;
+		document.getElementById("updateClientResult").style.color = "red";
 	}
 }
 
