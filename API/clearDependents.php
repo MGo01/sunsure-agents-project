@@ -5,23 +5,14 @@
   // Receive JSON payload from signup.js file.
   $inputFromJson = json_decode(file_get_contents('php://input'), true);
 
-  $PolicyID = $inputFromJson['PolicyID'];
+  $DependentID = $inputFromJson['DependentID'];
 
-  $sql_policyInfo = "DELETE FROM Policy_Info 
-                      WHERE PolicyInfoID = '$PolicyID'";
+  $delete_sql = "DELETE FROM Dependents WHERE DependentID = '$DependentID'";
 
-  $sql_dependents = "DELETE FROM Dependents 
-                      WHERE DependentID = '$PolicyID'";
-
-  $sql_policyHolders = "DELETE FROM Primary_PolicyHolders 
-                        WHERE PolicyID = '$PolicyID'"; 
-
-  // SQL Commands must be executed in THIS ORDER otherwise, foreign key constraints errors
-  // will be thrown. 
-  if (mysqli_query($conn, $sql_policyInfo) && mysqli_query($conn, $sql_dependents) && mysqli_query($conn, $sql_policyHolders))
+  if (mysqli_query($conn, $delete_sql))
   {
     // Successfully inserted Agent into DB message.
-    returnInfo("Primary PolicyHolder has been deleted successfully!");
+    returnInfo("Dependents have been cleared");
   }
 
   else
