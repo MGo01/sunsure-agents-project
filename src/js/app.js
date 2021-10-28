@@ -524,6 +524,7 @@ function fillShowDetailsForm()
 					console.log("Unable to load policy information");
 					document.getElementById("showDetailsResult").innerHTML = endpointmsg;	
 					document.getElementById("showDetailsResult").style.color = "red";
+					return;
 				}
 
 				else
@@ -737,8 +738,8 @@ function createPolicyHolder()
 				{
 					console.log("Client insertion was not successful!");
 					document.getElementById("createClientResult").innerHTML = endpointmsg;
-					
 					document.getElementById("createClientResult").style.color = "red";
+					return;
 				}
 
 				else
@@ -843,6 +844,7 @@ function deleteClient(clientID)
 				else
 				{
 					console.log(endpointmsg);
+					return;
 					// document.getElementById("createClientResult").innerHTML = endpointmsg;
 					// document.getElementById("createClientResult").style.color = "red";
 				}
@@ -961,6 +963,7 @@ function updateClient(policyID, clientFName, clientLName)
 					console.log(endpointmsg);
 					document.getElementById("updateClientResult").innerHTML = endpointmsg;
 					document.getElementById("updateClientResult").style.color = "red";
+					return;
 				}
 			}
 		};
