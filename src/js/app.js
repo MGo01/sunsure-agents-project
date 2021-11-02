@@ -144,6 +144,10 @@ function saveUpdate()
 
 	document.getElementById("updateSourceMenu").value = oldRowInfo[13];
 
+	let updateFlag = true;
+
+	fillShowDetailsForm(updateFlag)
+
 	oldRowInfo.length = 0;
 }
 
@@ -467,8 +471,9 @@ function loadDependents(policyID)
 	}
 }
 
-// Currently working for now...
-function fillShowDetailsForm()
+// Fills out the Policy Information Form for Show
+// Details AND the Update Client Form if necessary
+function fillShowDetailsForm(updateFlag = false)
 {
 	var policyID = $(this).data('testid');
 
@@ -543,15 +548,35 @@ function fillShowDetailsForm()
 					ambassadorName = jsonObject.AmbassadorName;
 					notes = jsonObject.Notes; 
 
-					// Load the Policy Information Form
-					document.getElementById("showDetailsPlanType").innerHTML = "" + planType;
-					document.getElementById("showDetailsAncillaryType").innerHTML = "" + ancillaryType;
-					document.getElementById("showDetailsEffectiveDate").innerHTML = "" + effectiveDate;
+					if (!updateFlag)
+					{
+						// Load the Policy Information Form
+						document.getElementById("showDetailsPlanType").innerHTML = "" + planType;
+						document.getElementById("showDetailsAncillaryType").innerHTML = "" + ancillaryType;
+						document.getElementById("showDetailsEffectiveDate").innerHTML = "" + effectiveDate;
 
-					document.getElementById("showDetailsCarrier").innerHTML = "" + carrier;
-					document.getElementById("showDetailsAmbassador").innerHTML = "" + ambassadorName;
-					document.getElementById("showDetailsAppID").innerHTML = "" + applicationID;
-					document.getElementById("showDetailsNotes").innerHTML = "" + notes;
+						document.getElementById("showDetailsCarrier").innerHTML = "" + carrier;
+						document.getElementById("showDetailsAmbassador").innerHTML = "" + ambassadorName;
+						document.getElementById("showDetailsAppID").innerHTML = "" + applicationID;
+						document.getElementById("showDetailsNotes").innerHTML = "" + notes;
+
+						// Check if any Dependent Data was inserted
+						// without Policy Info being inserted.
+						loadDependents(policyID);
+					}
+
+					else
+					{
+						// Load the Policy Information Form
+						document.getElementById("updatePlanType").placeholder = "" + planType;
+						document.getElementById("updateAncillaryType").placeholder = "" + ancillaryType;
+						document.getElementById("updateEffectiveDate").placeholder = "" + effectiveDate;
+
+						document.getElementById("updateCarriers").value = carrier;
+						document.getElementById("updateClientAmbassador").placeholder = "" + ambassadorName;
+						document.getElementById("updateDetailsAppID").placeholder = "" + applicationID;
+						document.getElementById("updateNotes").placeholder = "" + notes;
+					}
 				}
 			}
 		};
@@ -566,10 +591,6 @@ function fillShowDetailsForm()
 		document.getElementById("showDetailsPolicyResult").innerHTML = error.message;
 		document.getElementById("showDetailsPolicyResult").style.color = "red";
 	}
-
-	// Check if Any Dependent Data was inserted
-	// Without Policy Info being inserted.
-	loadDependents(policyID);
 }
 
 function clearModalForm(numOfDependents)
@@ -1125,7 +1146,7 @@ function getUpdatedDependentsArray(numOfDependents, dependentID)
 }
 
 // Updates a Contact's information based on their ID.
-function updateClient(policyID, clientFName, clientLName)
+function updateClient(policyID)
 {
 	var updatedClientFirstName = document.getElementById("updateClientFirstName").value;
 	var updatedClientLastName = document.getElementById("updateClientLastName").value;
