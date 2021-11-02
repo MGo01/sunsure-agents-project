@@ -26,7 +26,7 @@
   $sql = "UPDATE Primary_PolicyHolders SET FirstName = IF(LENGTH('$FirstName')=0, FirstName, \"{$FirstName}\"), 
                                     LastName = IF(LENGTH('$LastName')=0, LastName, \"{$LastName}\"), 
                                     DateOfBirth = \"{$DateOfBirth}\", 
-                                    SSN = IF(LENGTH('$SSN')=0, SSN = \"{$SSN}\"), 
+                                    SSN = IF(LENGTH('$SSN')=0, SSN, \"{$SSN}\"), 
                                     Phone = IF(LENGTH('$Phone')=0, Phone, \"{$Phone}\"), 
                                     Address = IF(LENGTH('$Address')=0, Address, \"{$Address}\"), 
                                     Second_Line_Address = IF(LENGTH('$Second_Line_Address')=0, Second_Line_Address, \"{$Second_Line_Address}\"), 
@@ -36,7 +36,7 @@
                                     Email = IF(LENGTH('$Email')=0, Email, \"{$Email}\"), 
                                     NumOfDependents = IF(LENGTH('$NumOfDependents') = 0, NumOfDependents, \"{$NumOfDependents}\"), 
                                     Source = \"{$Source}\") 
-                                    WHERE AgentID = '{$AgentID}' AND PolicyInfoID = '{$PolicyInfoID}'"
+                                    WHERE AgentID = '{$AgentID}' AND PolicyInfoID = '{$PolicyInfoID}'";
 
   if (mysqli_query($conn, $sql))
   {
