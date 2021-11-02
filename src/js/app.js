@@ -144,6 +144,8 @@ function saveUpdate()
 
 	document.getElementById("updateSourceMenu").value = oldRowInfo[13];
 
+	document.getElementById("updateClientResult") = "";
+
 	let updateFlag = true;
 
 	fillShowDetailsForm(updateFlag, globalUpdateID)
@@ -192,7 +194,10 @@ function getDependentsArray(clientNumOfDependents)
 
 		// This helps to ensure that none of the form
 		// inputs are left blank and only have alphabetical characters.
-		if (!checkFormNames(dependentFirstName, dependentLastName, spanName))
+
+		let updateFlag = true;
+
+		if (!checkFormNames(dependentFirstName, dependentLastName, spanName, updateFlag))
 		{
 			dependentsArray.length = 0;
 			return;
@@ -529,7 +534,7 @@ function fillShowDetailsForm(updateFlag = false, gPolicyID = -1)
 
 						document.getElementById("updateClientAmbassador").placeholder = "N/A";
 						document.getElementById("updateDetailsAppID").placeholder = "N/A";
-						document.getElementById("updateNotes").placeholder = "N/A";
+						document.getElementById("updateNotes").innerHTML = "N/A";
 					}
 
 					else
@@ -1400,9 +1405,9 @@ function showRegistrationPassword()
 
 // Checks the first and last name of a given user input to ensure
 // that only alphabetical characters are allowed to be inserted into the database.
-function checkFormNames(firstName, lastName, spanName)
+function checkFormNames(firstName, lastName, spanName, updateFlag = false)
 {
-	if (firstName.length == 0 || lastName.length == 0)
+	if (updateFlag != true && (firstName.length == 0 || lastName.length == 0))
 	{
 		document.getElementById(spanName).innerHTML = "Either First Name or Last Name field is empty.";
 		document.getElementById(spanName).style.color = "red";
@@ -1432,7 +1437,7 @@ function checkFormNames(firstName, lastName, spanName)
 
   for (let j = 0; j < lastName.length; j++) 
 	{
-    if (!isSpace(lastName[j]) || !isAlpha(lastName[j])) 
+    if (!(isSpace(lastName[j]) || isAlpha(lastName[j]))) 
 		{
 			document.getElementById(spanName).innerHTML = "Last name must have alphabet characters only";
 			document.getElementById(spanName).style.color = "red";
