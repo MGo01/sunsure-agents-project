@@ -194,10 +194,7 @@ function getDependentsArray(clientNumOfDependents)
 
 		// This helps to ensure that none of the form
 		// inputs are left blank and only have alphabetical characters.
-
-		let updateFlag = true;
-
-		if (!checkFormNames(dependentFirstName, dependentLastName, spanName, updateFlag))
+		if (!checkFormNames(dependentFirstName, dependentLastName, spanName))
 		{
 			dependentsArray.length = 0;
 			return;
@@ -1212,9 +1209,11 @@ function updateClient(policyID)
 		return;
 	}
 
+	let updateFlag = true;
+
 	// This helps to ensure that none of the form
 	// inputs are left blank and only have alphabetical characters.
-	if (!checkFormNames(updatedClientFirstName, updatedClientLastName, spanName))
+	if (!checkFormNames(updatedClientFirstName, updatedClientLastName, spanName, updateFlag))
 		return;
 
 	// Remove any special characters in order to ensure all
