@@ -146,7 +146,7 @@ function saveUpdate()
 
 	let updateFlag = true;
 
-	fillShowDetailsForm(updateFlag)
+	fillShowDetailsForm(updateFlag, globalUpdateID)
 
 	oldRowInfo.length = 0;
 }
@@ -473,9 +473,12 @@ function loadDependents(policyID)
 
 // Fills out the Policy Information Form for Show
 // Details AND the Update Client Form if necessary
-function fillShowDetailsForm(updateFlag = false)
+function fillShowDetailsForm(updateFlag = false, gPolicyID = -1)
 {
 	var policyID = $(this).data('testid');
+
+	if (typeof policyID === 'undefined')
+		policyID = gPolicyID;
 
 	var url = "http://sunsure-agent.com/API/getPolicyInformation.php";
 	var xhr = new XMLHttpRequest();
