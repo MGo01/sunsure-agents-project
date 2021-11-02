@@ -1394,12 +1394,17 @@ function showRegistrationPassword()
 // that only alphabetical characters are allowed to be inserted into the database.
 function checkFormNames(firstName, lastName, spanName)
 {
-	if (firstName === "" || lastName === "")
+	if (firstName.length == 0 || lastName.length == 0)
 	{
 		document.getElementById(spanName).innerHTML = "Either First Name or Last Name field is empty.";
 		document.getElementById(spanName).style.color = "red";
 		return false;
 	}
+
+	var isSpace = function(value)
+	{
+		return value == ' ';
+ 	}
 
   var isAlpha = function(ch)
   {
@@ -1408,7 +1413,7 @@ function checkFormNames(firstName, lastName, spanName)
 
   for (let i = 0; i < firstName.length; i++) 
 	{
-    if (!isAlpha(firstName[i])) 
+    if (!(isSpace(firstName[i]) || isAlpha(firstName[i]))) 
 		{
 			document.getElementById(spanName).innerHTML = "First name must have alphabet characters only";
 			document.getElementById(spanName).style.color = "red";
@@ -1419,7 +1424,7 @@ function checkFormNames(firstName, lastName, spanName)
 
   for (let j = 0; j < lastName.length; j++) 
 	{
-    if (!isAlpha(lastName[j])) 
+    if (!isSpace(lastName[j]) || !isAlpha(lastName[j])) 
 		{
 			document.getElementById(spanName).innerHTML = "Last name must have alphabet characters only";
 			document.getElementById(spanName).style.color = "red";
