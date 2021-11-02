@@ -126,7 +126,7 @@ function saveUpdate()
 	document.getElementById("updateClientFirstName").placeholder = oldRowInfo[1];
 	document.getElementById("updateClientLastName").placeholder = oldRowInfo[2] ;
 
-	document.getElementById("updateClientDateOfBirth").placeholder = oldRowInfo[3];
+	document.getElementById("updateClientDateOfBirth").valueAsDate = new Date(oldRowInfo[3]);
 	document.getElementById("updateClientSSN").placeholder = oldRowInfo[4];
 
 	document.getElementById("updateClientPhone").placeholder = oldRowInfo[5];
@@ -516,19 +516,38 @@ function fillShowDetailsForm(updateFlag = false, gPolicyID = -1)
 
 				if (endpointmsg === "Policy Information associated with given ID does not exist.")
 				{
-					console.log("Unable to load policy information");
-					document.getElementById("showDetailsPolicyResult").innerHTML = endpointmsg;	
-					document.getElementById("showDetailsPolicyResult").style.color = "red";
+					if (updateFlag)
+					{
+						console.log("Unable to load policy information");
+						document.getElementById("updateClientResult").innerHTML = endpointmsg;	
+						document.getElementById("updateClientResult").style.color = "red";
 
-					// Load the Policy Information Form
-					document.getElementById("showDetailsPlanType").innerHTML = "N/A";
-					document.getElementById("showDetailsAncillaryType").innerHTML = "N/A";
-					document.getElementById("showDetailsEffectiveDate").innerHTML = "N/A";
+						// Load the Policy Information Form
+						document.getElementById("updatePlanType").placeholder = "N/A";
+						document.getElementById("updateAncillaryType").placeholder = "N/A";
+						document.getElementById("showDetailsEffectiveDate").valueAsDate = new Date();
 
-					document.getElementById("showDetailsCarrier").innerHTML = "N/A";
-					document.getElementById("showDetailsAmbassador").innerHTML = "N/A";
-					document.getElementById("showDetailsAppID").innerHTML = "N/A";
-					document.getElementById("showDetailsNotes").innerHTML = "N/A";
+						document.getElementById("updateClientAmbassador").placeholder = "N/A";
+						document.getElementById("updateDetailsAppID").placeholder = "N/A";
+						document.getElementById("updateNotes").placeholder = "N/A";
+					}
+
+					else
+					{
+						console.log("Unable to load policy information");
+						document.getElementById("showDetailsPolicyResult").innerHTML = endpointmsg;	
+						document.getElementById("showDetailsPolicyResult").style.color = "red";
+
+						// Load the Policy Information Form
+						document.getElementById("showDetailsPlanType").innerHTML = "N/A";
+						document.getElementById("showDetailsAncillaryType").innerHTML = "N/A";
+						document.getElementById("showDetailsEffectiveDate").innerHTML = "N/A";
+
+						document.getElementById("showDetailsCarrier").innerHTML = "N/A";
+						document.getElementById("showDetailsAmbassador").innerHTML = "N/A";
+						document.getElementById("showDetailsAppID").innerHTML = "N/A";
+						document.getElementById("showDetailsNotes").innerHTML = "N/A";
+					}
 				}
 
 				else
@@ -551,7 +570,20 @@ function fillShowDetailsForm(updateFlag = false, gPolicyID = -1)
 					ambassadorName = jsonObject.AmbassadorName;
 					notes = jsonObject.Notes; 
 
-					if (!updateFlag)
+					if (updateFlag)
+					{
+						// Load the Policy Information Form
+						document.getElementById("updatePlanType").placeholder = "" + planType;
+						document.getElementById("updateAncillaryType").placeholder = "" + ancillaryType;
+						document.getElementById("updateEffectiveDate").valueAsDate = new Date(effectiveDate);
+
+						document.getElementById("updateCarriers").value = carrier;
+						document.getElementById("updateClientAmbassador").placeholder = "" + ambassadorName;
+						document.getElementById("updateDetailsAppID").placeholder = "" + applicationID;
+						document.getElementById("updateNotes").innerHTML = "" + notes;
+					}
+
+					else
 					{
 						// Load the Policy Information Form
 						document.getElementById("showDetailsPlanType").innerHTML = "" + planType;
@@ -566,19 +598,6 @@ function fillShowDetailsForm(updateFlag = false, gPolicyID = -1)
 						// Check if any Dependent Data was inserted
 						// without Policy Info being inserted.
 						loadDependents(policyID);
-					}
-
-					else
-					{
-						// Load the Policy Information Form
-						document.getElementById("updatePlanType").placeholder = "" + planType;
-						document.getElementById("updateAncillaryType").placeholder = "" + ancillaryType;
-						document.getElementById("updateEffectiveDate").valueAsDate = new Date(effectiveDate);
-
-						document.getElementById("updateCarriers").value = carrier;
-						document.getElementById("updateClientAmbassador").placeholder = "" + ambassadorName;
-						document.getElementById("updateDetailsAppID").placeholder = "" + applicationID;
-						document.getElementById("updateNotes").innerHTML = "" + notes;
 					}
 				}
 			}
