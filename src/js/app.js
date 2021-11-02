@@ -554,6 +554,10 @@ function fillShowDetailsForm(updateShow = false, gPolicyID = -1)
 						document.getElementById("showDetailsAmbassador").innerHTML = "N/A";
 						document.getElementById("showDetailsAppID").innerHTML = "N/A";
 						document.getElementById("showDetailsNotes").innerHTML = "N/A";
+
+						// Check if any Dependent Data was inserted
+						// without Policy Info being inserted.
+						loadDependents(policyID);
 					}
 				}
 
