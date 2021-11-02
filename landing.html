@@ -417,7 +417,7 @@ Sunsure Agents
                   <!-- Policy Type Column -->
                   <div class="col">
                     <span class="material-icons-outlined">info</span>
-                    <input type="text" id="createPolicyType" placeholder="Policy Type*"/>
+                    <input type="text" id="createPlanType" placeholder="Plan Type*"/>
                   </div>
 
                   <!-- Ancillary Type Column -->
@@ -438,11 +438,8 @@ Sunsure Agents
                   <div class="col-md-4">
                     <label for="createCarriers" style="font-size: 25px;">Carrier: </label>
                       <select id="createCarrier" name="sources">
-                        <option value="Google">Google</option>
-                        <option value="Facebook/Instagram">Facebook/Instagram</option>
-                        <option value="Online Ads">Online Ads</option>
-                        <option value="Email">Email</option>
-                        <option value="Referral">Referral</option>
+                        <option value="FHCP">Google</option>
+                        <option value="Florida Blue">Facebook/Instagram</option>
                       </select>
                   </div>
 
@@ -656,13 +653,13 @@ Sunsure Agents
                 <!-- Policy Type Column -->
                 <div class="col">
                   <span class="material-icons-outlined">info</span>
-                  <input type="text" id="updatePolicyType" placeholder="Policy Type*"/>
+                  <input type="text" id="updatePlanType" placeholder="Plan Type*"/>
                 </div>
 
                 <!-- Ancillary Type Column -->
                 <div class="col">
                   <span class="material-icons-outlined">info</span>
-                  <input type="text" id="updateAncillaryType" placeholder="Ancillary Type*"/>
+                  <input type="text" id="updateAncillaryType" placeholder="Ancillary Type"/>
                 </div>
 
                 <!-- Effective Date Column -->
@@ -677,11 +674,8 @@ Sunsure Agents
                 <div class="col-md-4">
                   <label for="updateCarriers" style="font-size: 25px;">Carrier: </label>
                     <select id="updateCarriers" name="sources">
-                      <option value="Google">Google</option>
-                      <option value="Facebook/Instagram">Facebook/Instagram</option>
-                      <option value="Online Ads">Online Ads</option>
-                      <option value="Email">Email</option>
-                      <option value="Referral">Referral</option>
+                      <option value="FHCP">FHCP</option>
+                      <option value="Florida Blue">Facebook/Instagram</option>
                     </select>
                 </div>
 
@@ -763,7 +757,7 @@ Sunsure Agents
                   <!-- Policy Type Column -->
                   <div class="col">
                     <span class="material-icons-outlined">info</span>
-                    <p type="text" id="showDetailsPolicyType">Some Policy Type</p>
+                    <p type="text" id="showDetailsPlanType">Some Policy Type</p>
                   </div>
 
                   <!-- Ancillary Type Column -->
@@ -823,7 +817,7 @@ Sunsure Agents
 				<button class="btn btn-sm" id="searchClientButton" style="zoom:67%" onclick="searchClients();"><span class="material-icons text-center">search</span>  Search</button>
 
         <!-- Refresh Table Button -->
-        <button class="btn btn-sm" id="refreshTableButton" style="zoom:67%" onClick="window.location.reload();"><span class="material-icons-outlined">refresh</span>  Refresh Table</button>
+        <button class="btn btn-sm" id="refreshTableButton" style="zoom:67%" onClick="window.location.reload();"><span class="material-icons-outlined">refresh</span>  Refresh</button>
 
         <!-- Add Client Button -->
 				<button class="btn btn-sm" id="addClientButton" style="zoom:67%" data-toggle="modal" data-target="#createClientModal"><span class="material-icons text-center">add</span>Add Client</button>
