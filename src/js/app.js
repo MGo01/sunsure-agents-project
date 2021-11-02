@@ -577,7 +577,7 @@ function fillShowDetailsForm(updateShow = false, gPolicyID = -1)
 					ambassadorName = jsonObject.AmbassadorName;
 					notes = jsonObject.Notes; 
 
-					if (typeof updateShow === boolean && updateShow === true)
+					if (typeof updateShow === "boolean" && updateShow === true)
 					{
 						// Load the Policy Information Form
 						document.getElementById("updatePlanType").placeholder = "" + planType;
