@@ -43,7 +43,7 @@ function addRow(obj)
 								<td id="State-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.State}</td>
 								<td id="Email-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.Email}</td>
 
-								<td id="NumOfDependents-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.NumOfDependents}</td>
+								<td id="# Dependents-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.NumOfDependents}</td>
 								<td id="Source-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.Source}</td>
 								
 								<td>
@@ -321,7 +321,7 @@ function fillInDependentForm(depArray)
 
 function insertPolicyInfo()
 {
-	var policyType = document.getElementById("createPolicyType").value;
+	var planType = document.getElementById("createPlanType").value;
 	var ancillaryType = document.getElementById("createAncillaryType").value;
 
 	var effectiveDate = document.getElementById("createEffectiveDate").value;
@@ -340,7 +340,7 @@ function insertPolicyInfo()
   var jsonPayload = 
 	{
 		"ApplicationID": applicationID,
-		"PolicyType": policyType,
+		"PolicyType": planType,
 		"AncillaryType" : ancillaryType,
 		"Carrier": carrier,
 		"EffectiveDate": effectiveDate,
@@ -353,8 +353,7 @@ function insertPolicyInfo()
 	// policy information fields.
   var requiredObj = 
 	{
-		"PolicyType": policyType,
-		"AncillaryType" : ancillaryType,
+		"PolicyType": planType
 	};
 
 	// Ensure that no required field is empty.
@@ -481,7 +480,7 @@ function fillShowDetailsForm()
 	var xhr = new XMLHttpRequest();
 
 	var applicationID;
-	var policyType;
+	var planType;
 	var ancillaryType;
 	
 	var carrier;
@@ -518,7 +517,7 @@ function fillShowDetailsForm()
 					document.getElementById("showDetailsPolicyResult").style.color = "red";
 
 					// Load the Policy Information Form
-					document.getElementById("showDetailsPolicyType").innerHTML = "N/A";
+					document.getElementById("showDetailsPlanType").innerHTML = "N/A";
 					document.getElementById("showDetailsAncillaryType").innerHTML = "N/A";
 					document.getElementById("showDetailsEffectiveDate").innerHTML = "N/A";
 
@@ -540,7 +539,7 @@ function fillShowDetailsForm()
 					}
 
 					applicationID = jsonObject.ApplicationID;
-					policyType = jsonObject.PolicyType;
+					planType = jsonObject.PolicyType;
 					ancillaryType = jsonObject.AncillaryType;
 					
 					carrier = jsonObject.Carrier;
@@ -549,7 +548,7 @@ function fillShowDetailsForm()
 					notes = jsonObject.Notes; 
 
 					// Load the Policy Information Form
-					document.getElementById("showDetailsPolicyType").innerHTML = "" + policyType;
+					document.getElementById("showDetailsPlanType").innerHTML = "" + planType;
 					document.getElementById("showDetailsAncillaryType").innerHTML = "" + ancillaryType;
 					document.getElementById("showDetailsEffectiveDate").innerHTML = "" + effectiveDate;
 
@@ -599,7 +598,7 @@ function clearModalForm(numOfDependents)
 	document.getElementById("clientNumOfDependents").innerHTML = "";
 
 	// Clear the Policy Information Form
-	document.getElementById("createPolicyType").innerHTML = "";
+	document.getElementById("createPlanType").innerHTML = "";
 	document.getElementById("createAncillaryType").innerHTML = "";
 
 	document.getElementById("createNotes").innerHTML = "";
@@ -644,7 +643,7 @@ function clearUpdatedModalForm(numOfDependents)
 		document.getElementById("updateClientNumOfDependents").innerHTML = "";
 	
 		// Clear the Policy Information Form
-		document.getElementById("updatePolicyType").innerHTML = "";
+		document.getElementById("updatePlanType").innerHTML = "";
 	
 		document.getElementById("updateAncillaryType").innerHTML = "";
 	
@@ -706,7 +705,7 @@ function createPolicyHolder()
 	else
 		isOver65 = 'N';
 
-	if (clientNumOfDependents <= 0)
+	if (clientNumOfDependents < 0)
 	{
 		document.getElementById("createClientResult").innerHTML = "Data Value Error: Negative values are not allowed";
 		document.getElementById("createClientResult").style.color = "red";
@@ -1008,7 +1007,7 @@ function insertUpdatedDependents(dependentsArray)
 function updatePolicyInfo(policyID)
 {
 	// Load in Updated Policy Information
-	var updatedPolicyType = document.getElementById("updatePolicyType").value;
+	var updatedPlanType = document.getElementById("updatePlanType").value;
 	var updatedAncillaryType = document.getElementById("updateAncillaryType").value;
 
 	var updatedEffectiveDate = document.getElementById("updateEffectiveDate").value;
@@ -1025,7 +1024,7 @@ function updatePolicyInfo(policyID)
   var jsonPayload = 
 	{
 		"ApplicationID": updatedApplicationID,
-		"PolicyType": updatedPolicyType,
+		"PolicyType": updatedPlanType,
 		"AncillaryType": updatedAncillaryType,
 		"Carrier" : updatedCarrier,
 		"EffectiveDate": updatedEffectiveDate,
@@ -1162,7 +1161,7 @@ function updateClient(policyID, clientFName, clientLName)
 	else
 		updatedIsOver65 = 'N';
 
-	if (updatedClientNumOfDependents <= 0)
+	if (updatedClientNumOfDependents < 0)
 	{
 		document.getElementById("createClientResult").innerHTML = "Data Value Error: Negative values are not allowed";
 		document.getElementById("createClientResult").style.color = "red";
@@ -1208,8 +1207,7 @@ function updateClient(policyID, clientFName, clientLName)
 		return;
 	}
 
-	document.getElementById("updateClientResult").innerHTML = "Updating " + clientFName + " " + clientLName;
-	document.getElementById("updateClientResult").style.color = "green";
+	document.getElementById("updateClientResult").innerHTML = "";
 
 	// Package a JSON payload to deliver to the server that contains all
 	// the contact details in order create the contact.
