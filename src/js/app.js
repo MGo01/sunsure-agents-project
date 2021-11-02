@@ -14,8 +14,6 @@ var globalPolicyID = -1;
 // var firstName = "";
 // var lastName = "";
 var globalUpdateID = -1;
-var globalUpdateFName = "";
-var globalUpdateLName = "";
 
 // JQuery function inspired and modified by https://www.youtube.com/watch?v=DzXmAKdEYIs
 // to allow for easier row insertion into the UI data table.
@@ -139,21 +137,19 @@ function saveUpdate()
 	document.getElementById("updateClientCity").placeholder = oldRowInfo[8];
 
 	document.getElementById("updateClientZIP").placeholder = oldRowInfo[9];
-	document.getElementById("updateStatesMenu").placeholder = oldRowInfo[10];
+	document.getElementById("updateStatesMenu").value = oldRowInfo[10];
 
 	document.getElementById("updateClientEmail").placeholder = oldRowInfo[11];
 	document.getElementById("updateClientNumOfDependents").placeholder = oldRowInfo[12];
 
-	// Clear and store the oldRowInfo Array
-	globalUpdateFName = oldRowInfo[1];
-	globalUpdateLName = oldRowInfo[2];
+	document.getElementById("updateSourceMenu").value = oldRowInfo[13];
 
 	oldRowInfo.length = 0;
 }
 
 function updateClientWrap()
 {
-	updateClient(globalUpdateID, globalUpdateFName, globalUpdateLName);
+	updateClient(globalUpdateID);
 }
 
 // JQuery function inspired and modified by https://www.youtube.com/watch?v=DzXmAKdEYIs
@@ -1156,6 +1152,8 @@ function updateClient(policyID, clientFName, clientLName)
 
 	var spanName = "updateClientResult";
 
+	document.getElementById("updateClientResult").innerHTML = "";
+
 	if (updatedIsOver65)
 		updatedIsOver65 = 'Y';
 	else
@@ -1163,8 +1161,8 @@ function updateClient(policyID, clientFName, clientLName)
 
 	if (updatedClientNumOfDependents < 0)
 	{
-		document.getElementById("createClientResult").innerHTML = "Data Value Error: Negative values are not allowed";
-		document.getElementById("createClientResult").style.color = "red";
+		document.getElementById("updateClientResult").innerHTML = "Data Value Error: Negative values are not allowed";
+		document.getElementById("updateClientResult").style.color = "red";
 		return;
 	}
 
@@ -1206,8 +1204,6 @@ function updateClient(policyID, clientFName, clientLName)
 		console.log(error);
 		return;
 	}
-
-	document.getElementById("updateClientResult").innerHTML = "";
 
 	// Package a JSON payload to deliver to the server that contains all
 	// the contact details in order create the contact.
