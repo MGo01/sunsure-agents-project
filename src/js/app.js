@@ -503,6 +503,9 @@ function fillShowDetailsForm(updateShow = false, gPolicyID = -1)
 	};
 
 	jsonString = JSON.stringify(jsonPayload);
+	let thisIsATest = false;
+
+	console.log(thisIsATest);
 
 	xhr.open("POST", url, false);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
