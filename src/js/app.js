@@ -746,33 +746,6 @@ function createPolicyHolder()
 
 	document.getElementById("createClientResult").innerHTML = "";
 
-	// Package JSON that contains all required
-	// client fields
-  var requiredObj = 
-	{
-		"FirstName": clientFirstName,
-		"LastName" : clientLastName,
-		"DateOfBirth": clientDateOfBirth,
-		"Address": clientAddress,
-		"City": clientCity,
-		"ZipCode": clientZIP,
-		"State": clientState,
-		"Source": clientSource
-	};
-
-	// This helps to ensure that none of the form
-	// inputs are left blank and only have alphabetical characters.
-	try 
-	{
-		checkRequiredFields(requiredObj, spanName);
-	}
-
-	catch (error)
-	{
-		console.log(error);
-		return;
-	}
-
 	// Package a JSON payload to deliver to the server that contains all
 	// the contact details in order create the contact.
   var jsonPayload = 
