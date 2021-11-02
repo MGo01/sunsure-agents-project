@@ -21,7 +21,22 @@
   $NumOfDependents = $inputFromJson['NumOfDependents'];
   $Source = $inputFromJson['Source'];
 
-  $sql = "UPDATE Primary_PolicyHolders SET FirstName = '" . $FirstName . "', LastName = '" . $LastName . "', DateOfBirth = '" . $DateOfBirth . "', SSN = '" . $SSN . "', Phone = '" . $Phone . "', Address = '" . $Address . "', Second_Line_Address = '" . $Second_Line_Address . "', City = '" . $City . "', ZipCode = '" . $ZipCode . "', State = '" . $State . "', Email = '" . $Email . "', NumOfDependents = '" . $NumOfDependents . "', Source = '" . $Source . "' WHERE AgentID = '" . $AgentID . "' AND PolicyID = '" . $PolicyID . "'";
+  // $sql = "UPDATE Primary_PolicyHolders SET FirstName = '" . $FirstName . "', LastName = '" . $LastName . "', DateOfBirth = '" . $DateOfBirth . "', SSN = '" . $SSN . "', Phone = '" . $Phone . "', Address = '" . $Address . "', Second_Line_Address = '" . $Second_Line_Address . "', City = '" . $City . "', ZipCode = '" . $ZipCode . "', State = '" . $State . "', Email = '" . $Email . "', NumOfDependents = '" . $NumOfDependents . "', Source = '" . $Source . "' WHERE AgentID = '" . $AgentID . "' AND PolicyID = '" . $PolicyID . "'";
+
+  $sql = "UPDATE Primary_PolicyHolders SET FirstName = IF(LENGTH('$FirstName')=0, FirstName, \"{$FirstName}\"), 
+                                    LastName = IF(LENGTH('$LastName')=0, LastName, \"{$LastName}\"), 
+                                    DateOfBirth = \"{$DateOfBirth}\", 
+                                    SSN = IF(LENGTH('$SSN')=0, SSN = \"{$SSN}\"), 
+                                    Phone = IF(LENGTH('$Phone')=0, Phone, \"{$Phone}\"), 
+                                    Address = IF(LENGTH('$Address')=0, Address, \"{$Address}\"), 
+                                    Second_Line_Address = IF(LENGTH('$Second_Line_Address')=0, Second_Line_Address, \"{$Second_Line_Address}\"), 
+                                    City = IF(LENGTH('$City')=0, City, \"{$City}\"), 
+                                    ZipCode = IF(LENGTH('$ZipCode')=0, ZipCode, \"{$ZipCode}\"), 
+                                    State = \"{$State}\", 
+                                    Email = IF(LENGTH('$Email')=0, Email, \"{$Email}\"), 
+                                    NumOfDependents = IF(LENGTH('$NumOfDependents') = 0, NumOfDependents, \"{$NumOfDependents}\"), 
+                                    Source = \"{$Source}\") 
+                                    WHERE AgentID = '{$AgentID}' AND PolicyInfoID = '{$PolicyInfoID}'"
 
   if (mysqli_query($conn, $sql))
   {
