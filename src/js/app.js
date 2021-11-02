@@ -144,7 +144,7 @@ function saveUpdate()
 
 	document.getElementById("updateSourceMenu").value = oldRowInfo[13];
 
-	document.getElementById("updateClientResult") = "";
+	document.getElementById("updateClientResult").innerHTML = "";
 
 	let updateFlag = true;
 
