@@ -519,7 +519,7 @@ function fillShowDetailsForm(updateShow = false, gPolicyID = -1)
 
 				if (endpointmsg === "Policy Information associated with given ID does not exist.")
 				{
-					if (typeof updateShow === boolean && updateShow === true)
+					if (typeof updateShow === "boolean" && updateShow === true)
 					{
 						console.log("Unable to load policy information");
 						document.getElementById("updateClientResult").innerHTML = endpointmsg;	
