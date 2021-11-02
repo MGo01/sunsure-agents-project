@@ -55,6 +55,7 @@ function addRow(obj)
 	// Creates buttons for deleting and updating
 	// a contact based on the their respective row.
 	// $(`#delete-${obj.PolicyID}`).on('click', deleteTest)
+
 	$(`#save-${obj.PolicyID}`).on('click', saveUpdate)
 	$(`#show-${obj.PolicyID}`).on('click', fillShowDetailsForm)
 
@@ -518,7 +519,7 @@ function fillShowDetailsForm(updateShow = false, gPolicyID = -1)
 
 				if (endpointmsg === "Policy Information associated with given ID does not exist.")
 				{
-					if (updateShow)
+					if (typeof updateShow === boolean && updateShow === true)
 					{
 						console.log("Unable to load policy information");
 						document.getElementById("updateClientResult").innerHTML = endpointmsg;	
@@ -572,7 +573,7 @@ function fillShowDetailsForm(updateShow = false, gPolicyID = -1)
 					ambassadorName = jsonObject.AmbassadorName;
 					notes = jsonObject.Notes; 
 
-					if (updateShow)
+					if (typeof updateShow === boolean && updateShow === true)
 					{
 						// Load the Policy Information Form
 						document.getElementById("updatePlanType").placeholder = "" + planType;
