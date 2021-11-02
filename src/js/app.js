@@ -763,6 +763,31 @@ function createPolicyHolder()
 	if (!checkFormNames(clientFirstName, clientLastName, spanName))
 		return;
 
+		// Package JSON that contains all required
+	// client fields
+  var requiredObj = 
+	{
+		"DateOfBirth": clientDateOfBirth,
+		"Address": clientAddress,
+		"City": clientCity,
+		"ZipCode": clientZIP,
+		"State": clientState,
+		"Source": clientSource
+	};
+
+	// This helps to ensure that none of the form
+	// inputs are left blank and only have alphabetical characters.
+	try 
+	{
+		checkRequiredFields(requiredObj, spanName);
+	}
+
+	catch (error)
+	{
+		console.log(error);
+		return;
+	}
+
 	document.getElementById("createClientResult").innerHTML = "";
 
 	// Package a JSON payload to deliver to the server that contains all
@@ -1193,33 +1218,6 @@ function updateClient(policyID)
 
 	// Remove any dashes and replace them with a forward slash.
 	updatedClientDateOfBirth = updatedClientDateOfBirth.replace(/[---]+/gi, '/');
-
-	// Package JSON that contains all required
-	// client fields
-  var requiredObj = 
-	{
-		"FirstName": updatedClientFirstName,
-		"LastName" : updatedClientLastName,
-		"DateOfBirth": updatedClientDateOfBirth,
-		"Address": updatedClientAddress,
-		"City": updatedClientCity,
-		"ZipCode": updatedClientZIP,
-		"State": updatedClientState,
-		"Source": updatedClientSource
-	};
-
-	// This helps to ensure that none of the form
-	// inputs are left blank and only have alphabetical characters.
-	try 
-	{
-		checkRequiredFields(requiredObj, spanName);
-	}
-
-	catch (error)
-	{
-		console.log(error);
-		return;
-	}
 
 	// Package a JSON payload to deliver to the server that contains all
 	// the contact details in order create the contact.
