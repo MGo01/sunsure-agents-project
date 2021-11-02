@@ -140,7 +140,7 @@ function saveUpdate()
 	document.getElementById("updateStatesMenu").value = oldRowInfo[10];
 
 	document.getElementById("updateClientEmail").placeholder = oldRowInfo[11];
-	document.getElementById("updateClientNumOfDependents").placeholder = oldRowInfo[12];
+	document.getElementById("updateClientNumOfDependents").innerHTML = oldRowInfo[12];
 
 	document.getElementById("updateSourceMenu").value = oldRowInfo[13];
 
@@ -475,7 +475,7 @@ function loadDependents(policyID)
 
 // Fills out the Policy Information Form for Show
 // Details AND the Update Client Form if necessary
-function fillShowDetailsForm(updateFlag = false, gPolicyID = -1)
+function fillShowDetailsForm(updateShow = false, gPolicyID = -1)
 {
 	var policyID = $(this).data('testid');
 
@@ -518,7 +518,7 @@ function fillShowDetailsForm(updateFlag = false, gPolicyID = -1)
 
 				if (endpointmsg === "Policy Information associated with given ID does not exist.")
 				{
-					if (updateFlag)
+					if (updateShow)
 					{
 						console.log("Unable to load policy information");
 						document.getElementById("updateClientResult").innerHTML = endpointmsg;	
@@ -572,7 +572,7 @@ function fillShowDetailsForm(updateFlag = false, gPolicyID = -1)
 					ambassadorName = jsonObject.AmbassadorName;
 					notes = jsonObject.Notes; 
 
-					if (updateFlag)
+					if (updateShow)
 					{
 						// Load the Policy Information Form
 						document.getElementById("updatePlanType").placeholder = "" + planType;
