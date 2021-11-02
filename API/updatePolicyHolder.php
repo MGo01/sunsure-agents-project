@@ -35,8 +35,8 @@
                                     State = \"{$State}\", 
                                     Email = IF(LENGTH('$Email')=0, Email, \"{$Email}\"), 
                                     NumOfDependents = IF(LENGTH('$NumOfDependents') = 0, NumOfDependents, \"{$NumOfDependents}\"), 
-                                    Source = \"{$Source}\") 
-                                    WHERE AgentID = '{$AgentID}' AND PolicyInfoID = '{$PolicyInfoID}'";
+                                    Source = \"{$Source}\" 
+                                    WHERE AgentID = '{$AgentID}' AND PolicyID = '{$PolicyID}'";
 
   if (mysqli_query($conn, $sql))
   {
