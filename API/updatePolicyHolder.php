@@ -21,8 +21,6 @@
   $NumOfDependents = $inputFromJson['NumOfDependents'];
   $Source = $inputFromJson['Source'];
 
-  // $sql = "UPDATE Primary_PolicyHolders SET FirstName = '" . $FirstName . "', LastName = '" . $LastName . "', DateOfBirth = '" . $DateOfBirth . "', SSN = '" . $SSN . "', Phone = '" . $Phone . "', Address = '" . $Address . "', Second_Line_Address = '" . $Second_Line_Address . "', City = '" . $City . "', ZipCode = '" . $ZipCode . "', State = '" . $State . "', Email = '" . $Email . "', NumOfDependents = '" . $NumOfDependents . "', Source = '" . $Source . "' WHERE AgentID = '" . $AgentID . "' AND PolicyID = '" . $PolicyID . "'";
-
   $sql = "UPDATE Primary_PolicyHolders SET FirstName = IF(LENGTH('$FirstName')=0, FirstName, \"{$FirstName}\"), 
                                     LastName = IF(LENGTH('$LastName')=0, LastName, \"{$LastName}\"), 
                                     DateOfBirth = \"{$DateOfBirth}\", 
