@@ -573,12 +573,12 @@ function fillShowDetailsForm(updateFlag = false, gPolicyID = -1)
 						// Load the Policy Information Form
 						document.getElementById("updatePlanType").placeholder = "" + planType;
 						document.getElementById("updateAncillaryType").placeholder = "" + ancillaryType;
-						document.getElementById("updateEffectiveDate").placeholder = "" + effectiveDate;
+						document.getElementById("updateEffectiveDate").valueAsDate = new Date(effectiveDate);
 
 						document.getElementById("updateCarriers").value = carrier;
 						document.getElementById("updateClientAmbassador").placeholder = "" + ambassadorName;
 						document.getElementById("updateDetailsAppID").placeholder = "" + applicationID;
-						document.getElementById("updateNotes").placeholder = "" + notes;
+						document.getElementById("updateNotes").innerHTML = "" + notes;
 					}
 				}
 			}
