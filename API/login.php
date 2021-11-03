@@ -39,7 +39,7 @@
 
     // Pepper and hash the input password
     $pwd_peppered = hash_hmac("sha256", $Password, $pepper);
-    $pwd_hashed = password_hash($pwd_peppered, PASSWORD_ARGON2ID, ["cost" => $cost]);
+    $pwd_hashed = $Check_Password;
 
     if (password_verify($pwd_peppered, $pwd_hashed)) 
     {
