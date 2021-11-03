@@ -14,9 +14,7 @@ function login()
 
 	if (checkEmaillog(loginEmail) && checkPasswordlog(password))
   {
-		var loginPassword = md5(password);
-		
-		var jsonPayload = '{"Email" : "' + loginEmail + '", "Password" : "' + loginPassword + '"}';
+		var jsonPayload = '{"Email" : "' + loginEmail + '", "Password" : "' + password + '"}';
 
     var request = new XMLHttpRequest();
     request.open("POST", "https://sunsure-agent.com/API/login.php", true);
@@ -259,9 +257,7 @@ function resetPassword()
   {
     document.getElementById("resetPasswordResult").innerHTML = "";
 
-    var hashedNewPassword = md5(newPassword);
-
-    var json = '{"resetToken" : "' + resetCode + '", "newPassword" : "' + hashedNewPassword + '"}';
+    var json = '{"resetToken" : "' + resetCode + '", "newPassword" : "' + newPassword + '"}';
     var successMessage = "Successfully reset password";
     
     var request = new XMLHttpRequest();

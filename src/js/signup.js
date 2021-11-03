@@ -162,8 +162,7 @@ function signup()
 
   if (validateInput(fullName, email, password, confirmPassword))
   {
-    var hashedPassword = md5(password);
-    var json = '{"FirstName" : "' + firstName + '", "LastName" : "' + lastName + '", "Email" : "' + email + '", "Password" : "' + hashedPassword + '"}';
+    var json = '{"FirstName" : "' + firstName + '", "LastName" : "' + lastName + '", "Email" : "' + email + '", "Password" : "' + password + '"}';
     
     var request = new XMLHttpRequest();
 
