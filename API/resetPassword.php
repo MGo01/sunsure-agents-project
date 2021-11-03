@@ -13,7 +13,7 @@
   
   // Clear expired reset tokens
   $clear_sql = "DELETE FROM Agents WHERE Expires < NOW()";
-  mysqli_query($conn, clear_sql);
+  mysqli_query($conn, $clear_sql);
 
   if (mysqli_query($conn, $sql))
   {
