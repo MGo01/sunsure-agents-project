@@ -8,8 +8,11 @@
   $Password = $inputFromJson['Password'];
 
   // Query to DB
-  $sql = "SELECT * FROM Agents WHERE (Email='$Email' AND Password='$Password')";
+  $sql = "SELECT * FROM Agents WHERE (Email='$Email')";
   $result = mysqli_query($conn, $sql);
+
+  // Retrieve the number of rows
+  // to check if an account with the input email exists
   $numRows = mysqli_num_rows($result);
 
   // Check if User exists.
@@ -19,24 +22,45 @@
     // in new variables below.
     $Agent = $result->fetch_assoc();
 
+    // Load Agent data into variables
+    // for sending back to client-side later.
     $ID = $Agent["AgentID"];
     $FirstName = $Agent["FirstName"];
     $LastName = $Agent["LastName"];
+    $Check_Password = $Agent['Password'];
     $Email = $Agent["Email"];
     $isVerified = $Agent['isVerified'];
 
-    // Ensure that the user is verified before
-    // logging them in
-    if ($isVerified == 'Y')
+    // Retrieve pepper from configuration file
+    $pepper = $configs["pepper"];
+
+    // Set up parameters for password hashing options
+    $cost = 10;
+
+    // Pepper and hash the input password
+    $pwd_peppered = hash_hmac("sha256", $Password, $pepper);
+    $pwd_hashed = password_hash($pwd_peppered, PASSWORD_ARGON2ID, ["cost" => $cost]);
+
+    if (password_verify($pwd_peppered, $pwd_hashed)) 
     {
-       // Returns User information to be stored
-      // on the Front-End (FE).
-      returnUser($ID, $FirstName, $LastName, $Email);
+      // Ensure that the user is verified before
+      // logging them in
+      if ($isVerified == 'Y')
+      {
+        // Returns User information to be stored
+        // on the Front-End (FE).
+        returnUser($ID, $FirstName, $LastName, $Email);
+      }
+
+      else
+      {
+        returnError("User is not verified");
+      }
     }
 
     else
     {
-      returnError("User is not verified");
+      returnError("Email or password is incorrect");
     }
   }
 
