@@ -25,7 +25,9 @@
   $reset_link = "<a href='http://sunsure-agent.com/resetPassword.html'>Click To Reset Password</a>";
 
   // Check if the token references any User in the database.
-  $sql = "UPDATE Agents SET PasswordToken = '$PasswordToken' WHERE Email = '$input_email'";       
+  // $expire_sql = "UPDATE Agents SET PasswordToken = '$PasswordToken' WHERE Email = '$input_email' ";
+  
+  $expire_sql = "INSERT INTO Agents (PasswordToken, Expires) VALUES ('$PasswordToken', NOW() + INTERVAL 1 HOUR) WHERE Email = '$input_email'";
 
   $standard_msg = "Hi Sunsure Agent User,<br>
   We have received a request to reset the password for Sunsure Agent account {$input_email}.      
@@ -38,7 +40,7 @@
 
   If you did not request this, please ignore this email and your password will remain unchanged.";
 
-  if (mysqli_query($conn, $sql))
+  if (mysqli_query($conn, $expire_sql))
   {
     $email = new \SendGrid\Mail\Mail();
     $email->addTo($input_email);
