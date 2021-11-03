@@ -167,7 +167,7 @@ function signup()
     
     var request = new XMLHttpRequest();
 
-    request.open("POST", "http://sunsure-agent.com/API/signup.php", true);
+    request.open("POST", "https://sunsure-agent.com/API/signup.php", true);
     request.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
     try 
