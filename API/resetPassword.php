@@ -3,13 +3,22 @@
   // Connect to database.
   require 'db_conn.php';
 
+  // Load in pepper configurations
+  $configs = include('config.php');
+
   $inputFromJson = json_decode(file_get_contents('php://input'), true);
 
   $checkToken = $inputFromJson['resetToken'];
   $newPassword = $inputFromJson['newPassword'];
 
+  $pepper = $configs["pepper"];
+
+  // Pepper and hash the input password
+  $pwd_peppered = hash_hmac("sha256", $newPassword, $pepper);
+  $pwd_hashed = password_hash($pwd_peppered, PASSWORD_ARGON2ID);
+
   // Check if the token references any User in the database.
-  $sql = "UPDATE Agents SET Password = '$newPassword' WHERE passwordToken = '$checkToken'";
+  $sql = "UPDATE Agents SET Password = '$pwd_hashed' WHERE passwordToken = '$checkToken'";
   
   // Clear expired reset tokens
   $clear_sql = "DELETE FROM Agents WHERE Expires < NOW()";
