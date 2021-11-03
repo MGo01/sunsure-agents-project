@@ -19,7 +19,7 @@ function login()
 		var jsonPayload = '{"Email" : "' + loginEmail + '", "Password" : "' + loginPassword + '"}';
 
     var request = new XMLHttpRequest();
-    request.open("POST", "http://sunsure-agent.com/API/login.php", true);
+    request.open("POST", "https://sunsure-agent.com/API/login.php", true);
     request.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
     try 
@@ -208,7 +208,7 @@ function sendResetCode()
   var successMessage = "Successfully sent email to: " + email;
   
   var request = new XMLHttpRequest();
-  request.open("POST", "http://sunsure-agent.com/API/sendResetMail.php", true);
+  request.open("POST", "https://sunsure-agent.com/API/sendResetMail.php", true);
 
   request.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
@@ -265,7 +265,7 @@ function resetPassword()
     var successMessage = "Successfully reset password";
     
     var request = new XMLHttpRequest();
-    request.open("POST", "http://sunsure-agent.com/API/resetPassword.php", true);
+    request.open("POST", "https://sunsure-agent.com/API/resetPassword.php", true);
 
     request.setRequestHeader("Content-type", "application/json; charset=UTF-8");
     try 
@@ -286,7 +286,7 @@ function resetPassword()
 
           else
           {
-            document.getElementById("resetPasswordResult").innerHTML = "Token may have expired"; 
+            document.getElementById("resetPasswordResult").innerHTML = "Reset key is not correct."; 
             document.getElementById("resetPasswordResult").style.color = "red";
           }
         }
@@ -321,7 +321,7 @@ function confirmCode()
   
   var request = new XMLHttpRequest();
 
-  request.open("POST", "http://sunsure-agent.com/API/confirmEmail.php", true);
+  request.open("POST", "https://sunsure-agent.com/API/confirmEmail.php", true);
   request.setRequestHeader("Content-type", "application/json; charset=UTF-8");
   
   try 

@@ -4,7 +4,7 @@
 
 // Global variables that allow for easy access
 // across the program.
-var urlBase = 'http://sunsure-agent.com/API';
+var urlBase = 'https://sunsure-agent.com/API';
 var extension = 'php';
 var globalPolicyID = -1;
 
@@ -365,7 +365,7 @@ function insertPolicyInfo()
 
 	jsonString = JSON.stringify(jsonPayload);
 
-	var url = "http://sunsure-agent.com/API/insertPolicyInfo.php";
+	var url = urlBase + '/insertPolicyInfo.' + extension;
 	var xhr = new XMLHttpRequest();
 
 	xhr.open("POST", url, false);
@@ -411,7 +411,7 @@ function insertPolicyInfo()
 
 function loadDependents(policyID)
 {
-	var url = "http://sunsure-agent.com/API/getDependents.php";
+	var url = urlBase + '/getDependents.' + extension;
 	var xhr = new XMLHttpRequest();
 
 	// Package a JSON payload to deliver to the server that contains all
@@ -483,7 +483,7 @@ function fillShowDetailsForm(updateShow = false, gPolicyID = -1)
 	if (typeof policyID === 'undefined')
 		policyID = gPolicyID;
 
-	var url = "http://sunsure-agent.com/API/getPolicyInformation.php";
+	var url = urlBase + '/getPolicyInformation.' + extension;
 	var xhr = new XMLHttpRequest();
 
 	var applicationID;
@@ -823,7 +823,7 @@ function createPolicyHolder()
 
 	jsonString = JSON.stringify(jsonPayload);
 
-	var url = "http://sunsure-agent.com/API/createPolicyHolder.php";
+	var url = urlBase + '/createPolicyHolder.' + extension;
 	var xhr = new XMLHttpRequest();
 
 	xhr.open("POST", url, false);
@@ -920,18 +920,18 @@ function insertDependents(dependentsArray)
 	console.log(dependentsArray);
 }
 
-// Deletes a contact based on their ID.
+// Deletes a contact based on their ID. Currently not in use
 function deleteClient(clientID)
 {
-	var xhr = new XMLHttpRequest();
-	var newUrl = 'http://sunsure-agent.com/API/deletePolicyHolder.php';
+	let xhr = new XMLHttpRequest();
+	let url = urlBase + "/deletePolicyHolder" + extension;
 
 	// Package a JSON payload to deliver to the server that contains all
 	// the contact's ID in order delete the contact.
 	var jsonPayload =
 	'{"PolicyID" : "' + clientID + '"}';
 
-	xhr.open("DELETE", newUrl, true);
+	xhr.open("DELETE", url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
 	// Basic try and catch to ensure that any server code errors are
@@ -974,14 +974,14 @@ function deleteClient(clientID)
 function clearDependents(dependentID)
 {
 	var xhr = new XMLHttpRequest();
-	var newUrl = 'http://sunsure-agent.com/API/clearDependents.php';
+	var url = urlBase + "/clearDependents" + extension;
 
 	// Package a JSON payload to deliver to the server that contains all
 	// the contact's ID in order delete the contact.
 	var jsonPayload =
 	'{"DependentID" : "' + dependentID + '"}';
 
-	xhr.open("DELETE", newUrl, false);
+	xhr.open("DELETE", url, false);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
 	// Basic try and catch to ensure that any server code errors are
