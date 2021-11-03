@@ -22,12 +22,11 @@
   // Generate a unique Password Token
   $PasswordToken = uniqid($pre, true);
 
-  $reset_link = "<a href='http://sunsure-agent.com/resetPassword.html'>Click To Reset Password</a>";
+  $reset_link = "<a href='https://sunsure-agent.com/resetPassword.html'>Click To Reset Password</a>";
 
   // Check if the token references any User in the database.
   // $expire_sql = "UPDATE Agents SET PasswordToken = '$PasswordToken' WHERE Email = '$input_email' ";
-  
-  $expire_sql = "INSERT INTO Agents (PasswordToken, Expires) VALUES ('$PasswordToken', NOW() + INTERVAL 1 HOUR) WHERE Email = '$input_email'";
+  $expire_sql = "UPDATE Agents SET PasswordToken = '$PasswordToken', Expires = NOW() + INTERVAL 1 HOUR WHERE Email = '$input_email'";
 
   $standard_msg = "Hi Sunsure Agent User,<br>
   We have received a request to reset the password for Sunsure Agent account {$input_email}.      
@@ -68,7 +67,7 @@
 
   else
   {
-    returnError("Email/User was not found.");
+    returnError("Email or User was not found.");
   }
 
   function returnError($info)

@@ -32,7 +32,7 @@
 
     if (mysqli_query($conn, $sql))
     {
-      $verification_link = "<a href='http://sunsure-agent.com/verifyEmail.html'>Click To Verify Email</a>";
+      $verification_link = "<a href='https://sunsure-agent.com/verifyEmail.html'>Click To Verify Email</a>";
 
       $standard_msg = "Hi Sunsure Agent User,<br>
       We have received a request to verify the following Sunsure Agent account {$Email}
