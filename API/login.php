@@ -38,10 +38,10 @@
     $cost = 10;
 
     // Pepper and hash the input password
-    $pwd_peppered = hash_hmac("sha256", $Password, $pepper);
+    // $pwd_peppered = hash_hmac("sha256", $Password, $pepper);
     $pwd_hashed = $Check_Password;
 
-    if (password_verify($pwd_peppered, $pwd_hashed)) 
+    if (password_verify($Password, $pwd_hashed)) 
     {
       // Ensure that the user is verified before
       // logging them in

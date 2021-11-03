@@ -14,8 +14,8 @@
   $pepper = $configs["pepper"];
 
   // Pepper and hash the input password
-  $pwd_peppered = hash_hmac("sha256", $newPassword, $pepper);
-  $pwd_hashed = password_hash($pwd_peppered, PASSWORD_ARGON2ID);
+  // $pwd_peppered = hash_hmac("sha256", $newPassword, $pepper);
+  $pwd_hashed = password_hash($newPassword, PASSWORD_ARGON2ID);
 
   // Check if the token references any User in the database.
   $sql = "UPDATE Agents SET Password = '$pwd_hashed' WHERE passwordToken = '$checkToken'";

@@ -30,8 +30,8 @@
     $pepper = $configs["pepper"];
 
     // Pepper and hash the input password
-    $pwd_peppered = hash_hmac("sha256", $Password, $pepper);
-    $pwd_hashed = password_hash($pwd_peppered, PASSWORD_ARGON2ID);
+    // $pwd_peppered = hash_hmac("sha256", $Password, $pepper);
+    $pwd_hashed = password_hash($Password, PASSWORD_ARGON2ID);
 
     $sql = "INSERT INTO Agents (Password, Email, FirstName, LastName, AgentToken)
     VALUES ('".$pwd_hashed."','".$Email."','".$FirstName."','".$LastName."', '".$AgentToken."')";
