@@ -356,7 +356,8 @@ function insertPolicyInfo()
 	// policy information fields.
   var requiredObj = 
 	{
-		"PolicyType": planType
+		"PolicyType": planType,
+		"EffectiveDate": effectiveDate
 	};
 
 	// Ensure that no required field is empty.
@@ -774,7 +775,7 @@ function createPolicyHolder()
 	if (!checkFormNames(clientFirstName, clientLastName, spanName))
 		return;
 
-		// Package JSON that contains all required
+	// Package JSON that contains all required
 	// client fields
   var requiredObj = 
 	{
