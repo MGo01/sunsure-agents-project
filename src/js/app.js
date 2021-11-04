@@ -868,6 +868,7 @@ function createPolicyHolder()
 					
 					else
 					{
+						insertPolicyInfo();
 						clearModalForm();
 					}
 				}
