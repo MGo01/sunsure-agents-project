@@ -849,6 +849,10 @@ function createPolicyHolder()
 				else
 				{
 					console.log(endpointmsg);
+					console.log("Client insertion was not successful!");
+					document.getElementById("createClientResult").innerHTML = "Primary PolicyHolder has been added.";
+					document.getElementById("createClientResult").style.color = "green";
+
 					globalPolicyID = endpointmsg;
 
 					if (clientNumOfDependents >= 1)
