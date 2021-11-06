@@ -69,6 +69,24 @@ function addRow(obj)
 
 }
 
+function restrictDate(date, DOBFlag = false, spanName)
+{
+	// Extract the year from the yyyy/mm/dd format.
+	let parts = date.split('/');
+	year = parts[0];
+
+	if (DOBFlag)
+	{
+		currentYear = new Date().getFullYear();
+		return ((year >= 1900) && (year <= currentYear));
+	}
+
+	else
+	{
+		return year >= 1900;
+	}
+}
+
 function tranformDate(strDate) 
 {
 	let result = '';
@@ -378,6 +396,11 @@ function checkPolicyInfo(spanName)
 	// Ensure that no required field is empty.
 	if (checkRequiredFields(requiredObj, spanName))
 		return false;
+	
+	// Ensure that the DOB date is greater than
+	// 1900 and less than any future date
+	if (!restrictDate(effectiveDate, DOBFlag=false, spanName))
+		return false;
 
 	return true;
 }
@@ -410,6 +433,7 @@ function checkDependentInfo(clientNumOfDependents, spanName)
 			"Dependent DOB": dependentDOB,
 		};
 
+		
 		// Ensure that no required field is empty.
 		if (checkRequiredFields(requiredObj, spanName))
 			return false;
@@ -417,9 +441,13 @@ function checkDependentInfo(clientNumOfDependents, spanName)
 		// This helps to ensure that none of the form
 		// inputs are left blank and only have alphabetical characters.
 		if (!checkFormNames(dependentFirstName, dependentLastName, spanName))
-		{
 			return false;
-		}
+
+		// Ensure that DOB is correct.
+		let DOBFlag = true;
+
+		if (!restrictDate(clientDateOfBirth, DOBFlag, spanName))
+			return false;
 	}
 
 	return true;
@@ -595,9 +623,6 @@ function fillShowDetailsForm(updateShow = false, gPolicyID = -1)
 	};
 
 	jsonString = JSON.stringify(jsonPayload);
-	let thisIsATest = false;
-
-	console.log(thisIsATest);
 
 	xhr.open("POST", url, false);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
@@ -850,6 +875,12 @@ function createPolicyHolder()
 		return;
 	}
 
+	// Ensure that if a user inserts nothing
+	// into the number of dependents field, we replace 
+	// the value with a 0 to avoid MySQL type errors.
+	if (clientNumOfDependents == null)
+		clientNumOfDependents = 0;
+
 	// Remove any special characters in order to ensure all
 	// numbers are a 10 digit string.
 	clientPhone = clientPhone.replace(/[^\w\s]/gi, '');
@@ -860,6 +891,13 @@ function createPolicyHolder()
 	// This helps to ensure that none of the form
 	// inputs are left blank and only have alphabetical characters.
 	if (!checkFormNames(clientFirstName, clientLastName, spanName))
+		return;
+	
+	// Ensure that the DOB date is greater than
+	// 1900 and less than any future date
+	let DOBFlag = true;
+
+	if (!restrictDate(clientDateOfBirth, DOBFlag, spanName))
 		return;
 
 	// Package JSON that contains all required
@@ -958,7 +996,7 @@ function createPolicyHolder()
 						insertDependents(dependentsArray);
 						clearModalForm();
 
-						document.getElementById("createClientResult").innerHTML = "All Primary PolicyHolder has been added.";
+						document.getElementById("createClientResult").innerHTML = "All Primary PolicyHolder information has been added.";
 						document.getElementById("createClientResult").style.color = "green";
 						console.log(dependentsArray);
 					}
@@ -1308,6 +1346,13 @@ function updateClient(policyID)
 
 	document.getElementById("updateClientResult").innerHTML = "";
 
+	// Remove any special characters in order to ensure all
+	// numbers are a 10 digit string.
+	updatedClientPhone = updatedClientPhone.replace(/[^\w\s]/gi, '');
+
+	// Remove any dashes and replace them with a forward slash.
+	updatedClientDateOfBirth = updatedClientDateOfBirth.replace(/[---]+/gi, '/');
+
 	if (updatedClientNumOfDependents < 0)
 	{
 		document.getElementById("updateClientResult").innerHTML = "Data Value Error: Negative values are not allowed";
@@ -1321,13 +1366,12 @@ function updateClient(policyID)
 	// inputs are left blank and only have alphabetical characters.
 	if (!checkFormNames(updatedClientFirstName, updatedClientLastName, spanName, updateFlag))
 		return;
+	
+	// Ensure that DOB is correct.
+	let DOBFlag = true;
 
-	// Remove any special characters in order to ensure all
-	// numbers are a 10 digit string.
-	updatedClientPhone = updatedClientPhone.replace(/[^\w\s]/gi, '');
-
-	// Remove any dashes and replace them with a forward slash.
-	updatedClientDateOfBirth = updatedClientDateOfBirth.replace(/[---]+/gi, '/');
+	if (!restrictDate(updatedClientDateOfBirth, DOBFlag))
+		return;
 
 	// Package a JSON payload to deliver to the server that contains all
 	// the contact details in order create the contact.
