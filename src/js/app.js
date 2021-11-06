@@ -322,6 +322,78 @@ function fillInDependentForm(depArray)
 	}
 }
 
+function checkPolicyInfo(spanName)
+{
+	var planType = document.getElementById("createPlanType").value;
+	var ancillaryType = document.getElementById("createAncillaryType").value;
+
+	var effectiveDate = document.getElementById("createEffectiveDate").value;
+	var carrier = document.getElementById("createCarrier").value;
+	var notes = document.getElementById("createNotes").value;
+
+	var ambassador = document.getElementById("createClientAmbassador").value;
+	var applicationID = document.getElementById("createAppID").value;
+
+	effectiveDate = effectiveDate.replace(/[---]+/gi, '/');
+
+	// Package JSON that contains all required
+	// policy information fields.
+  var requiredObj = 
+	{
+		"Policy Type": planType,
+		"Policy Effective Date": effectiveDate
+	};
+
+	// Ensure that no required field is empty.
+	if (checkRequiredFields(requiredObj, spanName))
+		return false;
+
+	return true;
+}
+
+function checkDependentInfo(clientNumOfDependents, spanName)
+{
+	for (let i = 0; i < clientNumOfDependents; i++)
+	{
+		// Depending on the number of dependents
+		// these strings will pull the right data accordingly.
+		var FNameString = "dependent-input-FirstName" + i;
+		var LNameString = "dependent-input-LastName" + i;
+		var DOBString = "dependent-input-DOB" + i;
+		var SSNString = "dependent-input-SSN" + i;
+
+		var dependentFirstName = document.getElementById(FNameString).value;
+		var dependentLastName = document.getElementById(LNameString).value;
+		var dependentDOB = document.getElementById(DOBString).value;
+		var dependentSSN = document.getElementById(SSNString).value;
+
+		// Remove any dashes and replace them with a forward slash.
+		dependentDOB = dependentDOB.replace(/[---]+/gi, '/');
+
+		// Package JSON that contains all required
+		// policy information fields.
+		var requiredObj = 
+		{
+			"Dependent First Name": dependentFirstName,
+			"Dependent Last Name": dependentLastName,
+			"Dependent DOB": dependentDOB,
+		};
+
+		// Ensure that no required field is empty.
+		if (checkRequiredFields(requiredObj, spanName))
+			return false;
+
+		// This helps to ensure that none of the form
+		// inputs are left blank and only have alphabetical characters.
+		if (!checkFormNames(dependentFirstName, dependentLastName, spanName))
+		{
+			return false;
+		}
+	}
+
+	return true;
+}
+
 function insertPolicyInfo()
 {
 	var planType = document.getElementById("createPlanType").value;
@@ -351,18 +423,6 @@ function insertPolicyInfo()
 		"Notes": notes,
 		"PolicyInfoID": globalPolicyID,
 	};
-
-	// Package JSON that contains all required
-	// policy information fields.
-  var requiredObj = 
-	{
-		"PolicyType": planType,
-		"EffectiveDate": effectiveDate
-	};
-
-	// Ensure that no required field is empty.
-	if (checkRequiredFields(requiredObj, spanName))
-		return;
 
 	jsonString = JSON.stringify(jsonPayload);
 
@@ -779,12 +839,12 @@ function createPolicyHolder()
 	// client fields
   var requiredObj = 
 	{
-		"DateOfBirth": clientDateOfBirth,
-		"Address": clientAddress,
-		"City": clientCity,
-		"ZipCode": clientZIP,
-		"State": clientState,
-		"Source": clientSource
+		"Client Date Of Birth": clientDateOfBirth,
+		"Client Address": clientAddress,
+		"Client City": clientCity,
+		"Client ZipCode": clientZIP,
+		"Client State": clientState,
+		"Client Source": clientSource
 	};
 
 	// This helps to ensure that none of the form
@@ -801,6 +861,11 @@ function createPolicyHolder()
 	}
 
 	document.getElementById("createClientResult").innerHTML = "";
+
+	// Check Policy and Dependent Info
+	// before we insert any data in the database.
+	if (!(checkPolicyInfo(spanName) && checkDependentInfo(clientNumOfDependents, spanName)))
+		return;
 
 	// Package a JSON payload to deliver to the server that contains all
 	// the contact details in order create the contact.
