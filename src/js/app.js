@@ -886,7 +886,7 @@ function createPolicyHolder()
 	// Ensure that if a user inserts nothing
 	// into the number of dependents field, we replace 
 	// the value with a 0 to avoid MySQL type errors.
-	if (clientNumOfDependents == null)
+	if (clientNumOfDependents == null || clientNumOfDependents == "")
 		clientNumOfDependents = 0;
 
 	// Remove any special characters in order to ensure all
@@ -992,7 +992,7 @@ function createPolicyHolder()
 				else
 				{
 					console.log(endpointmsg);
-					console.log("Client insertion was not successful!");
+					console.log("Client insertion was successful!");
 					document.getElementById("createClientResult").innerHTML = "Primary PolicyHolder has been added.";
 					document.getElementById("createClientResult").style.color = "green";
 
