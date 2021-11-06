@@ -1020,7 +1020,6 @@ function createPolicyHolder()
 
 						document.getElementById("createClientResult").innerHTML = "All Primary PolicyHolder has been added.";
 						document.getElementById("createClientResult").style.color = "green";
-						console.log(dependentsArray);
 					}
 				}
 			}
