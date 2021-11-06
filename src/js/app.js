@@ -959,7 +959,7 @@ function insertDependents(dependentsArray)
 {
 	async function postData(data) 
 	{
-		url = 'http://68.183.97.82/API/createDependent.php';
+		url = 'https://68.183.97.82/API/createDependent.php';
 		// Default options are marked with *
 		const response = await fetch(url, {
 			method: 'POST',
@@ -1093,7 +1093,7 @@ function insertUpdatedDependents(dependentsArray)
 {
 	async function postData(data) 
 	{
-		url = 'http://68.183.97.82/API/createDependent.php';
+		url = 'https://68.183.97.82/API/createDependent.php';
 		// Default options are marked with *
 		const response = await fetch(url, {
 			method: 'POST',
