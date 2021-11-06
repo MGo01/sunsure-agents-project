@@ -1047,7 +1047,7 @@ function deleteClient(clientID)
 function clearDependents(dependentID)
 {
 	var xhr = new XMLHttpRequest();
-	var url = urlBase + "/clearDependents" + extension;
+	var url = urlBase + "/clearDependents." + extension;
 
 	// Package a JSON payload to deliver to the server that contains all
 	// the contact's ID in order delete the contact.
