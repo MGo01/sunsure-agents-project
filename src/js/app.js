@@ -1538,7 +1538,7 @@ function checkFormNames(firstName, lastName, spanName, updateFlag = false)
 
   for (let j = 0; j < lastName.length; j++) 
 	{
-    if (!(isSpace(lastName[j]) || isAlpha(lastName[j]))) 
+    if (!(isGoodChar(lastName[j]) || isAlpha(lastName[j]))) 
 		{
 			document.getElementById(spanName).innerHTML = "Last name must have alphabet characters only";
 			document.getElementById(spanName).style.color = "red";
