@@ -1004,7 +1004,7 @@ function deleteClient(clientID)
 	var jsonPayload =
 	'{"PolicyID" : "' + clientID + '"}';
 
-	xhr.open("DELETE", url, true);
+	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
 	// Basic try and catch to ensure that any server code errors are
@@ -1054,7 +1054,7 @@ function clearDependents(dependentID)
 	var jsonPayload =
 	'{"DependentID" : "' + dependentID + '"}';
 
-	xhr.open("DELETE", url, false);
+	xhr.open("POST", url, false);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
 	// Basic try and catch to ensure that any server code errors are
