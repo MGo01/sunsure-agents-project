@@ -69,7 +69,7 @@ function addRow(obj)
 
 }
 
-function restrictDate(date, DOBFlag = false)
+function restrictDate(date, DOBFlag = false, spanName)
 {
 	// Extract the year from the yyyy/mm/dd format.
 	let parts = date.split('/');
@@ -399,7 +399,7 @@ function checkPolicyInfo(spanName)
 	
 	// Ensure that the DOB date is greater than
 	// 1900 and less than any future date
-	if (!restrictDate(effectiveDate))
+	if (!restrictDate(effectiveDate, DOBFlag=false, spanName))
 		return false;
 
 	return true;
@@ -446,7 +446,7 @@ function checkDependentInfo(clientNumOfDependents, spanName)
 		// Ensure that DOB is correct.
 		let DOBFlag = true;
 
-		if (!restrictDate(clientDateOfBirth, DOBFlag))
+		if (!restrictDate(clientDateOfBirth, DOBFlag, spanName))
 			return false;
 	}
 
@@ -897,7 +897,7 @@ function createPolicyHolder()
 	// 1900 and less than any future date
 	let DOBFlag = true;
 
-	if (!restrictDate(clientDateOfBirth, DOBFlag))
+	if (!restrictDate(clientDateOfBirth, DOBFlag, spanName))
 		return;
 
 	// Package JSON that contains all required
