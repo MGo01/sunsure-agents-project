@@ -988,6 +988,8 @@ function insertDependents(dependentsArray)
 	.then(values => values.map(value => console.log(value.url + " ==> " + value.status)))
 	.catch(err=>console.log(err))
 
+	document.getElementById("createClientResult").innerHTML = "All Primary PolicyHolder has been added.";
+	document.getElementById("createClientResult").style.color = "green";
 	console.log(dependentsArray);
 }
 
