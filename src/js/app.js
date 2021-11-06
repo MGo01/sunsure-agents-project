@@ -69,7 +69,7 @@ function addRow(obj)
 
 }
 
-function restrictDate(date, DOBFlag = false, spanName)
+function restrictDate(date, DOBFlag = false)
 {
 	// Extract the year from the yyyy/mm/dd format.
 	let parts = date.split('/');
@@ -399,8 +399,12 @@ function checkPolicyInfo(spanName)
 	
 	// Ensure that the DOB date is greater than
 	// 1900 and less than any future date
-	if (!restrictDate(effectiveDate, DOBFlag=false, spanName))
+	if (!restrictDate(effectiveDate))
+	{
+		document.getElementById(spanName).innerHTML = "Data Value Error: Negative values are not allowed";
+		document.getElementById(spanName).style.color = "red";
 		return false;
+	}
 
 	return true;
 }
@@ -446,8 +450,12 @@ function checkDependentInfo(clientNumOfDependents, spanName)
 		// Ensure that DOB is correct.
 		let DOBFlag = true;
 
-		if (!restrictDate(clientDateOfBirth, DOBFlag, spanName))
+		if (!restrictDate(clientDateOfBirth, DOBFlag))
+		{
+			document.getElementById(spanName).innerHTML = "Data Value Error: Negative values are not allowed";
+			document.getElementById(spanName).style.color = "red";
 			return false;
+		}
 	}
 
 	return true;
@@ -897,8 +905,12 @@ function createPolicyHolder()
 	// 1900 and less than any future date
 	let DOBFlag = true;
 
-	if (!restrictDate(clientDateOfBirth, DOBFlag, spanName))
-		return;
+	if (!restrictDate(clientDateOfBirth, DOBFlag))
+	{
+		document.getElementById(spanName).innerHTML = "Invalid Date: Please choose a date between the years 1900 and " + new Date().getFullYear();
+		document.getElementById(spanName).style.color = "red";
+		return;	
+	}
 
 	// Package JSON that contains all required
 	// client fields
@@ -1371,7 +1383,10 @@ function updateClient(policyID)
 	let DOBFlag = true;
 
 	if (!restrictDate(updatedClientDateOfBirth, DOBFlag))
-		return;
+	{
+		document.getElementById(spanName).innerHTML = "Invalid Date: Please choose a date between the years 1900 and " + new Date().getFullYear();
+		document.getElementById(spanName).style.color = "red";
+	}
 
 	// Package a JSON payload to deliver to the server that contains all
 	// the contact details in order create the contact.
