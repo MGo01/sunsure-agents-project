@@ -324,6 +324,10 @@ function fillInDependentForm(depArray)
 		dateOfBirth.type = "date";
 		dateOfBirth.name = "Dependent" + i;
 		dateOfBirth.id="details-dependent-DOB" + i;
+
+		// Convert date format from yyyy/mm/dd to mm/dd/yyyy
+		depArray[i].DateOfBirth = tranformDate(depArray[i].DateOfBirth);
+
 		dateOfBirth.innerHTML = "" + depArray[i].DateOfBirth;
 
 		var ssn = document.createElement("p");
