@@ -6,24 +6,32 @@
 // across the program.
 var urlBase = 'https://sunsure-agent.com/API';
 var extension = 'php';
-var globalPolicyID = -1;
 
 // These variables are especially useful in order
 // to perform CRUD operations
-// var userId = 0;
-// var firstName = "";
-// var lastName = "";
 var globalUpdateID = -1;
+var globalPolicyID = -1;
 
 // JQuery function inspired and modified by https://www.youtube.com/watch?v=DzXmAKdEYIs
 // to allow for easier row insertion into the UI data table.
 function addRow(obj)
 {
-	// Check for any empty fields in the Policyholder
-	// object and replace it with "N/A"
 	for (let key in obj)
+	{
+		// Check for any empty fields in the Policyholder
+		// object and replace it with "N/A"
 		if (obj[key] === "")
+		{
 			obj[key] = "N/A";
+		}
+		// Search for date of birth to convert
+		// from yyyy/mm/dd to mm/dd/yyyy
+		else if (key === "DateOfBirth")
+		{
+			convertedDate = tranformDate(obj[key])
+			obj[key] = convertedDate;
+		}
+	}
 
 	var row = `<tr scope="row" class="test-row-${obj.PolicyID}">
 								<td id="PolicyID-${obj.PolicyID}" class="d-none" data-testid="${obj.PolicyID}">${obj.PolicyID}</td>
@@ -59,6 +67,19 @@ function addRow(obj)
 	$(`#save-${obj.PolicyID}`).on('click', saveUpdate)
 	$(`#show-${obj.PolicyID}`).on('click', fillShowDetailsForm)
 
+}
+
+function tranformDate(strDate) 
+{
+	let result = '';
+
+	if (strDate) 
+	{
+		let parts = date.split('/');
+		result = `${parts[1]}/${parts[2]}/${parts[0]}`;
+	}
+
+	return result;
 }
 
 // Helps to streamline the process of displaying the table in the
@@ -639,6 +660,7 @@ function fillShowDetailsForm(updateShow = false, gPolicyID = -1)
 					
 					carrier = jsonObject.Carrier;
 					effectiveDate = jsonObject.EffectiveDate;
+
 					ambassadorName = jsonObject.AmbassadorName;
 					notes = jsonObject.Notes; 
 
@@ -657,6 +679,9 @@ function fillShowDetailsForm(updateShow = false, gPolicyID = -1)
 
 					else
 					{
+						// Convert the date from yyyy/mm/dd to mm/dd/yyyy
+						effectiveDate = tranformDate(effectiveDate);
+
 						// Load the Policy Information Form
 						document.getElementById("showDetailsPlanType").innerHTML = "" + planType;
 						document.getElementById("showDetailsAncillaryType").innerHTML = "" + ancillaryType;
