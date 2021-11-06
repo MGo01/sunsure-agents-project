@@ -840,16 +840,8 @@ function createPolicyHolder()
 	var clientNumOfDependents = document.getElementById("clientNumOfDependents").value;
 
 	var clientSource = document.getElementById("sourceMenu").value;
-	var isOver65 = document.getElementById("isOver65").checked;
 
 	var spanName = "createClientResult";
-
-	// Change boolean to single character
-	// for DB entry.
-	if (isOver65)
-		isOver65 = 'Y';
-	else
-		isOver65 = 'N';
 
 	if (clientNumOfDependents < 0)
 	{
@@ -1308,16 +1300,9 @@ function updateClient(policyID)
 
 	var updatedClientSource = document.getElementById("updateSourceMenu").value;
 
-	var updatedIsOver65 = document.getElementById("updateIsOver65").checked;
-
 	var spanName = "updateClientResult";
 
 	document.getElementById("updateClientResult").innerHTML = "";
-
-	if (updatedIsOver65)
-		updatedIsOver65 = 'Y';
-	else
-		updatedIsOver65 = 'N';
 
 	if (updatedClientNumOfDependents < 0)
 	{
