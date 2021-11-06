@@ -1515,9 +1515,9 @@ function checkFormNames(firstName, lastName, spanName, updateFlag = false)
 		return false;
 	}
 
-	var isSpace = function(value)
+	var isGoodChar = function(value)
 	{
-		return value == ' ';
+		return (value == ' ' || value == '-');
  	}
 
   var isAlpha = function(ch)
@@ -1527,7 +1527,7 @@ function checkFormNames(firstName, lastName, spanName, updateFlag = false)
 
   for (let i = 0; i < firstName.length; i++) 
 	{
-    if (!(isSpace(firstName[i]) || isAlpha(firstName[i]))) 
+    if (!(isGoodChar(firstName[i]) || isAlpha(firstName[i]))) 
 		{
 			document.getElementById(spanName).innerHTML = "First name must have alphabet characters only";
 			document.getElementById(spanName).style.color = "red";
