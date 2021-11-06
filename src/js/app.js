@@ -959,7 +959,7 @@ function insertDependents(dependentsArray)
 {
 	async function postData(data) 
 	{
-		url = 'http://68.183.97.82/API/createDependent.php';
+		url = 'https://68.183.97.82/API/createDependent.php';
 		// Default options are marked with *
 		const response = await fetch(url, {
 			method: 'POST',
@@ -988,6 +988,8 @@ function insertDependents(dependentsArray)
 	.then(values => values.map(value => console.log(value.url + " ==> " + value.status)))
 	.catch(err=>console.log(err))
 
+	document.getElementById("createClientResult").innerHTML = "All Primary PolicyHolder has been added.";
+	document.getElementById("createClientResult").style.color = "green";
 	console.log(dependentsArray);
 }
 
@@ -1091,7 +1093,7 @@ function insertUpdatedDependents(dependentsArray)
 {
 	async function postData(data) 
 	{
-		url = 'http://68.183.97.82/API/createDependent.php';
+		url = 'https://68.183.97.82/API/createDependent.php';
 		// Default options are marked with *
 		const response = await fetch(url, {
 			method: 'POST',
