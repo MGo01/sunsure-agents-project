@@ -73,9 +73,15 @@ function tranformDate(strDate)
 {
 	let result = '';
 
-	if (strDate) 
+	if (strDate.includes("/")) 
 	{
 		let parts = strDate.split('/');
+		result = `${parts[1]}/${parts[2]}/${parts[0]}`;
+	}
+
+	else if (strDate.includes("-"))
+	{
+		let parts = strDate.split('-');
 		result = `${parts[1]}/${parts[2]}/${parts[0]}`;
 	}
 
