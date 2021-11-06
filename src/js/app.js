@@ -957,12 +957,20 @@ function createPolicyHolder()
 						insertPolicyInfo();
 						insertDependents(dependentsArray);
 						clearModalForm();
+
+						document.getElementById("createClientResult").innerHTML = "All Primary PolicyHolder has been added.";
+						document.getElementById("createClientResult").style.color = "green";
+						console.log(dependentsArray);
 					}
 					
 					else
 					{
 						insertPolicyInfo();
 						clearModalForm();
+
+						document.getElementById("createClientResult").innerHTML = "All Primary PolicyHolder has been added.";
+						document.getElementById("createClientResult").style.color = "green";
+						console.log(dependentsArray);
 					}
 				}
 			}
@@ -1014,10 +1022,6 @@ function insertDependents(dependentsArray)
 	Promise.all(promiseArray)
 	.then(values => values.map(value => console.log(value.url + " ==> " + value.status)))
 	.catch(err=>console.log(err))
-
-	document.getElementById("createClientResult").innerHTML = "All Primary PolicyHolder has been added.";
-	document.getElementById("createClientResult").style.color = "green";
-	console.log(dependentsArray);
 }
 
 // Deletes a contact based on their ID. Currently not in use
