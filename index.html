@@ -48,9 +48,9 @@
                         <!-- Form Body -->
                         <div class="modal-body" style="zoom:85%">
                           <span id="resetResult" style="font-size: 26px;"></span>
-                          <label for="codelab" style="font-size: 26px;">Enter Your Email</label> <br />
-                          <span class="material-icons" style="font-size:36px;">email</span> 
-                          <input type="text" id="resetEmail" placeholder="Email" style="font-size: 26px;" name='email' /> 
+                          <label for="codelab" style="font-size: 26px; padding-top: 4px;">Enter Your Email</label> <br />
+                          <span class="material-icons" style="font-size:36px; padding-top: 2px;">email</span> 
+                          <input type="text" id="resetEmail" placeholder="Email" style="font-size: 26px; padding-top: 2px" name='email' /> 
                           <br />
                         </div>
                         
@@ -76,8 +76,13 @@
                 <br />
                 <button type="button" class="btn btn-primary btn-block btn-flat" onclick="login()"><span class="material-icons text-center">login</span>    Login</button>
 
-                <a id="homepageLink" class="mx-auto" href="register.html">Create New Account</a>
-                <button class="btn btn-primary btn-block btn-flat" data-toggle="modal" data-target="#resetCodeModal"><span class="material-icons text-center">lock</span>Forgot Password?</button>
+                <div class="row">
+                    <div class="col text-center my-auto">
+                        <a id="homepageLink" class="mx-auto" href="#" data-toggle="modal" data-target="#resetCodeModal" data-backdrop="static" data-keyboard="false">Forgot Password?</a>
+
+                        <a id="homepageLink" class="mx-auto" href="register.html">Create New Account</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
