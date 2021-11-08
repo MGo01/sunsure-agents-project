@@ -24,7 +24,7 @@ body
     margin-left: 40%;
 }
 
-#popupTitle
+#popupTitle, #updatePopUpTitle, #showDetailsPopUpTitle
 {
   font-family: 'Montserrat', sans-serif;
   font-size: 30px;

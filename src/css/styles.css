@@ -1,6 +1,5 @@
 /* Anna Malaj, Matthew Gomez
-COP 4331, Spring 2021
-1/17/2021 */
+10/17/2021 */
 
 body
 {
@@ -13,7 +12,7 @@ body
     width: 40%;
     height: 100%;
     color: #fff; 
-    background: linear-gradient(-45deg, navy, indigo, purple, mediumVioletRed, hotPink);
+    background: linear-gradient(-45deg, navy, indigo, purple, mediumVioletRed);
     background-size: 700% 100%;
     position: relative;
     animation: change 15s infinite;
@@ -31,6 +30,11 @@ body
     padding-top: 5%;
     background-color: #F5F5F5;
     height: 100%;
+}
+
+#loginCheckbox, #registerCheckbox
+{
+    font-size: 28px;
 }
 
 #loginCheckbox:not(:checked), #registerCheckbox:not(:checked)
@@ -91,6 +95,13 @@ body
     font-size: 20px;
     color: #000000;
     text-decoration: none;
+}
+
+#homepageLink:hover
+{
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
 }
 
 #loginResult

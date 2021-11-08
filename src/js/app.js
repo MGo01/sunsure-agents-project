@@ -11,6 +11,8 @@ var extension = 'php';
 // to perform CRUD operations
 var globalUpdateID = -1;
 var globalPolicyID = -1;
+var globalClientFName = "";
+var globalClientLName = "";
 
 // JQuery function inspired and modified by https://www.youtube.com/watch?v=DzXmAKdEYIs
 // to allow for easier row insertion into the UI data table.
@@ -53,8 +55,8 @@ function addRow(obj)
 								<td id="Source-${obj.PolicyID}" data-testid="${obj.PolicyID}">${obj.Source}</td>
 								
 								<td>
-									<button class="btn btn-sm btn-info" data-testid="${obj.PolicyID}"  id="save-${obj.PolicyID}" data-toggle="modal" data-target="#updateClientModal">Update</button>
-									<button class="btn btn-sm btn-info" data-testid="${obj.PolicyID}"  id="show-${obj.PolicyID}" data-toggle="modal" data-target="#showDetailsModal">Show Details</button>
+									<button class="btn btn-sm btn-info" data-testid="${obj.PolicyID}"  id="save-${obj.PolicyID}" data-toggle="modal" data-target="#updateClientModal" data-backdrop="static" data-keyboard="false">Update</button>
+									<button class="btn btn-sm btn-info" data-testid="${obj.PolicyID}"  id="show-${obj.PolicyID}" data-toggle="modal" data-target="#showDetailsModal" data-backdrop="static" data-keyboard="false">Show Details</button>
 								</td>
 							</tr>`
 
@@ -158,15 +160,20 @@ function saveUpdate()
 	var $row = $(this).closest("tr"),       // Finds the closest row <tr>
 			$tds = $row.find("td");             // Finds all children <td> elements
 
-	oldRowInfo = [];
+	let oldRowInfo = [];
 
 	$.each($tds, function() {               // Visits every single <td> element
 		oldRowInfo.push($(this).text());
 		console.log($(this).text());        // Prints out the text within the <td>
 	});
 
-	var saveBtn = $(`#save-${globalUpdateID}`);
-	var row = $(`.test-row-${globalUpdateID}`);
+	// Save global first and last name for client
+	globalClientFName = oldRowInfo[1];
+	globalClientLName = oldRowInfo[2];
+
+	let newUpdateTitle = "" + globalClientFName + " " + globalClientLName + " Details";
+
+	$(".modal-header #updatePopUpTitle").text(newUpdateTitle);
 
 	// Load in old row information into Update Modal Form
 	document.getElementById("updateClientFirstName").placeholder = oldRowInfo[1];
@@ -622,6 +629,26 @@ function fillShowDetailsForm(updateShow = false, gPolicyID = -1)
 	var effectiveDate;
 	var ambassadorName; 
 	var notes;
+
+	var $row = $(this).closest("tr"),       // Finds the closest row <tr>
+	$tds = $row.find("td");             // Finds all children <td> elements
+
+	$tds = $row.find("td");             // Finds all children <td> elements
+
+	let oldRowInfo = [];
+
+	$.each($tds, function() {               // Visits every single <td> element
+		oldRowInfo.push($(this).text());
+		console.log($(this).text());        // Prints out the text within the <td>
+	});
+
+	// Save global first and last name for client
+	globalClientFName = oldRowInfo[1];
+	globalClientLName = oldRowInfo[2];
+
+	let newDetailsTitle = "" + globalClientFName + " " + globalClientLName + " Details";
+
+	$(".modal-header #showDetailsPopUpTitle").text(newDetailsTitle);
 
 	// Package a JSON payload to deliver to the server that contains all
 	// the contact details in order create the contact.
