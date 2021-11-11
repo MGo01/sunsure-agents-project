@@ -53,7 +53,7 @@
 
     $result = mysqli_query($conn, $sql_check);
 
-    if (mysqli_query($conn, $sql_check))
+    if ($result)
     {
       // Retrieve search results via getPolicyHolders()
       // and store them in "searchResults"
