@@ -1,6 +1,3 @@
-# sunsure-agents-project
-A web application for general purposes by Sunsure Agents to add, edit, delete, and search for client information.
-
 # Sunsure Agents Web Application
 
 A web application for general purposes by Sunsure Agents to add, edit, delete, and search for client information.
