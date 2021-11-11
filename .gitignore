@@ -2,6 +2,7 @@
 
 # Prevent Database Information from
 # being posted online
+/sqlFiles
 db_conn.config
 db_conn.config.save
 
