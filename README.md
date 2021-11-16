@@ -13,12 +13,13 @@ In order to get started, you will need
 - A valid Sunsure email
 - An internet browser application such as 
   - Opera
+  - Safari
   - Internet Explorer
   - Microsoft Edge
   - Google Chrome
   - Mozilla Firefox
  
- *Please note that the browsers that are best suited for an optimal user experience are Google Chrome, Microsoft Edge, and Mozilla Firefox.*
+ *Please note that the browsers that are best suited for an optimal user experience are Google Chrome, Microsoft Edge, Safari, and Mozilla Firefox.*
 
 ### Signing Up
 
