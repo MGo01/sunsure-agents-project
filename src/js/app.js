@@ -30,7 +30,7 @@ function addRow(obj)
 		// from yyyy/mm/dd to mm/dd/yyyy
 		else if (key === "DateOfBirth")
 		{
-			convertedDate = tranformDate(obj[key])
+			convertedDate = transformDate(obj[key])
 			obj[key] = convertedDate;
 		}
 	}
@@ -89,9 +89,12 @@ function restrictDate(date, DOBFlag = false)
 	}
 }
 
-function tranformDate(strDate) 
+function transformDate(strDate) 
 {
 	let result = '';
+
+	if (strDate == null || strDate == "")
+		return "N/A";
 
 	if (strDate.includes("/")) 
 	{
@@ -111,8 +114,15 @@ function tranformDate(strDate)
 // Helps to streamline the process of displaying the table in the
 // landing page by receiving a JSON array as the parameter and
 // adding each row to the table based on the array elements (contacts).
-function displayClientsTable()
+function displayClientsTable(loggedIn = false)
 {
+		// Clear the table if the user
+	// has not already logged in.
+	if (!loggedIn)
+	{
+		$('#clientsTable tbody').empty();
+	}
+
 	// Package a JSON payload to deliver to the DisplayTable Endpoint with
 	// the UserID in order to display their contacts.
   var jsonPayload =
@@ -120,7 +130,7 @@ function displayClientsTable()
 	var url = urlBase + '/displayClientTables.' + extension;
 	var xhr = new XMLHttpRequest();
 
-	xhr.open("POST", url, false);
+	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
 	// Basic try and catch to ensure that any server code errors are
@@ -130,7 +140,21 @@ function displayClientsTable()
 		xhr.onreadystatechange = function()
 		{
 			if (this.readyState == 4 && this.status == 200)
+			{
 				console.log("Success in displayTable()");
+				document.getElementById("searchResults").innerHTML = "";
+
+				var results = JSON.parse(xhr.responseText);
+				var clientList = results['results'];
+				console.log(clientList);
+			
+				// For each contact in the JSON array, the contact's
+				// information will be added to the table.
+				for (let i in clientList)
+				{
+					addRow(clientList[i]);
+				}
+			}
 		};
 		xhr.send(jsonPayload);
 	}
@@ -138,17 +162,6 @@ function displayClientsTable()
 	{
 		console.log("Failure in displayTable()");
 	}
-
-	var results = JSON.parse(xhr.responseText);
-	var clientList = results['results'];
-	console.log(clientList);
-
-	// For each contact in the JSON array, the contact's
-	// information will be added to the table.
-	for (let i in clientList)
-  {
-  	addRow(clientList[i]);
-  }
 }
 
 // JQuery function inspired and modified by https://www.youtube.com/watch?v=DzXmAKdEYIs
@@ -351,7 +364,7 @@ function fillInDependentForm(depArray)
 		dateOfBirth.id="details-dependent-DOB" + i;
 
 		// Convert date format from yyyy/mm/dd to mm/dd/yyyy
-		depArray[i].DateOfBirth = tranformDate(depArray[i].DateOfBirth);
+		depArray[i].DateOfBirth = transformDate(depArray[i].DateOfBirth);
 
 		dateOfBirth.innerHTML = "" + depArray[i].DateOfBirth;
 
@@ -503,7 +516,7 @@ function insertPolicyInfo()
 	var url = urlBase + '/insertPolicyInfo.' + extension;
 	var xhr = new XMLHttpRequest();
 
-	xhr.open("POST", url, false);
+	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
 	try 
@@ -558,7 +571,7 @@ function loadDependents(policyID)
 
 	jsonString = JSON.stringify(jsonPayload);
 
-	xhr.open("POST", url, false);
+	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
 	try 
@@ -574,7 +587,7 @@ function loadDependents(policyID)
 				if (endpointmsg === "No valid Dependents were found")
 				{
 					console.log("Unable to load dependents information");
-					document.getElementById("showDetailsDependentResult").innerHTML = endpointmsg;	
+					document.getElementById("showDetailsDependentResult").innerHTML = "This policy has no dependents";	
 					document.getElementById("showDetailsDependentResult").style.color = "red";
 
 					// Container <div> where dynamic content will be placed
@@ -659,7 +672,7 @@ function fillShowDetailsForm(updateShow = false, gPolicyID = -1)
 
 	jsonString = JSON.stringify(jsonPayload);
 
-	xhr.open("POST", url, false);
+	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
 	try 
@@ -678,7 +691,7 @@ function fillShowDetailsForm(updateShow = false, gPolicyID = -1)
 					if (typeof updateShow === "boolean" && updateShow === true)
 					{
 						console.log("Unable to load policy information");
-						document.getElementById("updateClientResult").innerHTML = endpointmsg;	
+						document.getElementById("updateClientResult").innerHTML = "This policy has no policy information.";	
 						document.getElementById("updateClientResult").style.color = "red";
 
 						// Load the Policy Information Form
@@ -694,7 +707,7 @@ function fillShowDetailsForm(updateShow = false, gPolicyID = -1)
 					else
 					{
 						console.log("Unable to load policy information");
-						document.getElementById("showDetailsPolicyResult").innerHTML = endpointmsg;	
+						document.getElementById("showDetailsPolicyResult").innerHTML = "This policy has no policy information.";	
 						document.getElementById("showDetailsPolicyResult").style.color = "red";
 
 						// Load the Policy Information Form
@@ -750,7 +763,7 @@ function fillShowDetailsForm(updateShow = false, gPolicyID = -1)
 					else
 					{
 						// Convert the date from yyyy/mm/dd to mm/dd/yyyy
-						effectiveDate = tranformDate(effectiveDate);
+						effectiveDate = transformDate(effectiveDate);
 
 						// Load the Policy Information Form
 						document.getElementById("showDetailsPlanType").innerHTML = "" + planType;
@@ -996,7 +1009,7 @@ function createPolicyHolder()
 	var url = urlBase + '/createPolicyHolder.' + extension;
 	var xhr = new XMLHttpRequest();
 
-	xhr.open("POST", url, false);
+	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
 	try 
@@ -1037,7 +1050,6 @@ function createPolicyHolder()
 
 						document.getElementById("createClientResult").innerHTML = "All Primary PolicyHolder information has been added.";
 						document.getElementById("createClientResult").style.color = "green";
-						console.log(dependentsArray);
 					}
 					
 					else
@@ -1266,7 +1278,7 @@ function updatePolicyInfo(policyID)
 	var url = urlBase + '/updatePolicyInfo.' + extension;
 
 	var xhr = new XMLHttpRequest();
-	xhr.open("POST", url, false);
+	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
 	// Basic try and catch to ensure that any server code errors are
@@ -1440,7 +1452,7 @@ function updateClient(policyID)
 	var url = urlBase + '/updatePolicyHolder.' + extension;
 	var xhr = new XMLHttpRequest();
 
-	xhr.open("POST", url, false);
+	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
 	// Basic try and catch to ensure that any server code errors are
