@@ -456,7 +456,6 @@ function checkDependentInfo(clientNumOfDependents, spanName)
 			"Dependent Last Name": dependentLastName,
 			"Dependent DOB": dependentDOB,
 		};
-
 		
 		// Ensure that no required field is empty.
 		if (checkRequiredFields(requiredObj, spanName))
@@ -839,6 +838,15 @@ function clearModalForm(numOfDependents)
 		document.getElementById(DOBString).innerHTML = "";
 		document.getElementById(SSNString).innerHTML = "";
 	}
+
+	// Container <div> where dynamic content will be placed
+	let container = document.getElementById("dependentsContainer");
+
+	// Clear previous contents of the container
+	while (container.hasChildNodes()) 
+	{
+		container.removeChild(container.lastChild);
+	}
 }
 
 function clearUpdatedModalForm(numOfDependents)
@@ -887,6 +895,15 @@ function clearUpdatedModalForm(numOfDependents)
 			document.getElementById(DOBString).innerHTML = "";
 			document.getElementById(SSNString).innerHTML = "";
 		}
+
+	// Container <div> where dynamic content will be placed
+	let container = document.getElementById("updateDependentsContainer");
+
+	// Clear previous contents of the container
+	while (container.hasChildNodes()) 
+	{
+		container.removeChild(container.lastChild);
+	}
 }
 
 // Creates a client for a specific user and stores it
@@ -1487,7 +1504,14 @@ function updateClient(policyID)
 						clearUpdatedModalForm(updatedClientNumOfDependents);
 					}
 					
-					else
+					else if (updatedClientNumOfDependents == 0)
+					{
+						clearDependents(policyID);
+						updatePolicyInfo(policyID);
+						clearUpdatedModalForm(updatedClientNumOfDependents);
+					}
+
+					else if (updatedClientNumOfDependents == "" || updatedClientNumOfDependents === null)
 					{
 						updatePolicyInfo(policyID);
 						clearUpdatedModalForm(updatedClientNumOfDependents);
@@ -1531,7 +1555,7 @@ function searchClients()
 	var url = urlBase + '/searchPolicyHolder.' + extension;
 
 	var xhr = new XMLHttpRequest();
-	xhr.open("POST", url, false);
+	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
 	// Basic try and catch to ensure that any server code errors are
