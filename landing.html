@@ -223,7 +223,6 @@ Sunsure Agents
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-  <script src="src/js/md5.js"></script>
   <script src="src/js/login.js"></script>   
   <script src="src/js/app.js"></script>
   <script type="text/javascript">
@@ -234,7 +233,11 @@ Sunsure Agents
 
     window.onload = function() 
     {
-      displayClientsTable();
+      if (!('splash' in localStorage))
+      {
+        displayClientsTable(loggedIn = true);
+        localStorage.setItem('splash', true);
+      }
     };
 	</script>
     
@@ -806,7 +809,7 @@ Sunsure Agents
 				<button class="btn btn-sm" id="searchClientButton" style="zoom:67%" onclick="searchClients();"><span class="material-icons text-center">search</span>  Search</button>
 
         <!-- Refresh Table Button -->
-        <button class="btn btn-sm" id="refreshTableButton" style="zoom:67%" onClick="window.location.reload();"><span class="material-icons-outlined">refresh</span>  Refresh</button>
+        <button class="btn btn-sm" id="refreshTableButton" style="zoom:67%" onclick="displayClientsTable();"><span class="material-icons-outlined">refresh</span>  Refresh</button>
 
         <!-- Add Client Button -->
 				<button class="btn btn-sm" id="addClientButton" style="zoom:67%" data-toggle="modal" data-target="#createClientModal" data-backdrop="static" data-keyboard="false"><span class="material-icons text-center">add</span>Add Client</button>
