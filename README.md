@@ -17,7 +17,7 @@ In order to get started, you will need
   - Google Chrome
   - Mozilla Firefox
  
- *Please note that the browsers that are best suited for an optimal user experience are Google Chrome and Microsoft Edge.
+ *Please note that the browsers that are best suited for an optimal user experience are Google Chrome and Microsoft Edge.*
 
 ### Signing Up
 
