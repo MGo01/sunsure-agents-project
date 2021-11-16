@@ -1,11 +1,23 @@
 # Sunsure Agents Web Application
 
-A web application for general purposes by Sunsure Agents to add, edit, delete, and search for client information.
-
 ## Overview
-
+This is a web application for general purposes by Sunsure agents to add, edit, delete, and search for client information. It primarily
+serves to provide agents with the ability to insert, update and search for policyholders. In addition to this, agents are able to insert
+dependent and policy information without having to worry about placing it elsewhere. Agents should expect regular bug fixes and releases
+to help improve the overall user interface and experience. 
 
 ## Get Started
+
+In order to get started, you will need
+
+- A valid Sunsure email
+- An internet browser application such as 
+  - Opera
+  - Microsoft Edge
+  - Google Chrome
+  - Mozilla Firefox
+ 
+ *Please note that the browsers that are best suited for an optimal user experience are Google Chrome and Microsoft Edge.
 
 ### Signing Up
 
