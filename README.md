@@ -4,7 +4,23 @@ A web application for general purposes by Sunsure Agents to add, edit, delete, a
 
 ## Overview
 
-Some basic text.
+## Signing Up
+
+## Verification
+
+## Logging in
+
+## Resetting Your Password
+
+## Inserting Policyholder Information
+
+## Updating Policyholder Information
+
+## Searching for a Policyholder
+
+##
+
+## Error Messages
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
