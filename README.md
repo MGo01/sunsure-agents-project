@@ -8,7 +8,7 @@ to help improve the overall user interface and experience.
 
 ## Get Started
 
-In order to get started, you will need
+In order to get started, you will need the following,
 
 - A valid Sunsure email
 - An internet browser application such as 
@@ -22,6 +22,8 @@ In order to get started, you will need
  *Please note that the browsers that are best suited for an optimal user experience are Google Chrome, Microsoft Edge, Safari, and Mozilla Firefox.*
 
 ### Signing Up
+
+
 
 ### Verification
 
