@@ -245,13 +245,14 @@ Sunsure Agents
 	<div class="container-fullwidth">
   		<div class="row-1">
   			<div class="col">
-  				<!-- Title Bar -->
-				<div id= "titleBar" style="word-wrap:break-word">
+  			  <!-- Title Bar -->
+				  <div id= "titleBar" style="word-wrap:break-word">
             <h1 id="userName"></h1>
   					<h1 id="title" style="zoom:67%">Sunsure Agents</h1>
+
             <!-- Sign Out Button -->
   					<button id="logoutButton" style="zoom:67%" type="button" onclick="doLogout()"><span class="material-icons text-center">logout</span>  Sign Out</button>
-  				</div>        
+  			  </div>        
   			</div>
   		</div>
    
@@ -272,7 +273,6 @@ Sunsure Agents
 							
 							<!-- Form Body -->
 							<div class="modal-body">
-                <span id="createClientResult"></span>
                 
                 <!-- First Row -->
                 <div class="row">
@@ -396,6 +396,12 @@ Sunsure Agents
                     </div>
                 </div>
                 <br>
+                 <!-- Add Dependents Container -->
+                 <a href="#" id="filldetails" style="font-size: 25px;" onclick="addDependentFields()">Fill Dependent Details</a>
+                 <div id="dependentsContainer"/>
+                 </div>
+
+                <br>
 
                  <!-- Policy Information Title -->
                  <div>
@@ -429,7 +435,7 @@ Sunsure Agents
 
                 <div class="row">  
                   <!-- Carrier Column -->
-                  <div class="col-md-4">
+                  <div class="col-md-3">
                     <label for="createCarriers" style="font-size: 25px;">Carrier: </label>
                       <select id="createCarrier" name="sources">
                         <option value="FHCP">FHCP</option>
@@ -438,7 +444,7 @@ Sunsure Agents
                   </div>
 
                   <!-- Ambassador Column -->
-                  <div class="col">
+                  <div class="col-3">
                     <span class="material-icons" style="font-size:38px;">perm_identity</span>
                     <input type="text" id="createClientAmbassador" placeholder="Ambassador"/>
                   </div>
@@ -461,11 +467,6 @@ Sunsure Agents
                   </div>
                 </div>
 
-                <!-- Add Dependents Container -->
-                <a href="#" id="filldetails" style="font-size: 25px;" onclick="addDependentFields()">Fill Dependent Details</a>
-                <div id="dependentsContainer"/>
-                </div>
-
                 <div>
                   <b style="font-size: 20px;">
                     * Required Fields
@@ -474,11 +475,16 @@ Sunsure Agents
 
 							</div>
 							
-							<!-- Form Submit Button -->
+							<!-- Create Client Form Footer -->
 							<div class="modal-footer">
-							  <button type="button" id="createClientButton" onclick="createPolicyHolder();">Create Client</button>
+                <span id="createClientResult"></span>
+
+                <!-- Clear Modal Form Button -->
+                <button class="btn btn-sm" id="clearFormButton" onclick="clearModalForm();"><span class="material-icons-outlined">refresh</span>  Clear Form</button>
+
+                <!-- Form Submit Button -->
+                <button type="button" id="createClientButton" onclick="createPolicyHolder();">Create Client</button>
 							</div>
-             
 						</div>
 					</div>
 				</div>
@@ -498,7 +504,6 @@ Sunsure Agents
             
             <!-- Form Body -->
             <div class="modal-body">
-              <span id="updateClientResult"></span>
               
               <!-- First Row -->
               <div class="row">
@@ -516,24 +521,28 @@ Sunsure Agents
 
                 <!-- First Name Column -->
                 <div class="col">
+                  <p id="updateLabel"><b> First Name</b></p>
                   <span class="material-icons" style="font-size:38px;">perm_identity</span>
                   <input type="text" id="updateClientFirstName" placeholder="First Name*"/>
                 </div>
 
                 <!-- Last Name Column -->
                 <div class="col">
+                  <p id="updateLabel"><b> Last Name</b></p>
                   <span class="material-icons" style="font-size:38px;">perm_identity</span>
                   <input type="text" id="updateClientLastName" placeholder="Last Name*"/>
                 </div>
 
                  <!-- Date of Birth Column -->
                  <div class="col">
+                  <p id="updateLabelDOB"><b> Date of Birth</b></p>
                   <span class="material-icons-outlined">today</span>
                   <input type="date" id="updateClientDateOfBirth" placeholder="Date of Birth*"/>
                 </div>
 
                 <!-- SSN Column -->
                 <div class="col">
+                  <p id="updateLabelSSN"><b> SSN</b></p>
                   <span class="material-icons-outlined">tag</span>
                   <input type="text" id="updateClientSSN" placeholder="SSN"/>
                 </div>
@@ -544,12 +553,14 @@ Sunsure Agents
         
                 <!-- Phone Column -->
                 <div class="col-4">
+                  <p id="updateLabel"><b> Phone</b></p>
                   <span class="material-icons" style="font-size:38px;">phone</span> 
                   <input type="text" id="updateClientPhone" placeholder="Phone" name='phone' />
                 </div>
 
                 <!-- Main Address Column -->
                 <div class="col-8">
+                  <p id="updateLabelMainAddress"><b> Main Address</b></p>
                   <span class="material-icons-outlined">location_city</span>
                   <input type="text" id="updateClientAddress" placeholder="Main Address*" name='address'/>
                 </div>
@@ -560,12 +571,14 @@ Sunsure Agents
 
                 <!-- City Column -->
                 <div class="col-4">
+                  <p id="updateLabelThirdRow"><b> City</b></p>
                   <span class="material-icons-outlined">apartment</span>
                   <input type="text" id="updateClientCity" placeholder="City*" name='city' />
                 </div>
 
                 <!-- Second Line Address -->
                 <div class="col-8">
+                  <p id="updateLabelThirdRow"><b> Second Line Address</b></p>
                   <span class="material-icons-outlined">location_city</span>
                   <input type="text" id="updateClientSecondLineAddress" placeholder="Second Line Address" name='secondAddress'/>
                 </div>
@@ -576,12 +589,14 @@ Sunsure Agents
 
                 <!-- ZIP Code Column -->
                 <div class="col-3">
+                  <p id="updateLabel"><b> ZIP Code</b></p>
                   <span class="material-icons" style="font-size:38px;">tag</span>
                   <input type="text" id="updateClientZIP" placeholder="ZIP Code*"/>
                 </div>
 
                 <!-- State Column -->
                 <div class="col-2">
+                  <p id="updateLabelMenu"><b> State</b></p>
                   <label for="cars" style="font-size: 25px;">State*: </label>
                     <select id="updateStatesMenu" name="states">
                       <option value="FL">FL</option>
@@ -593,6 +608,7 @@ Sunsure Agents
 
                 <!-- Email Column -->
                 <div class="col">
+                  <p id="updateLabel"><b> Email</b></p>
                   <span class="material-icons" style="font-size:38px;">email</span> 
                   <input type="text" id="updateClientEmail" placeholder="Email" name='userName' />
                 </div>
@@ -602,12 +618,14 @@ Sunsure Agents
               <div class="row">
                 <!-- Number of Dependents Column -->
                 <div class="col-3">
+                  <p id="updateLabel"><b> Number of Dependents</b></p>
                   <span class="material-icons" style="font-size:38px;">tag</span>
                   <input type="text" id="updateClientNumOfDependents" placeholder="Number of Dependents"/>
                 </div>
 
                 <!-- Source Column -->
                 <div class="col-4">
+                  <p id="updateLabelMenu"><b> Number of Dependents</b></p>
                   <label for="sources" style="font-size: 25px;">Source: </label>
                     <select id="updateSourceMenu" name="sources">
                       <option value="Google">Google</option>
@@ -621,6 +639,11 @@ Sunsure Agents
                       <option value="Other">Other</option>
                     </select>
                 </div>
+              </div>
+
+              <a href="#" id="filldetails" style="font-size: 25px;" onclick="addUpdateDependentFields()">Fill Dependent Details</a>
+              <!-- Dependents Information Forms -->
+              <div id="updateDependentsContainer"/>
               </div>
 
               <br>
@@ -639,18 +662,21 @@ Sunsure Agents
                 <br />
                 <!-- Policy Type Column -->
                 <div class="col">
+                  <p id="updateLabelPolicyInfo"><b> Policy Type</b></p>
                   <span class="material-icons-outlined">info</span>
                   <input type="text" id="updatePlanType" placeholder="Plan Type*"/>
                 </div>
 
                 <!-- Ancillary Type Column -->
                 <div class="col">
+                  <p id="updateLabelAncType"><b> Ancillary Type</b></p>
                   <span class="material-icons-outlined">info</span>
                   <input type="text" id="updateAncillaryType" placeholder="Ancillary Type"/>
                 </div>
 
                 <!-- Effective Date Column -->
                 <div class="col">
+                  <p id="updateLabelPolicyInfo"><b> Effective Date</b></p>
                   <span class="material-icons-outlined">date_range</span>
                   <input type="date" id="updateEffectiveDate" placeholder="Effective Date"/>
                 </div>
@@ -658,7 +684,8 @@ Sunsure Agents
 
               <div class="row">  
                 <!-- Carrier Column -->
-                <div class="col-md-4">
+                <div class="col-md-3">
+                  <p id="updateLabelMenu"><b> Carrier</b></p>
                   <label for="updateCarriers" style="font-size: 25px;">Carrier: </label>
                     <select id="updateCarriers" name="sources">
                       <option value="FHCP">FHCP</option>
@@ -667,13 +694,15 @@ Sunsure Agents
                 </div>
 
                 <!-- Ambassador Column -->
-                <div class="col">
+                <div class="col-3">
+                  <p id="updateLabelAmbassador"><b> Ambassador</b></p>
                   <span class="material-icons" style="font-size:38px;">perm_identity</span>
                   <input type="text" id="updateClientAmbassador" placeholder="Ambassador"/>
                 </div>
 
                  <!-- Application ID Column -->
                  <div class="col">
+                  <p id="updateLabelAppID"><b> Application ID</b></p>
                   <span class="material-icons-outlined">info</span>
                   <input type="text" id="updateDetailsAppID" placeholder="Application ID"/>
                 </div>
@@ -684,14 +713,10 @@ Sunsure Agents
                 
                 <!-- Notes Column -->
                 <div class="col">
+                  <p id="updateLabelNotes"><b> Notes</b></p>
                   <textarea id="updateNotes" name="updateNotes" rows="5" cols="75" style="text-align:left; overflow:auto; border:2px outset #000000;"> Notes...
                   </textarea>
                 </div>
-              </div>
-
-              <a href="#" id="filldetails" style="font-size: 25px;" onclick="addUpdateDependentFields()">Fill Dependent Details</a>
-              <!-- Dependents Information Forms -->
-              <div id="updateDependentsContainer"/>
               </div>
 
               <div>
@@ -708,6 +733,7 @@ Sunsure Agents
             
             <!-- Form Submit Button -->
             <div class="modal-footer">
+              <span id="updateClientResult"></span>
               <button type="button" id="updateClientButton" onclick="updateClientWrap();">Update Client</button>
             </div>
            
@@ -748,18 +774,21 @@ Sunsure Agents
                   <br />
                   <!-- Policy Type Column -->
                   <div class="col">
+                    <p id="showLabelPolicyType"><b> Policy Type</b></p>
                     <span class="material-icons-outlined">info</span>
                     <p type="text" id="showDetailsPlanType">Some Policy Type</p>
                   </div>
 
                   <!-- Ancillary Type Column -->
                   <div class="col">
+                    <p id="showLabelAncType"><b> Ancillary Type</b></p>
                     <span class="material-icons-outlined">info</span>
                     <p type="text" id="showDetailsAncillaryType">Some Ancillary Plan</p>
                   </div>
 
                   <!-- Effective Date Column -->
                   <div class="col">
+                    <p id="showLabelEffDate"><b> Effective Date</b></p>
                     <span class="material-icons-outlined">date_range</span>
                     <p type="text" id="showDetailsEffectiveDate">10/20/2021</p>
                   </div>
@@ -769,18 +798,21 @@ Sunsure Agents
                 <div class="row">  
                   <!-- Carrier Column -->
                   <div class="col-md-4">
+                    <p id="showLabelCarrier"><b> Carrier</b></p>
                     <span class="material-icons-outlined">info</span>
                     <p type="text" id="showDetailsCarrier">Some Given Carrier</p>
                   </div>
 
                   <!-- Ambassador Column -->
                   <div class="col">
+                    <p id="showLabel"><b> Ambassador</b></p>
                     <span class="material-icons" style="font-size:38px;">perm_identity</span>
                     <p type="text" id="showDetailsAmbassador">Jon Snow</p>
                   </div>
 
                   <!-- Application ID Column -->
                   <div class="col">
+                    <p id="showLabelAppID"><b> Application ID</b></p>
                     <span class="material-icons-outlined">info</span>
                     <p type="text" id="showDetailsAppID">536443</p>
                   </div>
@@ -791,6 +823,7 @@ Sunsure Agents
                   
                   <!-- Notes Column -->
                   <div class="col">
+                    <p id="showLabelNotes"><b> Notes</b></p>
                     <p type="text" id="showDetailsNotes">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reiciendis expedita temporibus perferendis exercitationem dignissimos eius nulla assumenda quod quam officiis eaque, perspiciatis libero eum? Rem praesentium accusantium aliquam optio ab!</p>
                   </div>
                 </div>
@@ -804,15 +837,19 @@ Sunsure Agents
           </div>
         </div>
 				
-				<!-- Search Bar -->
-				<input type="text" id="clientsInput" style="zoom:67%" class = "text-center" placeholder="Search for clients...">
-				<button class="btn btn-sm" id="searchClientButton" style="zoom:67%" onclick="searchClients();"><span class="material-icons text-center">search</span>  Search</button>
+        <div id="taskHeader">
+          
+          <!-- Search Bar -->
+          <input type="text" id="clientsInput" style="zoom:67%" class = "text-center" placeholder="Search for clients...">
+          <button class="btn btn-sm" id="searchClientButton" style="zoom:67%" onclick="searchClients();"><span class="material-icons text-center">search</span>  Search</button>
 
-        <!-- Refresh Table Button -->
-        <button class="btn btn-sm" id="refreshTableButton" style="zoom:67%" onclick="displayClientsTable();"><span class="material-icons-outlined">refresh</span>  Refresh</button>
+          <!-- Refresh Table Button -->
+          <button class="btn btn-sm" id="refreshTableButton" style="zoom:67%" onclick="displayClientsTable();"><span class="material-icons-outlined">refresh</span>  Refresh</button>
 
-        <!-- Add Client Button -->
-				<button class="btn btn-sm" id="addClientButton" style="zoom:67%" data-toggle="modal" data-target="#createClientModal" data-backdrop="static" data-keyboard="false"><span class="material-icons text-center">add</span>Add Client</button>
+          <!-- Add Client Button -->
+          <button class="btn btn-sm" id="addClientButton" style="zoom:67%" data-toggle="modal" data-target="#createClientModal" data-backdrop="static" data-keyboard="false"><span class="material-icons text-center">add</span>Add Client</button>
+
+        </div>
 				
 				<!-- Clients Table -->
 				<div class="table-responsive" style="zoom:67%">
@@ -824,7 +861,7 @@ Sunsure Agents
             </span>
             <span class="inner"></span>
             <span class="inner"></span>
-          </div>
+        </div>
 
 						<thead id="tableHeader">
 							<tr>
@@ -851,7 +888,7 @@ Sunsure Agents
 							</tr>
 						</thead>
 						<tbody id="tests-table">
-       
+              
 						</tbody>
 					</table>
 				</div>
