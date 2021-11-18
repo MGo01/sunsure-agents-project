@@ -26,13 +26,14 @@ In order to get started, you will need the following,
 1. Navigate to the [Sunsure Agents website](https://sunsure-agent.com/)
    - Once you have clicked on the link you should see a page that appears like the image below:
 
-![Example of the Landing Page](/media/img/sunsure_landing.png)
+![Example of the Landing Page](https://github.com/[MGo01]/[sunsure-agents-project]/blob/[main]/media/img/sunsure_landing?raw=true)
+
 
 In order to sign up, you must navigate to the registration page by clicking on [Create New Account](https://sunsure-agent.com/register.html)
 
 You should see a page that is similar to the image below:
 
-![Example of the Registration Page](/media/img/sunsure_signup.png)
+![Example of the Registration Page](https://github.com/[MGo01]/[sunsure-agents-project]/blob/[main]/media/img/sunsure_landing?raw=true)
 
 ### Verification
 
