@@ -87,11 +87,21 @@ In the case that something went wrong when typing in your password in the sign u
 
 ## Application Features
 
+![Example of Landing Page](/media/img/tutorial/sunsure_landing.PNG?raw=true "Landing Page")
+
 ### Inserting Policyholder Information
+
+![Example of Create Client](/media/img/tutorial/sunsure_add_client.PNG?raw=true "Create Client")
 
 ### Updating Policyholder Information
 
+![Example of Updating Client](/media/img/tutorial/sunsure_update_client.PNG?raw=true "Update Client")
+
 ### Searching for a Policyholder
+
+![Example of Searching Client](/media/img/tutorial/sunsure_sarch_pt1.PNG?raw=true "Search Client Part 1")
+
+![Example of Searching Client](/media/img/tutorial/sunsure_sarch_pt2.PNG?raw=true "Update Client Part 2")
 
 ### Error Messages
 
