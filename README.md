@@ -33,7 +33,7 @@ In order to sign up, you must navigate to the registration page by clicking on [
 
 You should see a page that is similar to the image below:
 
-![Example of the Registration Page Part 1](/media/img/tutorial/sunsure_signup.PNG?raw=true "Registration Page")
+![Example of the Registration Page Part 1](/media/img/tutorial/sunsure_signup_part1.PNG?raw=true "Registration Page")
 
 From here you should be able to type in your personal details and then click on "Register" in order to complete signing up like so:
 
