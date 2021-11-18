@@ -105,6 +105,11 @@ In the case that something went wrong when typing in your password in the sign u
 
 ### Error Messages
 
+| Error Message | Location      | Reason for Error  |
+| ------------- |---------------|-------------------|
+| col 3 is      | right-aligned | $1600             |
+| col 2 is      | centered      |   $12             |
+| zebra stripes | are neat      |    $1             |
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
