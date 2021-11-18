@@ -26,14 +26,14 @@ In order to get started, you will need the following,
 1. Navigate to the [Sunsure Agents website](https://sunsure-agent.com/)
    - Once you have clicked on the link you should see a page that appears like the image below:
 
-![Example of the Landing Page](/media/img/sunsure_landing.PNG?raw=true "Landing Page")
+![Example of the Landing Page](/media/img/tutorial/sunsure_landing.PNG?raw=true "Landing Page")
 
 
 In order to sign up, you must navigate to the registration page by clicking on [Create New Account](https://sunsure-agent.com/register.html)
 
 You should see a page that is similar to the image below:
 
-![Example of the Registration Page](/media/img/sunsure_signup.PNG?raw=true "Registration Page")
+![Example of the Registration Page](/media/img/tutorial/sunsure_signup.PNG?raw=true "Registration Page")
 
 From here you should be able to type in your personal details and then click on "Register" in order to complete signing up. Once you have successfully signed up for your account, you should check your inbox email. 
 
@@ -41,11 +41,11 @@ From here you should be able to type in your personal details and then click on 
 
 If the sign up was successful you will see an email from an account named, "SA-bot-2021" with the following content:
 
-![Example of Verification Email](/media/img/sunsure_verify_email_example.PNG?raw=true "Verification Email Example")
+![Example of Verification Email](/media/img/tutorial/sunsure_verify_email_example.PNG?raw=true "Verification Email Example")
 
 Make sure to follow the instructions provided in the email by copy and pasting the confirmation code into the verification form like so:
 
-![Example of Verification Page](/media/img/sunsure_verification.PNG?raw=true "Verification Page")
+![Example of Verification Page](/media/img/tutorial/sunsure_verification.PNG?raw=true "Verification Page")
 
 Please note that it is normal for the code to default to a series of dots, this is done to provide additional security for the website.
 
@@ -54,7 +54,7 @@ Please note that it is normal for the code to default to a series of dots, this 
 Once you have sucessfully signed up for your account and verified your email address, you can now login into the page
 by navigating to the [Login Page](https://sunsure-agent.com/) of the website and entering your newly created credentials.
 
-![Example of Login Page](/media/img/sunsure_login.PNG?raw=true "Verification Page")
+![Example of Login Page](/media/img/tutorial/sunsure_login.PNG?raw=true "Verification Page")
 
 ### Resetting Your Password
 
