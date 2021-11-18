@@ -1,7 +1,7 @@
 # Sunsure Agents Web Application
 
 ## Overview
-This is a web application for general purposes by Sunsure agents to add, edit, delete, and search for client information. It primarily
+This is a web application for general purposes to be used by Sunsure agents to add, edit, delete, and search for client information. It primarily
 serves to provide agents with the ability to insert, update and search for policyholders. In addition to this, agents are able to insert
 dependent and policy information without having to worry about placing it elsewhere. Agents should expect regular bug fixes and releases
 to help improve the overall user interface and experience. 
