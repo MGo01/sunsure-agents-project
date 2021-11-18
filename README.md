@@ -105,7 +105,7 @@ In the case that something went wrong when typing in your password in the sign u
 
 # Error Messages
 
-## Create Client Form Errors
+## Create/Update Client Form Errors
 
 | Error Message                                           | Reason for Error                                                                                              |
 |:--------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------|
@@ -117,14 +117,6 @@ In the case that something went wrong when typing in your password in the sign u
 | Data Field Missing: Some Field cannot be empty.         | A required field was left empty in the form.                                                                  |
 | Primary Policy Holder has already been inserted         | A policyholder with identical information has already been inserted by the user or another user/agent.        |
 | Policy Information has already been inserted.           | The entered policy information for the policyholder to be inserted already exists.                            |
-
-## Update Client Form Errors
-
-| Error Message | Reason for Error                 |
-| ------------- |----------------------------------|
-| col 3 is      | $1600                            |
-| col 2 is      |   $12                            |
-| zebra stripes |    $1                            |
 
 ## Show Detail Form Errors
 
