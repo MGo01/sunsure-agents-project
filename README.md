@@ -103,7 +103,7 @@ In the case that something went wrong when typing in your password in the sign u
 
 ![Example of Searching Client](/media/img/tutorial/sunsure_search_pt2.PNG?raw=true "Search Client Part 2")
 
-### Error Messages
+# Error Messages
 
 ## Create Client Form Errors
 
