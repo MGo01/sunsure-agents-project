@@ -116,7 +116,7 @@ function transformDate(strDate)
 // adding each row to the table based on the array elements (contacts).
 function displayClientsTable(loggedIn = false)
 {
-		// Clear the table if the user
+	// Clear the table if the user
 	// has not already logged in.
 	if (!loggedIn)
 	{
