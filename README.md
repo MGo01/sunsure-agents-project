@@ -33,11 +33,11 @@ In order to sign up, you must navigate to the registration page by clicking on [
 
 You should see a page that is similar to the image below:
 
-![Example of the Registration Page Part 1](/media/img/tutorial/sunsure_signup_part1.PNG?raw=true "Registration Page")
+![Example of the Registration Page Part 1](/media/img/tutorial/sunsure_signup_part1.PNG?raw=true "Registration Page Part 1")
 
 From here you should be able to type in your personal details and then click on "Register" in order to complete signing up like so:
 
-![Example of the Registration Page Part 2](/media/img/tutorial/sunsure_signup_part2.PNG?raw=true "Registration Page")
+![Example of the Registration Page Part 2](/media/img/tutorial/sunsure_signup_part2.PNG?raw=true "Registration Page Part 2")
 
 Once you have successfully signed up for your account, you should check your email for a verification email. 
 
@@ -49,24 +49,37 @@ If the sign up was successful you will see an email from an account named, "SA-b
 
 Make sure to follow the instructions provided in the email by copy and pasting the confirmation code into the verification form like so:
 
-![Example of Verification Page Part 1](/media/img/tutorial/sunsure_verification.PNG?raw=true "Verification Page")
+![Example of Verification Page Part 1](/media/img/tutorial/sunsure_verification.PNG?raw=true "Verification Page Part 1")
 
 Please note that it is normal for the code to default to a series of dots, this is done to provide additional security for the website.
 
-![Example of Verification Page Part 2](/media/img/tutorial/sunsure_verification_part2.PNG?raw=true "Verification Page")
+![Example of Verification Page Part 2](/media/img/tutorial/sunsure_verification_part2.PNG?raw=true "Verification Page Part 2")
 
 ### Logging in
 
 Once you have sucessfully signed up for your account and verified your email address, you can now login into the page
 by navigating to the [Login Page](https://sunsure-agent.com/) of the website and entering your newly created credentials.
 
-![Example of Login Page Part 2](/media/img/tutorial/sunsure_login_part2.PNG?raw=true "Verification Page")
+![Example of Login Page Part 2](/media/img/tutorial/sunsure_login_part2.PNG?raw=true "Login Page Part 2")
 
 ### Resetting Your Password
 
-In the case that something when wrong when typing your password in the sign up form, you can always reset your password by doing the following steps:
+In the case that something went wrong when typing in your password in the sign up form, you can always reset your password by doing the following steps:
 
 1. Navigate to the [Login Page](https://sunsure-agent.com/) of the website and click on "Forgot Password?"
+
+![Example of Login Page Part 3](/media/img/tutorial/sunsure_login_part3.PNG?raw=true "Reset Password Part 1")
+
+2. Type in your email for the account you're trying to access
+
+![Example of Reset Form Part 1](/media/img/tutorial/sunsure_reset_pw_form.PNG?raw=true "Reset Password Part 2")
+
+![Example of Reset Form Part 2](/media/img/tutorial/sunsure_reset_pw_form_part2.PNG?raw=true "Reset Password Part 3")
+
+3. Once a notifcation pops up saying the following, "Successfully sent email to: example@gmail.com", go to your email inbox and look for an email from
+   an account named "SA-bot-2021". The email should be titled "Sunsure Agent Reset Password" and its contents should like the image below:
+   
+![Example of Reset Form Part 2](/media/img/tutorial/sunsure_password_email.PNG?raw=true "Reset Password Part 3")
 
 ## Application Features
 
