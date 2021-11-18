@@ -101,7 +101,7 @@ In the case that something went wrong when typing in your password in the sign u
 
 ![Example of Searching Client](/media/img/tutorial/sunsure_search_pt1.PNG?raw=true "Search Client Part 1")
 
-![Example of Searching Client](/media/img/tutorial/sunsure_search_pt2.PNG?raw=true "Update Client Part 2")
+![Example of Searching Client](/media/img/tutorial/sunsure_search_pt2.PNG?raw=true "Search Client Part 2")
 
 ### Error Messages
 
