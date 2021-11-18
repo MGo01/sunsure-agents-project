@@ -35,12 +35,32 @@ You should see a page that is similar to the image below:
 
 ![Example of the Registration Page](/media/img/sunsure_signup.PNG?raw=true "Registration Page")
 
+From here you should be able to type in your personal details and then click on "Register" in order to complete signing up. Once you have successfully signed up for your account, you should check your inbox email. 
+
 ### Verification
+
+If the sign up was successful you will see an email from an account named, "SA-bot-2021" with the following content:
+
+![Example of Verification Email](/media/img/sunsure_verify_email_example.PNG?raw=true "Verification Email Example")
+
+Make sure to follow the instructions provided in the email by copy and pasting the confirmation code into the verification form like so:
+
+![Example of Verification Page](/media/img/sunsure_verification.PNG?raw=true "Verification Page")
+
+Please note that it is normal for the code to default to a series of dots, this is done to provide additional security for the website.
 
 ### Logging in
 
+Once you have sucessfully signed up for your account and verified your email address, you can now login into the page
+by navigating to the [Login Page](https://sunsure-agent.com/) of the website and entering your newly created credentials.
+
+![Example of Login Page](/media/img/sunsure_login.PNG?raw=true "Verification Page")
+
 ### Resetting Your Password
 
+In the case that something when wrong when typing your password in the sign up form, you can always reset your password by doing the following steps:
+
+1. Navigate to the [Login Page](https://sunsure-agent.com/) of the website and click on "Forgot Password?"
 
 ## Application Features
 
