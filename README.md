@@ -70,7 +70,7 @@ In the case that something went wrong when typing in your password in the sign u
 
 1. Navigate to the [Login Page](https://sunsure-agent.com/) of the website and click on "Forgot Password?"
 
-![Example of Login Page Part 3](/media/img/tutorial/sunsure_login_part3.PNG?raw=true "Reset Password Part 1")
+![Example of Login Page Part 3](/media/img/tutorial/sunsure_login_part3.png?raw=true "Reset Password Part 1")
 
 2. Type in your email for the account you're trying to access
 
@@ -81,7 +81,9 @@ In the case that something went wrong when typing in your password in the sign u
 3. Once a notifcation pops up saying the following, "Successfully sent email to: example@gmail.com", go to your email inbox and look for an email from
    an account named "SA-bot-2021". The email should be titled "Sunsure Agent Reset Password" and its contents should like the image below:
    
-![Example of Reset Form Part 2](/media/img/tutorial/sunsure_password_email.PNG?raw=true "Reset Password Part 3")
+![Example of Reset Form Part 3](/media/img/tutorial/sunsure_password_email.PNG?raw=true "Reset Password Part 3")
+
+![Example of Reset Form Part 4](/media/img/tutorial/sunsure_reset_pw.PNG?raw=true "Reset Password Part 4")
 
 ## Application Features
 
