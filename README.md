@@ -105,11 +105,53 @@ In the case that something went wrong when typing in your password in the sign u
 
 ### Error Messages
 
-| Error Message | Location      | Reason for Error  |
-| ------------- |---------------|-------------------|
-| col 3 is      | right-aligned | $1600             |
-| col 2 is      | centered      |   $12             |
-| zebra stripes | are neat      |    $1             |
+## Create Client Form Errors
+
+| Error Message | Reason for Error                 |
+| ------------- |----------------------------------|
+| col 3 is      | $1600                            |
+| col 2 is      |   $12                            |
+| zebra stripes |    $1                            |
+
+## Update Client Form Errors
+
+| Error Message | Reason for Error                 |
+| ------------- |----------------------------------|
+| col 3 is      | $1600                            |
+| col 2 is      |   $12                            |
+| zebra stripes |    $1                            |
+
+## Show Detail Form Errors
+
+| Error Message | Reason for Error                 |
+| ------------- |----------------------------------|
+| col 3 is      | $1600                            |
+| col 2 is      |   $12                            |
+| zebra stripes |    $1                            |
+
+## Search Errors
+
+| Error Message | Reason for Error                 |
+| ------------- |----------------------------------|
+| col 3 is      | $1600                            |
+| col 2 is      |   $12                            |
+| zebra stripes |    $1                            |
+
+## Signup Errors
+
+| Error Message | Reason for Error                 |
+| ------------- |----------------------------------|
+| col 3 is      | $1600                            |
+| col 2 is      |   $12                            |
+| zebra stripes |    $1                            |
+
+## Verification Errors
+
+| Error Message | Reason for Error                 |
+| ------------- |----------------------------------|
+| col 3 is      | $1600                            |
+| col 2 is      |   $12                            |
+| zebra stripes |    $1                            |
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
