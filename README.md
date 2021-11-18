@@ -26,7 +26,7 @@ In order to get started, you will need the following,
 1. Navigate to the [Sunsure Agents website](https://sunsure-agent.com/)
    - Once you have clicked on the link you should see a page that appears like the image below:
 
-![Example of the Landing Page](/media/img/sunsure_landing.png?raw=true "Landing Page")
+![Example of the Landing Page](/media/img/sunsure_landing.PNG?raw=true "Landing Page")
 
 
 
