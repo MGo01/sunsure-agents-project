@@ -107,11 +107,16 @@ In the case that something went wrong when typing in your password in the sign u
 
 ## Create Client Form Errors
 
-| Error Message | Reason for Error                 |
-| ------------- |----------------------------------|
-| col 3 is      | $1600                            |
-| col 2 is      |   $12                            |
-| zebra stripes |    $1                            |
+| Error Message                                           | Reason for Error                                                                                              |
+|:--------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------|
+| Data Value Error: Negative values are not allowed       | A negative value was entered into the number of dependents field.                                             |
+| Either First Name or Last Name field is empty.          | The user entered either an empty first name or an empty last name.                                            |
+| First name/Last name must have alphabet characters only | The user likely entered non-alphabetical characters like numbers, '!", '/', etc.                              |
+| Invalid Date: Please choose a date between the years 1900 and 2021 | A date was chosen that was either before the year 1900 or in the future for a date of birth field  | 
+| Invalid date: Dates before 1900 are not allowed         | A date was chosen before the year 1900 for an effective date field in the policy information form             | 
+| Data Field Missing: Some Field cannot be empty.         | A required field was left empty in the form.                                                                  |
+| Primary Policy Holder has already been inserted         | A policyholder with identical information has already been inserted by the user or another user/agent.        |
+| Policy Information has already been inserted.           | The entered policy information for the policyholder to be inserted already exists.                            |
 
 ## Update Client Form Errors
 
