@@ -55,6 +55,8 @@ Please note that it is normal for the code to default to a series of dots, this 
 
 ![Example of Verification Page Part 2](/media/img/tutorial/sunsure_verification_part2.PNG?raw=true "Verification Page Part 2")
 
+Once you click on "Confirm" you should see a message pop up with the following, "Successfully verified User". After this you can click on "Return to Login" to be brought back to the login page.
+
 ### Logging in
 
 Once you have sucessfully signed up for your account and verified your email address, you can now login into the page
