@@ -797,32 +797,32 @@ function fillShowDetailsForm(updateShow = false, gPolicyID = -1)
 function clearModalForm(numOfDependents)
 {
 	// Clear the Client Information Form
-	document.getElementById("clientFirstName").innerHTML = "";
-	document.getElementById("clientLastName").innerHTML = "";
+	document.getElementById("clientFirstName").value = "";
+	document.getElementById("clientLastName").value = "";
 
-	document.getElementById("clientSSN").innerHTML = "";
+	document.getElementById("clientSSN").value = "";
 
-	document.getElementById("clientPhone").innerHTML = "";
-	document.getElementById("clientAddress").innerHTML = "";
+	document.getElementById("clientPhone").value = "";
+	document.getElementById("clientAddress").value = "";
 
-	document.getElementById("clientSecondLineAddress").innerHTML = "";
+	document.getElementById("clientSecondLineAddress").value = "";
 
-	document.getElementById("clientCity").innerHTML = "";
-	document.getElementById("clientAddress").innerHTML = "";
+	document.getElementById("clientCity").value = "";
+	document.getElementById("clientAddress").value = "";
 
-	document.getElementById("clientZIP").innerHTML = "";
+	document.getElementById("clientZIP").value = "";
 
-	document.getElementById("clientEmail").innerHTML = "";
-	document.getElementById("clientNumOfDependents").innerHTML = "";
+	document.getElementById("clientEmail").value = "";
+	document.getElementById("clientNumOfDependents").value = "";
 
 	// Clear the Policy Information Form
-	document.getElementById("createPlanType").innerHTML = "";
-	document.getElementById("createAncillaryType").innerHTML = "";
+	document.getElementById("createPlanType").value = "";
+	document.getElementById("createAncillaryType").value = "";
 
-	document.getElementById("createNotes").innerHTML = "";
+	document.getElementById("createNotes").value = "";
 
-	document.getElementById("createClientAmbassador").innerHTML = "";
-	document.getElementById("createAppID").innerHTML = "";
+	document.getElementById("createClientAmbassador").value = "";
+	document.getElementById("createAppID").value = "";
 
 	for (let i = 0; i < numOfDependents; i++)
 	{
