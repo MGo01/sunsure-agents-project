@@ -421,7 +421,7 @@ function checkPolicyInfo(spanName)
 	// 1900 and less than any future date
 	if (!restrictDate(effectiveDate))
 	{
-		document.getElementById(spanName).innerHTML = "Data Value Error: Negative values are not allowed";
+		document.getElementById(spanName).innerHTML = "Invalid date: Dates before 1900 are not allowed";
 		document.getElementById(spanName).style.color = "red";
 		return false;
 	}
@@ -469,9 +469,9 @@ function checkDependentInfo(clientNumOfDependents, spanName)
 		// Ensure that DOB is correct.
 		let DOBFlag = true;
 
-		if (!restrictDate(clientDateOfBirth, DOBFlag))
+		if (!restrictDate(dependentDOB, DOBFlag))
 		{
-			document.getElementById(spanName).innerHTML = "Data Value Error: Negative values are not allowed";
+			document.getElementById(spanName).innerHTML = "Invalid Date: Please choose a date between the years 1900 and " + new Date().getFullYear();
 			document.getElementById(spanName).style.color = "red";
 			return false;
 		}
