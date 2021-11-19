@@ -440,6 +440,77 @@ function checkDependentInfo(clientNumOfDependents, spanName)
 		var DOBString = "dependent-input-DOB" + i;
 		var SSNString = "dependent-input-SSN" + i;
 
+		var element = document.getElementById(FNameString);
+		
+		if (element === null || element.value == '') 
+		{
+			document.getElementById(spanName).innerHTML = "Data Error: Inserted a number of dependents but didn't click on 'Fill Dependent Details'";
+			document.getElementById(spanName).style.color = "red";
+
+			return false;
+		}
+
+		var dependentFirstName = document.getElementById(FNameString).value;
+		var dependentLastName = document.getElementById(LNameString).value;
+		var dependentDOB = document.getElementById(DOBString).value;
+		var dependentSSN = document.getElementById(SSNString).value;
+
+		// Remove any dashes and replace them with a forward slash.
+		dependentDOB = dependentDOB.replace(/[---]+/gi, '/');
+
+		// Package JSON that contains all required
+		// policy information fields.
+		var requiredObj = 
+		{
+			"Dependent First Name": dependentFirstName,
+			"Dependent Last Name": dependentLastName,
+			"Dependent DOB": dependentDOB,
+		};
+		
+		// Ensure that no required field is empty.
+		if (checkRequiredFields(requiredObj, spanName))
+			return false;
+
+		// This helps to ensure that none of the form
+		// inputs are left blank and only have alphabetical characters.
+		if (!checkFormNames(dependentFirstName, dependentLastName, spanName))
+			return false;
+
+		// Ensure that DOB is correct.
+		let DOBFlag = true;
+
+		if (!restrictDate(dependentDOB, DOBFlag))
+		{
+			document.getElementById(spanName).innerHTML = "Invalid Date: Please choose a date between the years 1900 and " + new Date().getFullYear();
+			document.getElementById(spanName).style.color = "red";
+			return false;
+		}
+	}
+
+	return true;
+}
+
+function checkUpdatedDependentInfo(clientNumOfDependents, spanName)
+{
+	for (let i = 0; i < clientNumOfDependents; i++)
+	{
+		// Depending on the number of dependents
+		// these strings will pull the right data accordingly.
+		var FNameString = "update-dependent-input-FirstName" + i;
+		var LNameString = "update-dependent-input-LastName" + i;
+		var DOBString = "update-dependent-input-DOB" + i;
+		var SSNString = "update-dependent-input-SSN" + i;
+
+		var element = document.getElementById(FNameString);
+		
+		if (element === null || element.value == '') 
+		{
+			document.getElementById(spanName).innerHTML = "Data Error: Inserted a number of dependents but didn't click on 'Fill Dependent Details'";
+			document.getElementById(spanName).style.color = "red";
+
+			return false;
+		}
+
 		var dependentFirstName = document.getElementById(FNameString).value;
 		var dependentLastName = document.getElementById(LNameString).value;
 		var dependentDOB = document.getElementById(DOBString).value;
@@ -852,34 +923,34 @@ function clearModalForm(numOfDependents)
 function clearUpdatedModalForm(numOfDependents)
 {
 		// Clear the Client Information Form
-		document.getElementById("updateClientFirstName").innerHTML = "";
-		document.getElementById("updateClientLastName").innerHTML = "";
+		document.getElementById("updateClientFirstName").value = "";
+		document.getElementById("updateClientLastName").value = "";
 	
-		document.getElementById("updateClientSSN").innerHTML = "";
-		document.getElementById("updateClientPhone").innerHTML = "";
+		document.getElementById("updateClientSSN").value = "";
+		document.getElementById("updateClientPhone").value = "";
 	
-		document.getElementById("updateClientAddress").innerHTML = "";
+		document.getElementById("updateClientAddress").value = "";
 	
-		document.getElementById("updateClientSecondLineAddress").innerHTML = "";
-		document.getElementById("updateClientCity").innerHTML = "";
+		document.getElementById("updateClientSecondLineAddress").value = "";
+		document.getElementById("updateClientCity").value = "";
 	
-		document.getElementById("updateClientZIP").innerHTML = "";
+		document.getElementById("updateClientZIP").value = "";
 	
-		document.getElementById("updateClientEmail").innerHTML = "";
+		document.getElementById("updateClientEmail").value = "";
 
-		document.getElementById("updateClientNumOfDependents").innerHTML = "";
+		document.getElementById("updateClientNumOfDependents").value = "";
 	
 		// Clear the Policy Information Form
-		document.getElementById("updatePlanType").innerHTML = "";
+		document.getElementById("updatePlanType").value = "";
 	
-		document.getElementById("updateAncillaryType").innerHTML = "";
+		document.getElementById("updateAncillaryType").value = "";
 	
-		document.getElementById("updateEffectiveDate").innerHTML = "";
+		document.getElementById("updateEffectiveDate").value = "";
 
-		document.getElementById("updateNotes").innerHTML = "";
-		document.getElementById("updateClientAmbassador").innerHTML = "";
+		document.getElementById("updateNotes").value = "";
+		document.getElementById("updateClientAmbassador").value = "";
 	
-		document.getElementById("updateDetailsAppID").innerHTML = "";
+		document.getElementById("updateDetailsAppID").value = "";
 	
 		for (let i = 0; i < numOfDependents; i++)
 		{
@@ -890,10 +961,10 @@ function clearUpdatedModalForm(numOfDependents)
 			var DOBString = "update-dependent-input-DOB" + i;
 			var SSNString = "update-dependent-input-SSN" + i;
 	
-			document.getElementById(FNameString).innerHTML = "";
-			document.getElementById(LNameString).innerHTML = "";
-			document.getElementById(DOBString).innerHTML = "";
-			document.getElementById(SSNString).innerHTML = "";
+			document.getElementById(FNameString).value = "";
+			document.getElementById(LNameString).value = "";
+			document.getElementById(DOBString).value = "";
+			document.getElementById(SSNString).value = "";
 		}
 
 	// Container <div> where dynamic content will be placed
@@ -1465,6 +1536,11 @@ function updateClient(policyID)
 	};
 
 	jsonString = JSON.stringify(jsonPayload);
+
+	if (!checkUpdatedDependentInfo(updatedClientNumOfDependents, spanName))
+	{
+		return;
+	}
 
 	var url = urlBase + '/updatePolicyHolder.' + extension;
 	var xhr = new XMLHttpRequest();
