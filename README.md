@@ -87,17 +87,44 @@ In the case that something went wrong when typing in your password in the sign u
 
 ## Application Features
 
+The Sunsure Agents web application currently has three primary functions which include the following:
+  - Inserting Policyholder Information
+  - Updating Policyholder Information
+  - Searching Policyholder Information
+
 ![Example of Landing Page](/media/img/tutorial/sunsure_landing.PNG?raw=true "Landing Page")
 
 ### Inserting Policyholder Information
+
+Inserting policyholder information can easily be done by clicking on the "Add Client" button in the top right corner of the web page. Once clicked a form will pop up on the user's screen, here the user can enter information and choose between clearing the whole form or adding the client. Be sure to double check information before clicking on "Create Client"!
 
 ![Example of Create Client](/media/img/tutorial/sunsure_add_client_form.PNG?raw=true "Create Client")
 
 ### Updating Policyholder Information
 
+In the case that a user didn't enter the correct policyholder information for one of their clients they can easily update this information by searching for the policyholder in the table and then clicking on "Update" under the actions column of the policyholder table for the client row they would like to update.
+
+Here the user will be greeted with yet another form that will contain the corresponding information for the client row that was selected.
+
+Please note that a user does *NOT* need to enter all the old information of a client in order to update the client. 
+
+For instance, if a user would only like to update the first and last name of a client then they *only need to enter data into the First Name and Last Name fields* and then click "Update". Upon clicking on update, the update function will take care of handling the data so that only the fields that had data entered into them are updated. 
+
 ![Example of Updating Client](/media/img/tutorial/sunsure_update_client.PNG?raw=true "Update Client")
 
 ### Searching for a Policyholder
+
+Searching for a Policyholder is very straightforward, all that needs to be done is to type a query into the search bar and the user can either hit the "enter" key on their keyboard or click on the "Search" button.
+
+In addition to this, searching for a policyholder based on *only* the following fields is supported:
+  - First Name
+  - Last Name
+  - Email
+  - Phone Number
+
+Additional fields may be supported in future releases/updates.
+
+Please note that the search query will perform a partial search, meaning that if one types in "Mar" into the search bar then the search function will look for any policyholder with "Mar" in their first name, last name, or email. 
 
 ![Example of Searching Client](/media/img/tutorial/sunsure_search_pt1.PNG?raw=true "Search Client Part 1")
 
@@ -120,35 +147,37 @@ In the case that something went wrong when typing in your password in the sign u
 
 ## Show Detail Form Errors
 
-| Error Message | Reason for Error                 |
-| ------------- |----------------------------------|
-| col 3 is      | $1600                            |
-| col 2 is      |   $12                            |
-| zebra stripes |    $1                            |
+| Error Message                                           | Reason for Error                                                                               |
+|:--------------------------------------------------------|:-----------------------------------------------------------------------------------------------|
+| This policy has no dependents                           | The selected policyholder by the user does not have any corresponding dependent data.          |
+| This policy has no policy information.                  | The selected policyholder by the user does not have any corresponding policy information data. |
 
 ## Search Errors
 
-| Error Message | Reason for Error                 |
-| ------------- |----------------------------------|
-| col 3 is      | $1600                            |
-| col 2 is      |   $12                            |
-| zebra stripes |    $1                            |
+| Error Message                              | Reason for Error                                                              |
+| -------------------------------------------|-------------------------------------------------------------------------------|
+| No valid Primary PolicyHolders were found  | The user has likely entered an query that could not be found in the database. Queries such as "*John* *Doe*" should be split                                                  into a separate search for John or Doe but not both.                           |
+
 
 ## Signup Errors
 
-| Error Message | Reason for Error                 |
-| ------------- |----------------------------------|
-| col 3 is      | $1600                            |
-| col 2 is      |   $12                            |
-| zebra stripes |    $1                            |
+| Error Message                                           | Reason for Error                                                                                              |
+|:--------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------|
+| Full name is required!                                  | A negative value was entered into the number of dependents field.                                             |
+| Please enter a valid full name!                         | The user entered either an empty first name or an empty last name.                                            |
+| First Name should not exceed 45 characters!             | The user likely entered non-alphabetical characters like numbers, '!", '/', etc.                              |
+| Password is required!                                   | A date was chosen that was either before the year 1900 or in the future for a date of birth field  | 
+| Your password must be at least 8 characters long        | A date was chosen before the year 1900 for an effective date field in the policy information form             | 
+| Email is required!                                      | A required field was left empty in the form.                                                                  |
+| Email is too long!                                      | A policyholder with identical information has already been inserted by the user or another user/agent.        |
 
-## Verification Errors
+## Verification/Reset Password Errors
 
-| Error Message | Reason for Error                 |
-| ------------- |----------------------------------|
-| col 3 is      | $1600                            |
-| col 2 is      |   $12                            |
-| zebra stripes |    $1                            |
+| Error Message                     | Reason for Error                                                                                                                   |
+| ----------------------------------|------------------------------------------------------------------------------------------------------------------------------------| 
+| Reset key is not correct.         | Password confirmation code is likely no longer valid. User likely needs to resend an email to their corresponding email account    |
+| Email not found                   | User has entered an email that has not yet been registered with the application.                                                   |
+| Confirmation code may be invalid  | Confirmation code may not have been generated properly. User likely needs to resend an email to their corresponding email account  |
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
