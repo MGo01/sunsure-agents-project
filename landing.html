@@ -260,13 +260,25 @@ Sunsure Agents
 	<div class="container-fullwidth">
   		<div class="row-1">
   			<div class="col">
+
   			  <!-- Title Bar -->
 				  <div id= "titleBar" style="word-wrap:break-word">
             <h1 id="userName"></h1>
   					<h1 id="title" style="zoom:67%">Sunsure Agents</h1>
 
-            <!-- Sign Out Button -->
-  					<button id="logoutButton" style="zoom:67%" type="button" onclick="doLogout()"><span class="material-icons text-center">logout</span>  Sign Out</button>
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="menuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="material-icons-outlined" style="font-size: 16px;">
+              menu
+            </span>
+                Menu
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="https://github.com/MGo01/sunsure-agents-project#readme">Documentation</a>
+              <a class="dropdown-item" href="https://www.youtube.com/channel/UCL8M9MDJsWoHb_42N9rB2Lw">Video Tutorial</a>
+              <a class="dropdown-item" onclick="doLogout()" href="#">Sign Out</a>
+            </div>
+            
+
   			  </div>        
   			</div>
   		</div>

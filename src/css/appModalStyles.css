@@ -103,20 +103,19 @@ body
     float: right;
 }
 
-#logoutButton 
+#logoutButton
 {
     border-color: black;
-	  border-radius: 25px;
+	  border-radius: 16px;
     background-color: indigo;
     transition-duration: 0.3s;
-    font-size: 25px;
+    font-size: 16px;
     color: white;
     padding: 5px;
     outline: none;
     position: absolute;
-    right: 40px;
     margin-top: 1.1%;
-    width: 13.7%;
+    width: 7.7%;
 }
   
 #logoutButton:hover 
@@ -147,19 +146,18 @@ body
 
 #menuButton
 {
+  border-color: black;
+  border-radius: 25px;
   background-color: indigo;
-  border-color: #000000;
-  border-radius: 15px;
-  color: white;
-  font-size: 14px;
-  border: 2px solid black;
-  -webkit-transition: 0.9%;
-  transition: 0.9%;
   transition-duration: 0.3s;
-  margin-right: 1%;
-  width: 10%;
+  font-size: 17px;
+  color: white;
   padding: 5px;
   outline: none;
+  position: absolute;
+  right: 40px;
+  margin-top: 1.1%;
+  width: 12%;
 }
 
 #createClientButton:hover, #updateClientButton:hover, #deleteClientButton:hover, #refreshTableButton:hover,
