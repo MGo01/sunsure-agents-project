@@ -161,15 +161,15 @@ Please note that the search query will perform a partial search, meaning that if
 
 ## Signup Errors
 
-| Error Message                                           | Reason for Error                                                                                              |
-|:--------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------|
-| Full name is required!                                  | A negative value was entered into the number of dependents field.                                             |
-| Please enter a valid full name!                         | The user entered either an empty first name or an empty last name.                                            |
-| First Name should not exceed 45 characters!             | The user likely entered non-alphabetical characters like numbers, '!", '/', etc.                              |
-| Password is required!                                   | A date was chosen that was either before the year 1900 or in the future for a date of birth field  | 
-| Your password must be at least 8 characters long        | A date was chosen before the year 1900 for an effective date field in the policy information form             | 
-| Email is required!                                      | A required field was left empty in the form.                                                                  |
-| Email is too long!                                      | A policyholder with identical information has already been inserted by the user or another user/agent.        |
+| Error Message                                           | Reason for Error                                                                                                |
+|:--------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------|
+| Full name is required!                                  | The combined character length of both the first name and last name is less than one character.                  |
+| Please enter a valid full name!                         | Either the first name or last name contains some non alphabetical characters.                                   |
+| First/Last Name should not exceed 45 characters!        | The user likely entered a name that contains more than 100 characters.                                          |
+| Password is required!                                   | Password was left empty in the Password field.                                                                  | 
+| Your password must be at least 8 characters long        | For securiy reasons, passwords are required to be longer than 8 characters, so the user password is too short.  |
+| Email is required!                                      | Email was left empty in the Email field.                                                                        |
+| Email is too long!                                      | Email is likely longer than 50 characters long.                                                                 |
 
 ## Verification/Reset Password Errors
 
