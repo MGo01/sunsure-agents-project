@@ -18,6 +18,7 @@
   $State =  $inputFromJson['State'];
   $Email = $inputFromJson['Email'];
   $NumOfDependents = $inputFromJson['NumOfDependents'];
+  $SubmissionDate = $inputFromJson['SubmissionDate'];
   $Source = $inputFromJson['Source'];
 
   // Create a class capable of holding Dependent
@@ -37,10 +38,10 @@
 
   if (checkPrimaryPolicy($LastName, $DateOfBirth, $conn))
   {
-    $sql = "INSERT INTO Primary_PolicyHolders (AgentID, FirstName, LastName, DateOfBirth, SSN, Phone, Address, Second_Line_Address, City, ZipCode, State, Email, NumOfDependents, Source)
+    $sql = "INSERT INTO Primary_PolicyHolders (AgentID, FirstName, LastName, DateOfBirth, SSN, Phone, Address, Second_Line_Address, City, ZipCode, State, Email, NumOfDependents, SubmissionDate, Source)
     VALUES ('".$AgentID."','".$FirstName."','".$LastName."','".$DateOfBirth."', '".$SSN."',
             '".$Phone."','".$Address."','".$Second_Line_Address."', '".$City."', '".$ZipCode."',
-            '".$State."','".$Email."', '".$NumOfDependents."', '".$Source."')";
+            '".$State."','".$Email."', '".$NumOfDependents."', '".$SubmissionDate."', '".$Source."')";
 
     $getPolicysql = "SELECT * FROM Primary_PolicyHolders WHERE (LastName='$LastName' AND DateOfBirth='$DateOfBirth')";
 

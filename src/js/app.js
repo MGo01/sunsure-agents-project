@@ -1004,6 +1004,11 @@ function createPolicyHolder()
 
 	var spanName = "createClientResult";
 
+	let today = new Date();
+	let date = today.getFullYear() + '-' + (today.getMonth()+1)+ '-' + today.getDate();
+	let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+	let submissionDate = date + ' ' + time;
+
 	if (clientNumOfDependents < 0)
 	{
 		document.getElementById("createClientResult").innerHTML = "Data Value Error: Negative values are not allowed";
@@ -1089,6 +1094,7 @@ function createPolicyHolder()
 		"State": clientState,
 		"Email": clientEmail,
 		"NumOfDependents": clientNumOfDependents,
+		"SubmissionDate": submissionDate,
 		"Source": clientSource
 	};
 
@@ -1482,6 +1488,11 @@ function updateClient(policyID)
 
 	var spanName = "updateClientResult";
 
+	let today = new Date();
+	let date = today.getFullYear() + '-' + (today.getMonth()+1)+ '-' + today.getDate();
+	let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+	let updatedSubDate = date + ' ' + time;
+
 	document.getElementById("updateClientResult").innerHTML = "";
 
 	// Remove any special characters in order to ensure all
@@ -1532,6 +1543,7 @@ function updateClient(policyID)
 		"State": updatedClientState,
 		"Email": updatedClientEmail,
 		"NumOfDependents": updatedClientNumOfDependents,
+		"UpdatedSubDate": updatedSubDate,
 		"Source": updatedClientSource
 	};
 
