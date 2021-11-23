@@ -98,6 +98,8 @@ The Sunsure Agents web application currently has three primary functions which i
 
 Inserting policyholder information can easily be done by clicking on the "Add Client" button in the top right corner of the web page. Once clicked a form will pop up on the user's screen, here the user can enter information and choose between clearing the whole form or adding the client. Be sure to double check information before clicking on "Create Client"!
 
+When it comes to inserting dependent information, the user should ensure that they enter the correct number of dependents into the Number of Dependents field *AND* then click on 'Fill Dependent Fields'. If the user doesn't do this an error message will appear at the bottom of the form when a user clicks on "Create Client".
+
 ![Example of Create Client](/media/img/tutorial/sunsure_add_client_form.PNG?raw=true "Create Client")
 
 ### Updating Policyholder Information
@@ -112,8 +114,8 @@ The user should also be aware that updating the dependent information for a clie
   - If the user would like to clear the pre-existing dependent information for a client they can enter a *0* for the Number of Dependents field.
 - Case 2: The Dependent Information needs to be updated
   - If the user would like to update their client's dependent information they can enter a new number for the Number of Depedents field and enter dependent data as normal. As a slight warning, the user should have the old dependent information on hand or saved elsewhere as entering a value will clear the old dependent information and replace it with whatever the user has entered in the dependent information forms.
- - Case 3: The Dependent Information needs to be left unchanged
-  - If the user would like to ensure that the client's dependent information is not altered when updating the client, all the user needs to do is leave the Number of Dependents field *emtpy*. By default, the update form will leave the Number of Dependents field empty so the user does not need to clear it every time they update a client.
+- Case 3: The Dependent Information needs to be left unchanged
+ - If the user would like to ensure that the client's dependent information is not altered when updating the client, all the user needs to do is leave the Number of Dependents field *emtpy*. By default, the update form will leave the Number of Dependents field empty so the user does not need to clear it every time they update a client.
 
 Please note that a user does *NOT* need to enter all the old information of a client in order to update the client. 
 
@@ -153,6 +155,7 @@ Please note that the search query will perform a partial search, meaning that if
 | Data Field Missing: Some Field cannot be empty.         | A required field was left empty in the form.                                                                  |
 | Primary Policy Holder has already been inserted         | A policyholder with identical information has already been inserted by the user or another user/agent.        |
 | Policy Information has already been inserted.           | The entered policy information for the policyholder to be inserted already exists.                            |
+| Data Error: Inserted a number of dependents but didn't click on 'Fill Dependent Details  |  The user likely entered a value into the Number of Dependents Field but forgot to click on 'Fill Dependent Details' |
 
 ## Show Detail Form Errors
 
