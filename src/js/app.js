@@ -827,7 +827,7 @@ function fillShowDetailsForm(updateShow = false, gPolicyID = -1)
 						document.getElementById("updateCarriers").value = carrier;
 						document.getElementById("updateClientAmbassador").placeholder = "" + ambassadorName;
 						document.getElementById("updateDetailsAppID").placeholder = "" + applicationID;
-						document.getElementById("updateNotes").innerHTML = "" + notes;
+						document.getElementById("updateNotes").value = "" + notes;
 					}
 
 					else
@@ -871,6 +871,7 @@ function clearModalForm(numOfDependents)
 	document.getElementById("clientFirstName").value = "";
 	document.getElementById("clientLastName").value = "";
 
+	document.getElementById("clientDateOfBirth").value = "";
 	document.getElementById("clientSSN").value = "";
 
 	document.getElementById("clientPhone").value = "";
@@ -882,6 +883,7 @@ function clearModalForm(numOfDependents)
 	document.getElementById("clientAddress").value = "";
 
 	document.getElementById("clientZIP").value = "";
+	document.getElementById("sourceMenu").value = "";
 
 	document.getElementById("clientEmail").value = "";
 	document.getElementById("clientNumOfDependents").value = "";
@@ -889,7 +891,9 @@ function clearModalForm(numOfDependents)
 	// Clear the Policy Information Form
 	document.getElementById("createPlanType").value = "";
 	document.getElementById("createAncillaryType").value = "";
+	document.getElementById("createEffectiveDate").value = "";
 
+	document.getElementById("createCarrier").value = "";
 	document.getElementById("createNotes").value = "";
 
 	document.getElementById("createClientAmbassador").value = "";
@@ -922,50 +926,50 @@ function clearModalForm(numOfDependents)
 
 function clearUpdatedModalForm(numOfDependents)
 {
-		// Clear the Client Information Form
-		document.getElementById("updateClientFirstName").value = "";
-		document.getElementById("updateClientLastName").value = "";
-	
-		document.getElementById("updateClientSSN").value = "";
-		document.getElementById("updateClientPhone").value = "";
-	
-		document.getElementById("updateClientAddress").value = "";
-	
-		document.getElementById("updateClientSecondLineAddress").value = "";
-		document.getElementById("updateClientCity").value = "";
-	
-		document.getElementById("updateClientZIP").value = "";
-	
-		document.getElementById("updateClientEmail").value = "";
+	// Clear the Client Information Form
+	document.getElementById("updateClientFirstName").value = "";
+	document.getElementById("updateClientLastName").value = "";
 
-		document.getElementById("updateClientNumOfDependents").value = "";
-	
-		// Clear the Policy Information Form
-		document.getElementById("updatePlanType").value = "";
-	
-		document.getElementById("updateAncillaryType").value = "";
-	
-		document.getElementById("updateEffectiveDate").value = "";
+	document.getElementById("updateClientSSN").value = "";
+	document.getElementById("updateClientPhone").value = "";
 
-		document.getElementById("updateNotes").value = "";
-		document.getElementById("updateClientAmbassador").value = "";
-	
-		document.getElementById("updateDetailsAppID").value = "";
-	
-		for (let i = 0; i < numOfDependents; i++)
-		{
-			// Depending on the number of dependents
-			// these strings will pull the right data accordingly.
-			var FNameString = "update-dependent-input-FirstName" + i;
-			var LNameString = "update-dependent-input-LastName" + i;
-			var DOBString = "update-dependent-input-DOB" + i;
-			var SSNString = "update-dependent-input-SSN" + i;
-	
-			document.getElementById(FNameString).value = "";
-			document.getElementById(LNameString).value = "";
-			document.getElementById(DOBString).value = "";
-			document.getElementById(SSNString).value = "";
-		}
+	document.getElementById("updateClientAddress").value = "";
+
+	document.getElementById("updateClientSecondLineAddress").value = "";
+	document.getElementById("updateClientCity").value = "";
+
+	document.getElementById("updateClientZIP").value = "";
+
+	document.getElementById("updateClientEmail").value = "";
+
+	document.getElementById("updateClientNumOfDependents").value = "";
+
+	// Clear the Policy Information Form
+	document.getElementById("updatePlanType").value = "";
+
+	document.getElementById("updateAncillaryType").value = "";
+
+	document.getElementById("updateEffectiveDate").value = "";
+
+	document.getElementById("updateNotes").value = "";
+	document.getElementById("updateClientAmbassador").value = "";
+
+	document.getElementById("updateDetailsAppID").value = "";
+
+	for (let i = 0; i < numOfDependents; i++)
+	{
+		// Depending on the number of dependents
+		// these strings will pull the right data accordingly.
+		var FNameString = "update-dependent-input-FirstName" + i;
+		var LNameString = "update-dependent-input-LastName" + i;
+		var DOBString = "update-dependent-input-DOB" + i;
+		var SSNString = "update-dependent-input-SSN" + i;
+
+		document.getElementById(FNameString).value = "";
+		document.getElementById(LNameString).value = "";
+		document.getElementById(DOBString).value = "";
+		document.getElementById(SSNString).value = "";
+	}
 
 	// Container <div> where dynamic content will be placed
 	let container = document.getElementById("updateDependentsContainer");
