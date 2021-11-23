@@ -20,6 +20,7 @@
   $Email = $inputFromJson['Email'];
   $NumOfDependents = $inputFromJson['NumOfDependents'];
   $Source = $inputFromJson['Source'];
+  $UpdatedSubDate = $inputFromJson['UpdatedSubDate'];
 
   $sql = "UPDATE Primary_PolicyHolders SET FirstName = IF(LENGTH('$FirstName')=0, FirstName, \"{$FirstName}\"), 
                                     LastName = IF(LENGTH('$LastName')=0, LastName, \"{$LastName}\"), 
@@ -32,7 +33,8 @@
                                     ZipCode = IF(LENGTH('$ZipCode')=0, ZipCode, \"{$ZipCode}\"), 
                                     State = \"{$State}\", 
                                     Email = IF(LENGTH('$Email')=0, Email, \"{$Email}\"), 
-                                    NumOfDependents = IF(LENGTH('$NumOfDependents') = 0, NumOfDependents, \"{$NumOfDependents}\"), 
+                                    NumOfDependents = IF(LENGTH('$NumOfDependents') = 0, NumOfDependents, \"{$NumOfDependents}\"),
+                                    UpdatedSubDate = \"{$UpdatedSubDate}\", 
                                     Source = \"{$Source}\" 
                                     WHERE AgentID = '{$AgentID}' AND PolicyID = '{$PolicyID}'";
 
