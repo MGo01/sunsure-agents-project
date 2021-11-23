@@ -21,6 +21,17 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     <script src="src/js/login.js"></script>
+    <script>
+        // Binds the "Enter" key to 
+        // the login button.
+        $(document).keypress(function(e)
+        {
+            if (e.which == 13)
+            {
+                $("#loginButton").click();
+            }
+        });
+    </script>
 
     <!-- Website Container -->
     <div class="container-fluid vh-100 overflow-hidden">
@@ -73,7 +84,7 @@
 
                 <input type="checkbox" class="form-check-input" id ="loginCheckbox"  onclick="showLoginPassword()"> Show Password
                 <br />
-                <button type="button" class="btn btn-primary btn-block btn-flat" onclick="login()"><span class="material-icons text-center">login</span>    Login</button>
+                <button type="button" class="btn btn-primary btn-block btn-flat" id="loginButton" onclick="login()"><span class="material-icons text-center">login</span>    Login</button>
 
                 <div class="row">
                     <div class="col text-center my-auto">
