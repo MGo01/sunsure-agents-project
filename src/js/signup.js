@@ -34,7 +34,7 @@ function checkFullName(name)
 
   if (name.length > maxNameLength)
   {
-    document.getElementById("registerStatus").innerHTML = "First Name should not exceed 45 characters!";
+    document.getElementById("registerStatus").innerHTML = "Name is too long!";
     document.getElementById("registerStatus").style.color = "red";
     
     return false;
@@ -58,7 +58,7 @@ function checkPassword(password)
 
   if (password.length < minPasswordLength)
   {
-    document.getElementById("registerStatus").innerHTML = "Your password must be at least 8 characters long, should not exceed 75 characters!";
+    document.getElementById("registerStatus").innerHTML = "Your password must be at least 8 characters long";
     document.getElementById("registerStatus").style.color = "red";
 
     return false;

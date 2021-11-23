@@ -338,7 +338,7 @@ function confirmCode()
 
           else if (endpointmsg !== "User has not been verified")
           {
-              document.getElementById("verificationStatus").innerHTML = "Token may have expired"; 
+              document.getElementById("verificationStatus").innerHTML = "Confirmation code may be invalid"; 
               document.getElementById("verificationStatus").style.color = "red";
           }
       }
