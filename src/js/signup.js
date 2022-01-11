@@ -120,6 +120,8 @@ function showRegistrationPassword()
   }
 }
 
+// Performs all validity checks for the inputs
+// receieved in the 'signup' function.
 function validateInput(fullName, email, password, confirmPassword)
 {
     "use strict";
@@ -136,6 +138,7 @@ function validateInput(fullName, email, password, confirmPassword)
     return true;
 }
 
+// Sign up hook for the sign up API.
 function signup()
 {
   "use strict";
@@ -203,7 +206,6 @@ function signup()
       request.responseType="text";
       console.log(json);
       request.send(json);
-      //window.location.href = "login.html";
     }
 
     catch(error)
