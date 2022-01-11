@@ -3,6 +3,7 @@ var FirstName = '';
 var LastName = '';
 var Email = '';
 
+// Login hook for the login API.
 function login()
 {   
   "use strict";
@@ -69,6 +70,8 @@ function login()
 	}
 }
 
+// Clears the local storage, removes all cookies
+// in the users current session, and returns them to login.
 function doLogout()
 {
 	userID = -1;
@@ -114,6 +117,8 @@ function readCookie()
 		var thisOne = splits[i].trim();
     var tokens = thisOne.split("=");
 
+    // Splice the cookie in order to
+    // read each token.
 		if (tokens[0] == "FirstName")
 		{
 			FirstName = tokens[1];

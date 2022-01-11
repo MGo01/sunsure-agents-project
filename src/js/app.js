@@ -1,6 +1,5 @@
 // Anna Malaj, Matthew Gomez
-// COP 4331, Spring 2021
-// 2/16/2021
+// Fall 2021
 
 // Global variables that allow for easy access
 // across the program.

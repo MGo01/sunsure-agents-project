@@ -5,6 +5,8 @@
   // Receive JSON payload from signup.js file.
   $inputFromJson = json_decode(file_get_contents('php://input'), true);
 
+  // Extract and place all JSON members
+  // into separate variables.
   $AgentID = $inputFromJson['AgentID'];
   $FirstName = $inputFromJson['FirstName'];
   $LastName = $inputFromJson['LastName'];
@@ -36,6 +38,8 @@
   // and date of birth of policyholder
   $PolicyID = uniqid($lastName . $dob, true);
 
+  // Check for duplicates based on the last name
+  // and date of birth of the primary policyholder.
   if (checkPrimaryPolicy($LastName, $DateOfBirth, $conn))
   {
     $sql = "INSERT INTO Primary_PolicyHolders (AgentID, FirstName, LastName, DateOfBirth, SSN, Phone, Address, Second_Line_Address, City, ZipCode, State, Email, NumOfDependents, SubmissionDate, Source)
@@ -45,6 +49,8 @@
 
     $getPolicysql = "SELECT * FROM Primary_PolicyHolders WHERE (LastName='$LastName' AND DateOfBirth='$DateOfBirth')";
 
+    // Insert the primary policyholder before returning
+    // the ID of the agent. 
     if (mysqli_query($conn, $sql))
     {
       // Create PrimaryPolicyHolder variable to store agent fields
@@ -96,6 +102,8 @@
     echo $jsonObj;
   }
 
+  // Returns False if a duplicate is found, otherwise
+  // this function returns True.
   function checkPrimaryPolicy($lastName, $dob, $conn)
   {
     // Check if there is an agent with the same
