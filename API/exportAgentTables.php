@@ -22,11 +22,11 @@
       break;
     case 2:
       $table_name = "Policy_Info";
-      $sql = "SELECT * FROM Policy_Info";
+      $sql = "SELECT * FROM Policy_Info WHERE Policy_Info.PolicyInfoID IN (SELECT Primary_PolicyHolders.PolicyID FROM Primary_PolicyHolders WHERE AgentID = '$AgentID')";
       break;
     case 3:
       $table_name = "Dependents";
-      $sql = "SELECT * FROM Dependents";
+      $sql = "SELECT * FROM Dependents WHERE Dependents.DependentID IN (SELECT Primary_PolicyHolders.PolicyID FROM Primary_PolicyHolders WHERE AgentID = '$AgentID')";
       break;
   }
 
@@ -44,7 +44,7 @@
     $headers[] = $fieldinfo->name;
   }
 
-  $fp = fopen($csv_filename, 'w');
+  $fp = fopen("php://output", 'w');
 
   if ($fp && $result)
   {
