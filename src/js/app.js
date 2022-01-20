@@ -121,8 +121,7 @@ function downloadFile(selection)
 	// the correct AgentID and selection.
   let jsonPayload = 
 	{
-		"AgentID": userID,
-		"Selection": selection
+		"AgentID": userID
 	};
 
 	let jsonString = JSON.stringify(jsonPayload);
@@ -142,21 +141,8 @@ function downloadFile(selection)
 			{
 				let csvBlob = xhr.response;
 				
-				if (selection == 1)
-				{
-					document.querySelector('#primaryDownloadButton').href = URL.createObjectURL(csvBlob);
-					document.querySelector('#primaryDownloadButton').click;
-				}
-				else if (selection == 2)
-				{
-					document.querySelector('#policyDownloadButton').href = URL.createObjectURL(csvBlob);
-					document.querySelector('#policyDownloadButton').click;
-				}
-				else
-				{
-					document.querySelector('#dependentDownloadButton').href = URL.createObjectURL(csvBlob);
-					document.querySelector('#dependentDownloadButton').click;
-				}				
+				document.querySelector('#primaryDownloadButton').href = URL.createObjectURL(csvBlob);
+				document.querySelector('#primaryDownloadButton').click;	
 			}
 		};
 		

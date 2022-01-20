@@ -9,29 +9,15 @@
   // Extract and place all JSON members
   // into separate variables.
   $AgentID = $inputFromJson['AgentID'];
-  $Selection = $inputFromJson['Selection'];
 
   // Select database tables based 
   // on user input.
-  switch ($Selection)
-  {
-    case 1:
-      $table_name = "Primary_PolicyHolders";
-      $sql = "SELECT * 
-       FROM Primary_PolicyHolders 
-       INNER JOIN Policy_Info ON Policy_Info.PolicyInfoID = Primary_PolicyHolders.PolicyID 
-       LEFT OUTER JOIN Dependents ON Dependents.DependentID = Policy_Info.PolicyInfoID 
-       WHERE AgentID = '$AgentID'";
-      break;
-    case 2:
-      $table_name = "Policy_Info";
-      $sql = "SELECT * FROM Policy_Info WHERE Policy_Info.PolicyInfoID IN (SELECT Primary_PolicyHolders.PolicyID FROM Primary_PolicyHolders WHERE AgentID = '$AgentID')";
-      break;
-    case 3:
-      $table_name = "Dependents";
-      $sql = "SELECT * FROM Dependents WHERE Dependents.DependentID IN (SELECT Primary_PolicyHolders.PolicyID FROM Primary_PolicyHolders WHERE AgentID = '$AgentID')";
-      break;
-  }
+  $table_name = "AgentData";
+  $sql = "SELECT * 
+    FROM Primary_PolicyHolders 
+    INNER JOIN Policy_Info ON Policy_Info.PolicyInfoID = Primary_PolicyHolders.PolicyID 
+    LEFT OUTER JOIN Dependents ON Dependents.DependentID = Policy_Info.PolicyInfoID 
+    WHERE AgentID = '$AgentID'";
 
   $result = mysqli_query($conn, $sql);
 
