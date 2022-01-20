@@ -110,11 +110,6 @@ function transformDate(strDate)
 	return result;
 }
 
-function downloadFileHelper()
-{
-	document.querySelector('#primaryDownloadButton').click();
-}
-
 // Downloads a file based on the user selection
 // and the AgentID.
 function downloadFile(check)
