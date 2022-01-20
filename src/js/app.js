@@ -154,8 +154,8 @@ function downloadFile(selection)
 				}
 				else
 				{
-					document.querySelector('#policyDownloadButton').href = URL.createObjectURL(csvBlob);
-					document.querySelector('#policyDownloadButton').click;
+					document.querySelector('#dependentDownloadButton').href = URL.createObjectURL(csvBlob);
+					document.querySelector('#dependentDownloadButton').click;
 				}				
 			}
 		};
