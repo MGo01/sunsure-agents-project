@@ -78,6 +78,7 @@ function doLogout()
 	FirstName = "";
   LastName = "";
   Email = "";
+  URL.revokeObjectURL(document.querySelector('#primaryDownloadButton').href);
 	deleteAllCookies();
 	localStorage.clear();
 	window.location.href = "index.html";

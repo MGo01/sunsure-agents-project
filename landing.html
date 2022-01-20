@@ -241,6 +241,7 @@ Sunsure Agents
       if (!('splash' in localStorage))
       {
         displayClientsTable(loggedIn = true);
+        downloadFile();
         localStorage.setItem('splash', true);
       }
     };
@@ -898,7 +899,7 @@ Sunsure Agents
               Export
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" id="primaryDownloadButton" onclick="downloadFile(); downloadFileHelper()" download="AgentData">Export All</a>
+            <a class="dropdown-item" id="primaryDownloadButton" download="AgentData">Export All</a>
           </div>
 
           <!-- Download Data Button -->
