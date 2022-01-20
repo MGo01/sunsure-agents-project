@@ -115,7 +115,7 @@ function transformDate(strDate)
 function downloadFile(selection)
 {
 	let xhr = new XMLHttpRequest();
-	let url = urlBase + "/exportAgentTables" + extension;
+	let url = urlBase + "/exportAgentTables." + extension;
 
 	// Package a JSON payload to deliver to the server
 	// the correct AgentID and selection.
@@ -128,7 +128,7 @@ function downloadFile(selection)
 	let jsonString = JSON.stringify(jsonPayload);
 
 	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-type", "text/csv; charset=UTF-8");
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
 	// Basic try and catch to ensure that any server code errors are
 	// handled properly.
@@ -139,7 +139,16 @@ function downloadFile(selection)
 			// If successful there is no need to display a change.
 			if (this.readyState == 4 && this.status == 200)
 			{
-				;
+				xhr.responseType = 'blob';
+				let csvBlob = xhr.response;
+				
+				if (selection == 1)
+					document.querySelector('#primaryDownloadButton').src = URL.createObjectURL(csvBlob);
+				else if (selection == 2)
+					document.querySelector('#policyDownloadButton').src = URL.createObjectURL(csvBlob);
+				else
+					document.querySelector('#dependentDownloadButton').src = URL.createObjectURL(csvBlob);
+				
 			}
 		};
 		
