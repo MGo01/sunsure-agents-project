@@ -241,7 +241,6 @@ Sunsure Agents
       if (!('splash' in localStorage))
       {
         displayClientsTable(loggedIn = true);
-        downloadFile();
         localStorage.setItem('splash', true);
       }
     };
@@ -892,7 +891,7 @@ Sunsure Agents
           <button class="btn btn-sm" id="refreshTableButton" style="zoom:67%" onclick="displayClientsTable();"><span class="material-icons-outlined">refresh</span>  Refresh</button>
 
           <!-- Download Button -->
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="downloadButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="downloadButton" onclick="downloadFile()" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <span class="material-icons-outlined" style="font-size: 16px;">
             file_download
           </span>
