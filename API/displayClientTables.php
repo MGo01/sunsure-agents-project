@@ -103,7 +103,7 @@
       'msg' => $error
     ];
 
-    outputJson($retval);
+    outputJSON($retval);
   }
 
   function returnInfo($info)
@@ -112,7 +112,7 @@
       'results' => $info
     ];
 
-    outputJson($retval);
+    outputJSON($retval);
   }
 
   function getDependents($policyHolder, $conn)
@@ -182,7 +182,7 @@
     return $primaryPolicyHolders;
   }
 
-  function outputJson($file)
+  function outputJSON($file)
   {
     header("Content-type:application/json");
     $jsonObj = json_encode($file);

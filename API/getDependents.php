@@ -44,7 +44,6 @@
 
     else
     {
-      // echo "failed to search records";
       returnError($conn->error);
     }
   }
@@ -59,7 +58,7 @@
     if ($result)
     {
       // Retrieve search results via getPolicyHolders()
-      // and store them in "searchResults"
+      // and store them in '$searchResults'.
       $searchResults = getDependents($result, $conn);
 
       if (is_null($searchResults))
@@ -70,7 +69,6 @@
 
     else
     {
-      // echo "failed to search records";
       returnError($conn->error);
     }
   }
@@ -83,7 +81,7 @@
       'results' => $error
     ];
 
-    outputJson($retval);
+    outputJSON($retval);
   }
 
   function returnInfo($info)
@@ -92,11 +90,14 @@
     'results' => $info
     ];
 
-    outputJson($retval);
+    outputJSON($retval);
   }
 
   function getDependents($result, $conn)
   {
+    // While there exists some dependent from
+    // the search query results then we will
+    // continue to insert all dependent data into '$dependentsArray'.
     while ($dep_row = mysqli_fetch_array($result))
     {
       $newDependent = new Dependent();
@@ -113,7 +114,7 @@
     return $dependentsArray;
   }
 
-  function outputJson($file)
+  function outputJSON($file)
   {
     header("Content-type:application/json");
     $jsonObj = json_encode($file);

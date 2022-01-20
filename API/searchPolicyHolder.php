@@ -85,6 +85,8 @@
       // and store them in "searchResults"
       $searchResults = getPolicyHolders($result, $conn);
 
+      // Check whether or not the results
+      // are empty.
       if (is_null($searchResults))
         returnInfo("No valid Primary PolicyHolders were found");
       else
@@ -128,6 +130,9 @@
     {
       $dependent_array = array();
 
+      // Keep loading in dependent result information
+      // as long as there still exists a remaining dependent
+      // within '$dependent_result'.
       while ($dep_row = mysqli_fetch_array($dependent_result))
       {
         $newDependent = new Dependent();
