@@ -112,13 +112,7 @@ function transformDate(strDate)
 
 function downloadFileHelper()
 {
-	let check = 0;
-
-	downloadFile(check)
-
-	if (check > 1)
-		return;
-		
+	document.querySelector('#primaryDownloadButton').click();
 }
 
 // Downloads a file based on the user selection
@@ -153,8 +147,6 @@ function downloadFile(check)
 				let csvBlob = xhr.response;
 				
 				document.querySelector('#primaryDownloadButton').href = URL.createObjectURL(csvBlob);
-				document.querySelector('#primaryDownloadButton').click();
-				return check++;
 			}
 		};
 		
