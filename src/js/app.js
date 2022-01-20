@@ -110,9 +110,20 @@ function transformDate(strDate)
 	return result;
 }
 
+function downloadFileHelper()
+{
+	let check = 0;
+
+	downloadFile(check)
+
+	if (check > 1)
+		return;
+		
+}
+
 // Downloads a file based on the user selection
 // and the AgentID.
-function downloadFile(selection)
+function downloadFile(check)
 {
 	let xhr = new XMLHttpRequest();
 	let url = urlBase + "/exportAgentTables." + extension;
@@ -142,7 +153,8 @@ function downloadFile(selection)
 				let csvBlob = xhr.response;
 				
 				document.querySelector('#primaryDownloadButton').href = URL.createObjectURL(csvBlob);
-				document.querySelector('#primaryDownloadButton').click;	
+				document.querySelector('#primaryDownloadButton').click();
+				return check++;
 			}
 		};
 		
