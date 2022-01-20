@@ -41,7 +41,7 @@
 
   $conn->close();
 
-  // Return DB Query Error
+  // Return DB Query Error.
   function returnError($error)
   {
     $retval = (object) [

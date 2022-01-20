@@ -58,7 +58,7 @@
       'msg' => $error
     ];
     
-    outputJson($retval);
+    outputJSON($retval);
   }
 
   function returnInfo($info)
@@ -67,15 +67,10 @@
       'msg' => $info
     ];
 
-    outputJson($retval);
+    outputJSON($retval);
   }
 
-  function showToken($token)
-  {
-    outputJson($retval);
-  }
-
-  function outputJson($file)
+  function outputJSON($file)
   {
     header("Content-type:application/json");
     $jsonObj = json_encode($file);

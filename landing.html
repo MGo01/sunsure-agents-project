@@ -284,6 +284,7 @@ Sunsure Agents
    
 		<div class="row vh-100 w-100">
 			<div class="col">
+
 				<!-- Create Client Form -->
 				<div class="modal fade" id="createClientModal" style="zoom:67%" tabindex="-1" role="dialog" aria-labelledby="createClientModalCenterTitle" aria-hidden="true">
 					<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
@@ -396,6 +397,7 @@ Sunsure Agents
 
                 <!-- Fifth Row -->
                 <div class="row">
+                  
                   <!-- Number of Dependents Column -->
                   <div class="col-3">
                     <span class="material-icons" style="font-size:38px;">tag</span>
@@ -420,6 +422,7 @@ Sunsure Agents
                     </div>
                 </div>
                 <br>
+
                  <!-- Add Dependents Container -->
                  <a href="#" id="filldetails" style="font-size: 25px;" onclick="addDependentFields()">Fill Dependent Details</a>
                  <div id="dependentsContainer"/>
@@ -440,6 +443,7 @@ Sunsure Agents
                 <!-- Policy Information, First Row -->
                 <div class="row">
                   <br />
+
                   <!-- Policy Type Column -->
                   <div class="col">
                     <span class="material-icons-outlined">info</span>
@@ -834,7 +838,8 @@ Sunsure Agents
                 </div>
 
                 <!-- Policy Information, Second Row -->
-                <div class="row">  
+                <div class="row">
+
                   <!-- Carrier Column -->
                   <div class="col-md-4">
                     <p id="showLabelCarrier"><b> Carrier</b></p>
@@ -879,26 +884,30 @@ Sunsure Agents
         <div id="taskHeader">
           
           <!-- Search Bar -->
-          <input type="text" id="clientsInput" style="zoom:67%" class = "text-center" placeholder="Search for clients...">
+          <input type="text" id="clientsInput" style="zoom:67%; width: 50%" class="text-center" placeholder="Search for clients...">
           <button class="btn btn-sm" id="searchClientButton" style="zoom:67%" onclick="searchClients();"><span class="material-icons text-center">search</span>  Search</button>
 
           <!-- Refresh Table Button -->
           <button class="btn btn-sm" id="refreshTableButton" style="zoom:67%" onclick="displayClientsTable();"><span class="material-icons-outlined">refresh</span>  Refresh</button>
 
+          <!-- Download Button -->
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="downloadButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="material-icons-outlined" style="font-size: 16px;">
+            file_download
+          </span>
+              Download
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" onclick="downloadFile(1)" href="#">Primary Policyholders</a>
+            <a class="dropdown-item" onclick="downloadFile(2)" href="#">Policy Information</a>
+            <a class="dropdown-item" onclick="downloadFile(3)" href="#">Dependents</a>
+          </div>
+
+          <!-- Download Data Button -->
+          <!-- <button class="btn btn-sm" id="downloadButton" style="zoom:67%" data-toggle="modal" data-target="#createClientModal" data-backdrop="static" data-keyboard="false"><span class="material-icons text-center">file_download</span> Download</button> -->
+
           <!-- Add Client Button -->
           <button class="btn btn-sm" id="addClientButton" style="zoom:67%" data-toggle="modal" data-target="#createClientModal" data-backdrop="static" data-keyboard="false"><span class="material-icons text-center">add</span>Add Client</button>
-
-          <!-- Dropdown Menu
-          <div class="dropdown">
-            <button class="btn btn-sm" dropdown-toggle" type="button" id="menuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-            <span class="material-icons-outlined" style="font-size: 14px;">menu</span>
-              Menu
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" style="font-size: 14px;" href="#">Video Tutorial</a>
-              <a class="dropdown-item" style="font-size: 14px;" href="#">Documentation</a>
-            </div>
-          </div> -->
 
         </div>
 				
@@ -907,6 +916,8 @@ Sunsure Agents
 					<table id="clientsTable" class="table table-striped table-cell table-hover text-center">
             
           <div id="clientTableResults">
+
+            <!-- Added these spans to allow the search results to be centered. -->
             <span class="inner">
               <div class="overflow" id="searchResults"</div>
             </span>
@@ -914,8 +925,11 @@ Sunsure Agents
             <span class="inner"></span>
         </div>
 
+            <!-- Table Header -->
 						<thead id="tableHeader">
 							<tr>
+
+                <!-- Table Columns -->
 								<th class="d-none">PolicyID</th>
 								<th class="d-none">PolicyInfoID</th>
 								<th>First Name</th>

@@ -11,9 +11,8 @@
   $AgentID = $inputFromJson['AgentID'];
   $Selection = $inputFromJson['Selection'];
 
-  // In case of an empty user
-  // input then we will print out
-  // the correct messages.
+  // Select database tables based 
+  // on user input.
   switch ($Selection)
   {
     case 1:
@@ -32,9 +31,13 @@
 
   $result = mysqli_query($conn, $sql);
 
+  // Terminate the script if no 
+  // valid information can be retrieved.
   if (!$result)
     die('Couldn\'t fetch records');
 
+  // Extract the number of fields
+  // and provide the correct name for the csv.
   $num_fields = mysqli_num_fields($result);
   $headers = array();
   $csv_filename = "export" . $table_name . ".csv";
@@ -46,14 +49,20 @@
 
   $fp = fopen("php://output", 'w');
 
+  // If the file and result are both
+  // valid then we export the csv file.
   if ($fp && $result)
   {
+    // Set the appropiate headers for
+    // the exported csv file.
     header('Content-Type: text/csv');
     header('Content-Disposition: attachment; filename="'.$csv_filename.'"');
     header('Pragma: no-cache');
     header('Expires: 0');
     fputcsv($fp, $headers);
 
+    // Extract each row of the query result
+    // and place it in the csv file.
     while ($row = $result->fetch_array(MYSQLI_NUM))
     {
       fputcsv($fp, array_values($row));

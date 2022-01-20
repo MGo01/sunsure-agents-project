@@ -169,7 +169,7 @@ body
     outline: none;
 }
 
-#addClientButton, #searchClientButton, #refreshTableButton
+#addClientButton, #searchClientButton, #refreshTableButton, #downloadButton
 {
     background-color: indigo;
     border-color: #000000;
@@ -188,13 +188,19 @@ body
     margin-top: 1.3%;
 }
 
+#downloadButton
+{
+  font-size: 16px;
+  padding: 8px;
+  width: 9.75%;
+}
+
 #searchClientButton, #refreshTableButton
 {
     padding: 8px;
-    width: 8.5%;
 }
 
-#addClientButton:hover, #searchClientButton:hover, #updateClientButton:hover
+#addClientButton:hover, #searchClientButton:hover, #updateClientButton:hover, #downloadButton:hover
 {
     border: 2px solid plum;
     background-color: plum;
