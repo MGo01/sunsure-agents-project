@@ -17,7 +17,11 @@
   {
     case 1:
       $table_name = "Primary_PolicyHolders";
-      $sql = "SELECT * FROM Primary_PolicyHolders WHERE AgentID = '$AgentID'";
+      $sql = "SELECT * 
+       FROM Primary_PolicyHolders 
+       INNER JOIN Policy_Info ON Policy_Info.PolicyInfoID = Primary_PolicyHolders.PolicyID 
+       LEFT OUTER JOIN Dependents ON Dependents.DependentID = Policy_Info.PolicyInfoID 
+       WHERE AgentID = '$AgentID'";
       break;
     case 2:
       $table_name = "Policy_Info";
