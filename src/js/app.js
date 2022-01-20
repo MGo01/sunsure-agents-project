@@ -129,7 +129,7 @@ function downloadFile(selection)
 
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	xhr.responseType = 'blob';
+	xhr.responseType = 'blob'
 
 	// Basic try and catch to ensure that any server code errors are
 	// handled properly.
@@ -140,7 +140,23 @@ function downloadFile(selection)
 			// If successful there is no need to display a change.
 			if (this.readyState == 4 && this.status == 200)
 			{
-				;
+				let csvBlob = xhr.response;
+				
+				if (selection == 1)
+				{
+					document.querySelector('#primaryDownloadButton').href = URL.createObjectURL(csvBlob);
+					document.querySelector('#primaryDownloadButton').click;
+				}
+				else if (selection == 2)
+				{
+					document.querySelector('#policyDownloadButton').href = URL.createObjectURL(csvBlob);
+					document.querySelector('#policyDownloadButton').click;
+				}
+				else
+				{
+					document.querySelector('#policyDownloadButton').href = URL.createObjectURL(csvBlob);
+					document.querySelector('#policyDownloadButton').click;
+				}				
 			}
 		};
 		
