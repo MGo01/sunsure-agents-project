@@ -165,7 +165,20 @@ function signup()
 
   if (validateInput(fullName, email, password, confirmPassword))
   {
-    var json = '{"FirstName" : "' + firstName + '", "LastName" : "' + lastName + '", "Email" : "' + email + '", "Password" : "' + password + '"}';
+    let isTesting = false;
+
+		// Create JSON for each dependent to later
+		// store in dependentsArray.
+		var signupObj = 
+		{
+			"FirstName": firstName,
+			"LastName": lastName,
+			"Email": email,
+			"Password": password,
+			"isTesting": isTesting
+		};
+
+		json = JSON.stringify(signupObj);
     
     var request = new XMLHttpRequest();
 

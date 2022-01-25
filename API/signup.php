@@ -13,8 +13,9 @@
 
   $FirstName = $inputFromJson['FirstName'];
   $LastName = $inputFromJson['LastName'];
-  $Password =  $inputFromJson['Password'];
+  $Password = $inputFromJson['Password'];
   $Email = $inputFromJson['Email'];
+  $isTesting = $inputFromJson['isTesting'];
 
   if (checkEmailUsed($Email, $conn))
   {
@@ -33,8 +34,20 @@
     // $pwd_peppered = hash_hmac("sha256", $Password, $pepper);
     $pwd_hashed = password_hash($Password, PASSWORD_ARGON2ID);
 
-    $sql = "INSERT INTO Agents (Password, Email, FirstName, LastName, AgentToken)
-    VALUES ('".$pwd_hashed."','".$Email."','".$FirstName."','".$LastName."', '".$AgentToken."')";
+    // Check to ensure that we are/are
+    // not receieving a request from
+    // the API tests.
+    if ($isTesting)
+    {
+      $sql = "INSERT INTO Testing_Agents (Password, Email, FirstName, LastName, AgentToken)
+      VALUES ('".$pwd_hashed."','".$Email."','".$FirstName."','".$LastName."', '".$AgentToken."')";
+    }
+
+    else
+    {
+      $sql = "INSERT INTO Agents (Password, Email, FirstName, LastName, AgentToken)
+      VALUES ('".$pwd_hashed."','".$Email."','".$FirstName."','".$LastName."', '".$AgentToken."')";
+    }
 
     if (mysqli_query($conn, $sql))
     {
