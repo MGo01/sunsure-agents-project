@@ -2,6 +2,7 @@ var userID = -1;
 var FirstName = '';
 var LastName = '';
 var Email = '';
+var Role = '';
 
 // Login hook for the login API.
 function login()
@@ -51,6 +52,7 @@ function login()
             FirstName = jsonObject.FirstName;
             LastName = jsonObject.LastName;
             Email = jsonObject.Email;
+            Role = jsonObject.Role;
 
             saveCookie();
             window.location.href = "landing.html";
@@ -78,6 +80,7 @@ function doLogout()
 	FirstName = "";
   LastName = "";
   Email = "";
+  Role = "";
   URL.revokeObjectURL(document.querySelector('#primaryDownloadButton').href);
 	deleteAllCookies();
 	localStorage.clear();
@@ -89,7 +92,7 @@ function saveCookie()
 	var minutes = 40;
 	var date = new Date();
 	date.setTime(date.getTime()+(minutes*60*1000));
-	document.cookie = "FirstName=" + FirstName + ",LastName=" + LastName + ",userID=" + userID + ",expires=" + date.toGMTString();
+	document.cookie = "FirstName=" + FirstName + ",LastName=" + LastName + ",userID=" + userID + ",Role=" + Role + ",expires=" + date.toGMTString();
 }
 
 function deleteAllCookies() 
@@ -138,6 +141,11 @@ function readCookie()
     else if (tokens[0] == "Email")
     {
       Email = tokens[1];
+    }
+
+    else if (tokens[0] == "Role")
+    {
+      Role = tokens[1];
     }
 	}
 

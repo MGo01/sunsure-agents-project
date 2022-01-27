@@ -64,7 +64,6 @@ function addRow(obj)
 	// Creates buttons for deleting and updating
 	// a contact based on the their respective row.
 	// $(`#delete-${obj.PolicyID}`).on('click', deleteTest)
-
 	$(`#save-${obj.PolicyID}`).on('click', saveUpdate)
 	$(`#show-${obj.PolicyID}`).on('click', fillShowDetailsForm)
 
@@ -88,6 +87,9 @@ function restrictDate(date, DOBFlag = false)
 	}
 }
 
+// Nifty function to handle transforming
+// dd/mm/yyyy formats to mm/dd/yyyy and 
+// removes any existing dashes.
 function transformDate(strDate) 
 {
 	let result = '';
@@ -121,7 +123,8 @@ function downloadFile(check)
 	// the correct AgentID and selection.
   let jsonPayload = 
 	{
-		"AgentID": userID
+		"AgentID": userID,
+		"Role": Role
 	};
 
 	let jsonString = JSON.stringify(jsonPayload);
@@ -130,7 +133,8 @@ function downloadFile(check)
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 	xhr.responseType = 'blob'
 
-	// Basic try and catch to ensure that any server code errors are
+	// Basic try and catch to ensure 
+	// that any server code errors are
 	// handled properly.
 	try
 	{
