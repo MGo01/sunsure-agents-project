@@ -6,9 +6,15 @@
 
   $Email = $inputFromJson['Email'];
   $Password = $inputFromJson['Password'];
+  $isTesting = $inputFromJson['isTesting'];
 
   // Query to DB
-  $sql = "SELECT * FROM Agents WHERE (Email='$Email')";
+
+  if ($isTesting)
+    $sql = "SELECT * FROM Testing_Agents WHERE (Email='$Email')";
+  else
+    $sql = "SELECT * FROM Agents WHERE (Email = '$Email')";
+
   $result = mysqli_query($conn, $sql);
 
   // Retrieve the number of rows
@@ -85,13 +91,14 @@
 
   // This takes the user to the landing page.
   // It will also send the user info to the landing page
-  function returnUser($ID, $FirstName, $LastName, $Email)
+  function returnUser($ID, $FirstName, $LastName, $Email, $Role)
   {
     $retval = (object) [
       'ID' => $ID,
       'FirstName' => $FirstName,
       'LastName' => $LastName,
-      'Email' => $Email
+      'Email' => $Email,
+      'Role' => $Role
       ];
 
     outputJSON($retval);

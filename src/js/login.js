@@ -16,7 +16,18 @@ function login()
 
 	if (checkEmaillog(loginEmail) && checkPasswordlog(password))
   {
-		var jsonPayload = '{"Email" : "' + loginEmail + '", "Password" : "' + password + '"}';
+    let isTesting = false;
+
+		// Create JSON for each dependent to later
+		// store in dependentsArray.
+		var loginObj = 
+		{
+			"Email": loginEmail,
+			"Password": password,
+			"isTesting": isTesting
+		};
+
+		jsonPayload = JSON.stringify(loginObj);
 
     var request = new XMLHttpRequest();
     request.open("POST", "https://sunsure-agent.com/API/login.php", true);
