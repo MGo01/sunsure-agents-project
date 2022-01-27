@@ -2,22 +2,38 @@
   // File to connect to DB
   require 'db_conn.php';
 
-
   // Receive JSON payload from export hook.
   $inputFromJson = json_decode(file_get_contents('php://input'), true);
 
   // Extract and place all JSON members
   // into separate variables.
   $AgentID = $inputFromJson['AgentID'];
+  $Role = $inputFromJson['Role'];
 
   // Select database tables based 
   // on user input.
-  $table_name = "AgentData";
-  $sql = "SELECT * 
+  $export_name = "AgentData";
+
+  // It may seem counterintuitive
+  // but strcmp returns 0 if there
+  // is no difference between $Role
+  // and "User".
+  if (strcmp($Role, "Admin") == 0)
+  {
+    $sql = "SELECT * 
+    FROM Primary_PolicyHolders 
+    INNER JOIN Policy_Info ON Policy_Info.PolicyInfoID = Primary_PolicyHolders.PolicyID 
+    LEFT OUTER JOIN Dependents ON Dependents.DependentID = Policy_Info.PolicyInfoID";
+  }
+
+  else
+  {
+    $sql = "SELECT * 
     FROM Primary_PolicyHolders 
     INNER JOIN Policy_Info ON Policy_Info.PolicyInfoID = Primary_PolicyHolders.PolicyID 
     LEFT OUTER JOIN Dependents ON Dependents.DependentID = Policy_Info.PolicyInfoID 
     WHERE AgentID = '$AgentID'";
+  }
 
   $result = mysqli_query($conn, $sql);
 
@@ -30,7 +46,7 @@
   // and provide the correct name for the csv.
   $num_fields = mysqli_num_fields($result);
   $headers = array();
-  $csv_filename = "export" . $table_name . ".csv";
+  $csv_filename = "export" . $export_name . ".csv";
 
   while ($fieldinfo = mysqli_fetch_field($result))
   {

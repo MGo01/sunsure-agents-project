@@ -29,6 +29,7 @@
     $LastName = $Agent["LastName"];
     $Check_Password = $Agent['Password'];
     $Email = $Agent["Email"];
+    $Role = $Agent["Role"];
     $isVerified = $Agent['isVerified'];
 
     // Retrieve pepper from configuration file
@@ -49,7 +50,7 @@
       {
         // Returns User information to be stored
         // on the Front-End (FE).
-        returnUser($ID, $FirstName, $LastName, $Email);
+        returnUser($ID, $FirstName, $LastName, $Email, $Role);
       }
 
       else
