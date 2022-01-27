@@ -27,7 +27,7 @@ function login()
 			"isTesting": isTesting
 		};
 
-		jsonPayload = JSON.stringify(loginObj);
+		var jsonPayload = JSON.stringify(loginObj);
 
     var request = new XMLHttpRequest();
     request.open("POST", "https://sunsure-agent.com/API/login.php", true);
