@@ -10,12 +10,23 @@
   $DateOfBirth = $inputFromJson['DateOfBirth'];
   $SSN = $inputFromJson['SSN'];
   $DependentID = $inputFromJson['DependentID'];
+  $isTesting = $inputFromJson['isTesting'];
 
-  if (checkDependent($LastName, $DateOfBirth, $conn))
+  if (checkDependent($LastName, $DateOfBirth, $conn, $isTesting))
   {
-    $sql = "INSERT INTO Dependents (FirstName, LastName, DateOfBirth, SSN, DependentID)
-    VALUES ('".$FirstName."','".$LastName."','".$DateOfBirth."', '".$SSN."',
+    if ($isTesting)
+    {
+      $sql = "INSERT INTO Testing_Dependents (FirstName, LastName, DateOfBirth, SSN, DependentID)
+              VALUES ('".$FirstName."','".$LastName."','".$DateOfBirth."', '".$SSN."',
             '".$DependentID."')";
+    }
+
+    else
+    {
+      $sql = "INSERT INTO Dependents (FirstName, LastName, DateOfBirth, SSN, DependentID)
+              VALUES ('".$FirstName."','".$LastName."','".$DateOfBirth."', '".$SSN."',
+            '".$DependentID."')";
+    }
 
     if (mysqli_query($conn, $sql))
     {
@@ -62,13 +73,23 @@
     echo $jsonObj;
   }
 
-  function checkDependent($lastName, $dob, $conn)
+  function checkDependent($lastName, $dob, $conn, $isTesting)
   {
     // Check if there is an agent with the same 
     // Date of Birth and Last Name Within the Dependents Table.
-    $sql_id = "SELECT * FROM Dependents 
-                WHERE LastName = '$lastName'
-                AND DateOfBirth = '$dob'"; 
+    if ($isTesting)
+    {
+      $sql_id = "SELECT * FROM Testing_Dependents 
+      WHERE LastName = '$lastName'
+      AND DateOfBirth = '$dob'";
+    }
+
+    else
+    {
+      $sql_id = "SELECT * FROM Dependents 
+      WHERE LastName = '$lastName'
+      AND DateOfBirth = '$dob'";
+    } 
 
     $result = mysqli_query($conn, $sql_id);
     $rows = mysqli_num_rows($result);
