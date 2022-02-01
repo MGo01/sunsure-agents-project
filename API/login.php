@@ -8,18 +8,35 @@
   $Password = $inputFromJson['Password'];
   $isTesting = $inputFromJson['isTesting'];
 
-  // Query to DB
-
+  // Query to DB based on whether
+  // or not we are testing this API.
   if ($isTesting)
+  {
     $sql = "SELECT * FROM Testing_Agents WHERE (Email='$Email')";
+    $update_sql = "UPDATE Testing Agents isVerified = 'Y' WHERE (Email='$Email')";
+
+    $result = mysqli_query($conn, $sql);
+
+    if ($result)
+      mysqli_query($conn, $update_sql);
+    else
+      returnError("Update of Testing");
+
+    // Retrieve the number of rows to check
+    // if an account with the input email exists.
+    $numRows = mysqli_num_rows($result);
+  }
+
   else
+  {
     $sql = "SELECT * FROM Agents WHERE (Email = '$Email')";
 
-  $result = mysqli_query($conn, $sql);
+    $result = mysqli_query($conn, $sql);
 
-  // Retrieve the number of rows
-  // to check if an account with the input email exists
-  $numRows = mysqli_num_rows($result);
+    // Retrieve the number of rows to check
+    // if an account with the input email exists.
+    $numRows = mysqli_num_rows($result);
+  }
 
   // Check if User exists.
   if ($numRows > 0)
@@ -38,10 +55,10 @@
     $Role = $Agent["Role"];
     $isVerified = $Agent['isVerified'];
 
-    // Retrieve pepper from configuration file
+    // Retrieve pepper from configuration file.
     $pepper = $configs["pepper"];
 
-    // Set up parameters for password hashing options
+    // Set up parameters for password hashing options.
     $cost = 10;
 
     // Pepper and hash the input password
@@ -50,9 +67,9 @@
 
     if (password_verify($Password, $pwd_hashed)) 
     {
-      // Ensure that the user is verified before
-      // logging them in
-      if ($isVerified == 'Y')
+      // Ensure that the user is verified 
+      // before logging them in.
+      if ($isVerified == 'Y' )
       {
         // Returns User information to be stored
         // on the Front-End (FE).
@@ -90,7 +107,7 @@
   }
 
   // This takes the user to the landing page.
-  // It will also send the user info to the landing page
+  // It will also send the user info to the landing page.
   function returnUser($ID, $FirstName, $LastName, $Email, $Role)
   {
     $retval = (object) [
