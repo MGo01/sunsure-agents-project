@@ -11,32 +11,17 @@
   // Query to DB based on whether
   // or not we are testing this API.
   if ($isTesting)
-  {
     $sql = "SELECT * FROM Testing_Agents WHERE (Email='$Email')";
-    $update_sql = "UPDATE Testing Agents isVerified = 'Y' WHERE (Email='$Email')";
-
-    $result = mysqli_query($conn, $sql);
-
-    if ($result)
-      mysqli_query($conn, $update_sql);
-    else
-      returnError("Update of Testing");
-
-    // Retrieve the number of rows to check
-    // if an account with the input email exists.
-    $numRows = mysqli_num_rows($result);
-  }
 
   else
-  {
     $sql = "SELECT * FROM Agents WHERE (Email = '$Email')";
 
-    $result = mysqli_query($conn, $sql);
 
-    // Retrieve the number of rows to check
-    // if an account with the input email exists.
-    $numRows = mysqli_num_rows($result);
-  }
+  $result = mysqli_query($conn, $sql);
+
+  // Retrieve the number of rows to check
+  // if an account with the input email exists.
+  $numRows = mysqli_num_rows($result);  
 
   // Check if User exists.
   if ($numRows > 0)
@@ -69,7 +54,7 @@
     {
       // Ensure that the user is verified 
       // before logging them in.
-      if ($isVerified == 'Y' )
+      if ($isVerified == 'Y')
       {
         // Returns User information to be stored
         // on the Front-End (FE).
