@@ -20,10 +20,17 @@
   // and "User".
   if (strcmp($Role, "Admin") == 0)
   {
-    $sql = "SELECT * 
-    FROM Primary_PolicyHolders 
-    INNER JOIN Policy_Info ON Policy_Info.PolicyInfoID = Primary_PolicyHolders.PolicyID 
-    LEFT OUTER JOIN Dependents ON Dependents.DependentID = Policy_Info.PolicyInfoID";
+    // Back up SQL
+    // $sql = "SELECT * 
+    // FROM Primary_PolicyHolders 
+    // INNER JOIN Policy_Info ON Policy_Info.PolicyInfoID = Primary_PolicyHolders.PolicyID 
+    // LEFT OUTER JOIN Dependents ON Dependents.DependentID = Policy_Info.PolicyInfoID";
+
+    $sql = "SELECT Agents.FirstName, Agents.LastName, Primary_PolicyHolders.* 
+      FROM Primary_PolicyHolders
+      LEFT JOIN Agents ON Agents.AgentID = Primary_PolicyHolders.AgentID
+      INNER JOIN Policy_Info ON Policy_Info.PolicyInfoID = Primary_PolicyHolders.PolicyID 
+      LEFT OUTER JOIN Dependents ON Dependents.DependentID = Policy_Info.PolicyInfoID";
   }
 
   else
