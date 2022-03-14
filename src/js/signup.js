@@ -178,7 +178,7 @@ function signup()
 			"isTesting": isTesting
 		};
 
-		json = JSON.stringify(signupObj);
+		var json = JSON.stringify(signupObj);
     
     var request = new XMLHttpRequest();
 
