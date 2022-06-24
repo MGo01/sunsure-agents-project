@@ -115,9 +115,9 @@ The user should also be aware that updating the dependent information for a clie
 - Case 1: The Dependent Information needs to be cleared
   - If the user would like to clear the pre-existing dependent information for a client they can enter a *0* for the Number of Dependents field.
 - Case 2: The Dependent Information needs to be updated
-  - If the user would like to update their client's dependent information they can enter a new number for the Number of Depedents field and enter dependent data as normal. As a slight warning, the user should have the old dependent information on hand or saved elsewhere as entering a value will clear the old dependent information and replace it with whatever the user has entered in the dependent information forms.
+  - If the user would like to update their client's dependent information they can enter a new number for the Number of Dependents field and enter dependent data as normal. As a slight warning, the user should have the old dependent information on hand or saved elsewhere as entering a value will clear the old dependent information and replace it with whatever the user has entered in the dependent information forms.
 - Case 3: The Dependent Information needs to be left unchanged
-  - If the user would like to ensure that the client's dependent information is not altered when updating the client, all the user needs to do is leave the Number of Dependents field *emtpy*. By default, the update form will leave the Number of Dependents field empty so the user does not need to clear it every time they update a client.
+  - If the user would like to ensure that the client's dependent information is not altered when updating the client, all the user needs to do is leave the Number of Dependents field *empty*. By default, the update form will leave the Number of Dependents field empty so the user does not need to clear it every time they update a client.
 
 Please note that a user does *NOT* need to enter all the old information of a client in order to update the client. 
 
